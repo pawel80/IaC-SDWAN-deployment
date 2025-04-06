@@ -5,6 +5,11 @@ terraform {
   #     # version = "~> 3.87.0"
   #   }
   # }
+  required_providers {
+    sdwan = {
+      source = "CiscoDevNet/sdwan"
+    }
+  }
 
   # Hashicorp recommends using the cloud block instead of the backend block (legacy)
   cloud {
