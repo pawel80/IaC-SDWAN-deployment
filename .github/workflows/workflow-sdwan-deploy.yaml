@@ -69,7 +69,7 @@ jobs:
         id: plan
         run: terraform plan -no-color
         continue-on-error: true
-        env:
+        # env:
           # SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
           # SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_USERNAME }}
           # SDWAN_URL: 'https://10.12.0.20'
