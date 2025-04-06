@@ -70,10 +70,10 @@ jobs:
         run: terraform plan -no-color
         continue-on-error: true
         env:
-          SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
-          SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_USERNAME }}
-          SDWAN_URL: 'https://10.12.0.20'
-          SDWAN_INSECURE: false
+          # SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
+          # SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_USERNAME }}
+          # SDWAN_URL: 'https://10.12.0.20'
+          # SDWAN_INSECURE: false
 
 
       # Executes the actions proposed in a Terraform plan
@@ -88,7 +88,7 @@ jobs:
           SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_USERNAME }}
           SDWAN_URL: 'https://10.12.0.20'
           SDWAN_RETRIES: 6
-          SDWAN_INSECURE: false
+          SDWAN_INSECURE: true
 
       # - name: 'Terraform Destroy'
       #   if: ${{ github.event.inputs.terraform_env_remove == 'true' }}
