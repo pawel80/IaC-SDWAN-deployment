@@ -78,6 +78,7 @@ jobs:
           SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_USERNAME }}
           SDWAN_URL: 'https://10.12.0.20'
 
+
       # # Executes the actions proposed in a Terraform plan
       # - name: 'Terraform Apply'
       #   if: github.ref == 'refs/heads/dev'
