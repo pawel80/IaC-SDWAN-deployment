@@ -73,7 +73,7 @@ jobs:
           SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
           SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_USERNAME }}
           SDWAN_URL: 'https://10.12.0.20'
-          SDWAN_INSECURE: true
+          SDWAN_INSECURE: false
 
 
       # Executes the actions proposed in a Terraform plan
@@ -87,7 +87,7 @@ jobs:
           SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
           SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_USERNAME }}
           SDWAN_URL: 'https://10.12.0.20'
-          SDWAN_INSECURE: true
+          SDWAN_INSECURE: false
 
       # - name: 'Terraform Destroy'
       #   if: ${{ github.event.inputs.terraform_env_remove == 'true' }}
