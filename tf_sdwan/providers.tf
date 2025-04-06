@@ -20,9 +20,3 @@ terraform {
 # #  password = "${var.SDWAN_MANAGER_USERNAME}"
 #   url      = "https://10.12.0.20"
 # }
-
-provider "sdwan" {
-  username = "admin"
-  password = "Cisco123"
-  url      = "https://10.12.0.20"
-}
