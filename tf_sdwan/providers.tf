@@ -13,10 +13,10 @@ terraform {
   }
 }
 
-# provider "sdwan" {
-#   username = "${secrets.SDWAN_MANAGER_PASSWORD}"
-#   password = "${secrets.SDWAN_MANAGER_USERNAME}"
-# #  username = "${var.SDWAN_MANAGER_PASSWORD}"
-# #  password = "${var.SDWAN_MANAGER_USERNAME}"
-#   url      = "https://10.12.0.20"
-# }
+provider "sdwan" {
+  username = "${secrets.SDWAN_MANAGER_USERNAME}"
+  password = "${secrets.SDWAN_MANAGER_PASSWORD}"
+#  username = "${var.SDWAN_MANAGER_USERNAME}"
+#  password = "${var.SDWAN_MANAGER_PASSWORD}"
+  url      = "https://10.12.0.20"
+}
