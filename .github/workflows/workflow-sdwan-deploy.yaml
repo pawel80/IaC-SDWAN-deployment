@@ -98,7 +98,6 @@ jobs:
       #   working-directory: ${{ env.TF_DIR }}
       #   run: terraform destroy --auto-approve
       #   env:
-      #     ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
-      #     ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUB_ID }}
-      #     ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
-      #     ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+        #   SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_USERNAME }}
+        #   SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
+        #   SDWAN_URL: 'https://10.12.0.20'

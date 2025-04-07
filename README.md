@@ -1,2 +1,3 @@
 # IaC-SDWAN-deployment
-SDWAN pipeline -> Terraform deployment
+SDWAN as code, deployed via Github workflow -> self-hosted runner
+
