@@ -1,12 +1,12 @@
-resource "sdwan_cisco_system_feature_template" "system" {
-  name               = "TF_SYSTEM_TEST1"
-  description        = "My cisco system feature template"
-  device_types       = ["vedge-C8000V"]
-  hostname_variable  = "var_hostname"
-  system_ip_variable = "var_system_ip"
-  site_id_variable   = "var_site_id"
-  # console_baud_rate  = "115200"
-}
+# resource "sdwan_cisco_system_feature_template" "system" {
+#   name               = "TF_SYSTEM_TEST1"
+#   description        = "My cisco system feature template"
+#   device_types       = ["vedge-C8000V"]
+#   hostname_variable  = "var_hostname"
+#   system_ip_variable = "var_system_ip"
+#   site_id_variable   = "var_site_id"
+#   # console_baud_rate  = "115200"
+# }
 
 # resource "sdwan_feature_device_template" "device_template_1" {
 #   name        = "TF_DT1_ALL"
