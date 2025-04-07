@@ -37,6 +37,9 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v4
 
+      # - name: 'Run bash echo command'
+      #   run: echo 'Hello, world!'
+
       # Terraform API driven workflow
       - name: 'Terraform initial setup'
         uses: hashicorp/setup-terraform@v3
