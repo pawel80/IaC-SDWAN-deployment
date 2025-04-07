@@ -74,11 +74,10 @@ jobs:
         run: terraform plan -no-color
         continue-on-error: true
         env:
-          SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
-          SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_USERNAME }}
+          SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_USERNAME }}
+          SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
           SDWAN_URL: 'https://10.12.0.20'
           SDWAN_INSECURE: true
-
 
       # Executes the actions proposed in a Terraform plan
       - name: 'Terraform Apply'
@@ -88,10 +87,10 @@ jobs:
         # -input=false -> Disables Terraform's default behavior of prompting for input
         run: terraform apply -auto-approve -input=false
         env:
-          SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
-          SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_USERNAME }}
+          SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_USERNAME }}
+          SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
           SDWAN_URL: 'https://10.12.0.20'
-          SDWAN_RETRIES: 6
+          SDWAN_RETRIES: 3
           SDWAN_INSECURE: true
           TF_LOG: DEBUG
 
