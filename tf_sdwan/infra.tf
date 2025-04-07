@@ -57,8 +57,10 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_01_wan_
   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_01_wan_vpn.id
   interface_name               = "GigabitEthernet1"
   shutdown                     = false
-  ipv4_dhcp_distance           = 1
-  tunnel_interface             = true
+  interface_description        = "WAN"
+  ipv4_configuration_type      = "static"
+  ipv4_address                 = "1.2.3.4"
+  ipv4_subnet_mask             = "0.0.0.0"
   tunnel_interface_encapsulations = [
     {
       encapsulation = "ipsec"
