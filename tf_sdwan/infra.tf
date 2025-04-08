@@ -21,10 +21,10 @@ resource "sdwan_transport_feature_profile" "transport_01" {
 
 
 # FEATURES (for FEATURE PROFILES):
-resource "sdwan_system_basic_feature" "system_basic_v01" {
-  name               = "SYSTEM_BASIC_v01"
-  feature_profile_id = sdwan_system_feature_profile.system_v01.id
-}
+# resource "sdwan_system_basic_feature" "system_basic_v01" {
+#   name               = "SYSTEM_BASIC_v01"
+#   feature_profile_id = sdwan_system_feature_profile.system_v01.id
+# }
 
 resource "sdwan_system_aaa_feature" "system_aaa_v01" {
   name               = "SYSTEM_AAA_v01"
