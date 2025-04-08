@@ -1,4 +1,14 @@
 # FEATURE PROFILES:
+resource "sdwan_system_feature_profile" "system_v01" {
+  name        = "SYSTEM_v01"
+  description = "System settings for all of the sites"
+}
+
+resource "sdwan_transport_feature_profile" "transport_v01" {
+  name        = "TRANSPORT_v01"
+  description = "Transport and Management config"
+}
+
 resource "sdwan_system_feature_profile" "system_01" {
   name        = "system_01"
   description = "My system feature profile"
@@ -9,7 +19,23 @@ resource "sdwan_transport_feature_profile" "transport_01" {
   description = "My transport feature profile"
 }
 
+
 # FEATURES (for FEATURE PROFILES):
+resource "sdwan_system_basic_feature" "SYSTEM_BASIC_v01" {
+  name               = "SYSTEM_BASIC_v01"
+  feature_profile_id = sdwan_system_feature_profile.system_v01.id
+}
+
+resource "sdwan_system_aaa_feature" "system_aaa_v01" {
+  name               = "SYSTEM_AAA_v01"
+  feature_profile_id = sdwan_system_feature_profile.system_v01.id
+  server_auth_order  = ["local"]
+  users = [{
+    name     = "admin"
+    password = "admin"
+  }]
+}
+
 resource "sdwan_system_basic_feature" "system_01_basic" {
   name               = "system_01_basic"
   feature_profile_id = sdwan_system_feature_profile.system_01.id
