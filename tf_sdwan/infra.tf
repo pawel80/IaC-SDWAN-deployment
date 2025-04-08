@@ -136,9 +136,9 @@ resource "sdwan_configuration_group" "config_group_01" {
   feature_versions = [
     sdwan_system_basic_feature.system_01_basic.version,
     sdwan_system_aaa_feature.system_01_aaa.version,
-    sdwan_system_bfd_feature.system_01_bfd.version,
+    # sdwan_system_bfd_feature.system_01_bfd.version,
     sdwan_system_global_feature.system_01_global.version,
-    # sdwan_system_logging_feature.system_01_logging.version,
+    sdwan_system_logging_feature.system_01_logging.version,
     sdwan_system_omp_feature.system_01_omp.version,
     sdwan_transport_wan_vpn_feature.transport_01_wan_vpn.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_01_wan_vpn_interface_ethernet.version,
