@@ -21,7 +21,7 @@ resource "sdwan_transport_feature_profile" "transport_01" {
 
 
 # FEATURES (for FEATURE PROFILES):
-resource "sdwan_system_basic_feature" "SYSTEM_BASIC_v01" {
+resource "sdwan_system_basic_feature" "system_basic_v01" {
   name               = "SYSTEM_BASIC_v01"
   feature_profile_id = sdwan_system_feature_profile.system_v01.id
 }
@@ -35,6 +35,13 @@ resource "sdwan_system_aaa_feature" "system_aaa_v01" {
     password = "admin"
   }]
 }
+
+# resource "sdwan_system_bfd_feature" "system_bfd_v01" {
+#   name               = "SYSTEM_BFD_v01"
+#   feature_profile_id = sdwan_system_feature_profile.system_v01.id
+# }
+
+
 
 resource "sdwan_system_basic_feature" "system_01_basic" {
   name               = "system_01_basic"
@@ -51,10 +58,12 @@ resource "sdwan_system_aaa_feature" "system_01_aaa" {
   }]
 }
 
-resource "sdwan_system_bfd_feature" "system_01_bfd" {
-  name               = "system_01_bfd"
-  feature_profile_id = sdwan_system_feature_profile.system_01.id
-}
+
+
+# resource "sdwan_system_bfd_feature" "system_01_bfd" {
+#   name               = "system_01_bfd"
+#   feature_profile_id = sdwan_system_feature_profile.system_01.id
+# }
 
 resource "sdwan_system_global_feature" "system_01_global" {
   name               = "system_01_global"
