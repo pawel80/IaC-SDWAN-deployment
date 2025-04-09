@@ -38,7 +38,7 @@ resource "sdwan_system_aaa_feature" "system_aaa_v01" {
 
 resource "sdwan_system_omp_feature" "system_omp_v01" {
   name               = "SYSTEM_OMP_v01"
-  feature_profile_id = sdwan_system_feature_profile.system_01.id
+  feature_profile_id = sdwan_system_feature_profile.system_v01.id
 }
 
 # resource "sdwan_system_bfd_feature" "system_bfd_v01" {
