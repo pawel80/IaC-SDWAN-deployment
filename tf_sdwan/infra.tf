@@ -80,7 +80,7 @@ resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
 resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn_if_eth_v01" {
   name                         = "TRANSPORT_WAN_VPN0_IF_ETH_v01"
   feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
-  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
   interface_name               = "GigabitEthernet1"
   shutdown                     = false
   interface_description        = "WAN"
