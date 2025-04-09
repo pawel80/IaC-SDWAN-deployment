@@ -133,7 +133,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
     # sdwan_system_bfd_feature.system_bfd_v01.version,
     # sdwan_system_global_feature.system_global_v01.version,
     # sdwan_system_logging_feature.system_logging_v01.version,
-    sdwan_system_omp_feature.system_01_omp.version,
+    sdwan_system_omp_feature.system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
   ]
