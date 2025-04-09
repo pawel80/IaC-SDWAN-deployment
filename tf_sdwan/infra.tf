@@ -56,7 +56,7 @@ resource "sdwan_system_omp_feature" "system_omp_v01" {
 #   feature_profile_id = sdwan_system_feature_profile.system_01.id
 # }
 
-resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_01" {
+resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
   name               = "TRANSPORT_WAN_VPN0_v01"
   feature_profile_id = sdwan_transport_feature_profile.transport_v01.id
   vpn                = 0
