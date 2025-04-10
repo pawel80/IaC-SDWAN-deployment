@@ -101,32 +101,32 @@ resource "sdwan_configuration_group" "config_group_v01" {
   description = "My config group"
   solution     = "sdwan"
   feature_profile_ids = [sdwan_system_feature_profile.system_v01.id, sdwan_transport_feature_profile.transport_v01.id]
-  # devices = [{
-  #   id     = "C8K-40C0CCFD-9EA8-2B2E-E73B-32C5924EC79B"
-  #   deploy = true
-  #   variables = [
-  #     {
-  #       name = "host_name"
-  #       value = "edge1"
-  #     },
-  #     {
-  #       name = "pseudo_commit_timer"
-  #       value = 0
-  #     },
-  #     {
-  #       name = "site_id"
-  #       value = 1
-  #     },
-  #     {
-  #       name = "system_ip"
-  #       value = "10.1.1.1"
-  #     },
-  #     {
-  #       name = "ipv6_strict_control"
-  #       value = "false"
-  #     }
-  #   ]
-  # }]
+  devices = [{
+    id     = "C8K-0004C57D-A2B1-4D3D-8F7A-ABA9D3AF1D8D"
+    deploy = true
+    variables = [
+      {
+        name = "host_name"
+        value = "S1R1"
+      },
+      {
+        name = "pseudo_commit_timer"
+        value = 0
+      },
+      {
+        name = "site_id"
+        value = 101
+      },
+      {
+        name = "system_ip"
+        value = "11.1.1.1"
+      },
+      {
+        name = "ipv6_strict_control"
+        value = "false"
+      }
+    ]
+  }]
   feature_versions = [
     sdwan_system_basic_feature.system_01_basic.version,
     sdwan_system_aaa_feature.system_01_aaa.version,
