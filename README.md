@@ -1,7 +1,9 @@
 # IaC-SDWAN-deployment
 SDWAN as code, deployed via Github workflow -> self-hosted runner
 
-![alt text](drawings/lab_v02.png)  
+Purpose of this LAB is to demonstrate how the IaC SDWAN solution could be build with the use of Terrafrom and Github pipelines.
+
+![alt text](drawings/lab_v04.png)  
   
 <!--- 
 ![screenshot](drawings/lab_v01.png)
