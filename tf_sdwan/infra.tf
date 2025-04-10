@@ -101,7 +101,8 @@ resource "sdwan_configuration_group" "config_group_v01" {
   description = "My config group"
   solution     = "sdwan"
   feature_profile_ids = [sdwan_system_feature_profile.system_v01.id, sdwan_transport_feature_profile.transport_v01.id]
-  devices = [{
+  devices = [
+    {
     id     = "C8K-0004C57D-A2B1-4D3D-8F7A-ABA9D3AF1D8D"
     deploy = true
     variables = [
@@ -126,10 +127,37 @@ resource "sdwan_configuration_group" "config_group_v01" {
         value = "false"
       }
     ]
-  }]
+    }
+    # {
+    # id     = "C8K-0004C57D-A2B1-4D3D-8F7A-ABA9D3AF1D8D"
+    # deploy = true
+    # variables = [
+    #   {
+    #     name = "host_name"
+    #     value = "S2R1"
+    #   },
+    #   {
+    #     name = "pseudo_commit_timer"
+    #     value = 0
+    #   },
+    #   {
+    #     name = "site_id"
+    #     value = 102
+    #   },
+    #   {
+    #     name = "system_ip"
+    #     value = "11.1.2.1"
+    #   },
+    #   {
+    #     name = "ipv6_strict_control"
+    #     value = "false"
+    #   }
+    # ]
+    # }
+  ]
   feature_versions = [
-    sdwan_system_basic_feature.system_01_basic.version,
-    sdwan_system_aaa_feature.system_01_aaa.version,
+    sdwan_system_basic_feature.system_basic_v01.version,
+    sdwan_system_aaa_feature.system_aaa_v01.version,
     # sdwan_system_bfd_feature.system_bfd_v01.version,
     # sdwan_system_global_feature.system_global_v01.version,
     # sdwan_system_logging_feature.system_logging_v01.version,
