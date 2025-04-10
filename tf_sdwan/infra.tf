@@ -169,11 +169,6 @@ resource "sdwan_configuration_group" "config_group_v01" {
 
 
 
-
-
-
-
-
 resource "sdwan_system_basic_feature" "system_01_basic" {
   name               = "system_01_basic"
   feature_profile_id = sdwan_system_feature_profile.system_01.id
