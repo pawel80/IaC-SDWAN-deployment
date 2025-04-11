@@ -87,6 +87,12 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ipv4_configuration_type      = "static"
   ipv4_address                 = "172.16.10.2"
   ipv4_subnet_mask             = "255.255.255.252"
+
+  tunnel_interface             = true
+  tunnel_interface_color       = "biz-internet"
+  tunnel_interface_allow_icmp  = true
+  tunnel_interface_allow_dns   = true
+  tunnel_interface_allow_ntp   = true
   tunnel_interface_encapsulations = [
     {
       encapsulation = "gre"
