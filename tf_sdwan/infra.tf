@@ -48,12 +48,12 @@ resource "sdwan_system_omp_feature" "system_omp_v01" {
 
 resource "sdwan_system_global_feature" "system_global_v01" {
   name               = "SYSTEM_GLOBAL_v01"
-  feature_profile_id = sdwan_system_feature_profile.system_01.id
+  feature_profile_id = sdwan_system_feature_profile.system_v01.id
 }
 
 # resource "sdwan_system_logging_feature" "system_logging_v01" {
 #   name               = "SYSTEM_LOGGING_v01"
-#   feature_profile_id = sdwan_system_feature_profile.system_01.id
+#   feature_profile_id = sdwan_system_feature_profile.system_v01.id
 # }
 
 resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
