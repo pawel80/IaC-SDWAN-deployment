@@ -46,10 +46,10 @@ resource "sdwan_system_omp_feature" "system_omp_v01" {
 #   feature_profile_id = sdwan_system_feature_profile.system_v01.id
 # }
 
-# resource "sdwan_system_global_feature" "system_global_v01" {
-#   name               = "SYSTEM_GLOBAL_v01"
-#   feature_profile_id = sdwan_system_feature_profile.system_01.id
-# }
+resource "sdwan_system_global_feature" "system_global_v01" {
+  name               = "SYSTEM_GLOBAL_v01"
+  feature_profile_id = sdwan_system_feature_profile.system_01.id
+}
 
 # resource "sdwan_system_logging_feature" "system_logging_v01" {
 #   name               = "SYSTEM_LOGGING_v01"
@@ -126,7 +126,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
         name = "ipv6_strict_control"
         value = "false"
       }
-    ]
+      ]
     }
     # {
     # id     = "C8K-0004C57D-A2B1-4D3D-8F7A-ABA9D3AF1D8D"
@@ -159,7 +159,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
     # sdwan_system_bfd_feature.system_bfd_v01.version,
-    # sdwan_system_global_feature.system_global_v01.version,
+    sdwan_system_global_feature.system_global_v01.version,
     # sdwan_system_logging_feature.system_logging_v01.version,
     sdwan_system_omp_feature.system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
