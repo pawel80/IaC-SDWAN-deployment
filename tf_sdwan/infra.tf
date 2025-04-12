@@ -60,7 +60,7 @@ resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
   name               = "TRANSPORT_WAN_VPN0_v01"
   feature_profile_id = sdwan_transport_feature_profile.transport_v01.id
   vpn                = 0
-  primary_dns_address_ipv4   = "8.8.8.8"
+  # primary_dns_address_ipv4   = "8.8.8.8"
   secondary_dns_address_ipv4 = "1.1.1.1"
   ipv4_static_routes = [
     {
@@ -131,6 +131,10 @@ resource "sdwan_configuration_group" "config_group_v01" {
       {
         name = "ipv6_strict_control"
         value = "false"
+      },
+      {
+        name = "primary_dns_address_ipv4"
+        value = "4.4.4.4"
       }
       ]
     } 
