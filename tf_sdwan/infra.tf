@@ -61,7 +61,7 @@ resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
   feature_profile_id = sdwan_transport_feature_profile.transport_v01.id
   vpn                = 0
   primary_dns_address_ipv4   = "8.8.8.8"
-  secondary_dns_address_ipv4_variable = "dnssecondary"
+  secondary_dns_address_ipv4_variable = var.dns_secondary
   ipv4_static_routes = [
     {
       network_address = "0.0.0.0"
@@ -133,7 +133,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
         value = "false"
       },
       {
-        name = "dns_secondary"
+        name = var.dns_secondary
         value = "1.2.3.4"
       }
       ]
