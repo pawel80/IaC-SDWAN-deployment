@@ -156,3 +156,4 @@ resource "sdwan_configuration_group" "config_group_v01" {
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
   ]
 }
+
