@@ -94,6 +94,7 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   tunnel_interface_allow_icmp  = true
   tunnel_interface_allow_dns   = true
   tunnel_interface_allow_ntp   = true
+  tunnel_interface_allow_netconf_variable = "var_tunnel_netconf"
   tunnel_interface_encapsulations = [
     {
       encapsulation = "gre"
@@ -137,6 +138,10 @@ resource "sdwan_configuration_group" "config_group_v01" {
       #   name = "var_dns2"
       #   value = "1.2.3.4"
       # }
+      {
+        name = "var_tunnel_netconf"
+        value = true
+      }
       ]
     }
   ]
