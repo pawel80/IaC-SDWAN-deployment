@@ -61,8 +61,8 @@ resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
   feature_profile_id = sdwan_transport_feature_profile.transport_v01.id
   vpn                = 0
   primary_dns_address_ipv4   = "8.8.8.8"
-  # secondary_dns_address_ipv4 = "1.1.1.1"
-  secondary_dns_address_ipv4_variable  = "{{var_dns_secondary}}"
+  secondary_dns_address_ipv4 = "1.1.1.1"
+  # secondary_dns_address_ipv4_variable  = "{{var_dns_secondary}}"
   ipv4_static_routes = [
     {
       network_address = "0.0.0.0"
@@ -70,7 +70,7 @@ resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
       gateway         = "nextHop"
       next_hops = [
         {
-          address                 = "172.16.10.1"
+          address_variable        = "{{var_def_gtw}}"
           administrative_distance = 1
         }
       ]
@@ -86,15 +86,15 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   shutdown                     = false
   interface_description        = "WAN"
   ipv4_configuration_type      = "static"
-  ipv4_address                 = "172.16.10.2"
-  ipv4_subnet_mask             = "255.255.255.252"
+  ipv4_address_variable        = "{{var_vpn0_if_address}}"
+  ipv4_subnet_mask_variable    = "{{var_vpn0_if_mask}}"
 
   tunnel_interface             = true
   tunnel_interface_color       = "biz-internet"
   tunnel_interface_allow_icmp  = true
   tunnel_interface_allow_dns   = true
   tunnel_interface_allow_ntp   = true
-  tunnel_interface_allow_netconf_variable = "{{var_tunnel_netconf}}"
+  # tunnel_interface_allow_netconf_variable = "{{var_tunnel_netconf}}"
   tunnel_interface_encapsulations = [
     {
       encapsulation = "gre"
@@ -135,9 +135,21 @@ resource "sdwan_configuration_group" "config_group_v01" {
         value = "false"
       },
       {
-        name = "var_dns_secondary"
-        value = "1.2.3.4"
+        name = "var_def_gtw"
+        value = "172.16.10.1"
+      },
+      {
+        name = "var_vpn0_if_address"
+        value = "172.16.10.2"
+      },
+      {
+        name = "var_vpn0_if_mask"
+        value = "255.255.255.252"
       }
+      # {
+      #   name = "var_dns_secondary"
+      #   value = "1.2.3.4"
+      # }
       # {
       #   name = "var_tunnel_netconf"
       #   value = true
