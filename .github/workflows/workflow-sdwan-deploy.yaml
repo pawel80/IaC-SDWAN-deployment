@@ -91,7 +91,7 @@ jobs:
           SDWAN_URL: 'https://10.12.0.20'
           # SDWAN_INSECURE: true
           # SDWAN_RETRIES: 3
-          TF_LOG: DEBUG
+          # TF_LOG: DEBUG
 
       # - name: 'Terraform Destroy'
       #   if: ${{ github.event.inputs.terraform_env_remove == 'true' }}
