@@ -1,0 +1,17 @@
+name: IOSXE_deploy
+
+on:
+  push:
+  # workflow will run if below branches will be updated
+    branches:
+      - 'main'
+      - 'dev'
+
+env:
+  TF_IOSXE_DIR: 'tf_iosxe'
+  # TF_DEV_ENV: 'DEV'
+  # TF_DEV_RESOURCE: 'dev'
+  # TF_PROD_ENV: 'PROD'
+  # AZURE_FUNC_APP_NAME: 'tf-dev-func-app'   # set this to your function app name on Azure
+  # AZURE_FUNC_APP_PATH: 'source'            # set this to the path to your function app project, defaults to the repository root
+  # PYTHON_VERSION: '3.9'                    # set this to the python version to use

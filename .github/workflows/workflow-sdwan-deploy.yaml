@@ -16,7 +16,7 @@ on:
   #       type: boolean
 
 env:
-  TF_DIR: 'tf_sdwan'
+  TF_SDWAN_DIR: 'tf_sdwan'
   # TF_DEV_ENV: 'DEV'
   # TF_DEV_RESOURCE: 'dev'
   # TF_PROD_ENV: 'PROD'
@@ -49,19 +49,19 @@ jobs:
 
       # Format terraform configuration files into a canonical format and style
       - name: 'Terraform Format'
-        working-directory: ${{ env.TF_DIR }}
+        working-directory: ${{ env.TF_SDWAN_DIR }}
         id: fmt
         run: terraform fmt
  
       # Initializes a working directory containing Terraform configuration files
       - name: 'Terraform Init'
-        working-directory: ${{ env.TF_DIR }}
+        working-directory: ${{ env.TF_SDWAN_DIR }}
         id: init
         run: terraform init
        
       # Validates the configuration files in a directory, referring only to the configuration and not accessing any remote services such as remote state, etc.
       - name: 'Terraform Validate'
-        working-directory: ${{ env.TF_DIR }}
+        working-directory: ${{ env.TF_SDWAN_DIR }}
         id: validate
         # -no-color -> Disables terminal formatting sequences in the output
         run: terraform validate -no-color
@@ -69,7 +69,7 @@ jobs:
       # Creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure
       - name: 'Terraform Plan'
         if: github.ref == 'refs/heads/dev'
-        working-directory: ${{ env.TF_DIR }}
+        working-directory: ${{ env.TF_SDWAN_DIR }}
         id: plan
         run: terraform plan -no-color
         continue-on-error: true
@@ -81,7 +81,7 @@ jobs:
       # Executes the actions proposed in a Terraform plan
       - name: 'Terraform Apply'
         if: github.ref == 'refs/heads/dev'
-        working-directory: ${{ env.TF_DIR }}
+        working-directory: ${{ env.TF_SDWAN_DIR }}
         # -auto-approve -> instruct Terraform to apply the plan without asking for confirmation
         # -input=false -> Disables Terraform's default behavior of prompting for input
         run: terraform apply -auto-approve -input=false
