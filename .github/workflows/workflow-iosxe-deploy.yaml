@@ -15,3 +15,16 @@ env:
   # AZURE_FUNC_APP_NAME: 'tf-dev-func-app'   # set this to your function app name on Azure
   # AZURE_FUNC_APP_PATH: 'source'            # set this to the path to your function app project, defaults to the repository root
   # PYTHON_VERSION: '3.9'                    # set this to the python version to use
+
+jobs:
+  terraform:
+    name: 'Terraform'
+    # refs/pull/<pr_number>/merge
+    # refs/tags/<tag_name>
+    # if: github.ref == 'refs/heads/dev' || github.event.inputs.terraform_env_remove == 'true'
+    if: github.ref == 'refs/heads/dev'
+    # runs-on: ubuntu-latest
+    runs-on: self-hosted
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
