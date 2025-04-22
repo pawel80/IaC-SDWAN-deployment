@@ -8,7 +8,7 @@ terraform {
   cloud {
     organization = "tf-pawel-org"
     workspaces {
-      name = "tf-sdwan"
+      name = "tf-iosxe"
     }
   }
 }
