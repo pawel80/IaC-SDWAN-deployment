@@ -9,17 +9,17 @@ terraform {
 }
 
 provider "iosxe" {
-  alias    = "ROUTER1"
-  username = "admin"
-  password = "password"
-  url      = "https://10.1.1.1"
+  alias    = "ROUTER7"
+  username = "${secrets.LEGACY_USERNAME}"
+  password = "${secrets.LEGACY_PASSWORD}"
+  url      = "https://172.16.10.34"
 }
 
 provider "iosxe" {
-  alias    = "ROUTER2"
-  username = "admin"
-  password = "password"
-  url      = "https://10.1.1.2"
+  alias    = "ROUTER8"
+  username = "${secrets.LEGACY_USERNAME}"
+  password = "${secrets.LEGACY_PASSWORD}"
+  url      = "https://172.16.10.38"
 }
 
 # provider "sdwan" {
