@@ -1,5 +1,5 @@
-# IaC-SDWAN-deployment
-Purpose of this LAB is to demonstrate how the IaC SDWAN solution could be build with the use of Terrafrom and Github workflows (pipelines).
+# IaC-SD-WAN-deployment
+Purpose of this LAB is to demonstrate how the IaC SD-WAN solution could be build with the use of Terrafrom and Github workflows (pipelines).
 
 Networks:
 - Internet for Github <-> self-hosted runner communication
