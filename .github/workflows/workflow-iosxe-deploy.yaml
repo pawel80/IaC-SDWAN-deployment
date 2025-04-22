@@ -9,12 +9,6 @@ on:
 
 env:
   TF_IOSXE_DIR: 'tf_iosxe'
-  # TF_DEV_ENV: 'DEV'
-  # TF_DEV_RESOURCE: 'dev'
-  # TF_PROD_ENV: 'PROD'
-  # AZURE_FUNC_APP_NAME: 'tf-dev-func-app'   # set this to your function app name on Azure
-  # AZURE_FUNC_APP_PATH: 'source'            # set this to the path to your function app project, defaults to the repository root
-  # PYTHON_VERSION: '3.9'                    # set this to the python version to use
 
 jobs:
   terraform:
@@ -62,10 +56,10 @@ jobs:
         id: plan
         run: terraform plan -no-color
         continue-on-error: true
-        # env:
-        #   SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_USERNAME }}
-        #   SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
-        #   SDWAN_URL: 'https://10.12.0.20'
+        env:
+          IOSXE_USERNAME: ${{ secrets.LEGACY_USERNAME }}
+          IOSXE_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
+          IOSXE_URL: 'https://172.16.10.34'
 
       # Executes the actions proposed in a Terraform plan
       - name: 'Terraform Apply'
@@ -75,6 +69,6 @@ jobs:
         # -input=false -> Disables Terraform's default behavior of prompting for input
         run: terraform apply -auto-approve -input=false
         # env:
-        #   SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_USERNAME }}
-        #   SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
-        #   SDWAN_URL: 'https://10.12.0.20'
+        #   IOSXE_USERNAME: ${{ secrets.LEGACY_USERNAME }}
+        #   IOSXE_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
+        #   IOSXE_URL: 'https://172.16.10.34'
