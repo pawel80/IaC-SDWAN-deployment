@@ -56,10 +56,10 @@ jobs:
         id: plan
         run: terraform plan -no-color
         continue-on-error: true
-        env:
-          IOSXE_USERNAME: ${{ secrets.LEGACY_USERNAME }}
-          IOSXE_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
-          IOSXE_URL: 'https://172.16.10.34'
+        # env:
+        #   IOSXE_USERNAME: ${{ secrets.LEGACY_USERNAME }}
+        #   IOSXE_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
+        #   IOSXE_URL: 'https://172.16.10.34'
 
       # Executes the actions proposed in a Terraform plan
       - name: 'Terraform Apply'

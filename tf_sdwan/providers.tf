@@ -7,6 +7,7 @@ terraform {
   # Hashicorp recommends using the cloud block instead of the backend block (legacy)
   cloud {
     organization = "tf-pawel-org"
+    # Different workspace per provider
     workspaces {
       name = "tf-sdwan"
     }
