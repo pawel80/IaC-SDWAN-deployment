@@ -1,9 +1,9 @@
 terraform {
-  required_providers {
-    sdwan = {
-      source = "CiscoDevNet/iosxe"
-    }
-  }
+  # required_providers {
+  #   sdwan = {
+  #     source = "CiscoDevNet/iosxe"
+  #   }
+  # }
   cloud {
     organization = "tf-pawel-org"
     workspaces {
