@@ -9,15 +9,15 @@ resource "sdwan_transport_feature_profile" "transport_v01" {
   description = "Transport and Management config"
 }
 
-resource "sdwan_system_feature_profile" "system_01" {
-  name        = "system_01"
-  description = "My system feature profile"
-}
+# resource "sdwan_system_feature_profile" "system_01" {
+#   name        = "system_01"
+#   description = "My system feature profile"
+# }
 
-resource "sdwan_transport_feature_profile" "transport_01" {
-  name        = "transport_01"
-  description = "My transport feature profile"
-}
+# resource "sdwan_transport_feature_profile" "transport_01" {
+#   name        = "transport_01"
+#   description = "My transport feature profile"
+# }
 
 
 # FEATURES (for FEATURE PROFILES):
