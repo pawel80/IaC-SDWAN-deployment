@@ -1,3 +1,5 @@
+# Add restconf and aaa config to the router
+
 provider "iosxe" {
   alias    = "ROUTER7"
   username = var.LEGACY_USERNAME
