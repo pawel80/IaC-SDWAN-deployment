@@ -6,7 +6,7 @@ Networks:
 - Intranet(open) for management plane and not encrypted data plane traffic
 - Intranet(secured) for encrypted data plane traffic
 
-![alt text](drawings/lab_v05.png)  
+![alt text](drawings/lab_v06.png)  
   
 <!--- 
 ![screenshot](drawings/lab_v01.png)
