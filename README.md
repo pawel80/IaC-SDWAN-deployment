@@ -12,10 +12,10 @@ Design highlights:
 - SD-Routing routers: S5R1 and S6R1 are connected only to the open, non-encrypted intranet network
 - Legacy routers (no controllers, vanilla IOS-XE): S7R1 and S8R1 are connected only to the open, non-encrypted intranet network
 - Data center entrypoint routers: DC1R1, DC2R1 and DC3R1 are connected to both, encrypted and non-encrtypted intranet networks
-- SD-WAN and SD-Routing routers are configured through Manager
-- Legacy and Data center routers are configured directly through self-hosted runner
+- SD-WAN (green) and SD-Routing (blue) routers are configured through self-hosted runner -> Manager
+- Legacy and Data center routers (orange) are configured directly through self-hosted runner
 
-![alt text](drawings/lab_v08.png)  
+![alt text](drawings/lab_v09.png)  
   
 <!--- 
 ![screenshot](drawings/lab_v01.png)
@@ -23,6 +23,7 @@ Design highlights:
 
 Tools:
 - Github (repo, workflows, self-hosted runner)
+- Terraform cloud (for Terraform state)
 - Terraform
 - draw.io
 - Cisco SD-WAN on-premise (Manager, Validator, Controller: v.20.12.4)
