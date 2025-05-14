@@ -8,6 +8,7 @@ terraform {
   cloud {
     organization = "tf-pawel-org"
     workspaces {
+    # Different workspace per provider
       name = "tf-sdwan"
     }
   }

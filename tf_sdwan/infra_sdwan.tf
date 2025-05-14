@@ -9,15 +9,6 @@ resource "sdwan_transport_feature_profile" "transport_v01" {
   description = "Transport and Management config"
 }
 
-resource "sdwan_system_feature_profile" "system_01" {
-  name        = "system_01"
-  description = "My system feature profile"
-}
-
-resource "sdwan_transport_feature_profile" "transport_01" {
-  name        = "transport_01"
-  description = "My transport feature profile"
-}
 
 
 # FEATURES (for FEATURE PROFILES):
@@ -48,11 +39,7 @@ resource "sdwan_system_omp_feature" "system_omp_v01" {
 
 resource "sdwan_system_global_feature" "system_global_v01" {
   name               = "SYSTEM_GLOBAL_v01"
-<<<<<<< HEAD
-  feature_profile_id = sdwan_system_feature_profile.system_01.id
-=======
   feature_profile_id = sdwan_system_feature_profile.system_v01.id
->>>>>>> 29a52baae44b52012e12873782cf716c4cc93dc1
 }
 
 # resource "sdwan_system_logging_feature" "system_logging_v01" {
@@ -65,8 +52,8 @@ resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
   feature_profile_id = sdwan_transport_feature_profile.transport_v01.id
   vpn                = 0
   primary_dns_address_ipv4   = "8.8.8.8"
-  # secondary_dns_address_ipv4 = "1.1.1.1"
-  # secondary_dns_address_ipv4_variable  = "var_dns2"
+  secondary_dns_address_ipv4 = "1.1.1.1"
+  # secondary_dns_address_ipv4_variable  = "{{var_dns_secondary}}"
   ipv4_static_routes = [
     {
       network_address = "0.0.0.0"
@@ -74,7 +61,7 @@ resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
       gateway         = "nextHop"
       next_hops = [
         {
-          address                 = "172.16.10.1"
+          address_variable        = "{{var_def_gtw}}"
           administrative_distance = 1
         }
       ]
@@ -90,21 +77,22 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   shutdown                     = false
   interface_description        = "WAN"
   ipv4_configuration_type      = "static"
-  ipv4_address                 = "172.16.10.2"
-  ipv4_subnet_mask             = "255.255.255.252"
+  ipv4_address_variable        = "{{var_vpn0_if_address}}"
+  ipv4_subnet_mask_variable    = "{{var_vpn0_if_mask}}"
 
   tunnel_interface             = true
   tunnel_interface_color       = "biz-internet"
   tunnel_interface_allow_icmp  = true
   tunnel_interface_allow_dns   = true
   tunnel_interface_allow_ntp   = true
-  # tunnel_interface_allow_netconf_variable = "var_tunnel_netconf"
+  # tunnel_interface_allow_netconf_variable = "{{var_tunnel_netconf}}"
   tunnel_interface_encapsulations = [
     {
       encapsulation = "gre"
     }
   ]
 }
+
 
 
 # CONFIGURATION GROUP:
@@ -137,19 +125,65 @@ resource "sdwan_configuration_group" "config_group_v01" {
       {
         name = "ipv6_strict_control"
         value = "false"
-<<<<<<< HEAD
-      }
-=======
       },
+      {
+        name = "var_def_gtw"
+        value = "172.16.10.1"
+      },
+      {
+        name = "var_vpn0_if_address"
+        value = "172.16.10.2"
+      },
+      {
+        name = "var_vpn0_if_mask"
+        value = "255.255.255.252"
+      }
       # {
-      #   name = "var_dns2"
+      #   name = "var_dns_secondary"
       #   value = "1.2.3.4"
       # }
       # {
       #   name = "var_tunnel_netconf"
       #   value = true
       # }
->>>>>>> 29a52baae44b52012e12873782cf716c4cc93dc1
+      ]
+    },
+    {
+    id     = "C8K-55121EB3-198F-3F17-2F1C-5D73078DBEE0"
+    deploy = true
+    variables = [
+      {
+        name = "host_name"
+        value = "S2R1"
+      },
+      {
+        name = "pseudo_commit_timer"
+        value = 0
+      },
+      {
+        name = "site_id"
+        value = 102
+      },
+      {
+        name = "system_ip"
+        value = "11.1.2.1"
+      },
+      {
+        name = "ipv6_strict_control"
+        value = "false"
+      },
+      {
+        name = "var_def_gtw"
+        value = "172.16.10.9"
+      },
+      {
+        name = "var_vpn0_if_address"
+        value = "172.16.10.10"
+      },
+      {
+        name = "var_vpn0_if_mask"
+        value = "255.255.255.252"
+      }
       ]
     }
   ]
@@ -164,4 +198,3 @@ resource "sdwan_configuration_group" "config_group_v01" {
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
   ]
 }
-
