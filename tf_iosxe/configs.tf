@@ -1,12 +1,3 @@
-# resource "iosxe_interface_ethernet" "gig1" {
-#   provider                       = iosxe.ROUTER7
-#   type                           = "GigabitEthernet"
-#   name                           = "2"
-#   description                    = "INTRANET"
-#   ipv4_address                   = "172.16.10.34"
-#   ipv4_address_mask              = "255.255.255.252"
-#   shutdown                       = false
-# }
 provider "iosxe" {
   alias    = "ROUTER7"
   # username = var.LEGACY_USERNAME
@@ -32,6 +23,16 @@ resource "iosxe_cli" "ROUTER7" {
 }
 
 # resource "iosxe_save_config" "ROUTER7" {
+# }
+
+# resource "iosxe_interface_ethernet" "gig1" {
+#   provider                       = iosxe.ROUTER7
+#   type                           = "GigabitEthernet"
+#   name                           = "2"
+#   description                    = "INTRANET"
+#   ipv4_address                   = "172.16.10.34"
+#   ipv4_address_mask              = "255.255.255.252"
+#   shutdown                       = false
 # }
 
 # resource "iosxe_interface_ethernet" "gig2" {
