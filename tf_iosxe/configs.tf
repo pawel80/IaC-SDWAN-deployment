@@ -8,7 +8,7 @@
 #   shutdown                       = false
 # }
 
-resource "iosxe_restconf" "RTR7" {
+resource "iosxe_restconf" "ROUTER7" {
   provider   = iosxe.ROUTER7
   path       = "openconfig-system:system/config"
   attributes = {
