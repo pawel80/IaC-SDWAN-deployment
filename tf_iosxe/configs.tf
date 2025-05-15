@@ -16,12 +16,19 @@ provider "iosxe" {
   url      = "https://172.16.10.34"
 }
 
-resource "iosxe_restconf" "ROUTER7" {
-  provider   = iosxe.ROUTER7
-  path       = "openconfig-system:system/config"
-  attributes = {
-    hostname = "RTR7"
-  }
+# resource "iosxe_restconf" "ROUTER7" {
+#   provider   = iosxe.ROUTER7
+#   path       = "openconfig-system:system/config"
+#   attributes = {
+#     hostname = "RTR7"
+#   }
+# }
+
+resource "iosxe_cli" "ROUTER7" {
+  cli = <<-EOT
+  interface Loopback123
+  description configured-via-restconf-cli
+  EOT
 }
 
 # resource "iosxe_save_config" "ROUTER7" {
