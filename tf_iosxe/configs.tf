@@ -7,6 +7,12 @@
 #   ipv4_address_mask              = "255.255.255.252"
 #   shutdown                       = false
 # }
+provider "iosxe" {
+  alias    = "ROUTER7"
+  username = var.LEGACY_USERNAME
+  password = var.LEGACY_PASSWORD
+  url      = "https://172.16.10.34"
+}
 
 resource "iosxe_restconf" "ROUTER7" {
   provider   = iosxe.ROUTER7
@@ -14,6 +20,9 @@ resource "iosxe_restconf" "ROUTER7" {
   attributes = {
     hostname = "RTR7"
   }
+}
+
+resource "iosxe_save_config" "ROUTER7" {
 }
 
 # resource "iosxe_interface_ethernet" "gig2" {
