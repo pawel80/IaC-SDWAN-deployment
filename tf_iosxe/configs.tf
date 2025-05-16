@@ -15,25 +15,26 @@
 #   }
 # }
 
-# resource "iosxe_system" "global7" {
-#   provider                    = iosxe.RT7
-#   hostname                    = "RTR7"
-#   # ip_bgp_community_new_format = true
-#   # ipv6_unicast_routing        = true
-#   # ip_source_route             = false
-#   # ip_domain_lookup            = false
-#   ip_domain_name              = "lab.com"
-#   # login_delay                 = 10
-#   # login_on_failure            = true
-#   # login_on_failure_log        = true
-#   # login_on_success            = true
-#   # login_on_success_log        = true
-#   # multicast_routing_vrfs = [
-#   #   {
-#   #     vrf = "VRF1"
-#   #   }
-#   # ]
-# }
+resource "iosxe_system" "global7" {
+  # provider                    = iosxe.RT7
+  device                      = local.legacy_routers.name.ROUTER7
+  hostname                    = "RTR7171"
+  # ip_bgp_community_new_format = true
+  # ipv6_unicast_routing        = true
+  # ip_source_route             = false
+  # ip_domain_lookup            = false
+  ip_domain_name              = "lab.com"
+  # login_delay                 = 10
+  # login_on_failure            = true
+  # login_on_failure_log        = true
+  # login_on_success            = true
+  # login_on_success_log        = true
+  # multicast_routing_vrfs = [
+  #   {
+  #     vrf = "VRF1"
+  #   }
+  # ]
+}
 
 # resource "iosxe_system" "global8" {
 #   provider                    = iosxe.RT8
