@@ -3,7 +3,7 @@ terraform {
     iosxe = {
       # The source needs to be provided since this isn't one of the "official" HashiCorp providers
       source = "CiscoDevNet/iosxe"
-      # configuration_aliases = [ mycloud.alternate ]
+      configuration_aliases = [ iosxe.RT7 ]
     }
   }
   cloud {
@@ -16,7 +16,7 @@ terraform {
 }
 
 provider "iosxe" {
-  # alias    = "ROUTER7"
+  alias    = "RT7"
   # username = var.LEGACY_USERNAME
   # password = var.LEGACY_PASSWORD
   username = "admin"
