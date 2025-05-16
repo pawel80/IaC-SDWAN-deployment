@@ -4,7 +4,7 @@ terraform {
       # The source needs to be provided since this isn't one of the "official" HashiCorp providers
       source = "CiscoDevNet/iosxe"
       # configuration_aliases = [ iosxe.RT7, iosxe.RT8 ]
-      # configuration_aliases = [ local.legacy_routers ]
+      configuration_aliases = [ local.legacy_routers ]
     }
   }
   cloud {
