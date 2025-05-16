@@ -17,7 +17,7 @@
 
 resource "iosxe_system" "global7" {
   # provider                    = iosxe.RT7
-  device                      = local.legacy_routers[0]
+  device                      = local.legacy_routers[0].name
   hostname                    = "RTR7171"
   # ip_bgp_community_new_format = true
   # ipv6_unicast_routing        = true
