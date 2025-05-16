@@ -56,9 +56,9 @@ jobs:
         id: plan
         run: terraform plan -no-color
         continue-on-error: true
-        # env:
-        #   TF_VAR_LEGACY_USERNAME: ${{ secrets.LEGACY_USERNAME }}
-        #   TF_VAR_LEGACY_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
+        env:
+          TF_VAR_LEGACY_USERNAME: ${{ secrets.LEGACY_USERNAME }}
+          TF_VAR_LEGACY_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
           # IOSXE_USERNAME: ${{ secrets.LEGACY_USERNAME }}
           # IOSXE_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
           # IOSXE_URL: 'https://172.16.10.34'
@@ -70,9 +70,9 @@ jobs:
         # -auto-approve -> instruct Terraform to apply the plan without asking for confirmation
         # -input=false -> Disables Terraform's default behavior of prompting for input
         run: terraform apply -auto-approve -input=false
-        # env:
-        #   TF_VAR_LEGACY_USERNAME: ${{ secrets.LEGACY_USERNAME }}
-        #   TF_VAR_LEGACY_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
+        env:
+          TF_VAR_LEGACY_USERNAME: ${{ secrets.LEGACY_USERNAME }}
+          TF_VAR_LEGACY_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
           # IOSXE_USERNAME: ${{ secrets.LEGACY_USERNAME }}
           # IOSXE_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
           # IOSXE_URL: 'https://172.16.10.34'

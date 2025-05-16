@@ -29,7 +29,6 @@
 # }
 
 resource "iosxe_system" "global" {
-  # device                      = "https://172.16.10.34"
   provider                    = iosxe.RT7
   hostname                    = "RTR777"
   # ip_bgp_community_new_format = true
