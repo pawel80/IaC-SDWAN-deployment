@@ -3,6 +3,7 @@ terraform {
     iosxe = {
       # The source needs to be provided since this isn't one of the "official" HashiCorp providers
       source = "CiscoDevNet/iosxe"
+      # configuration_aliases = [ mycloud.alternate ]
     }
   }
   cloud {

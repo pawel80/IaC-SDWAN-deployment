@@ -29,7 +29,7 @@
 # }
 
 resource "iosxe_system" "global" {
-  device                      = "https://172.16.10.34"
+  # device                      = "https://172.16.10.34"
   hostname                    = "RTR77"
   # ip_bgp_community_new_format = true
   # ipv6_unicast_routing        = true
