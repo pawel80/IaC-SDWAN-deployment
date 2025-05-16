@@ -36,11 +36,12 @@ resource "iosxe_system" "global7" {
   # ]
 }
 
-# resource "iosxe_system" "global8" {
-#   provider                    = iosxe.RT8
-#   hostname                    = "S8R1"
-#   ip_domain_name              = "lab.com"
-# }
+resource "iosxe_system" "global8" {
+  # provider                    = iosxe.RT8
+  device                      = local.legacy_routers[1].name
+  hostname                    = "S8R111"
+  ip_domain_name              = "lab.com"
+}
 
 # resource "iosxe_cli" "global_loop123" {
 #   cli = <<-EOT
