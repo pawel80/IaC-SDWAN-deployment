@@ -1,11 +1,3 @@
-# resource "iosxe_restconf" "ROUTER7" {
-#   provider   = iosxe.ROUTER7
-#   path       = "openconfig-system:system/config"
-#   attributes = {
-#     hostname = "RTR7"
-#   }
-# }
-
 # resource "iosxe_restconf" "hostname" {
 #   for_each   = toset([for router in local.routers : router.name])
 #   device     = each.key
@@ -15,10 +7,10 @@
 #   }
 # }
 
-resource "iosxe_system" "global7" {
+resource "iosxe_system" "system_rtr7" {
   # provider                    = iosxe.RT7
   device                      = local.legacy_routers[0].name
-  hostname                    = "RTR7171"
+  hostname                    = "S7R1"
   # ip_bgp_community_new_format = true
   # ipv6_unicast_routing        = true
   # ip_source_route             = false
@@ -36,19 +28,21 @@ resource "iosxe_system" "global7" {
   # ]
 }
 
-resource "iosxe_system" "global8" {
+resource "iosxe_system" "system_rtr8" {
   # provider                    = iosxe.RT8
   device                      = local.legacy_routers[1].name
-  hostname                    = "S8R111"
+  hostname                    = "S8R1"
   ip_domain_name              = "lab.com"
 }
 
-# resource "iosxe_cli" "global_loop123" {
-#   cli = <<-EOT
-#   interface Loopback123
-#   description CONFIGURE-VIA-RESTCONF-CLI
-#   EOT
-# }
+resource "iosxe_cli" "global_loop123" {
+  for_each   = toset([for router in local.legacy_routers : router.name])
+  device     = each.key
+  cli = <<-EOT
+  interface Loopback123
+  description CONFIGURE-VIA-RESTCONF-CLI
+  EOT
+}
 
 # resource "iosxe_save_config" "ROUTER7" {
 # }
