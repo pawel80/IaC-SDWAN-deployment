@@ -1,12 +1,3 @@
-# resource "iosxe_restconf" "hostname" {
-#   for_each   = toset([for router in local.routers : router.name])
-#   device     = each.key
-#   path       = "openconfig-system:system/config"
-#   attributes = {
-#     hostname = each.key
-#   }
-# }
-
 resource "iosxe_system" "system_rtr7" {
   # provider                    = iosxe.RT7
   device                      = local.legacy_routers[0].name

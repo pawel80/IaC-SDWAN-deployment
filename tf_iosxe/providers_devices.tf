@@ -4,7 +4,6 @@ terraform {
       # The source needs to be provided since this isn't one of the "official" HashiCorp providers
       source = "CiscoDevNet/iosxe"
       # configuration_aliases = [ iosxe.RT7, iosxe.RT8 ]
-      # configuration_aliases = [ local.legacy_routers ]
     }
   }
   cloud {
@@ -35,10 +34,12 @@ locals {
     {
       name = "ROUTER7"
       url  = "https://172.16.10.34"
+      hostname = "RTR-7"
     },
     {
       name = "ROUTER8"
       url  = "https://172.16.10.38"
+      hostname = "RTR-8"
     }
   ]
 }
