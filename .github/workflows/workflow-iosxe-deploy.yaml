@@ -61,7 +61,7 @@ jobs:
         #   TF_VAR_LEGACY_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
           IOSXE_USERNAME: ${{ secrets.LEGACY_USERNAME }}
           IOSXE_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
-          IOSXE_URL: 'https://172.16.10.34'
+          # IOSXE_URL: 'https://172.16.10.34'
 
       # Executes the actions proposed in a Terraform plan
       - name: 'Terraform Apply'
@@ -75,4 +75,4 @@ jobs:
         #   TF_VAR_LEGACY_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
           IOSXE_USERNAME: ${{ secrets.LEGACY_USERNAME }}
           IOSXE_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
-          IOSXE_URL: 'https://172.16.10.34'
+          # IOSXE_URL: 'https://172.16.10.34'
