@@ -28,9 +28,9 @@
 #   }
 # }
 
-resource "iosxe_system" "global" {
+resource "iosxe_system" "global7" {
   provider                    = iosxe.RT7
-  hostname                    = "RTR771"
+  hostname                    = "RTR7"
   # ip_bgp_community_new_format = true
   # ipv6_unicast_routing        = true
   # ip_source_route             = false
@@ -46,6 +46,12 @@ resource "iosxe_system" "global" {
   #     vrf = "VRF1"
   #   }
   # ]
+}
+
+resource "iosxe_system" "global8" {
+  provider                    = iosxe.RT8
+  hostname                    = "RTR8"
+  ip_domain_name              = "lab.com"
 }
 
 # resource "iosxe_cli" "global_loop123" {
