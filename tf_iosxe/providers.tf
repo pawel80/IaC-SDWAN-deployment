@@ -19,7 +19,5 @@ provider "iosxe" {
   alias    = "RT7"
   username = var.LEGACY_USERNAME
   password = var.LEGACY_PASSWORD
-  # username = "admin"
-  # password = "Cisco123"
   url      = "https://172.16.10.34"
 }

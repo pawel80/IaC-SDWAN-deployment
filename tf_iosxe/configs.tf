@@ -30,7 +30,7 @@
 
 resource "iosxe_system" "global" {
   provider                    = iosxe.RT7
-  hostname                    = "RTR777"
+  hostname                    = "RTR771"
   # ip_bgp_community_new_format = true
   # ipv6_unicast_routing        = true
   # ip_source_route             = false
