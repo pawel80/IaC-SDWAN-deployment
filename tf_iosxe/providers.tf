@@ -1,6 +1,7 @@
 terraform {
   required_providers {
     iosxe = {
+      # The source needs to be provided since this isn't one of the "official" HashiCorp providers
       source = "CiscoDevNet/iosxe"
     }
   }
@@ -14,7 +15,7 @@ terraform {
 }
 
 provider "iosxe" {
-  alias    = "ROUTER7"
+  # alias    = "ROUTER7"
   # username = var.LEGACY_USERNAME
   # password = var.LEGACY_PASSWORD
   username = "admin"
