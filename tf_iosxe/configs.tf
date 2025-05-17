@@ -27,12 +27,11 @@ resource "iosxe_system" "system_rtr8" {
 }
 
 resource "iosxe_cli" "global_loop123" {
-  # for_each   = toset([for router in local.legacy_routers : router.name])
-  # device     = each.key
+  # Looping through the list of objects
   for_each    = {for index,router in local.legacy_routers : router.name => router}
   device      = each.value.name
   cli = <<-EOT
-  interface Loopback123
+  interface Loopback111
   description CONFIGURE-VIA-RESTCONF-CLI
   EOT
 }
