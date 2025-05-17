@@ -1,4 +1,5 @@
 resource "iosxe_system" "system_all" {
+  # Looping through the list of objects
   for_each                    = {for index,router in local.legacy_routers : router.name => router}
   device                      = each.value.name
   hostname                    = each.value.hostname
@@ -6,7 +7,7 @@ resource "iosxe_system" "system_all" {
   # ip_bgp_community_new_format = true
   # ipv6_unicast_routing        = true
   # ip_source_route             = false
-  # ip_domain_lookup            = false
+  ip_domain_lookup            = false
   ip_domain_name              = "lab.com"
   # login_delay                 = 10
   # login_on_failure            = true
@@ -20,15 +21,7 @@ resource "iosxe_system" "system_all" {
   # ]
 }
 
-# resource "iosxe_system" "system_rtr8" {
-#   # provider                    = iosxe.RT8
-#   device                      = local.legacy_routers[1].name
-#   hostname                    = "S8R1"
-#   ip_domain_name              = "lab.com"
-# }
-
 resource "iosxe_cli" "global_loop123" {
-  # Looping through the list of objects
   for_each    = {for index,router in local.legacy_routers : router.name => router}
   device      = each.value.name
   cli = <<-EOT

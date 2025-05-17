@@ -34,12 +34,12 @@ locals {
     {
       name = "ROUTER7"
       url  = "https://172.16.10.34"
-      hostname = "RTR-7"
+      hostname = "S7R1"
     },
     {
       name = "ROUTER8"
       url  = "https://172.16.10.38"
-      hostname = "RTR-8"
+      hostname = "S8R1"
     }
   ]
 }
