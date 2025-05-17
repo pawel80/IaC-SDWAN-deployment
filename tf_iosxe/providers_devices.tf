@@ -35,11 +35,15 @@ locals {
       name = "ROUTER7"
       url  = "https://172.16.10.34"
       hostname = "S7R1"
+      ip_address = "172.16.10.34"
+      mask = "255.255.255.252"
     },
     {
       name = "ROUTER8"
       url  = "https://172.16.10.38"
       hostname = "S8R1"
+      ip_address = "172.16.10.38"
+      mask = "255.255.255.252"
     }
   ]
 }

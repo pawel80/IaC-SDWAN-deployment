@@ -22,9 +22,9 @@ resource "iosxe_system" "system_all" {
 }
 
 resource "iosxe_cli" "global_loop123" {
-  for_each    = {for index,router in local.legacy_routers : router.name => router}
-  device      = each.value.name
-  cli = <<-EOT
+  for_each                      = {for index,router in local.legacy_routers : router.name => router}
+  device                        = each.value.name
+  cli                           = <<-EOT
   interface Loopback111
   description CONFIGURE-VIA-RESTCONF-CLI
   EOT
@@ -33,18 +33,18 @@ resource "iosxe_cli" "global_loop123" {
 # resource "iosxe_save_config" "ROUTER7" {
 # }
 
-# resource "iosxe_interface_ethernet" "gig1" {
-#   provider                       = iosxe.ROUTER7
-#   type                           = "GigabitEthernet"
-#   name                           = "2"
-#   description                    = "INTRANET"
-#   ipv4_address                   = "172.16.10.34"
-#   ipv4_address_mask              = "255.255.255.252"
-#   shutdown                       = false
-# }
+resource "iosxe_interface_ethernet" "gig1" {
+  for_each                       = {for index,router in local.legacy_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "1"
+  description                    = "INTRANET_OPEN"
+  ipv4_address                   = each.value.ip_address
+  ipv4_address_mask              = each.value.mask
+  shutdown                       = false
+}
 
 # resource "iosxe_interface_ethernet" "gig2" {
-#   provider                       = iosxe.ROUTER7
 #   type                           = "GigabitEthernet"
 #   name                           = "2"
 #   description                    = "NOT-USED"
@@ -52,7 +52,6 @@ resource "iosxe_cli" "global_loop123" {
 # }
 
 # resource "iosxe_interface_ethernet" "gig3" {
-#   provider                       = iosxe.ROUTER7
 #   type                           = "GigabitEthernet"
 #   name                           = "3"
 #   description                    = "NOT-USED"
@@ -60,9 +59,8 @@ resource "iosxe_cli" "global_loop123" {
 # }
 
 # resource "iosxe_interface_ethernet" "gig4" {
-#   provider                       = iosxe.ROUTER7
 #   type                           = "GigabitEthernet"
-#   name                           = "3"
+#   name                           = "4"
 #   description                    = "NOT-USED"
 #   shutdown                       = true
 # }
