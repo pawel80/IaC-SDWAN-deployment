@@ -29,8 +29,8 @@ resource "iosxe_system" "system_rtr8" {
 resource "iosxe_cli" "global_loop123" {
   # for_each   = toset([for router in local.legacy_routers : router.name])
   # device     = each.key
-  for_each   = toset([for router in local.legacy_routers : router])
-  device     = router.name.value
+  for_each   = toset([for router in local.legacy_routers : router.name])
+  device     = each.value
   # for_each    = toset([for k,v in local.legacy_routers : k])
   # device      = each.key.name
   cli = <<-EOT
