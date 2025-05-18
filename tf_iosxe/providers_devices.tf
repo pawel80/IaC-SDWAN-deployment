@@ -48,6 +48,27 @@ locals {
       shut_interfaces = ["2", "3", "4"]
     }
   ]
+
+    flat_object = { for k, v in flatten([for router in local.legacy_routers :
+    [
+      [for member in try(router.shut_interfaces, []) : {
+        "device"      = router.name
+        "name"        = member
+        "type"        = "GigabitEthernet"
+        "description" = "NOT-USED"
+      }],
+      # [for maintainer in try(router.maintainers, []) : {
+      #   "member_name" = maintainer
+      #   "member_role" = "maintainer"
+      #   "team_name"   = router.name
+      # }]
+    ]
+  ]) : "${v.device}_${v.name}_${v.type}_${v.description}" => v }
+
+}
+
+output "flat_object" {
+  value = local.flat_object
 }
 
 provider "iosxe" {
