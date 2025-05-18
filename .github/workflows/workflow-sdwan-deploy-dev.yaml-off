@@ -5,7 +5,7 @@ on:
   # workflow will run if below branches will be updated
     branches:
       # - 'main'
-      # - 'dev'
+      - 'dev'
 
   # workflow can be started manually from main branch
   # workflow_dispatch:
