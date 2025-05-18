@@ -45,24 +45,24 @@ locals {
       hostname = "S8R1"
       ip_address = "172.16.10.38"
       mask = "255.255.255.252"
-      shut_interfaces = ["2"]
+      shut_interfaces = ["2", "3", "4"]
     }
   ]
 
-    flat_object = { for k, v in flatten([for router in local.legacy_routers :
-      [for interface in try(router.shut_interfaces, []) : {
-        "device"      = router.name
-        "name"        = interface
-        "type"        = "GigabitEthernet"
-        "description" = "NOT-USED"
-      }]
-  ]) : "${v.device}_${v.name}_${v.type}_${v.description}" => v }
+  #   flat_object = { for k, v in flatten([for router in local.legacy_routers :
+  #     [for interface in try(router.shut_interfaces, []) : {
+  #       "device"      = router.name
+  #       "name"        = interface
+  #       "type"        = "GigabitEthernet"
+  #       "description" = "NOT-USED"
+  #     }]
+  # ]) : "${v.device}_${v.name}_${v.type}_${v.description}" => v }
 
 }
 
-output "flat_object" {
-  value = local.flat_object
-}
+# output "flat_object" {
+#   value = local.flat_object
+# }
 
 provider "iosxe" {
   username = var.LEGACY_USERNAME

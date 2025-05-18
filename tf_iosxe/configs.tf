@@ -20,7 +20,6 @@ resource "iosxe_interface_ethernet" "gig1" {
   shutdown                       = false
 }
 
-
 resource "iosxe_interface_ethernet" "gig_2_4" {
   for_each                       = { for k, v in flatten([for router in local.legacy_routers :
                                       [for interface in try(router.shut_interfaces, []) : {
@@ -31,30 +30,9 @@ resource "iosxe_interface_ethernet" "gig_2_4" {
   device                         = each.value.device
   type                           = "GigabitEthernet"
   name                           = each.value.int_name
-  description                    = "NOT-USED2"
+  description                    = "NOT-USED"
   shutdown                       = true
 }
-
-# resource "iosxe_interface_ethernet" "gig2" {
-#   type                           = "GigabitEthernet"
-#   name                           = "2"
-#   description                    = "NOT-USED"
-#   shutdown                       = true
-# }
-
-# resource "iosxe_interface_ethernet" "gig3" {
-#   type                           = "GigabitEthernet"
-#   name                           = "3"
-#   description                    = "NOT-USED"
-#   shutdown                       = true
-# }
-
-# resource "iosxe_interface_ethernet" "gig4" {
-#   type                           = "GigabitEthernet"
-#   name                           = "4"
-#   description                    = "NOT-USED"
-#   shutdown                       = true
-# }
 
 # Just to present CLI based config
 resource "iosxe_cli" "global_loop123" {

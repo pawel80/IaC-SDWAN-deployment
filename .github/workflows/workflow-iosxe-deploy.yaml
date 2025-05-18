@@ -76,3 +76,12 @@ jobs:
           # IOSXE_USERNAME: ${{ secrets.LEGACY_USERNAME }}
           # IOSXE_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
           # IOSXE_URL: 'https://172.16.10.34'
+
+    if: github.ref == 'refs/heads/main'
+    runs-on: self-hosted
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: Main branch info
+        run: echo "Lack of resources to build PROD environment..."
