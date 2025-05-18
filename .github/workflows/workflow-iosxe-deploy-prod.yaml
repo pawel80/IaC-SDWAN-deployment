@@ -1,0 +1,23 @@
+name: IOSXE_deploy_prod
+
+on:
+  push:
+  # workflow will run if below branches will be updated
+    branches:
+      - 'main'
+      # - 'dev'
+
+env:
+  TF_IOSXE_DIR: 'tf_iosxe'
+
+jobs:
+  terraform:
+    name: 'PROD-Terraform'
+    if: github.ref == 'refs/heads/main'
+    runs-on: self-hosted
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      - name: Main branch info
+        run: echo "Lack of resources to build PROD environment..."
