@@ -21,14 +21,22 @@ resource "iosxe_interface_ethernet" "gig1" {
 }
 
 
-# resource "iosxe_interface_ethernet" "gig_2_4" {
-#   for_each                       = flatten({for router in local.legacy_routers : router.name => [for int in router.shut_interfaces: int]})
-#   device                         = each.value.name
-#   type                           = "GigabitEthernet"
-#   name                           = each.value.int
-#   description                    = "NOT-USED"
-#   shutdown                       = true
-# }
+resource "iosxe_interface_ethernet" "gig_2_4" {
+  for_each                       = { for k, v in flatten([for router in local.legacy_routers :
+                                      [for interface in try(router.shut_interfaces, []) : {
+                                        "device"      = router.name
+                                        "name"        = interface
+                                        "type"        = "GigabitEthernet"
+                                        "description" = "NOT-USED"
+                                        "shutdown"    = true
+                                      }]
+                                    ]) : "${v.device}_${v.name}_${v.type}_${v.description}" => v }
+  # device                         = each.value.name
+  # type                           = "GigabitEthernet"
+  # name                           = each.value.int
+  # description                    = "NOT-USED"
+  # shutdown                       = true
+}
 
 # resource "iosxe_interface_ethernet" "gig2" {
 #   type                           = "GigabitEthernet"
