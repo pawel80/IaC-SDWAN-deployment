@@ -12,7 +12,7 @@ env:
 
 jobs:
   terraform:
-    name: 'Terraform'
+    name: 'DEV-Terraform'
     # refs/pull/<pr_number>/merge
     # refs/tags/<tag_name>
     # if: github.ref == 'refs/heads/dev' || github.event.inputs.terraform_env_remove == 'true'
@@ -77,6 +77,8 @@ jobs:
           # IOSXE_PASSWORD: ${{ secrets.LEGACY_PASSWORD }}
           # IOSXE_URL: 'https://172.16.10.34'
 
+  terraform:
+    name: 'PROD-Terraform'
     if: github.ref == 'refs/heads/main'
     runs-on: self-hosted
     steps:
