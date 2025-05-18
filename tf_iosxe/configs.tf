@@ -9,7 +9,8 @@ resource "iosxe_system" "system_all" {
 }
 
 resource "iosxe_interface_ethernet" "gig1" {
-  for_each                       = {for index,router in local.legacy_routers : router.name => router}
+  # for_each                       = {for index,router in local.legacy_routers : router.name => router}
+  for_each                       = {for router in local.legacy_routers : router.name => router}
   device                         = each.value.name
   type                           = "GigabitEthernet"
   name                           = "1"
@@ -19,14 +20,14 @@ resource "iosxe_interface_ethernet" "gig1" {
   shutdown                       = false
 }
 
-resource "iosxe_interface_ethernet" "gig_2_4" {
-  for_each                       = flatten({for index,router in local.legacy_routers : router.name => [for int in router.shut_interfaces: int]})
-  device                         = each.value.name
-  type                           = "GigabitEthernet"
-  name                           = each.value.int
-  description                    = "NOT-USED"
-  shutdown                       = true
-}
+# resource "iosxe_interface_ethernet" "gig_2_4" {
+#   for_each                       = flatten({for index,router in local.legacy_routers : router.name => [for int in router.shut_interfaces: int]})
+#   device                         = each.value.name
+#   type                           = "GigabitEthernet"
+#   name                           = each.value.int
+#   description                    = "NOT-USED"
+#   shutdown                       = true
+# }
 
 # resource "iosxe_interface_ethernet" "gig2" {
 #   type                           = "GigabitEthernet"
