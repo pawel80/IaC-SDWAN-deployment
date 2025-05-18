@@ -45,7 +45,7 @@ locals {
       hostname = "S8R1"
       ip_address = "172.16.10.38"
       mask = "255.255.255.252"
-      shut_interfaces = ["2", "3", "4"]
+      shut_interfaces = ["2"]
     }
   ]
 

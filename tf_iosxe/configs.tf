@@ -25,13 +25,13 @@ resource "iosxe_interface_ethernet" "gig_2_4" {
   for_each                       = { for k, v in flatten([for router in local.legacy_routers :
                                       [for interface in try(router.shut_interfaces, []) : {
                                         "device"      = router.name
-                                        "name"        = interface
+                                        "int_name"    = interface
                                       }]
-                                    ]) : "${v.device}_${v.name}" => v }
+                                    ]) : "${v.device}_${v.int_name}" => v }
   device                         = each.value.device
   type                           = "GigabitEthernet"
-  name                           = each.value.name
-  description                    = "NOT-USED"
+  name                           = each.value.int_name
+  description                    = "NOT-USED2"
   shutdown                       = true
 }
 
