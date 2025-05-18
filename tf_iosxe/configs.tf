@@ -8,15 +8,6 @@ resource "iosxe_system" "system_all" {
   ip_domain_name              = "lab.com"
 }
 
-resource "iosxe_cli" "global_loop123" {
-  for_each                      = {for index,router in local.legacy_routers : router.name => router}
-  device                        = each.value.name
-  cli                           = <<-EOT
-  interface Loopback111
-  description CONFIGURE-VIA-RESTCONF-CLI
-  EOT
-}
-
 resource "iosxe_interface_ethernet" "gig1" {
   for_each                       = {for index,router in local.legacy_routers : router.name => router}
   device                         = each.value.name
@@ -28,9 +19,13 @@ resource "iosxe_interface_ethernet" "gig1" {
   shutdown                       = false
 }
 
-resource "iosxe_save_config" "save_cfg" {
-  for_each                       = {for index,router in local.legacy_routers : router.name => router}
+resource "iosxe_interface_ethernet" "gig_2_4" {
+  for_each                       = flatten({for index,router in local.legacy_routers : router.name => [for int in router.shut_interfaces: int]})
   device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = each.value.int
+  description                    = "NOT-USED"
+  shutdown                       = true
 }
 
 # resource "iosxe_interface_ethernet" "gig2" {
@@ -53,3 +48,18 @@ resource "iosxe_save_config" "save_cfg" {
 #   description                    = "NOT-USED"
 #   shutdown                       = true
 # }
+
+# Just to present CLI based config
+resource "iosxe_cli" "global_loop123" {
+  for_each                      = {for index,router in local.legacy_routers : router.name => router}
+  device                        = each.value.name
+  cli                           = <<-EOT
+  interface Loopback111
+  description CONFIGURE-VIA-RESTCONF-CLI
+  EOT
+}
+
+resource "iosxe_save_config" "save_cfg" {
+  for_each                       = {for index,router in local.legacy_routers : router.name => router}
+  device                         = each.value.name
+}
