@@ -26,7 +26,8 @@ resource "iosxe_interface_ethernet" "gig_2_4" {
                                         "device"      = router.name
                                         "int_name"    = interface
                                       }]
-                                    ]) : "${v.device}_${v.int_name}" => v }
+                                    # ]) : "${v.device}_${v.int_name}" => v }
+                                    ]) : v.device => v }
   device                         = each.value.device
   type                           = "GigabitEthernet"
   name                           = each.value.int_name
