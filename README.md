@@ -1,5 +1,5 @@
-# IaC-SD-WAN-deployment
-Purpose of this LAB is to demonstrate how the IaC SD-WAN solution could be build with the use of Terrafrom and Github workflows (pipelines).
+# IaC-SD-WAN_SD-routing_IOS-XE_deployment
+Purpose of this LAB is to demonstrate how the IaC SD-WAN/SD-routing/autonomous routers (IOS-XE) based solution could be build with the use of Terrafrom and Github workflows (pipelines).
 
 Networks:
 - Internet for Github <-> self-hosted runner communication
@@ -11,7 +11,7 @@ Design highlights:
 - SD-WAN routers: S1R2 and S2R2 are connected only to secured, encrypted intranet network, management is done via TLOC extension
 - SD-Routing routers: S5R1 and S6R1 are connected only to the open, non-encrypted intranet network
 - Legacy routers (no controllers, vanilla IOS-XE): S7R1 and S8R1 are connected only to the open, non-encrypted intranet network
-- Data center entrypoint routers: DC1R1, DC2R1 and DC3R1 are connected to both, encrypted and non-encrtypted intranet networks
+- Data center entrypoint routers: DC1R1, DC2R1 and DC3R1 are connected to both, encrypted and non-encrypted intranet networks
 - SD-WAN (green) and SD-Routing (blue) routers are configured through self-hosted runner -> Manager
 - Legacy and Data center routers (orange) are configured directly through self-hosted runner
 
@@ -28,6 +28,8 @@ Tools:
 - draw.io
 - Cisco SD-WAN on-premise (Manager, Validator, Controller: v.20.12.4)
 - Cisco C8000v v.17.12.04b
+- Eve-NG Community
+- VMWare Workstation 17.6.2
 
 
 

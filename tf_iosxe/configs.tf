@@ -40,7 +40,7 @@ resource "iosxe_cli" "global_loop123" {
   device                        = each.value.name
   cli                           = <<-EOT
   interface Loopback111
-  description CONFIGURE-VIA-RESTCONF-CLI
+  description CONFIGURE_VIA_RESTCONF_CLI
   EOT
 }
 
