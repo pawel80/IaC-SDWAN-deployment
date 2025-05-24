@@ -95,14 +95,13 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
 
 
 
-# CONFIGURATION GROUP:
+# CONFIGURATION GROUP: EDGEs
 resource "sdwan_configuration_group" "config_group_v01" {
   name        = "CG_MN_DUAL_TLOC_E_v01"
-  description = "My config group"
+  description = "Configuration group - Edges"
   solution     = "sdwan"
   feature_profile_ids = [sdwan_system_feature_profile.system_v01.id, sdwan_transport_feature_profile.transport_v01.id]
   # devices = local.sd-wan_edges
-  devices = local.sd-wan_cores
   # devices = [
   #   {
   #   id     = "C8K-0004C57D-A2B1-4D3D-8F7A-ABA9D3AF1D8D"
@@ -189,6 +188,25 @@ resource "sdwan_configuration_group" "config_group_v01" {
   #     ]
   #   }
   # ]
+  feature_versions = [
+    sdwan_system_basic_feature.system_basic_v01.version,
+    sdwan_system_aaa_feature.system_aaa_v01.version,
+    # sdwan_system_bfd_feature.system_bfd_v01.version,
+    sdwan_system_global_feature.system_global_v01.version,
+    # sdwan_system_logging_feature.system_logging_v01.version,
+    sdwan_system_omp_feature.system_omp_v01.version,
+    sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
+  ]
+}
+
+# CONFIGURATION GROUP: COREs
+resource "sdwan_configuration_group" "config_group_core_v01" {
+  name        = "CG_CORES_v01"
+  description = "Configuration group - Cores"
+  solution     = "sdwan"
+  feature_profile_ids = [sdwan_system_feature_profile.system_v01.id, sdwan_transport_feature_profile.transport_v01.id]
+  # devices = local.sd-wan_cores
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
