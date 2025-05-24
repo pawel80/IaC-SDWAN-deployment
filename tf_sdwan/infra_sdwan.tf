@@ -1,4 +1,8 @@
-# FEATURE PROFILES:
+###################################################################################
+###################################### EDGES ######################################
+###################################################################################
+
+################################# Feature profiles ################################
 resource "sdwan_system_feature_profile" "system_v01" {
   name        = "SYSTEM_v01"
   description = "System settings for all of the sites"
@@ -9,9 +13,12 @@ resource "sdwan_transport_feature_profile" "transport_v01" {
   description = "Transport and Management config"
 }
 
+resource "sdwan_service_feature_profile" "service_core_v01" {
+  name        = "SERVICE_CORES_v01"
+  description = "Core service feature profiles"
+}
 
-
-# FEATURES (for FEATURE PROFILES):
+##################################### Features ####################################
 resource "sdwan_system_basic_feature" "system_basic_v01" {
   name               = "SYSTEM_BASIC_v01"
   feature_profile_id = sdwan_system_feature_profile.system_v01.id
@@ -93,9 +100,7 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ]
 }
 
-
-
-# CONFIGURATION GROUP: EDGEs
+################################ Configuration group ##############################
 resource "sdwan_configuration_group" "config_group_v01" {
   name        = "CG_MN_DUAL_TLOC_E_v01"
   description = "Configuration group - Edges"
@@ -114,12 +119,43 @@ resource "sdwan_configuration_group" "config_group_v01" {
   ]
 }
 
-# CONFIGURATION GROUP: COREs
+###################################################################################
+###################################### CORES ######################################
+###################################################################################
+
+################################# Feature profiles ################################
+resource "sdwan_service_feature_profile" "service_core_v01" {
+  name        = "SERVICE_CORES_v01"
+  description = "Core service feature profiles"
+}
+
+##################################### Features ####################################
+resource "sdwan_service_lan_vpn_feature" "example" {
+  name                       = "Example"
+  description                = "My Example"
+  # feature_profile_id         = "f6dd22c8-0b4f-496c-9a0b-6813d1f8b8ac"
+  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+  vpn                        = 511
+  config_description         = "VPN511 - Legacy DC cores mgmt"
+  # omp_admin_distance_ipv4    = 1
+  # omp_admin_distance_ipv6    = 1
+  # enable_sdwan_remote_access = false
+  # primary_dns_address_ipv4   = "1.2.3.4"
+  # secondary_dns_address_ipv4 = "2.3.4.5"
+  # primary_dns_address_ipv6   = "2001:0:0:1::0"
+  # secondary_dns_address_ipv6 = "2001:0:0:2::0"
+}
+
+################################ Configuration group ##############################
 resource "sdwan_configuration_group" "config_group_core_v01" {
   name        = "CG_CORES_v01"
   description = "Configuration group - Cores"
   solution     = "sdwan"
-  feature_profile_ids = [sdwan_system_feature_profile.system_v01.id, sdwan_transport_feature_profile.transport_v01.id]
+  feature_profile_ids = [
+    sdwan_system_feature_profile.system_v01.id, 
+    sdwan_transport_feature_profile.transport_v01.id,
+    sdwan_service_feature_profile.id
+    ]
   devices = local.sd-wan_cores
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
