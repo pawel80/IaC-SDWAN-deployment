@@ -48,7 +48,6 @@ locals {
       shut_interfaces = ["2", "3", "4"]
     }
   ]
-
   #   flat_object = { for k, v in flatten([for router in local.legacy_routers :
   #     [for interface in try(router.shut_interfaces, []) : {
   #       "device"      = router.name

@@ -1,4 +1,4 @@
-# IaC-SD-WAN_SD-routing_IOS-XE_deployment
+# IaC-SD-WAN_SD-Routing_IOS-XE_deployment
 Purpose of this LAB is to demonstrate how the IaC SD-WAN/SD-routing/autonomous routers (IOS-XE) based solution could be build with the use of Terrafrom and Github workflows (pipelines).
 
 For Cisco SD-Routing configuration group, minimum software version is Cisco IOS XE Release 17.13.1a - not in the LAB at the moment.
@@ -33,6 +33,3 @@ Tools:
 - Cisco C8000v v.17.12.04b
 - Eve-NG Community
 - VMWare Workstation 17.6.2
-
-
-
