@@ -13,11 +13,6 @@ resource "sdwan_transport_feature_profile" "transport_v01" {
   description = "Transport and Management config"
 }
 
-resource "sdwan_service_feature_profile" "service_core_v01" {
-  name        = "SERVICE_CORES_v01"
-  description = "Core service feature profiles"
-}
-
 ##################################### Features ####################################
 resource "sdwan_system_basic_feature" "system_basic_v01" {
   name               = "SYSTEM_BASIC_v01"
@@ -154,7 +149,7 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
   feature_profile_ids = [
     sdwan_system_feature_profile.system_v01.id, 
     sdwan_transport_feature_profile.transport_v01.id,
-    sdwan_service_feature_profile.id
+    sdwan_service_feature_profile.service_core_v01.id
     ]
   devices = local.sd-wan_cores
   feature_versions = [
