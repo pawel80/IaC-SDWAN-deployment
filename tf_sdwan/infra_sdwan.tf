@@ -178,6 +178,6 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.vpn511_v01.version,
-    # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_v01.version,
+    sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_v01.version,
   ]
 }
