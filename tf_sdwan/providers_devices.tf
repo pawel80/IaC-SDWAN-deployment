@@ -110,7 +110,7 @@ sd-wan_edges = [
 
   sd-wan_cores = [
     {
-    id     = "C8K-0F626CA6-7B21-C13F-D880-A4FEB95DF93A"
+    id     = "C8K-0B056B18-8343-6571-EB92-3DB657535324"
     deploy = true
     variables = [
       {
