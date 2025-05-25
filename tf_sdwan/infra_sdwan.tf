@@ -125,13 +125,13 @@ resource "sdwan_service_feature_profile" "service_core_v01" {
 }
 
 ##################################### Features ####################################
-resource "sdwan_service_lan_vpn_feature" "example" {
-  name                       = "Example"
-  description                = "My Example"
+resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
+  name                       = "VPN511_v01"
+  description                = "VPN511 Legacy DC core routers mgmt"
   # feature_profile_id         = "f6dd22c8-0b4f-496c-9a0b-6813d1f8b8ac"
   feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
   vpn                        = 511
-  config_description         = "VPN511 - Legacy DC cores mgmt"
+  config_description         = "VPN511 - Legacy DC core routers mgmt"
   # omp_admin_distance_ipv4    = 1
   # omp_admin_distance_ipv6    = 1
   # enable_sdwan_remote_access = false
@@ -161,5 +161,6 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_system_omp_feature.system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
+    sdwan_service_lan_vpn_feature.vpn511_v01.version,
   ]
 }
