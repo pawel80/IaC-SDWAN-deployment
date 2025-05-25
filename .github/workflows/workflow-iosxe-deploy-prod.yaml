@@ -19,5 +19,5 @@ jobs:
       - name: 'Checkout'
         uses: actions/checkout@v4
 
-      - name: Main branch info
+      - name: Main branch - Prod info
         run: echo "Lack of resources to build PROD environment..."

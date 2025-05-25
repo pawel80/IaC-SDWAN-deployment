@@ -1,0 +1,108 @@
+name: SDWAN_deploy_dev
+
+on:
+  push:
+  # workflow will run if below branches will be updated
+    branches:
+      # - 'main'
+      - 'dev'
+
+  # workflow can be started manually from main branch
+  # workflow_dispatch:
+  #   inputs:
+  #     terraform_env_remove:
+  #       description: 'Terraform delete'
+  #       required: true
+  #       type: boolean
+
+env:
+  TF_SDWAN_DIR: 'tf_sdwan'
+  # TF_DEV_ENV: 'DEV'
+  # TF_DEV_RESOURCE: 'dev'
+  # TF_PROD_ENV: 'PROD'
+  # AZURE_FUNC_APP_NAME: 'tf-dev-func-app'   # set this to your function app name on Azure
+  # AZURE_FUNC_APP_PATH: 'source'            # set this to the path to your function app project, defaults to the repository root
+  # PYTHON_VERSION: '3.9'                    # set this to the python version to use
+
+jobs:
+  terraform:
+    name: 'Dev-Terraform'
+    # refs/pull/<pr_number>/merge
+    # refs/tags/<tag_name>
+    # if: github.ref == 'refs/heads/dev' || github.event.inputs.terraform_env_remove == 'true'
+    if: github.ref == 'refs/heads/dev'
+    # runs-on: ubuntu-latest
+    runs-on: self-hosted
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@v4
+
+      # - name: 'Run bash echo command'
+      #   run: echo 'Hello, world!'
+
+      # Terraform API driven workflow
+      - name: 'Terraform initial setup'
+        uses: hashicorp/setup-terraform@v3
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TEAM_TOKEN }}
+          terraform_version: 1.11.3
+
+      # Format terraform configuration files into a canonical format and style
+      - name: 'Terraform Format'
+        working-directory: ${{ env.TF_SDWAN_DIR }}
+        id: fmt
+        run: terraform fmt
+ 
+      # Initializes a working directory containing Terraform configuration files
+      - name: 'Terraform Init'
+        working-directory: ${{ env.TF_SDWAN_DIR }}
+        id: init
+        run: terraform init
+       
+      # Validates the configuration files in a directory, referring only to the configuration and not accessing any remote services such as remote state, etc.
+      - name: 'Terraform Validate'
+        working-directory: ${{ env.TF_SDWAN_DIR }}
+        id: validate
+        # -no-color -> Disables terminal formatting sequences in the output
+        run: terraform validate -no-color
+
+      # Creates an execution plan, which lets you preview the changes that Terraform plans to make to your infrastructure
+      - name: 'Terraform Plan'
+        if: github.ref == 'refs/heads/dev'
+        working-directory: ${{ env.TF_SDWAN_DIR }}
+        id: plan
+        run: terraform plan -no-color
+        continue-on-error: true
+        env:
+          SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_USERNAME }}
+          SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
+          SDWAN_URL: 'https://10.12.0.20'
+          # passing secrets through environment variables
+          TF_VAR_admin_account: ${{ secrets.SDWAN_LOCAL_ADMIN }}
+          TF_VAR_admin_account_pass: ${{ secrets.SDWAN_LOCAL_ADMIN_PASS }}
+
+      # Executes the actions proposed in a Terraform plan
+      - name: 'Terraform Apply'
+        if: github.ref == 'refs/heads/dev'
+        working-directory: ${{ env.TF_SDWAN_DIR }}
+        # -auto-approve -> instruct Terraform to apply the plan without asking for confirmation
+        # -input=false -> Disables Terraform's default behavior of prompting for input
+        run: terraform apply -auto-approve -input=false
+        env:
+          SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_USERNAME }}
+          SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
+          SDWAN_URL: 'https://10.12.0.20'
+          TF_VAR_admin_account: ${{ secrets.SDWAN_LOCAL_ADMIN }}
+          TF_VAR_admin_account_pass: ${{ secrets.SDWAN_LOCAL_ADMIN_PASS }}
+          # SDWAN_INSECURE: true
+          # SDWAN_RETRIES: 3
+          # TF_LOG: DEBUG
+
+      # - name: 'Terraform Destroy'
+      #   if: ${{ github.event.inputs.terraform_env_remove == 'true' }}
+      #   working-directory: ${{ env.TF_DIR }}
+      #   run: terraform destroy --auto-approve
+      #   env:
+        #   SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_USERNAME }}
+        #   SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
+        #   SDWAN_URL: 'https://10.12.0.20'
