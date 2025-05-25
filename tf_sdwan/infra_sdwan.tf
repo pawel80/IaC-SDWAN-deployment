@@ -131,28 +131,14 @@ resource "sdwan_service_feature_profile" "service_core_v01" {
 resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
   name                       = "VPN511_v01"
   description                = "VPN511 Legacy DC core routers mgmt"
-  # feature_profile_id         = "f6dd22c8-0b4f-496c-9a0b-6813d1f8b8ac"
   feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
   vpn                        = 511
   config_description         = "VPN511 - Legacy DC core routers mgmt"
-  # omp_admin_distance_ipv4    = 1
-  # omp_admin_distance_ipv6    = 1
-  # enable_sdwan_remote_access = false
-  # primary_dns_address_ipv4   = "1.2.3.4"
-  # secondary_dns_address_ipv4 = "2.3.4.5"
-  # primary_dns_address_ipv6   = "2001:0:0:1::0"
-  # secondary_dns_address_ipv6 = "2001:0:0:2::0"
   ipv4_static_routes = [
     {
       network_address = "0.0.0.0"
       subnet_mask     = "0.0.0.0"
       vpn             = true
-      # next_hops = [
-      #   {
-      #     address                 = "1.2.3.4"
-      #     administrative_distance = 1
-      #   }
-      # ]
     }
   ]
 }
@@ -174,11 +160,11 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_v01" {
   # description                = "Legacy DC core routers mgmt int"
   feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
   service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.vpn511_v01.id
-  # shutdown                   = false
-  # interface_name             = "GigabitEthernet2"
-  # interface_description      = "Legacy DC core routers mgmt int"
-  # ipv4_address               = "172.16.51.1"
-  # ipv4_subnet_mask           = "255.255.255.252"
+  shutdown                   = false
+  interface_name             = "GigabitEthernet2"
+  interface_description      = "Legacy DC core routers mgmt int"
+  ipv4_address               = "172.16.51.1"
+  ipv4_subnet_mask           = "255.255.255.252"
 }
 
 ################################ Configuration group ##############################
