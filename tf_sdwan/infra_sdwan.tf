@@ -146,7 +146,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
     {
       network_address = "0.0.0.0"
       subnet_mask     = "0.0.0.0"
-      vpn             = "VPN0"
+      vpn             = true
       # next_hops = [
       #   {
       #     address                 = "1.2.3.4"
