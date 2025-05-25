@@ -24,8 +24,8 @@ resource "sdwan_system_aaa_feature" "system_aaa_v01" {
   feature_profile_id = sdwan_system_feature_profile.system_v01.id
   server_auth_order  = ["local"]
   users = [{
-    name     = "admin"
-    password = "admin"
+    name     = var.admin_account
+    password = var.admin_account_pass
   }]
 }
 

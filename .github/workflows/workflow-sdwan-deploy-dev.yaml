@@ -77,6 +77,9 @@ jobs:
           SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_USERNAME }}
           SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
           SDWAN_URL: 'https://10.12.0.20'
+          # passing secrets through environment variables
+          TF_VAR_admin_account: ${{ secrets.SDWAN_LOCAL_ADMIN }}
+          TF_VAR_admin_account_pass: ${{ secrets.SDWAN_LOCAL_ADMIN_PASS }}
 
       # Executes the actions proposed in a Terraform plan
       - name: 'Terraform Apply'
@@ -89,6 +92,8 @@ jobs:
           SDWAN_USERNAME: ${{ secrets.SDWAN_MANAGER_USERNAME }}
           SDWAN_PASSWORD: ${{ secrets.SDWAN_MANAGER_PASSWORD }}
           SDWAN_URL: 'https://10.12.0.20'
+          TF_VAR_admin_account: ${{ secrets.SDWAN_LOCAL_ADMIN }}
+          TF_VAR_admin_account_pass: ${{ secrets.SDWAN_LOCAL_ADMIN_PASS }}
           # SDWAN_INSECURE: true
           # SDWAN_RETRIES: 3
           # TF_LOG: DEBUG
