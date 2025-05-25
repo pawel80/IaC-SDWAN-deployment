@@ -160,7 +160,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
 resource "sdwan_service_lan_vpn_interface_ethernet_feature" "example" {
   name                       = "Example"
   # description                = "My Example"
-  feature_profile_id         = "f6dd22c8-0b4f-496c-9a0b-6813d1f8b8ac"
+  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
   # service_lan_vpn_feature_id = "140331f6-5418-4755-a059-13c77eb96037"
   # shutdown                   = false
   # interface_name             = "GigabitEthernet3"
@@ -202,6 +202,6 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.vpn511_v01.version,
-    sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_v01.version,
+    # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_v01.version,
   ]
 }
