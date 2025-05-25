@@ -100,7 +100,10 @@ resource "sdwan_configuration_group" "config_group_v01" {
   name        = "CG_MN_DUAL_TLOC_E_v01"
   description = "Configuration group - Edges"
   solution     = "sdwan"
-  feature_profile_ids = [sdwan_system_feature_profile.system_v01.id, sdwan_transport_feature_profile.transport_v01.id]
+  feature_profile_ids = [
+    sdwan_system_feature_profile.system_v01.id, 
+    sdwan_transport_feature_profile.transport_v01.id
+  ]
   # devices = local.sd-wan_edges
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
@@ -139,6 +142,31 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
   # secondary_dns_address_ipv4 = "2.3.4.5"
   # primary_dns_address_ipv6   = "2001:0:0:1::0"
   # secondary_dns_address_ipv6 = "2001:0:0:2::0"
+  ipv4_static_routes = [
+    {
+      network_address = "0.0.0.0"
+      subnet_mask     = "0.0.0.0"
+      vpn             = "VPN0"
+      # next_hops = [
+      #   {
+      #     address                 = "1.2.3.4"
+      #     administrative_distance = 1
+      #   }
+      # ]
+    }
+  ]
+}
+
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "example" {
+  name                       = "VPN511_Gig2_v01"
+  description                = "Legacy DC core routers mgmt int"
+  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.vpn511_v01.id
+  shutdown                   = false
+  interface_name             = "GigabitEthernet2"
+  interface_description      = "Legacy DC core routers mgmt int"
+  ipv4_address               = "172.16.51.1"
+  ipv4_subnet_mask           = "255.255.255.252"
 }
 
 ################################ Configuration group ##############################
@@ -150,7 +178,7 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_system_feature_profile.system_v01.id, 
     sdwan_transport_feature_profile.transport_v01.id,
     sdwan_service_feature_profile.service_core_v01.id
-    ]
+  ]
   devices = local.sd-wan_cores
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
