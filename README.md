@@ -19,7 +19,11 @@ Design highlights:
 - Legacy and Data center routers (orange) are configured directly through self-hosted runner
 
 ![alt text](drawings/lab_v11.png)  
-  
+
+Non standard config:
+- route leaking on DC cores for Legacy DC cores mgmt interface
+- TLOC extension for mgmt interface
+
 <!--- 
 ![screenshot](drawings/lab_v01.png)
 -->
