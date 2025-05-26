@@ -200,6 +200,6 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.vpn511_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
-    sdwan_cli_config_feature.core_cli_cfg_v01.version,
+    # sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
 }
