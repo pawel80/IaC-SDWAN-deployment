@@ -178,7 +178,7 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   !
   vrf definition 511
     address-family ipv4
-    route-replicate from vrf global unicast connected
+    route-replicate from vrf global unicast static
     exit-address-family
   !
   global-address-family ipv4
