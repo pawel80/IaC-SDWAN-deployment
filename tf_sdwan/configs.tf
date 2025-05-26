@@ -177,13 +177,13 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   ip address 172.16.51.1 255.255.255.252
   !
   vrf definition 511
-  !
-  address-family ipv4
+    address-family ipv4
     route-replicate from vrf global unicast connected
+    exit-address-family
   !
   global-address-family ipv4
     route-replicate from vrf 511 unicast connected
-    exit-address-family
+    exit-global-af
   !
   EOT
 }
