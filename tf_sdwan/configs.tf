@@ -171,7 +171,7 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
   cli_configuration  = <<-EOT
   interface GigabitEthernet2.511
-  encapsulation dot1q 511
+  encapsulation dot1Q 511
   vrf forwarding 511
   description Legacy_cores_mgmt
   EOT
