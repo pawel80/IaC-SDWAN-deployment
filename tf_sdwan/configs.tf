@@ -155,7 +155,7 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01
   ipv4_subnet_mask           = "255.255.255.252"
   ipv4_nat                   = false
   ipv4_nat_type              = "pool"
-  # ip_mtu                     = 1496
+  ip_mtu                     = 1490
 }
 
 ################################ Configuration group ##############################
