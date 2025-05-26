@@ -146,12 +146,8 @@ sd-wan_edges = [
         value = "255.255.255.252"
       },
       {
-        name = "var_vpn511_gig2_511_if_address"
-        value = "172.16.51.1"
-      },
-      {
-        name = "var_vpn511_gig2_511_if_mask"
-        value = "255.255.255.252"
+        name = "var_vpn511_gig2_511_if_add_mask"
+        value = "172.16.51.1 255.255.255.252"
       }
       ]
     },
