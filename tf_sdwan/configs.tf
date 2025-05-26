@@ -127,6 +127,11 @@ resource "sdwan_service_feature_profile" "service_core_v01" {
   description = "Core service feature profiles"
 }
 
+resource "sdwan_cli_feature_profile" "cli_core_v01" {
+  name        = "CLI_FEATURE_PROFILE_v01"
+  description = "CLI Feature Profile"
+}
+
 ##################################### Features ####################################
 resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
   name                       = "VPN511_v01"
@@ -160,13 +165,14 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
 # }
 
 resource "sdwan_cli_config_feature" "core_cli_v01" {
-  feature_profile_id = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id = sdwan_cli_feature_profile.cli_core_v01.id
   name               = "CORE_CLI_CFG_v01"
   description        = "Core CLI config"
   # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
   cli_configuration  = <<-EOT
   interface GigabitEthernet2.511
   encapsulation dot1q 511
+  vrf forwarding 511
   description Legacy_cores_mgmt
   EOT
 }
