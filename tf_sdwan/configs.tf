@@ -143,20 +143,30 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
   ]
 }
 
-resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01" {
-  name                       = "VPN511_Gig2_511_v01"
-  # description                = "Legacy DC core routers mgmt int"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
-  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.vpn511_v01.id
-  shutdown                   = false
-  interface_name             = "GigabitEthernet2.511"
-  interface_description      = "Legacy DC core routers mgmt int"
-  ipv4_address               = "172.16.51.1"
-  ipv4_subnet_mask           = "255.255.255.252"
-  ipv4_nat                   = false
-  ipv4_nat_type              = "pool"
-  ip_mtu                     = 1500
-  interface_mtu              = 1500
+# resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01" {
+#   name                       = "VPN511_Gig2_511_v01"
+#   # description                = "Legacy DC core routers mgmt int"
+#   feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+#   service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.vpn511_v01.id
+#   shutdown                   = false
+#   interface_name             = "GigabitEthernet2.511"
+#   interface_description      = "Legacy DC core routers mgmt int"
+#   ipv4_address               = "172.16.51.1"
+#   ipv4_subnet_mask           = "255.255.255.252"
+#   ipv4_nat                   = false
+#   ipv4_nat_type              = "pool"
+#   ip_mtu                     = 1500
+#   interface_mtu              = 1500
+# }
+
+resource "sdwan_cli_config_feature" "core_cli_v01" {
+  feature_profile_id = sdwan_service_feature_profile.service_core_v01.id
+  name               = "CORE_CLI_CFG_v01"
+  description        = "Core CLI config"
+  # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
+  cli_configuration  = "interface GigabitEthernet2.511\n
+  encapsulation dot1q 511\n
+  description Legacy_cores_mgmt"
 }
 
 ################################ Configuration group ##############################
