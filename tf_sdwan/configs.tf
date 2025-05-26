@@ -139,13 +139,13 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
   feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
   vpn                        = 511
   config_description         = "VPN511 - Legacy DC core routers mgmt"
-  ipv4_static_routes = [
-    {
-      network_address = "0.0.0.0"
-      subnet_mask     = "0.0.0.0"
-      vpn             = true
-    }
-  ]
+  # ipv4_static_routes = [
+  #   {
+  #     network_address = "0.0.0.0"
+  #     subnet_mask     = "0.0.0.0"
+  #     vpn             = true
+  #   }
+  # ]
 }
 
 # ERROR during subinterface creation:
@@ -175,6 +175,16 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   encapsulation dot1Q 511
   vrf forwarding 511
   ip address 172.16.51.1 255.255.255.252
+  !
+  vrf definition 511
+  !
+  address-family ipv4
+    route-replicate from vrf global unicast connected
+  !
+  global-address-family ipv4
+    route-replicate from vrf 511 unicast connected
+    exit-address-family
+  !
   EOT
 }
 
