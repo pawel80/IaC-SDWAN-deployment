@@ -169,24 +169,25 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   name               = "CORE_CLI_CFG_v01"
   description        = "Core CLI config"
   # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
-  cli_configuration  = <<-EOT
-  interface GigabitEthernet2.511
-  description Legacy_cores_mgmt
-  encapsulation dot1Q 511
-  vrf forwarding 511
-  ip address "{{var_vpn511_gig2_511_if_add_mask}}"
-  !
-  !Route leaking between VRF 511 and global VRF
-  vrf definition 511
-    address-family ipv4
-    route-replicate from vrf global unicast static
-    exit-address-family
-  !
-  global-address-family ipv4
-    route-replicate from vrf 511 unicast connected
-    exit-global-af
-  !
-  EOT
+  # cli_configuration  = <<-EOT
+  # interface GigabitEthernet2.511
+  # description Legacy_cores_mgmt
+  # encapsulation dot1Q 511
+  # vrf forwarding 511
+  # ip address 172.16.51.1 255.255.255.252
+  # !
+  # !Route leaking between VRF 511 and global VRF
+  # vrf definition 511
+  #   address-family ipv4
+  #   route-replicate from vrf global unicast static
+  #   exit-address-family
+  # !
+  # global-address-family ipv4
+  #   route-replicate from vrf 511 unicast connected
+  #   exit-global-af
+  # !
+  # EOT
+  cli_configuration = "interface GigabitEthernet2.511\nip address {{var_vpn511_gig2_511_if_add_mask}}"
 }
 
 ################################ Configuration group ##############################
