@@ -164,18 +164,18 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
 #   interface_mtu              = 1500
 # }
 
-resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
-  feature_profile_id = sdwan_cli_feature_profile.cli_core_v01.id
-  name               = "CORE_CLI_CFG_v01"
-  description        = "Core CLI config"
-  # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
-  cli_configuration  = <<-EOT
-  interface GigabitEthernet2.511
-  encapsulation dot1q 511
-  vrf forwarding 511
-  description Legacy_cores_mgmt
-  EOT
-}
+# resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
+#   feature_profile_id = sdwan_cli_feature_profile.cli_core_v01.id
+#   name               = "CORE_CLI_CFG_v01"
+#   description        = "Core CLI config"
+#   # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
+#   cli_configuration  = <<-EOT
+#   interface GigabitEthernet2.511
+#   encapsulation dot1q 511
+#   vrf forwarding 511
+#   description Legacy_cores_mgmt
+#   EOT
+# }
 
 ################################ Configuration group ##############################
 resource "sdwan_configuration_group" "config_group_core_v01" {
