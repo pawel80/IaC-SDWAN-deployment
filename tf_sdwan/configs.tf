@@ -79,8 +79,8 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   shutdown                     = false
   interface_description        = "WAN"
   ipv4_configuration_type      = "static"
-  ipv4_address_variable        = "{{var_vpn0_if_address}}"
-  ipv4_subnet_mask_variable    = "{{var_vpn0_if_mask}}"
+  ipv4_address_variable        = "{{var_vpn0_gig1_if_address}}"
+  ipv4_subnet_mask_variable    = "{{var_vpn0_gig1_if_mask}}"
 
   tunnel_interface             = true
   tunnel_interface_color       = "biz-internet"
