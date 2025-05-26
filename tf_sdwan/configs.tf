@@ -154,6 +154,10 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01
   feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
   service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.vpn511_v01.id
   interface_name             = "GigabitEthernet2.22"
+  ipv4_address               = "172.16.51.1"
+  ipv4_subnet_mask           = "255.255.255.252"
+  ipv4_nat                   = false
+  ipv4_nat_type              = "pool"
 }
 
 # resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01" {
