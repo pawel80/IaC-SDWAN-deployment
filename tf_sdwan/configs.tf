@@ -164,9 +164,11 @@ resource "sdwan_cli_config_feature" "core_cli_v01" {
   name               = "CORE_CLI_CFG_v01"
   description        = "Core CLI config"
   # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
-  cli_configuration  = "interface GigabitEthernet2.511\n
-  encapsulation dot1q 511\n
-  description Legacy_cores_mgmt"
+  cli_configuration  = <<EOT
+  interface GigabitEthernet2.511
+  encapsulation dot1q 511
+  description Legacy_cores_mgmt
+  EOT
 }
 
 ################################ Configuration group ##############################
