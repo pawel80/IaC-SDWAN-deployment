@@ -148,18 +148,8 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
   ]
 }
 
-resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01" {
-  name                       = "VPN511_Gig2_511_v01"
-  description                = "Legacy DC core routers mgmt int"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
-  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.vpn511_v01.id
-  interface_name             = "GigabitEthernet2.22"
-  ipv4_address               = "172.16.51.1"
-  ipv4_subnet_mask           = "255.255.255.252"
-  ipv4_nat                   = false
-  ipv4_nat_type              = "pool"
-}
-
+# ERROR during subinterface creation:
+# Invalid Payload: doesn't support user settable interface mtu for sub interface
 # resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01" {
 #   name                       = "VPN511_Gig2_511_v01"
 #   # description                = "Legacy DC core routers mgmt int"
@@ -172,8 +162,6 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01
 #   ipv4_subnet_mask           = "255.255.255.252"
 #   ipv4_nat                   = false
 #   ipv4_nat_type              = "pool"
-#   ip_mtu                     = 1500
-#   interface_mtu              = 1500
 # }
 
 resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
@@ -183,9 +171,10 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
   cli_configuration  = <<-EOT
   interface GigabitEthernet2.511
+  description Legacy_cores_mgmt
   encapsulation dot1Q 511
   vrf forwarding 511
-  description Legacy_cores_mgmt
+  ip address 172.16.51.1 255.255.255.252
   EOT
 }
 
@@ -211,7 +200,7 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.vpn511_v01.version,
-    sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
+    # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
 }
