@@ -149,7 +149,7 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_v01" {
   feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
   service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.vpn511_v01.id
   shutdown                   = false
-  interface_name             = "GigabitEthernet2"
+  interface_name             = "GigabitEthernet2.511"
   interface_description      = "Legacy DC core routers mgmt int"
   ipv4_address               = "172.16.51.1"
   ipv4_subnet_mask           = "255.255.255.252"

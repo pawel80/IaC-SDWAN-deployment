@@ -1,8 +1,8 @@
 # IaC-SD-WAN_SD-Routing_IOS-XE_deployment
 Purpose of this LAB is to demonstrate how the IaC SD-WAN/SD-routing/autonomous routers (IOS-XE) based solution could be build with the use of Terrafrom and Github workflows (pipelines).
 
-For Cisco SD-Routing configuration group, minimum software version is Cisco IOS XE Release 17.13.1a - not in the LAB at the moment.
-Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.x - not in the LAB at the moment
+For Cisco SD-Routing configuration group, minimum software version is Cisco IOS XE Release 17.13.1a - not in the LAB at the moment.  
+Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.x - not in the LAB at the moment.
 
 Networks:
 - Internet for Github <-> self-hosted runner communication
