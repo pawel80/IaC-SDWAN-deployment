@@ -9,9 +9,3 @@ variable "admin_account_pass" {
  type        = string
  default     = ""
 }
-
-variable "var_vpn511_gig2_511_if_add_mask" {
- description = "VPN511 address"
- type        = string
- default     = ""
-}
