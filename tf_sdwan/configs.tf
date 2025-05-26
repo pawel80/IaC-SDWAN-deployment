@@ -164,7 +164,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
 #   interface_mtu              = 1500
 # }
 
-resource "sdwan_cli_config_feature" "core_cli_v01" {
+resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   feature_profile_id = sdwan_cli_feature_profile.cli_core_v01.id
   name               = "CORE_CLI_CFG_v01"
   description        = "Core CLI config"
@@ -185,7 +185,8 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
   feature_profile_ids = [
     sdwan_system_feature_profile.system_v01.id, 
     sdwan_transport_feature_profile.transport_v01.id,
-    sdwan_service_feature_profile.service_core_v01.id
+    sdwan_service_feature_profile.service_core_v01.id,
+    sdwan_cli_feature_profile.cli_core_v01.id
   ]
   devices = local.sd-wan_cores
   feature_versions = [
@@ -199,6 +200,6 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.vpn511_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
-    sdwan_cli_config_feature.core_cli_v01.version,
+    sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
 }
