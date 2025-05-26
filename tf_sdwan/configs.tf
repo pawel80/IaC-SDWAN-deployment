@@ -187,7 +187,7 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   #   exit-global-af
   # !
   # EOT
-  cli_configuration = "interface GigabitEthernet2.511\nip address {{var_vpn511_gig2_511_if_add_mask}}"
+  cli_configuration = "interface GigabitEthernet2.511\nip address" var.var_vpn511_gig2_511_if_add_mask
 }
 
 ################################ Configuration group ##############################
