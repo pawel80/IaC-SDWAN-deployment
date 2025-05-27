@@ -4,7 +4,8 @@
 
 resource "iosxe_system" "system_all" {
   # Looping through the list of objects
-  for_each                    = {for index,router in local.legacy_routers : router.name => router}
+  # for_each                    = {for index,router in local.legacy_routers : router.name => router}
+  for_each                    = {for router in local.legacy_routers : router.name => router}
   device                      = each.value.name
   hostname                    = each.value.hostname
   # provider                    = iosxe.RT7
@@ -60,7 +61,7 @@ resource "iosxe_save_config" "save_cfg" {
 ###################################################################################
 
 resource "iosxe_system" "core_system_all" {
-  provider                    = iosxe.RT_DC1R2
+  provider                    = iosxe.RTDC1R2
   # for_each                    = {for router in local.legacy_routers : router.name => router}
   # device                      = each.value.name
   # device                      = local.legacy_routers.name["ROUTER_DC1R2"]
