@@ -68,7 +68,6 @@ locals {
   #       "description" = "NOT-USED"
   #     }]
   # ]) : "${v.device}_${v.name}_${v.type}_${v.description}" => v }
-
 }
 
 # output "flat_object" {
