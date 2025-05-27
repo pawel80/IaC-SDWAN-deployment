@@ -60,7 +60,7 @@ resource "iosxe_save_config" "save_cfg" {
 ###################################################################################
 
 resource "iosxe_interface_ethernet" "gig3_core" {
-  # for_each                       = {for index,router in local.legacy_routers : router.name => router}
+  provider                       = iosxe.iosxe_cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
   device                         = each.value.name
   type                           = "GigabitEthernet"
