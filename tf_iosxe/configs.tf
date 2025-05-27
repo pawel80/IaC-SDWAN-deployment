@@ -41,7 +41,7 @@ resource "iosxe_interface_ethernet" "gig_2_4" {
 
 # Just to present CLI based config
 resource "iosxe_cli" "global_loop123" {
-  for_each                      = {for index,router in local.legacy_routers : router.name => router}
+  for_each                      = {for router in local.legacy_routers : router.name => router}
   device                        = each.value.name
   cli                           = <<-EOT
   interface Loopback111
@@ -50,7 +50,7 @@ resource "iosxe_cli" "global_loop123" {
 }
 
 resource "iosxe_save_config" "save_cfg" {
-  for_each                       = {for index,router in local.legacy_routers : router.name => router}
+  for_each                       = {for router in local.legacy_routers : router.name => router}
   device                         = each.value.name
 }
 
@@ -64,7 +64,7 @@ resource "iosxe_system" "core_system_all" {
   provider                    = iosxe.RTDC1R2
   # for_each                    = {for router in local.legacy_routers : router.name => router}
   # device                      = each.value.name
-  # device                      = local.legacy_routers.name["ROUTER_DC1R2"]
+  device                      = "RTDC1R2"
   hostname                    = "DC1R2"
   ip_domain_lookup            = false
   ip_domain_name              = "lab.com"
