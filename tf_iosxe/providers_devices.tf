@@ -4,7 +4,7 @@ terraform {
       # The source needs to be provided since this isn't one of the "official" HashiCorp providers
       source = "CiscoDevNet/iosxe"
       # configuration_aliases = [ iosxe.RT7, iosxe.RT8 ]
-      # configuration_aliases = [ iosxe.RTDC1R2 ]
+      configuration_aliases = [ iosxe.RTDC1R2 ]
     }
   }
   cloud {
@@ -49,16 +49,16 @@ locals {
       shut_interfaces = ["2", "3", "4"]
       # ip_address      = "172.16.10.38"
       # mask            = "255.255.255.252"
-    },
-    {
-      name            = "RTDC1R2"
-      url             = "https://172.16.51.2"
-      hostname        = "DC1R2"
-      # mgmt_int        = "2"
-      shut_interfaces = ["4"]
-      # ip_address      = "172.16.51.2"
-      # mask            = "255.255.255.252"
     }
+    # {
+    #   name            = "RTDC1R2"
+    #   url             = "https://172.16.51.2"
+    #   hostname        = "DC1R2"
+    #   # mgmt_int        = "2"
+    #   shut_interfaces = ["4"]
+    #   # ip_address      = "172.16.51.2"
+    #   # mask            = "255.255.255.252"
+    # }
 
   ]
   # legacy_core_routers = [
@@ -92,12 +92,12 @@ provider "iosxe" {
   devices  = local.legacy_routers
 }
 
-# provider "iosxe" {
-#   alias    = "RTDC1R2"
-#   username = var.LEGACY_USERNAME
-#   password = var.LEGACY_PASSWORD
-#   url  = "https://172.16.51.2"
-# }
+provider "iosxe" {
+  alias    = "RTDC1R2"
+  username = var.LEGACY_USERNAME
+  password = var.LEGACY_PASSWORD
+  url  = "https://172.16.51.2"
+}
 
 # provider "iosxe" {
 #   alias    = "iosxe_cores"

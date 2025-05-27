@@ -59,14 +59,14 @@ resource "iosxe_save_config" "save_cfg" {
 ################################### Legacy COREs ##################################
 ###################################################################################
 
-# resource "iosxe_system" "core_system_all" {
-#   provider                    = iosxe.RTDC1R2
-#   # for_each                    = {for router in local.legacy_routers : router.name => router}
-#   # device                      = each.value.name
-#   hostname                    = "DC1R2"
-#   ip_domain_lookup            = false
-#   ip_domain_name              = "lab.com"
-# }
+resource "iosxe_system" "core_system_all" {
+  provider                    = iosxe.RTDC1R2
+  # for_each                    = {for router in local.legacy_routers : router.name => router}
+  # device                      = each.value.name
+  hostname                    = "DC1R222"
+  ip_domain_lookup            = false
+  ip_domain_name              = "lab.com"
+}
 
 # resource "iosxe_interface_ethernet" "core_gig3" {
 #   provider                       = iosxe.iosxe_cores
