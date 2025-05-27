@@ -12,19 +12,31 @@ resource "iosxe_system" "system_all" {
   ip_domain_name              = "lab.com"
 }
 
+# resource "iosxe_interface_ethernet" "int_mgmt" {
+#   # for_each                       = {for index,router in local.legacy_routers : router.name => router}
+#   for_each                       = {for v in flatten([for router in local.legacy_routers :
+#                                       [for interface in router.mgmt_int : {
+#                                         "device"           = router.name
+#                                         "mgmt_int_name"    = interface
+#                                         "ip_address"       = router.ip_address
+#                                         "mask"             = router.mask
+#                                       }]
+#                                     ]) : "${v.device} ${v.mgmt_int_name}" => v }
+#   device                         = each.value.device
+#   type                           = "GigabitEthernet"
+#   name                           = each.value.mgmt_int_name
+#   description                    = "INTRANET_OPEN"
+#   ipv4_address                   = each.value.ip_address
+#   ipv4_address_mask              = each.value.mask
+#   shutdown                       = false
+# }
+
 resource "iosxe_interface_ethernet" "int_mgmt" {
   # for_each                       = {for index,router in local.legacy_routers : router.name => router}
-  for_each                       = {for v in flatten([for router in local.legacy_routers :
-                                      [for interface in router.mgmt_int : {
-                                        "device"           = router.name
-                                        "mgmt_int_name"    = interface
-                                        "ip_address"       = router.ip_address
-                                        "mask"             = router.mask
-                                      }]
-                                    ]) : "${v.device} ${v.mgmt_int_name}" => v }
+  for_each                       = {for router in local.legacy_routers : router.name => router}
   device                         = each.value.device
   type                           = "GigabitEthernet"
-  name                           = each.value.mgmt_int_name
+  name                           = each.value.mgmt_int
   description                    = "INTRANET_OPEN"
   ipv4_address                   = each.value.ip_address
   ipv4_address_mask              = each.value.mask
@@ -66,14 +78,14 @@ resource "iosxe_save_config" "save_cfg" {
 ################################### Legacy COREs ##################################
 ###################################################################################
 
-resource "iosxe_system" "core_system_all" {
-  provider                    = iosxe.RTDC1R2
-  # for_each                    = {for router in local.legacy_routers : router.name => router}
-  # device                      = each.value.name
-  hostname                    = "DC1R2"
-  ip_domain_lookup            = false
-  ip_domain_name              = "lab.com"
-}
+# resource "iosxe_system" "core_system_all" {
+#   provider                    = iosxe.RTDC1R2
+#   # for_each                    = {for router in local.legacy_routers : router.name => router}
+#   # device                      = each.value.name
+#   hostname                    = "DC1R2"
+#   ip_domain_lookup            = false
+#   ip_domain_name              = "lab.com"
+# }
 
 # resource "iosxe_interface_ethernet" "core_gig3" {
 #   provider                       = iosxe.iosxe_cores
