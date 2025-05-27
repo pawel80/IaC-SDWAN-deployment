@@ -49,16 +49,16 @@ locals {
       shut_interfaces = ["2", "3", "4"]
       # ip_address      = "172.16.10.38"
       # mask            = "255.255.255.252"
+    },
+    {
+      name            = "RTDC1R2"
+      url             = "https://172.16.51.2"
+      hostname        = "DC1R2"
+      # mgmt_int        = "2"
+      shut_interfaces = ["4"]
+      # ip_address      = "172.16.51.2"
+      # mask            = "255.255.255.252"
     }
-    # {
-    #   name            = "RTDC1R2"
-    #   url             = "https://172.16.51.2"
-    #   hostname        = "DC1R2"
-    #   # mgmt_int        = "2"
-    #   shut_interfaces = ["4"]
-    #   # ip_address      = "172.16.51.2"
-    #   # mask            = "255.255.255.252"
-    # }
 
   ]
   # legacy_core_routers = [
