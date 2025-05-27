@@ -92,6 +92,8 @@ provider "iosxe" {
   devices  = local.legacy_routers
 }
 
+# TURN THIS PART INTO LIST
+
 provider "iosxe" {
   alias    = "RTDC1R2"
   username = var.LEGACY_USERNAME

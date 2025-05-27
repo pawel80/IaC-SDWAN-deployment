@@ -25,7 +25,6 @@ Non standard config:
 - TLOC extension for mgmt interface
 
 Issues:
-- for iosxe, provider aliases do not work for an alternative router configuration. Even if provider field is specified, resource is applied/destroyed for all of the devices
 - iosxe provider will hang if there are no online routers
 - for iosxe provider, I've skipped TF config for mgmt interfaces. There is too much risk that TF will remove that config
 - impossible to create a sub interface via sd-wan provider, resource: sdwan_service_lan_vpn_interface_ethernet_feature
