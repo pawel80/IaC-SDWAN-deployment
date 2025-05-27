@@ -60,10 +60,11 @@ resource "iosxe_save_config" "save_cfg" {
 ###################################################################################
 
 resource "iosxe_system" "core_system_all" {
-  # provider                    = iosxe.iosxe_cores
-  for_each                    = {for router in local.legacy_routers : router.name => router}
-  device                      = each.value.name
-  hostname                    = each.value.hostname
+  provider                    = iosxe.RT_DC1R2
+  # for_each                    = {for router in local.legacy_routers : router.name => router}
+  # device                      = each.value.name
+  # device                      = local.legacy_routers.name["ROUTER_DC1R2"]
+  hostname                    = "DC1R2"
   ip_domain_lookup            = false
   ip_domain_name              = "lab.com"
 }
