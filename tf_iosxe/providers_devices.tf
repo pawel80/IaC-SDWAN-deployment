@@ -60,6 +60,7 @@ locals {
       ip_address      = "172.16.51.2"
       mask            = "255.255.255.252"
     }
+    
   ]
   # legacy_core_routers = [
   #   {
