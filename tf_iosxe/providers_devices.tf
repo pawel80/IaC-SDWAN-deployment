@@ -4,7 +4,7 @@ terraform {
       # The source needs to be provided since this isn't one of the "official" HashiCorp providers
       source = "CiscoDevNet/iosxe"
       # configuration_aliases = [ iosxe.RT7, iosxe.RT8 ]
-        configuration_aliases = [ iosxe.RTDC1R2 ]
+      configuration_aliases = [ iosxe.RTDC1R2 ]
     }
   }
   cloud {
@@ -33,23 +33,26 @@ terraform {
 locals {
   legacy_routers = [
     {
-      name = "ROUTER7"
-      url  = "https://172.16.10.34"
-      hostname = "S7R1"
-      ip_address = "172.16.10.34"
-      mask = "255.255.255.252"
+      name            = "ROUTER7"
+      url             = "https://172.16.10.34"
+      hostname        = "S7R1"
+      mgmt_int        = ["1"]
       shut_interfaces = ["2", "3", "4"]
+      ip_address      = "172.16.10.34"
+      mask            = "255.255.255.252"
+
     },
     {
-      name = "ROUTER8"
-      url  = "https://172.16.10.38"
-      hostname = "S8R1"
-      ip_address = "172.16.10.38"
-      mask = "255.255.255.252"
+      name            = "ROUTER8"
+      url             = "https://172.16.10.38"
+      hostname        = "S8R1"
+      mgmt_int        = ["1"]
       shut_interfaces = ["2", "3", "4"]
+      ip_address      = "172.16.10.38"
+      mask            = "255.255.255.252"
     }
     # {
-    #   name = "ROUTER_DC1R2"
+    #   name = "RTDC1R2"
     #   url  = "https://172.16.51.2"
     #   hostname = "DC1R2"
     #   # ip_address = "172.16.51.2"
