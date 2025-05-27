@@ -68,6 +68,7 @@ resource "iosxe_system" "core_system_all" {
   ip_domain_name              = "lab.com"
 }
 
+
 # resource "iosxe_interface_ethernet" "core_gig3" {
 #   provider                       = iosxe.iosxe_cores
 #   for_each                       = {for router in local.legacy_core_routers : router.name => router}
