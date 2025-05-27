@@ -34,7 +34,7 @@ resource "iosxe_system" "system_all" {
 resource "iosxe_interface_ethernet" "int_mgmt" {
   # for_each                       = {for index,router in local.legacy_routers : router.name => router}
   for_each                       = {for router in local.legacy_routers : router.name => router}
-  device                         = each.value.device
+  device                         = each.value.name
   type                           = "GigabitEthernet"
   name                           = each.value.mgmt_int
   description                    = "INTRANET_OPEN"
