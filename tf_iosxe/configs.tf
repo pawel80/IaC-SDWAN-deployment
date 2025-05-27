@@ -59,16 +59,25 @@ resource "iosxe_save_config" "save_cfg" {
 ################################### Legacy COREs ##################################
 ###################################################################################
 
-resource "iosxe_interface_ethernet" "gig3_core" {
-  provider                       = iosxe.iosxe_cores
-  for_each                       = {for router in local.legacy_core_routers : router.name => router}
-  device                         = each.value.name
-  type                           = "GigabitEthernet"
-  name                           = "3.500"
-  description                    = "INTRANET_OPEN"
-  encapsulation_dot1q_vlan_id    = 500
-  vrf_forwarding                 = "511"
-  ipv4_address                   = each.value.ip_address
-  ipv4_address_mask              = each.value.mask
-  shutdown                       = false
+resource "iosxe_system" "core_system_all" {
+  provider                    = iosxe.iosxe_cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  hostname                    = each.value.hostname
+  ip_domain_lookup            = false
+  ip_domain_name              = "lab.com"
 }
+
+# resource "iosxe_interface_ethernet" "core_gig3" {
+#   provider                       = iosxe.iosxe_cores
+#   for_each                       = {for router in local.legacy_core_routers : router.name => router}
+#   device                         = each.value.name
+#   type                           = "GigabitEthernet"
+#   name                           = "3.500"
+#   description                    = "INTRANET_OPEN"
+#   encapsulation_dot1q_vlan_id    = 500
+#   vrf_forwarding                 = "511"
+#   ipv4_address                   = each.value.ip_address
+#   ipv4_address_mask              = each.value.mask
+#   shutdown                       = false
+# }
