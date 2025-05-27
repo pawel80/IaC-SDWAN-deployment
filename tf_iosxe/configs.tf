@@ -2,16 +2,16 @@
 ################################### Legacy EDGEs ##################################
 ###################################################################################
 
-resource "iosxe_system" "system_all" {
-  # Looping through the list of objects
-  # for_each                    = {for index,router in local.legacy_routers : router.name => router}
-  for_each                    = {for router in local.legacy_routers : router.name => router}
-  device                      = each.value.name
-  hostname                    = each.value.hostname
-  # provider                    = iosxe.RT7
-  ip_domain_lookup            = false
-  ip_domain_name              = "lab.com"
-}
+# resource "iosxe_system" "system_all" {
+#   # Looping through the list of objects
+#   # for_each                    = {for index,router in local.legacy_routers : router.name => router}
+#   for_each                    = {for router in local.legacy_routers : router.name => router}
+#   device                      = each.value.name
+#   hostname                    = each.value.hostname
+#   # provider                    = iosxe.RT7
+#   ip_domain_lookup            = false
+#   ip_domain_name              = "lab.com"
+# }
 
 resource "iosxe_interface_ethernet" "gig1" {
   # for_each                       = {for index,router in local.legacy_routers : router.name => router}
