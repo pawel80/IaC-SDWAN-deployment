@@ -5,7 +5,7 @@ terraform {
       source = "CiscoDevNet/iosxe"
       # configuration_aliases = [ iosxe.RT7, iosxe.RT8 ]
     }
-    iosxe_cores = {
+    iosxe-cores = {
       source = "CiscoDevNet/iosxe"
     }
   }
@@ -83,7 +83,7 @@ provider "iosxe" {
   devices  = local.legacy_routers
 }
 
-provider "iosxe_cores" {
+provider "iosxe-cores" {
   username = var.LEGACY_USERNAME
   password = var.LEGACY_PASSWORD
   devices  = local.legacy_core_routers
