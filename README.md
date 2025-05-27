@@ -24,6 +24,10 @@ Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
 - TLOC extension for mgmt interface
 
+Issues:
+- iosxe provider will hang if there are no online routers
+- impossible to create a sub interface via sd-wan provider, resource: sdwan_service_lan_vpn_interface_ethernet_feature
+
 <!--- 
 ![screenshot](drawings/lab_v01.png)
 -->
