@@ -37,7 +37,7 @@ Issues:
 Tools:
 - Github (repo, workflows, self-hosted runner)
 - Terraform cloud (for Terraform state)
-- Terraform
+- Terraform providers: CiscoDevNet/iosxe v.0.5.10, CiscoDevNet/sdwan v.0.6.1
 - draw.io
 - Cisco SD-WAN on-premise (Manager, Validator, Controller: v.20.12.4)
 - Cisco C8000v v.17.12.04b
