@@ -172,12 +172,11 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
   cli_configuration  = <<-EOT
   interface GigabitEthernet2.511
-  !description Legacy_cores_mgmt
-  description {{VAR_LEGACY_CORES_MGMT2}}
+  description Legacy_cores_mgmt
   encapsulation dot1Q 511
   vrf forwarding 511
   !ip address 172.16.51.1 255.255.255.252
-  ip address ${var.var_vpn511_gig2_511_if_address}
+  ip address {{var_vpn511_gig2_511_if_address}}
   !
   !Route leaking between VRF 511 and global VRF
   vrf definition 511
