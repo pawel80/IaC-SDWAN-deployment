@@ -145,6 +145,10 @@ sd-wan_edges = [
         name = "var_vpn0_gig1_if_mask"
         value = "255.255.255.252"
       },
+      {
+        name = "VAR_LEGACY_CORES_MGMT2"
+        value = "AAAAAAAA-BBBBBBBB"
+      }
       ]
     },
     {
@@ -182,6 +186,10 @@ sd-wan_edges = [
       {
         name = "var_vpn0_gig1_if_mask"
         value = "255.255.255.252"
+      },
+      {
+        name = "VAR_LEGACY_CORES_MGMT2"
+        value = "CCCCCCCC-DDDDDDDD"
       }
       ]
     }
