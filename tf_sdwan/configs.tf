@@ -175,7 +175,8 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   description Legacy_cores_mgmt
   encapsulation dot1Q 511
   vrf forwarding 511
-  ip address 172.16.51.1 255.255.255.252
+  !ip address 172.16.51.1 255.255.255.252
+  ip address ${var.var_vpn511_gig2_511_if_address}
   !
   !Route leaking between VRF 511 and global VRF
   vrf definition 511

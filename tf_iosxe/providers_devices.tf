@@ -59,8 +59,10 @@ locals {
     #   # ip_address      = "172.16.51.2"
     #   # mask            = "255.255.255.252"
     # }
-
   ]
+
+  # ADD SECOND LIST
+  
   # legacy_core_routers = [
   #   {
   #     name = "ROUTER_DC1R2"

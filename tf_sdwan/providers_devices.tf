@@ -144,7 +144,7 @@ sd-wan_edges = [
       {
         name = "var_vpn0_gig1_if_mask"
         value = "255.255.255.252"
-      }
+      },
       ]
     },
     {
