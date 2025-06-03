@@ -1,8 +1,12 @@
 # IaC-SD-WAN_SD-Routing_IOS-XE_deployment
-Purpose of this LAB is to demonstrate how the IaC SD-WAN/SD-routing/autonomous routers (IOS-XE) based solution could be build with the use of Terrafrom and Github workflows (pipelines).
+Purpose of this LAB is to demonstrate how to use Infrastructure as Code aproach to build configs for:
+- SD-WAN
+- SD-routing
+- autonomous routers (IOS-XE) 
+with the use of Terrafrom and Github workflows (pipelines).
 
-For Cisco SD-Routing configuration group, minimum software version is Cisco IOS XE Release 17.13.1a - not in the LAB at the moment.
-Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.x - not in the LAB at the moment
+For Cisco SD-Routing configuration group, minimum software version is Cisco IOS XE Release 17.13.1a - not in the LAB at the moment.  
+Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.x - not in the LAB at the moment.
 
 Networks:
 - Internet for Github <-> self-hosted runner communication
@@ -24,6 +28,12 @@ Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
 - TLOC extension for mgmt interface
 
+Issues:
+- iosxe provider will hang if there are no online routers
+- for iosxe provider, I've skipped TF config for mgmt interfaces. There is too much risk that TF will remove that config
+- impossible to create a sub interface via sd-wan provider, resource: sdwan_service_lan_vpn_interface_ethernet_feature
+
+
 <!--- 
 ![screenshot](drawings/lab_v01.png)
 -->
@@ -31,7 +41,7 @@ Non standard config:
 Tools:
 - Github (repo, workflows, self-hosted runner)
 - Terraform cloud (for Terraform state)
-- Terraform
+- Terraform providers: CiscoDevNet/iosxe v.0.5.10, CiscoDevNet/sdwan v.0.6.1
 - draw.io
 - Cisco SD-WAN on-premise (Manager, Validator, Controller: v.20.12.4)
 - Cisco C8000v v.17.12.04b
