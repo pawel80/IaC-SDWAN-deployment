@@ -69,6 +69,20 @@ resource "iosxe_system" "core_system_all" {
   ip_domain_name              = "lab.com"
 }
 
+resource "iosxe_interface_ethernet" "core_int_shutdown" {
+  for_each                       = {for v in flatten([for router in local.legacy_core_routers :
+                                      [for interface in router.shut_interfaces : {
+                                        "device"      = router.name
+                                        "int_name"    = interface
+                                      }]
+                                    ]) : "${v.device} ${v.int_name}" => v }
+  device                         = each.value.device
+  type                           = "GigabitEthernet"
+  name                           = each.value.int_name
+  description                    = "NOT-USED"
+  shutdown                       = true
+}
+
 # resource "iosxe_interface_ethernet" "core_gig3" {
 #   provider                       = iosxe.iosxe_cores
 #   for_each                       = {for router in local.legacy_core_routers : router.name => router}
