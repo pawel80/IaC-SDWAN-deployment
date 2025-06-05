@@ -60,20 +60,25 @@ locals {
     #   # mask            = "255.255.255.252"
     # }
   ]
-
-  # ADD SECOND LIST
   
-  # legacy_core_routers = [
-  #   {
-  #     name = "ROUTER_DC1R2"
-  #     url  = "https://172.16.51.2"
-  #     hostname = "DC1R2"
-  #     # ip_address = "172.16.51.2"
-  #     ip_address = "172.16.50.2"
-  #     mask = "255.255.255.252"
-  #     shut_interfaces = ["4"]
-  #   }
-  # ]
+  legacy_core_routers = [
+    {
+      name = "ROUTER_DC1R2"
+      url  = "https://172.16.51.2"
+      hostname = "DC1R2"
+      # ip_address = "172.16.51.2"
+      # mask = "255.255.255.252"
+      shut_interfaces = ["4"]
+    },
+    {
+      name = "ROUTER_DC2R2"
+      url  = "https://172.16.51.6"
+      hostname = "DC2R2"
+      # ip_address = "172.16.51.6"
+      # mask = "255.255.255.252"
+      shut_interfaces = ["4"]
+    },
+  ]
   #   flat_object = { for k, v in flatten([for router in local.legacy_routers :
   #     [for interface in try(router.shut_interfaces, []) : {
   #       "device"      = router.name
