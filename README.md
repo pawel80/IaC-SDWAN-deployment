@@ -2,7 +2,7 @@
 Purpose of this LAB is to demonstrate how to use Infrastructure as Code aproach to build configs for:
 - SD-WAN
 - SD-routing
-- autonomous routers (IOS-XE) 
+- autonomous routers (IOS-XE)  
 with the use of Terrafrom and Github workflows (pipelines).
 
 For Cisco SD-Routing configuration group, minimum software version is Cisco IOS XE Release 17.13.1a - not in the LAB at the moment.  

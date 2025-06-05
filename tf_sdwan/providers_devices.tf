@@ -161,7 +161,7 @@ sd-wan_edges = [
     variables = [
       {
         name = "host_name"
-        value = "DC2R2"
+        value = "DC2R1"
       },
       {
         name = "pseudo_commit_timer"
