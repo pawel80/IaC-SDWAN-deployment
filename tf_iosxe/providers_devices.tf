@@ -31,6 +31,13 @@ terraform {
 #   url      = "https://172.16.10.38"
 # }
 
+# provider "iosxe" {
+#   alias    = "RTDC1R2"
+#   username = var.LEGACY_USERNAME
+#   password = var.LEGACY_PASSWORD
+#   url  = "https://172.16.51.2"
+# }
+
 locals {
   legacy_routers = [
     {
@@ -98,12 +105,3 @@ provider "iosxe" {
   password = var.LEGACY_PASSWORD
   devices  = local.legacy_core_routers
 }
-
-# SINGLE ROUTER
-# provider "iosxe" {
-#   alias    = "RTDC1R2"
-#   username = var.LEGACY_USERNAME
-#   password = var.LEGACY_PASSWORD
-#   url  = "https://172.16.51.2"
-# }
-
