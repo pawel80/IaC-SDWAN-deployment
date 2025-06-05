@@ -84,6 +84,12 @@ resource "iosxe_interface_ethernet" "core_int_shutdown" {
   shutdown                       = true
 }
 
+resource "iosxe_save_config" "save_cfg" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+}
+
 # resource "iosxe_interface_ethernet" "core_gig3" {
 #   provider                       = iosxe.iosxe_cores
 #   for_each                       = {for router in local.legacy_core_routers : router.name => router}

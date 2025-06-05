@@ -26,6 +26,7 @@ Design highlights:
 Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
 - TLOC extension for mgmt interface
+- TF legacy routers iosxe provider and separate provider for legacy core devices (deployed as list of devices)
 
 Issues:
 - iosxe provider will hang if there are no online routers
