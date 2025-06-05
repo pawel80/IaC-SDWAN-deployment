@@ -91,6 +91,7 @@ provider "iosxe" {
   devices  = local.legacy_routers
 }
 
+# Same provider, different device list
 provider "iosxe" {
   alias    = "cores"
   username = var.LEGACY_USERNAME

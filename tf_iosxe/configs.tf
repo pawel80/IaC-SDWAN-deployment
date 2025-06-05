@@ -70,6 +70,7 @@ resource "iosxe_system" "core_system_all" {
 }
 
 resource "iosxe_interface_ethernet" "core_int_shutdown" {
+  provider                    = iosxe.cores
   for_each                       = {for v in flatten([for router in local.legacy_core_routers :
                                       [for interface in router.shut_interfaces : {
                                         "device"      = router.name
