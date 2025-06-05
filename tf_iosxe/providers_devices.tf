@@ -3,6 +3,7 @@ terraform {
     iosxe = {
       # The source needs to be provided since this isn't one of the "official" HashiCorp providers
       source = "CiscoDevNet/iosxe"
+      configuration_aliases = [ iosxe.iosxe_cores ]
       # configuration_aliases = [ iosxe.RT7, iosxe.RT8 ]
       # configuration_aliases = [ iosxe.RTDC1R2 ]
     }
@@ -99,8 +100,14 @@ provider "iosxe" {
   devices  = local.legacy_routers
 }
 
-# TURN THIS PART INTO LIST
+provider "iosxe" {
+  alias    = "iosxe_cores"
+  username = var.LEGACY_USERNAME
+  password = var.LEGACY_PASSWORD
+  devices  = local.legacy_core_routers
+}
 
+# SINGLE ROUTER
 # provider "iosxe" {
 #   alias    = "RTDC1R2"
 #   username = var.LEGACY_USERNAME
@@ -108,9 +115,3 @@ provider "iosxe" {
 #   url  = "https://172.16.51.2"
 # }
 
-# provider "iosxe" {
-#   alias    = "iosxe_cores"
-#   username = var.LEGACY_USERNAME
-#   password = var.LEGACY_PASSWORD
-#   devices  = local.legacy_core_routers
-# }
