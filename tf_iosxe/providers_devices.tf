@@ -99,7 +99,7 @@ locals {
       gig1_ip_address = "192.168.23.2"
       gig1_mask = "255.255.255.252"
       gig1_desc = "DC3R2-DC2R2"
-      gig3_ip_address = "192.168.12.2"
+      gig3_ip_address = "192.168.13.2"
       gig3_mask = "255.255.255.252"
       gig3_desc = "DC32R2-DC1R2"
     }
