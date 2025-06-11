@@ -65,25 +65,43 @@ locals {
       name = "ROUTER_DC1R2"
       url  = "https://172.16.51.2"
       hostname = "DC1R2"
-      # ip_address = "172.16.51.2"
-      # mask = "255.255.255.252"
+      # gig2_ip_address = "172.16.51.2"
+      # gig2_mask = "255.255.255.252"
       shut_interfaces = ["4"]
+      gig1_ip_address = "192.168.12.1"
+      gig1_mask = "255.255.255.252"
+      gig1_desc = "DC1R2-DC2R2"
+      gig3_ip_address = "192.168.13.1"
+      gig3_mask = "255.255.255.252"
+      gig3_desc = "DC1R2-DC3R2"
     },
     {
       name = "ROUTER_DC2R2"
       url  = "https://172.16.51.6"
       hostname = "DC2R2"
-      # ip_address = "172.16.51.6"
-      # mask = "255.255.255.252"
+      # gig2_ip_address = "172.16.51.6"
+      # gig2_mask = "255.255.255.252"
       shut_interfaces = ["4"]
+      gig1_ip_address = "192.168.12.2"
+      gig1_mask = "255.255.255.252"
+      gig1_desc = "DC2R2-DC1R2"
+      gig3_ip_address = "192.168.23.1"
+      gig3_mask = "255.255.255.252"
+      gig3_desc = "DC2R2-DC3R2"
     },
     {
       name = "ROUTER_DC3R2"
       url  = "https://172.16.51.10"
       hostname = "DC3R2"
-      # ip_address = "172.16.51.10"
-      # mask = "255.255.255.252"
+      # gig2_ip_address = "172.16.51.10"
+      # gig2_mask = "255.255.255.252"
       shut_interfaces = ["4"]
+      gig1_ip_address = "192.168.23.2"
+      gig1_mask = "255.255.255.252"
+      gig1_desc = "DC3R2-DC2R2"
+      gig3_ip_address = "192.168.12.2"
+      gig3_mask = "255.255.255.252"
+      gig3_desc = "DC32R2-DC1R2"
     }
   ]
   #   flat_object = { for k, v in flatten([for router in local.legacy_routers :
