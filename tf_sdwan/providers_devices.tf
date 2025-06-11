@@ -200,6 +200,52 @@ sd-wan_edges = [
         value = "255.255.255.252"
       }
       ]
+    },
+    {
+    id     = "C8K-3CD1F9E6-37A0-7FC9-9B56-F39B676A0082"
+    deploy = true
+    variables = [
+      {
+        name = "host_name"
+        value = "DC3R1"
+      },
+      {
+        name = "pseudo_commit_timer"
+        value = 0
+      },
+      {
+        name = "site_id"
+        value = 903
+      },
+      {
+        name = "system_ip"
+        value = "99.9.1.3"
+      },
+      {
+        name = "ipv6_strict_control"
+        value = "false"
+      },
+      {
+        name = "var_def_gtw"
+        value = "172.16.99.9"
+      },
+      {
+        name = "var_vpn0_gig1_if_address"
+        value = "172.16.99.10"
+      },
+      {
+        name = "var_vpn0_gig1_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_vpn511_gig2_511_if_address"
+        value = "172.16.51.9"
+      },
+      {
+        name = "var_vpn511_gig2_511_if_mask"
+        value = "255.255.255.252"
+      }
+      ]
     }
   ]
 }
