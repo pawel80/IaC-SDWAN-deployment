@@ -87,9 +87,9 @@ resource "iosxe_interface_ethernet" "core_gig3" {
   device                         = each.value.name
   type                           = "GigabitEthernet"
   name                           = "3"
-  ipv4_address                   = each.value.gig1_ip_address
-  ipv4_address_mask              = each.value.gig1_mask
-  description                    = each.value.gig1_desc
+  ipv4_address                   = each.value.gig3_ip_address
+  ipv4_address_mask              = each.value.gig3_mask
+  description                    = each.value.gig3_desc
   shutdown                       = false
 }
 
