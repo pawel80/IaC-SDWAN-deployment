@@ -74,6 +74,7 @@ locals {
       gig3_ip_address = "192.168.13.1"
       gig3_mask = "255.255.255.252"
       gig3_desc = "DC1R2-DC3R2"
+      bgp_asn = "65102"
     },
     {
       name = "ROUTER_DC2R2"
@@ -88,6 +89,7 @@ locals {
       gig3_ip_address = "192.168.23.1"
       gig3_mask = "255.255.255.252"
       gig3_desc = "DC2R2-DC3R2"
+      bgp_asn = "65202"
     },
     {
       name = "ROUTER_DC3R2"
@@ -102,6 +104,7 @@ locals {
       gig3_ip_address = "192.168.13.2"
       gig3_mask = "255.255.255.252"
       gig3_desc = "DC32R2-DC1R2"
+      bgp_asn = "65302"
     }
   ]
   #   flat_object = { for k, v in flatten([for router in local.legacy_routers :
