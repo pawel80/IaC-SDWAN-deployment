@@ -7,10 +7,12 @@ Purpose of this LAB is to demonstrate how to use Infrastructure as Code aproach 
 For Cisco SD-Routing configuration group, minimum software version is Cisco IOS XE Release 17.13.1a - not in the LAB at the moment.  
 Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.x - not in the LAB at the moment.  
 
+
 Networks:
 - Internet for Github <-> self-hosted runner communication
 - Intranet(open) for management plane and non-encrypted data plane traffic
 - Intranet(secured) for encrypted data plane traffic  
+
 
 Design highlights:
 - SD-WAN routers: S1R1, S2R2, S3R1 and S4R1 are connected only to the open, non-encrypted intranet network
