@@ -126,12 +126,23 @@ resource "iosxe_bgp_address_family_ipv4" "core_bgp_unicast" {
   af_name              = "unicast"
 }
 
-resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1" {
+resource "iosxe_bgp_neighbor" "core_bgp_neighbor1" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  ip                   = each.value.bgp_nb1_ip_address
+  remote_as            = each.value.bgp_nb1_asn
+  description          = each.value.bgp_nb1_desc
+  shutdown             = false
+}
+
+resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1_af" {
   provider                    = iosxe.cores
   for_each                    = {for router in local.legacy_core_routers : router.name => router}
   device                      = each.value.name
-  depends_on                  = [iosxe_bgp_address_family_ipv4.core_bgp_unicast]
-  asn                         = each.value.bgp_nb1_asn
+  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor1]
+  asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb1_ip_address
   activate                    = true
   # send_community              = "both"
