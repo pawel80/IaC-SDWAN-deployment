@@ -118,9 +118,12 @@ resource "iosxe_bgp" "core_bgp" {
   # router_id_loopback   = 100
 }
 
-resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbors" {
-  asn                         = "65000"
-  ip                          = "3.3.3.3"
+resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1" {
+  provider                    = iosxe.cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  asn                         = each.value.bgp_nb1_asn
+  ip                          = each.value.bgp_nb1_ip_address
   activate                    = true
   # send_community              = "both"
   # route_reflector_client      = false
