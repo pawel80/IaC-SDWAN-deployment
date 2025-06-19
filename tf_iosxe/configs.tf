@@ -113,13 +113,13 @@ resource "iosxe_bgp" "core_bgp" {
   for_each             = {for router in local.legacy_core_routers : router.name => router}
   device               = each.value.name
   asn                  = each.value.bgp_asn
-  default_ipv4_unicast = false
+  default_ipv4_unicast = true
   log_neighbor_changes = true
   # router_id_loopback   = 100
 }
 
 resource "time_sleep" "wait_x_seconds" {
-  create_duration = "10s"
+  create_duration = "20s"
 }
 
 resource "iosxe_save_config" "core_save_cfg" {
