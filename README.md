@@ -8,12 +8,14 @@ For Cisco SD-Routing configuration group, minimum software version is Cisco IOS 
 Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.x - not in the LAB at the moment.  
 
 <br/>
+
 Networks:
 - Internet for Github <-> self-hosted runner communication
 - Intranet(open) for management plane and non-encrypted data plane traffic
 - Intranet(secured) for encrypted data plane traffic  
 
 <br/>
+
 Design highlights:
 - SD-WAN routers: S1R1, S2R2, S3R1 and S4R1 are connected only to the open, non-encrypted intranet network
 - SD-WAN routers: S1R2 and S2R2 are connected only to secured, encrypted intranet network, management is done via TLOC extension
@@ -27,6 +29,7 @@ Design highlights:
 *Network management plane*
 
 <br/>
+
 Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
 - TLOC extension for mgmt interface
