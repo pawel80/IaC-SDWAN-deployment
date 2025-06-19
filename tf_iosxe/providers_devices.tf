@@ -78,6 +78,7 @@ locals {
       bgp_nb1_desc = "DC2R2"
       bgp_nb1_asn = "65202"
       bgp_nb1_ip_address = "192.168.12.2"
+      bgp_nb2_desc = "DC3R2"
       bgp_nb2_asn = "65302"
       bgp_nb2_ip_address = "192.168.13.2"
     },
@@ -98,6 +99,7 @@ locals {
       bgp_nb1_desc = "DC1R2"
       bgp_nb1_asn = "65102"
       bgp_nb1_ip_address = "192.168.12.1"
+      bgp_nb2_desc = "DC3R2"
       bgp_nb2_asn = "65302"
       bgp_nb2_ip_address = "192.168.23.2"
     },
@@ -118,6 +120,7 @@ locals {
       bgp_nb1_desc = "DC2R2"
       bgp_nb1_asn = "65202"
       bgp_nb1_ip_address = "192.168.23.1"
+      bgp_nb2_desc = "DC1R2"
       bgp_nb2_asn = "65102"
       bgp_nb2_ip_address = "192.168.13.1"
     }
