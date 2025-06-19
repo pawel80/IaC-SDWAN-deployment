@@ -22,16 +22,17 @@ Design highlights:
 - Legacy and Data center routers (orange) are configured directly through self-hosted runner
 
 ![alt text](drawings/lab_v11.png)  
+*Network management plane*
 
 Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
 - TLOC extension for mgmt interface
 - TF legacy routers iosxe provider and separate provider for legacy core devices (deployed as list of devices)
 
-Issues:
-- iosxe provider will hang if there are no online routers
-- for iosxe provider, I've skipped TF config for mgmt interfaces. There is too much risk that TF will remove that config
-- impossible to create a sub interface via sd-wan provider, resource: sdwan_service_lan_vpn_interface_ethernet_feature
+> [!Known issues:]
+> - iosxe provider will hang if there are no online routers
+> - for iosxe provider, I've skipped TF config for mgmt interfaces. There is too much risk that TF will remove that config
+> - impossible to create a sub interface via sd-wan provider, resource: sdwan_service_lan_vpn_interface_ethernet_feature
 
 
 <!--- 
