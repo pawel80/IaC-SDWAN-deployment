@@ -7,13 +7,13 @@ Purpose of this LAB is to demonstrate how to use Infrastructure as Code aproach 
 For Cisco SD-Routing configuration group, minimum software version is Cisco IOS XE Release 17.13.1a - not in the LAB at the moment.  
 Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.x - not in the LAB at the moment.  
 
-
+<br/>
 Networks:
 - Internet for Github <-> self-hosted runner communication
 - Intranet(open) for management plane and non-encrypted data plane traffic
 - Intranet(secured) for encrypted data plane traffic  
 
-
+<br/>
 Design highlights:
 - SD-WAN routers: S1R1, S2R2, S3R1 and S4R1 are connected only to the open, non-encrypted intranet network
 - SD-WAN routers: S1R2 and S2R2 are connected only to secured, encrypted intranet network, management is done via TLOC extension
@@ -26,6 +26,7 @@ Design highlights:
 ![alt text](drawings/lab_v11.png)  
 *Network management plane*
 
+<br/>
 Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
 - TLOC extension for mgmt interface
@@ -36,11 +37,11 @@ Non standard config:
 > - for iosxe provider, I've skipped TF config for mgmt interfaces. There is too much risk that TF will remove that config
 > - impossible to create a sub interface via sd-wan provider, resource: sdwan_service_lan_vpn_interface_ethernet_feature
 
-
 <!--- 
 ![screenshot](drawings/lab_v01.png)
 -->
 
+<br/>
 Tools:
 - Github (repo, workflows, self-hosted runner)
 - Terraform cloud (for Terraform state)
