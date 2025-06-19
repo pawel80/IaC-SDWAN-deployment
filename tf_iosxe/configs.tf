@@ -81,6 +81,19 @@ resource "iosxe_interface_ethernet" "core_gig1" {
   shutdown                       = false
 }
 
+resource "iosxe_interface_ethernet" "core_gig2_400" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2"
+  encapsulation_dot1q_vlan_id    = 400
+  ipv4_address                   = each.value.gig2_400_ip_address
+  ipv4_address_mask              = each.value.gig2_400_mask
+  description                    = each.value.gig2_400_desc
+  shutdown                       = false
+}
+
 resource "iosxe_interface_ethernet" "core_gig3" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
