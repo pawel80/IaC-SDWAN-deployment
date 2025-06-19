@@ -41,7 +41,7 @@ Non standard config:
 ![screenshot](drawings/lab_v01.png)
 -->
 
-<br/>
+<br/>  
 Tools:
 - Github (repo, workflows, self-hosted runner)
 - Terraform cloud (for Terraform state)
