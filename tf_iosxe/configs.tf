@@ -4,6 +4,7 @@
 
 resource "iosxe_system" "system_all" {
   # Looping through the list of objects
+# for_each                       = {for index,router in local.legacy_routers : router.name => router}
   for_each                    = {for router in local.legacy_routers : router.name => router}
   device                      = each.value.name
   hostname                    = each.value.hostname
@@ -13,7 +14,6 @@ resource "iosxe_system" "system_all" {
 }
 
 # resource "iosxe_interface_ethernet" "int_mgmt" {
-#   # for_each                       = {for index,router in local.legacy_routers : router.name => router}
 #   for_each                       = {for router in local.legacy_routers : router.name => router}
 #   device                         = each.value.name
 #   type                           = "GigabitEthernet"
@@ -85,7 +85,7 @@ resource "iosxe_interface_ethernet" "core_gig2_400" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
   device                         = each.value.name
-  type                           = "GigabitEthernet"
+  type                           = "GigabitEthernet.400"
   name                           = "2"
   encapsulation_dot1q_vlan_id    = 400
   ipv4_address                   = each.value.gig2_400_ip_address
