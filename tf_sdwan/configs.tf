@@ -201,7 +201,7 @@ resource "sdwan_service_routing_bgp_feature" "bgp_v01" {
   ]
 }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "example" {
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_v01" {
   feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn400_v01.id
   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_v01.id
@@ -276,6 +276,7 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.vpn511_v01.version,
     sdwan_service_lan_vpn_feature.vpn400_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
