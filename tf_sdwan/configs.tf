@@ -191,7 +191,7 @@ resource "sdwan_service_routing_bgp_feature" "bgp_v01" {
       address_families = [
         {
           family_type            = "ipv4-unicast"
-          # max_number_of_prefixes = 2000
+          max_number_of_prefixes = 2000
           # threshold              = 75
           # policy_type            = "restart"
           # restart_interval       = 30
