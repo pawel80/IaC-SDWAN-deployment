@@ -84,6 +84,9 @@ locals {
       bgp_nb2_desc = "DC3R2"
       bgp_nb2_asn = "65302"
       bgp_nb2_ip_address = "192.168.13.2"
+      bgp_nb3_desc = "DC1R1"
+      bgp_nb3_asn = "65101"
+      bgp_nb3_ip_address = "192.168.10.1"
     },
     {
       name = "ROUTER_DC2R2"
@@ -108,6 +111,9 @@ locals {
       bgp_nb2_desc = "DC3R2"
       bgp_nb2_asn = "65302"
       bgp_nb2_ip_address = "192.168.23.2"
+      bgp_nb3_desc = "DC2R1"
+      bgp_nb3_asn = "65201"
+      bgp_nb3_ip_address = "192.168.20.1"
     },
     {
       name = "ROUTER_DC3R2"
@@ -132,8 +138,12 @@ locals {
       bgp_nb2_desc = "DC1R2"
       bgp_nb2_asn = "65102"
       bgp_nb2_ip_address = "192.168.13.1"
+      bgp_nb3_desc = "DC3R1"
+      bgp_nb3_asn = "65301"
+      bgp_nb3_ip_address = "192.168.30.1"
     }
   ]
+  # For test purpose:
   #   flat_object = { for k, v in flatten([for router in local.legacy_routers :
   #     [for interface in try(router.shut_interfaces, []) : {
   #       "device"      = router.name

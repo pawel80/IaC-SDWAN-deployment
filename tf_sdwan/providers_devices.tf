@@ -160,6 +160,22 @@ sd-wan_edges = [
       {
         name = "var_gig2_400_if_mask"
         value = "255.255.255.252"
+      },
+      {
+        name = "{{var_bgp_asn}}"
+        value = "65101"
+      },
+      {
+        name = "{{var_nb_ip_address}}"
+        value = "192.168.10.2"
+      },
+      {
+        name = "{{var_nb_desc}}"
+        value = "DC1R2"
+      },
+      {
+        name = "{{var_nb_asn}}"
+        value = "65102"
       }
       ]
     },
@@ -214,6 +230,22 @@ sd-wan_edges = [
       {
         name = "var_gig2_400_if_mask"
         value = "255.255.255.252"
+      },
+      {
+        name = "{{var_bgp_asn}}"
+        value = "65201"
+      },
+      {
+        name = "{{var_nb_ip_address}}"
+        value = "192.168.20.2"
+      },
+      {
+        name = "{{var_nb_desc}}"
+        value = "DC2R2"
+      },
+      {
+        name = "{{var_nb_asn}}"
+        value = "65202"
       }
       ]
     },
@@ -268,6 +300,22 @@ sd-wan_edges = [
       {
         name = "var_gig2_400_if_mask"
         value = "255.255.255.252"
+      },
+      {
+        name = "{{var_bgp_asn}}"
+        value = "65301"
+      },
+      {
+        name = "{{var_nb_ip_address}}"
+        value = "192.168.30.2"
+      },
+      {
+        name = "{{var_nb_desc}}"
+        value = "DC3R2"
+      },
+      {
+        name = "{{var_nb_asn}}"
+        value = "65302"
       }
       ]
     }

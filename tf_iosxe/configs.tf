@@ -161,6 +161,17 @@ resource "iosxe_bgp_neighbor" "core_bgp_neighbor2" {
   shutdown             = false
 }
 
+resource "iosxe_bgp_neighbor" "core_bgp_neighbor3" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  ip                   = each.value.bgp_nb3_ip_address
+  remote_as            = each.value.bgp_nb3_asn
+  description          = each.value.bgp_nb3_desc
+  shutdown             = false
+}
+
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1_af" {
   provider                    = iosxe.cores
   for_each                    = {for router in local.legacy_core_routers : router.name => router}
