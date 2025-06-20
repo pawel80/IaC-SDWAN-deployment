@@ -194,14 +194,14 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor2_af" {
 
 resource "terraform_data" "core_null_data" {}
 
-resource "time_sleep" "wait_x_seconds" {
+resource "time_sleep" "core_wait_x_seconds" {
   depends_on      = [terraform_data.core_null_data]
-  create_duration = "10s"
+  create_duration = "20s"
 }
 
 resource "iosxe_save_config" "core_save_cfg" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
   device                         = each.value.name
-  depends_on                     = [time_sleep.wait_x_seconds]
+  depends_on                     = [time_sleep.core_wait_x_seconds]
 }
