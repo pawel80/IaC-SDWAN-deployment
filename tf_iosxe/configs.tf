@@ -192,8 +192,11 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor2_af" {
   activate                    = true
 }
 
+resource "terraform_data" "core_null_data" {}
+
 resource "time_sleep" "wait_x_seconds" {
-  create_duration = "20s"
+  depends_on      = [terraform_data.core_null_data]
+  create_duration = "10s"
 }
 
 resource "iosxe_save_config" "core_save_cfg" {

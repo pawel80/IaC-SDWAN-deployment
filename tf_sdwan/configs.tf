@@ -187,6 +187,10 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
     route-replicate from vrf 511 unicast connected
     exit-global-af
   !
+  interface GigabitEthernet2.400
+  description Legacy_cores_BGP
+  encapsulation dot1Q 400
+  ip address {{var_gig2_400_if_address}} {{var_gig2_400_if_mask}}
   EOT
 }
 
