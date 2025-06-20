@@ -149,6 +149,21 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
   # ]
 }
 
+resource "sdwan_service_lan_vpn_feature" "vpn400_v01" {
+  name                       = "VPN400_v01"
+  description                = "VPN400 Legacy DC cores data plane Intranet(open)"
+  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+  vpn                        = 400
+  config_description         = "VPN400 - Legacy DC cores Intranet(open)"
+  # ipv4_static_routes = [
+  #   {
+  #     network_address = "0.0.0.0"
+  #     subnet_mask     = "0.0.0.0"
+  #     vpn             = true
+  #   }
+  # ]
+}
+
 # ERROR during subinterface creation:
 # Invalid Payload: doesn't support user settable interface mtu for sub interface
 # resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01" {
@@ -190,6 +205,7 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   interface GigabitEthernet2.400
   description Legacy_cores_BGP
   encapsulation dot1Q 400
+  vrf forwarding 400
   ip address {{var_gig2_400_if_address}} {{var_gig2_400_if_mask}}
   EOT
 }
@@ -216,6 +232,7 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.vpn511_v01.version,
+    sdwan_service_lan_vpn_feature.vpn400_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
