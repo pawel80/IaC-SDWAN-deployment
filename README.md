@@ -28,7 +28,7 @@ Design highlights:
 ![alt text](drawings/lab_v11.png)  
 *Network management plane*
 
-![alt text](drawings/lab_design_vrf_v01.png)  
+![alt text](drawings/lab_design_vrf_v02.png)  
 *Network management/data plane VRFs*
 
 <br/>
