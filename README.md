@@ -25,11 +25,14 @@ Design highlights:
 - SD-WAN (green) and SD-Routing (blue) routers are configured through self-hosted runner -> Manager
 - Legacy and Data center routers (orange) are configured directly through self-hosted runner
 
-![alt text](drawings/lab_v11.png)  
-*Network management plane*
+![alt text](drawings/lab_v12.png)  
+*Network: management plane general drawing*
 
-![alt text](drawings/lab_design_vrf_v02.png)  
-*Network management/data plane VRFs*
+![alt text](drawings/lab_design_vrf_v03.png)  
+*Network: management and data plane VRFs*
+
+![alt text](drawings/lab_design_ip_v04.png)  
+*Network: ASN and IP plan*
 
 <br/>
 
@@ -52,8 +55,9 @@ Tools:
 - Github (repo, workflows, self-hosted runner)
 - Terraform cloud (for Terraform state)
 - Terraform providers: CiscoDevNet/iosxe v.0.5.10, CiscoDevNet/sdwan v.0.6.1
-- draw.io
 - Cisco SD-WAN on-premise (Manager, Validator, Controller: v.20.12.4)
 - Cisco C8000v v.17.12.04b
 - Eve-NG Community
 - VMWare Workstation 17.6.2
+- draw.io
+- Visio
