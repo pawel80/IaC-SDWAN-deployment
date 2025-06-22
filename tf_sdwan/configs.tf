@@ -149,6 +149,64 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
   # ]
 }
 
+resource "sdwan_service_lan_vpn_feature" "vpn400_v01" {
+  name                       = "VPN400_v01"
+  description                = "VPN400 Legacy DC cores data plane Intranet(open)"
+  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+  vpn                        = 400
+  config_description         = "VPN400 - Legacy DC cores Intranet(open)"
+  # ipv4_static_routes = [
+  #   {
+  #     network_address = "0.0.0.0"
+  #     subnet_mask     = "0.0.0.0"
+  #     vpn             = true
+  #   }
+  # ]
+}
+
+resource "sdwan_service_routing_bgp_feature" "bgp_v01" {
+  name                     = "BGP_v01"
+  description              = "BGP towards legacy core routers"
+  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  as_number_variable       = "{{var_bgp_asn}}"
+  # router_id_variable       = "{{bgp_router_id}}"
+  ipv4_neighbors = [
+    {
+      address_variable        = "{{var_nb_ip_address}}"
+      description_variable    = "{{var_nb_desc}}"
+      shutdown                = false
+      remote_as_variable      = "{{var_nb_asn}}"
+      # local_as                = 200
+      # keepalive_time          = 40
+      # hold_time               = 200
+      # update_source_interface = "GigabitEthernet0"
+      # next_hop_self           = false
+      # send_community          = true
+      # send_extended_community = true
+      # ebgp_multihop           = 1
+      # password                = "myPassword"
+      # send_label              = true
+      # as_override             = false
+      # allowas_in_number       = 1
+      address_families = [
+        {
+          family_type            = "ipv4-unicast"
+          max_number_of_prefixes = 2000
+          threshold              = 75
+          policy_type            = "restart"
+          restart_interval       = 30
+        }
+      ]
+    }
+  ]
+}
+
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn400_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_v01.id
+}
+
 # ERROR during subinterface creation:
 # Invalid Payload: doesn't support user settable interface mtu for sub interface
 # resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01" {
@@ -175,7 +233,6 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   description Legacy_cores_mgmt
   encapsulation dot1Q 511
   vrf forwarding 511
-  !ip address 172.16.51.1 255.255.255.252
   ip address {{var_vpn511_gig2_511_if_address}} {{var_vpn511_gig2_511_if_mask}}
   !
   !Route leaking between VRF 511 and global VRF
@@ -188,6 +245,11 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
     route-replicate from vrf 511 unicast connected
     exit-global-af
   !
+  interface GigabitEthernet2.400
+  description Legacy_cores_BGP
+  encapsulation dot1Q 400
+  vrf forwarding 400
+  ip address {{var_gig2_400_if_address}} {{var_gig2_400_if_mask}}
   EOT
 }
 
@@ -213,6 +275,8 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.vpn511_v01.version,
+    sdwan_service_lan_vpn_feature.vpn400_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
