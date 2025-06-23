@@ -155,7 +155,7 @@ sd-wan_edges = [
       },
       {
         name = "var_gig2_400_if_address"
-        value = "192.168.10.1"
+        value = "192.168.40.1"
       },
       {
         name = "var_gig2_400_if_mask"
@@ -225,7 +225,7 @@ sd-wan_edges = [
       },
       {
         name = "var_gig2_400_if_address"
-        value = "192.168.20.1"
+        value = "192.168.40.5"
       },
       {
         name = "var_gig2_400_if_mask"
@@ -295,7 +295,7 @@ sd-wan_edges = [
       },
       {
         name = "var_gig2_400_if_address"
-        value = "192.168.30.1"
+        value = "192.168.40.9"
       },
       {
         name = "var_gig2_400_if_mask"
