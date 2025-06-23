@@ -26,12 +26,14 @@ Design highlights:
 - Legacy and Data center routers (orange) are configured directly through self-hosted runner
 
 <br/>
-For better design understanding, please analyze below drawings, or even better - please call me :relaxed:
+
+> [!NOTE]
+> For better design understanding, please analyse below drawings, or even better - call me :relaxed:
 
 <br/>
 
 ![alt text](drawings/lab_v13.png)  
-*Network: management plane general drawing*
+*Network: management plane - general design*
 
 ![alt text](drawings/lab_design_ip_v05.png)  
 *Network: ASN and IP plan*
