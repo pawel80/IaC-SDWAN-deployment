@@ -121,23 +121,23 @@ resource "iosxe_interface_ethernet" "core_int_shutdown" {
   shutdown                       = true
 }
 
-# resource "iosxe_bgp" "core_bgp" {
-#   provider             = iosxe.cores
-#   for_each             = {for router in local.legacy_core_routers : router.name => router}
-#   device               = each.value.name
-#   asn                  = each.value.bgp_asn
-#   default_ipv4_unicast = true
-#   log_neighbor_changes = true
-#   # router_id_loopback   = 100
-# }
+resource "iosxe_bgp" "core_bgp" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  default_ipv4_unicast = true
+  log_neighbor_changes = true
+  # router_id_loopback   = 100
+}
 
-# resource "iosxe_bgp_address_family_ipv4" "core_bgp_unicast" {
-#   provider             = iosxe.cores
-#   for_each             = {for router in local.legacy_core_routers : router.name => router}
-#   device               = each.value.name
-#   asn                  = each.value.bgp_asn
-#   af_name              = "unicast"
-# }
+resource "iosxe_bgp_address_family_ipv4" "core_bgp_unicast" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  af_name              = "unicast"
+}
 
 # resource "iosxe_bgp_neighbor" "core_bgp_neighbor1" {
 #   provider             = iosxe.cores
