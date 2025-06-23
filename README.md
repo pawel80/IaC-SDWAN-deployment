@@ -25,6 +25,11 @@ Design highlights:
 - SD-WAN (green) and SD-Routing (blue) routers are configured through self-hosted runner -> Manager
 - Legacy and Data center routers (orange) are configured directly through self-hosted runner
 
+<br/>
+For better design understanding, please analyze below drawings, or even better - please call me :relaxed:
+
+<br/>
+
 ![alt text](drawings/lab_v13.png)  
 *Network: management plane general drawing*
 
