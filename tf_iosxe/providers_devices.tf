@@ -85,7 +85,7 @@ locals {
       bgp_nb2_asn = "65301"
       bgp_nb2_ip_address = "192.168.13.2"
       bgp_nb3_desc = "DC1R1-VPN:400"
-      bgp_nb3_asn = "65101"
+      bgp_nb3_400_asn = "65101"
       bgp_nb3_ip_address = "192.168.40.1"
     },
     {
@@ -112,7 +112,7 @@ locals {
       bgp_nb2_asn = "65301"
       bgp_nb2_ip_address = "192.168.23.2"
       bgp_nb3_desc = "DC2R1-VPN:400"
-      bgp_nb3_asn = "65201"
+      bgp_nb3_400_asn = "65201"
       bgp_nb3_ip_address = "192.168.40.5"
     },
     {
@@ -139,7 +139,7 @@ locals {
       bgp_nb2_asn = "65101"
       bgp_nb2_ip_address = "192.168.13.1"
       bgp_nb3_desc = "DC3R1-VPN:400"
-      bgp_nb3_asn = "65301"
+      bgp_nb3_400_asn = "65301"
       bgp_nb3_ip_address = "192.168.40.9"
     }
   ]
