@@ -175,7 +175,7 @@ sd-wan_edges = [
       },
       {
         name = "var_nb_asn"
-        value = "65102"
+        value = "65101"
       }
       ]
     },
@@ -245,7 +245,7 @@ sd-wan_edges = [
       },
       {
         name = "var_nb_asn"
-        value = "65202"
+        value = "65201"
       }
       ]
     },
@@ -315,7 +315,7 @@ sd-wan_edges = [
       },
       {
         name = "var_nb_asn"
-        value = "65302"
+        value = "65301"
       }
       ]
     }
