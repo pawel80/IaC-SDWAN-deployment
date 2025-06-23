@@ -71,7 +71,7 @@ locals {
       gig1_ip_address = "192.168.12.1"
       gig1_mask = "255.255.255.252"
       gig1_desc = "DC1R2-DC2R2"
-      gig2_400_ip_address = "192.168.10.2"
+      gig2_400_ip_address = "192.168.40.2"
       gig2_400_mask = "255.255.255.252"
       gig2_400_desc = "DC1R2-DC1R1"
       gig3_ip_address = "192.168.13.1"
@@ -84,9 +84,9 @@ locals {
       bgp_nb2_desc = "DC3R2"
       bgp_nb2_asn = "65301"
       bgp_nb2_ip_address = "192.168.13.2"
-      bgp_nb3_desc = "DC1R1"
+      bgp_nb3_desc = "DC1R1-VPN:400"
       bgp_nb3_asn = "65101"
-      bgp_nb3_ip_address = "192.168.10.1"
+      bgp_nb3_ip_address = "192.168.40.1"
     },
     {
       name = "ROUTER_DC2R2"
@@ -98,7 +98,7 @@ locals {
       gig1_ip_address = "192.168.12.2"
       gig1_mask = "255.255.255.252"
       gig1_desc = "DC2R2-DC1R2"
-      gig2_400_ip_address = "192.168.20.2"
+      gig2_400_ip_address = "192.168.40.6"
       gig2_400_mask = "255.255.255.252"
       gig2_400_desc = "DC2R2-DC2R1"
       gig3_ip_address = "192.168.23.1"
@@ -111,9 +111,9 @@ locals {
       bgp_nb2_desc = "DC3R2"
       bgp_nb2_asn = "65301"
       bgp_nb2_ip_address = "192.168.23.2"
-      bgp_nb3_desc = "DC2R1"
+      bgp_nb3_desc = "DC2R1-VPN:400"
       bgp_nb3_asn = "65201"
-      bgp_nb3_ip_address = "192.168.20.1"
+      bgp_nb3_ip_address = "192.168.40.5"
     },
     {
       name = "ROUTER_DC3R2"
@@ -125,7 +125,7 @@ locals {
       gig1_ip_address = "192.168.23.2"
       gig1_mask = "255.255.255.252"
       gig1_desc = "DC3R2-DC2R2"
-      gig2_400_ip_address = "192.168.30.2"
+      gig2_400_ip_address = "192.168.40.10"
       gig2_400_mask = "255.255.255.252"
       gig2_400_desc = "DC3R2-DC3R1"
       gig3_ip_address = "192.168.13.2"
@@ -138,9 +138,9 @@ locals {
       bgp_nb2_desc = "DC1R2"
       bgp_nb2_asn = "65101"
       bgp_nb2_ip_address = "192.168.13.1"
-      bgp_nb3_desc = "DC3R1"
+      bgp_nb3_desc = "DC3R1-VPN:400"
       bgp_nb3_asn = "65301"
-      bgp_nb3_ip_address = "192.168.30.1"
+      bgp_nb3_ip_address = "192.168.40.9"
     }
   ]
   # For test purpose:
