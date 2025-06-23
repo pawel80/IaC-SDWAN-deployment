@@ -161,7 +161,7 @@ resource "iosxe_bgp_address_family_ipv4" "core_bgp_unicast" {
 #   shutdown             = false
 # }
 
-# resource "iosxe_bgp_neighbor" "core_bgp_neighbor3" {
+# resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_400" {
 #   provider             = iosxe.cores
 #   for_each             = {for router in local.legacy_core_routers : router.name => router}
 #   device               = each.value.name

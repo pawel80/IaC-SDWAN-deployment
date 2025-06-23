@@ -167,14 +167,14 @@ sd-wan_edges = [
       },
       {
         name = "var_nb_ip_address"
-        value = "192.168.10.2"
+        value = "192.168.40.2"
       },
       {
         name = "var_nb_desc"
         value = "DC1R2"
       },
       {
-        name = "var_nb_asn"
+        name = "var_nb_400_asn"
         value = "65101"
       }
       ]
@@ -237,14 +237,14 @@ sd-wan_edges = [
       },
       {
         name = "var_nb_ip_address"
-        value = "192.168.20.2"
+        value = "192.168.40.6"
       },
       {
         name = "var_nb_desc"
         value = "DC2R2"
       },
       {
-        name = "var_nb_asn"
+        name = "var_nb_400_asn"
         value = "65201"
       }
       ]
@@ -307,14 +307,14 @@ sd-wan_edges = [
       },
       {
         name = "var_nb_ip_address"
-        value = "192.168.30.2"
+        value = "192.168.40.10"
       },
       {
         name = "var_nb_desc"
         value = "DC3R2"
       },
       {
-        name = "var_nb_asn"
+        name = "var_nb_400_asn"
         value = "65301"
       }
       ]

@@ -175,7 +175,7 @@ resource "sdwan_service_routing_bgp_feature" "bgp_v01" {
       address_variable        = "{{var_nb_ip_address}}"
       description_variable    = "{{var_nb_desc}}"
       shutdown                = false
-      remote_as_variable      = "{{var_nb_asn}}"
+      remote_as_variable      = "{{var_nb_400_asn}}"
       # local_as                = 200
       # keepalive_time          = 40
       # hold_time               = 200
