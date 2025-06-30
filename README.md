@@ -38,7 +38,7 @@ Design highlights:
 ![alt text](drawings/lab_design_ip_v06.png)  
 *Network: ASN and IP plan*
 
-![alt text](drawings/lab_design_vrf_v03.png)  
+![alt text](drawings/lab_design_vrf_v04.png)  
 *Network: management and data plane VRFs*
 
 <br/>
