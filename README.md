@@ -48,6 +48,8 @@ Non standard config:
 - TLOC extension for mgmt interface
 - TF legacy routers iosxe provider and separate provider for legacy core devices (deployed as list of devices)
 
+<br/>
+
 > [!CAUTION]
 > - iosxe provider will hang if there are no online routers
 > - for iosxe provider, I've skipped TF config for mgmt interfaces. There is too much risk that TF will remove that config
