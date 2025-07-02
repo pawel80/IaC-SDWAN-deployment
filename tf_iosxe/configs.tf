@@ -81,6 +81,71 @@ resource "iosxe_interface_ethernet" "core_gig1" {
   shutdown                       = false
 }
 
+resource "iosxe_interface_ethernet" "core_gig2_502" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.502"
+  encapsulation_dot1q_vlan_id    = 502
+  ipv4_address                   = each.value.gig2_502_ip_address
+  ipv4_address_mask              = each.value.gig2_502_mask
+  description                    = each.value.gig2_502_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2_200" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.200"
+  encapsulation_dot1q_vlan_id    = 200
+  ipv4_address                   = each.value.gig2_200_ip_address
+  ipv4_address_mask              = each.value.gig2_200_mask
+  description                    = each.value.gig2_200_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2_503" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.503"
+  encapsulation_dot1q_vlan_id    = 503
+  ipv4_address                   = each.value.gig2_503_ip_address
+  ipv4_address_mask              = each.value.gig2_503_mask
+  description                    = each.value.gig2_503_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2_300" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.300"
+  encapsulation_dot1q_vlan_id    = 300
+  ipv4_address                   = each.value.gig2_300_ip_address
+  ipv4_address_mask              = each.value.gig2_300_mask
+  description                    = each.value.gig2_300_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2_504" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.504"
+  encapsulation_dot1q_vlan_id    = 504
+  ipv4_address                   = each.value.gig2_504_ip_address
+  ipv4_address_mask              = each.value.gig2_504_mask
+  description                    = each.value.gig2_504_desc
+  shutdown                       = false
+}
+
 resource "iosxe_interface_ethernet" "core_gig2_400" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
