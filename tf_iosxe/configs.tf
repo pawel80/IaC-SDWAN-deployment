@@ -360,25 +360,25 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor2_af" {
   activate                    = true
 }
 
-resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_504_af" {
-  provider                    = iosxe.cores
-  for_each                    = {for router in local.legacy_core_routers : router.name => router}
-  device                      = each.value.name
-  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_504]
-  asn                         = each.value.bgp_asn
-  ip                          = each.value.bgp_nb3_504_ip_address
-  activate                    = true
-}
+# resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_504_af" {
+#   provider                    = iosxe.cores
+#   for_each                    = {for router in local.legacy_core_routers : router.name => router}
+#   device                      = each.value.name
+#   depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_504]
+#   asn                         = each.value.bgp_asn
+#   ip                          = each.value.bgp_nb3_504_ip_address
+#   activate                    = true
+# }
 
-resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_400_af" {
-  provider                    = iosxe.cores
-  for_each                    = {for router in local.legacy_core_routers : router.name => router}
-  device                      = each.value.name
-  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_400]
-  asn                         = each.value.bgp_asn
-  ip                          = each.value.bgp_nb3_400_ip_address
-  activate                    = true
-}
+# resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_400_af" {
+#   provider                    = iosxe.cores
+#   for_each                    = {for router in local.legacy_core_routers : router.name => router}
+#   device                      = each.value.name
+#   depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_400]
+#   asn                         = each.value.bgp_asn
+#   ip                          = each.value.bgp_nb3_400_ip_address
+#   activate                    = true
+# }
 
 resource "terraform_data" "core_null_data" {}
 
