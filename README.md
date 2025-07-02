@@ -35,10 +35,10 @@ Design highlights:
 ![alt text](drawings/lab_v13.png)  
 *Network: management plane - general design*
 
-![alt text](drawings/lab_design_ip_v06.png)  
+![alt text](drawings/lab_design_ip_v07.png)  
 *Network: ASN and IP plan*
 
-![alt text](drawings/lab_design_vrf_v04.png)  
+![alt text](drawings/lab_design_vrf_v05.png)  
 *Network: management and data plane VRFs*
 
 <br/>

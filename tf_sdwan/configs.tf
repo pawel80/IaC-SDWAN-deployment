@@ -294,11 +294,53 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
     route-replicate from vrf 511 unicast connected
     exit-global-af
   !
+  interface GigabitEthernet2.502
+  description Legacy_cores_BGP
+  encapsulation dot1Q 502
+  vrf forwarding 502
+  ip address {{var_gig2_502_if_address}} {{var_gig2_502_if_mask}}
+  !
+  interface GigabitEthernet2.200
+  description Legacy_cores_BGP
+  encapsulation dot1Q 200
+  vrf forwarding 200
+  ip address {{var_gig2_200_if_address}} {{var_gig2_200_if_mask}}
+  !
+  interface GigabitEthernet2.503
+  description Legacy_cores_BGP
+  encapsulation dot1Q 503
+  vrf forwarding 503
+  ip address {{var_gig2_503_if_address}} {{var_gig2_503_if_mask}}
+  !
+  interface GigabitEthernet2.300
+  description Legacy_cores_BGP
+  encapsulation dot1Q 300
+  vrf forwarding 300
+  ip address {{var_gig2_300_if_address}} {{var_gig2_300_if_mask}}
+  !
+  interface GigabitEthernet2.504
+  description Legacy_cores_BGP
+  encapsulation dot1Q 504
+  vrf forwarding 504
+  ip address {{var_gig2_504_if_address}} {{var_gig2_504_if_mask}}
+  !
   interface GigabitEthernet2.400
   description Legacy_cores_BGP
   encapsulation dot1Q 400
   vrf forwarding 400
   ip address {{var_gig2_400_if_address}} {{var_gig2_400_if_mask}}
+  !
+  interface GigabitEthernet2.506
+  description Legacy_cores_BGP
+  encapsulation dot1Q 506
+  vrf forwarding 506
+  ip address {{var_gig2_506_if_address}} {{var_gig2_506_if_mask}}
+  !
+  interface GigabitEthernet2.600
+  description Legacy_cores_BGP
+  encapsulation dot1Q 600
+  vrf forwarding 600
+  ip address {{var_gig2_600_if_address}} {{var_gig2_600_if_mask}}
   EOT
 }
 

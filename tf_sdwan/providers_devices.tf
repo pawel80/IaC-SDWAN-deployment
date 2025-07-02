@@ -154,11 +154,67 @@ sd-wan_edges = [
         value = "255.255.255.252"
       },
       {
+        name = "var_gig2_502_if_address"
+        value = "172.16.52.1"
+      },
+      {
+        name = "var_gig2_502_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_200_if_address"
+        value = "192.168.20.1"
+      },
+      {
+        name = "var_gig2_200_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_503_if_address"
+        value = "172.16.53.1"
+      },
+      {
+        name = "var_gig2_503_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_300_if_address"
+        value = "192.168.30.1"
+      },
+      {
+        name = "var_gig2_300_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_504_if_address"
+        value = "172.16.54.1"
+      },
+      {
+        name = "var_gig2_504_if_mask"
+        value = "255.255.255.252"
+      },
+      {
         name = "var_gig2_400_if_address"
         value = "192.168.40.1"
       },
       {
         name = "var_gig2_400_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_506_if_address"
+        value = "172.16.56.1"
+      },
+      {
+        name = "var_gig2_506_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_600_if_address"
+        value = "192.168.60.1"
+      },
+      {
+        name = "var_gig2_600_if_mask"
         value = "255.255.255.252"
       },
       {
@@ -224,11 +280,67 @@ sd-wan_edges = [
         value = "255.255.255.252"
       },
       {
+        name = "var_gig2_502_if_address"
+        value = "172.16.52.5"
+      },
+      {
+        name = "var_gig2_502_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_200_if_address"
+        value = "192.168.20.5"
+      },
+      {
+        name = "var_gig2_200_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_503_if_address"
+        value = "172.16.53.5"
+      },
+      {
+        name = "var_gig2_503_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_300_if_address"
+        value = "192.168.30.5"
+      },
+      {
+        name = "var_gig2_300_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_504_if_address"
+        value = "172.16.54.5"
+      },
+      {
+        name = "var_gig2_504_if_mask"
+        value = "255.255.255.252"
+      },
+      {
         name = "var_gig2_400_if_address"
         value = "192.168.40.5"
       },
       {
         name = "var_gig2_400_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_506_if_address"
+        value = "172.16.56.5"
+      },
+      {
+        name = "var_gig2_506_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_600_if_address"
+        value = "192.168.60.5"
+      },
+      {
+        name = "var_gig2_600_if_mask"
         value = "255.255.255.252"
       },
       {
@@ -294,11 +406,67 @@ sd-wan_edges = [
         value = "255.255.255.252"
       },
       {
+        name = "var_gig2_502_if_address"
+        value = "172.16.52.9"
+      },
+      {
+        name = "var_gig2_502_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_200_if_address"
+        value = "192.168.20.9"
+      },
+      {
+        name = "var_gig2_200_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_503_if_address"
+        value = "172.16.53.9"
+      },
+      {
+        name = "var_gig2_503_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_300_if_address"
+        value = "192.168.30.9"
+      },
+      {
+        name = "var_gig2_300_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_504_if_address"
+        value = "172.16.54.9"
+      },
+      {
+        name = "var_gig2_504_if_mask"
+        value = "255.255.255.252"
+      },
+      {
         name = "var_gig2_400_if_address"
         value = "192.168.40.9"
       },
       {
         name = "var_gig2_400_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_506_if_address"
+        value = "172.16.56.9"
+      },
+      {
+        name = "var_gig2_506_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_gig2_600_if_address"
+        value = "192.168.60.9"
+      },
+      {
+        name = "var_gig2_600_if_mask"
         value = "255.255.255.252"
       },
       {
