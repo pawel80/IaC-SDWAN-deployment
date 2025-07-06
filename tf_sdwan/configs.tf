@@ -213,7 +213,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn600_v01" {
   config_description         = "VPN600 SD-WAN Services(sec)"
 }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_v01" {
+resource "sdwan_service_routing_bgp_feature" "bgp_504_v01" {
   name                     = "BGP_v01"
   description              = "BGP towards legacy core routers"
   feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
@@ -246,7 +246,17 @@ resource "sdwan_service_routing_bgp_feature" "bgp_v01" {
           restart_interval       = 30
         }
       ]
-    },
+    }
+  ]
+}
+
+resource "sdwan_service_routing_bgp_feature" "bgp_400_v01" {
+  name                     = "BGP_v01"
+  description              = "BGP towards legacy core routers"
+  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  as_number_variable       = "{{var_bgp_asn}}"
+  # router_id_variable       = "{{bgp_router_id}}"
+  ipv4_neighbors = [
     {
       address_variable        = "{{var_nb_400_ip_address}}"
       description_variable    = "{{var_nb_400_desc}}"
@@ -265,10 +275,16 @@ resource "sdwan_service_routing_bgp_feature" "bgp_v01" {
   ]
 }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_v01" {
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_504_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn504_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_504_v01.id
+}
+
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_400_v01" {
   feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn400_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_400_v01.id
 }
 
 # ERROR during subinterface creation:
@@ -389,7 +405,8 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_service_lan_vpn_feature.vpn400_v01.version,
     sdwan_service_lan_vpn_feature.vpn506_v01.version,
     sdwan_service_lan_vpn_feature.vpn600_v01.version,
-    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_504_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_400_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
