@@ -81,6 +81,71 @@ resource "iosxe_interface_ethernet" "core_gig1" {
   shutdown                       = false
 }
 
+resource "iosxe_interface_ethernet" "core_gig2_502" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.502"
+  encapsulation_dot1q_vlan_id    = 502
+  ipv4_address                   = each.value.gig2_502_ip_address
+  ipv4_address_mask              = each.value.gig2_502_mask
+  description                    = each.value.gig2_502_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2_200" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.200"
+  encapsulation_dot1q_vlan_id    = 200
+  ipv4_address                   = each.value.gig2_200_ip_address
+  ipv4_address_mask              = each.value.gig2_200_mask
+  description                    = each.value.gig2_200_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2_503" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.503"
+  encapsulation_dot1q_vlan_id    = 503
+  ipv4_address                   = each.value.gig2_503_ip_address
+  ipv4_address_mask              = each.value.gig2_503_mask
+  description                    = each.value.gig2_503_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2_300" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.300"
+  encapsulation_dot1q_vlan_id    = 300
+  ipv4_address                   = each.value.gig2_300_ip_address
+  ipv4_address_mask              = each.value.gig2_300_mask
+  description                    = each.value.gig2_300_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2_504" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.504"
+  encapsulation_dot1q_vlan_id    = 504
+  ipv4_address                   = each.value.gig2_504_ip_address
+  ipv4_address_mask              = each.value.gig2_504_mask
+  description                    = each.value.gig2_504_desc
+  shutdown                       = false
+}
+
 resource "iosxe_interface_ethernet" "core_gig2_400" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
@@ -91,6 +156,32 @@ resource "iosxe_interface_ethernet" "core_gig2_400" {
   ipv4_address                   = each.value.gig2_400_ip_address
   ipv4_address_mask              = each.value.gig2_400_mask
   description                    = each.value.gig2_400_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2_506" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.506"
+  encapsulation_dot1q_vlan_id    = 506
+  ipv4_address                   = each.value.gig2_506_ip_address
+  ipv4_address_mask              = each.value.gig2_506_mask
+  description                    = each.value.gig2_506_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2_600" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2.600"
+  encapsulation_dot1q_vlan_id    = 600
+  ipv4_address                   = each.value.gig2_600_ip_address
+  ipv4_address_mask              = each.value.gig2_600_mask
+  description                    = each.value.gig2_600_desc
   shutdown                       = false
 }
 
@@ -161,17 +252,95 @@ resource "iosxe_bgp_neighbor" "core_bgp_neighbor2" {
   shutdown             = false
 }
 
-resource "iosxe_bgp_neighbor" "core_bgp_neighbor3" {
+resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_502" {
   provider             = iosxe.cores
   for_each             = {for router in local.legacy_core_routers : router.name => router}
   device               = each.value.name
   asn                  = each.value.bgp_asn
-  ip                   = each.value.bgp_nb3_ip_address
-  remote_as            = each.value.bgp_nb3_asn
-  description          = each.value.bgp_nb3_desc
+  ip                   = each.value.bgp_nb3_502_ip_address
+  remote_as            = each.value.bgp_nb3_502_asn
+  description          = each.value.bgp_nb3_502_desc
   shutdown             = false
 }
 
+resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_200" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  ip                   = each.value.bgp_nb3_200_ip_address
+  remote_as            = each.value.bgp_nb3_200_asn
+  description          = each.value.bgp_nb3_200_desc
+  shutdown             = false
+}
+
+resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_503" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  ip                   = each.value.bgp_nb3_503_ip_address
+  remote_as            = each.value.bgp_nb3_503_asn
+  description          = each.value.bgp_nb3_503_desc
+  shutdown             = false
+}
+
+resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_300" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  ip                   = each.value.bgp_nb3_300_ip_address
+  remote_as            = each.value.bgp_nb3_300_asn
+  description          = each.value.bgp_nb3_300_desc
+  shutdown             = false
+}
+
+resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_504" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  ip                   = each.value.bgp_nb3_504_ip_address
+  remote_as            = each.value.bgp_nb3_504_asn
+  description          = each.value.bgp_nb3_504_desc
+  shutdown             = false
+}
+
+resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_400" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  ip                   = each.value.bgp_nb3_400_ip_address
+  remote_as            = each.value.bgp_nb3_400_asn
+  description          = each.value.bgp_nb3_400_desc
+  shutdown             = false
+}
+
+resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_506" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  ip                   = each.value.bgp_nb3_506_ip_address
+  remote_as            = each.value.bgp_nb3_506_asn
+  description          = each.value.bgp_nb3_506_desc
+  shutdown             = false
+}
+
+resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_600" {
+  provider             = iosxe.cores
+  for_each             = {for router in local.legacy_core_routers : router.name => router}
+  device               = each.value.name
+  asn                  = each.value.bgp_asn
+  ip                   = each.value.bgp_nb3_600_ip_address
+  remote_as            = each.value.bgp_nb3_600_asn
+  description          = each.value.bgp_nb3_600_desc
+  shutdown             = false
+}
+
+# Route-maps are part of this resource
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1_af" {
   provider                    = iosxe.cores
   for_each                    = {for router in local.legacy_core_routers : router.name => router}
@@ -180,15 +349,10 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb1_ip_address
   activate                    = true
-  # send_community              = "both"
-  # route_reflector_client      = false
-  # soft_reconfiguration        = "inbound"
-  # default_originate           = true
-  # default_originate_route_map = "RM1"
   # route_maps = [
   #   {
   #     in_out         = "in"
-  #     route_map_name = "RM1"
+  #     route_map_name = "RM-WAN1"
   #   }
   # ]
 }
@@ -200,6 +364,86 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor2_af" {
   depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor2]
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb2_ip_address
+  activate                    = true
+}
+
+resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_502_af" {
+  provider                    = iosxe.cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_502]
+  asn                         = each.value.bgp_asn
+  ip                          = each.value.bgp_nb3_502_ip_address
+  activate                    = true
+}
+
+resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_200_af" {
+  provider                    = iosxe.cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_200]
+  asn                         = each.value.bgp_asn
+  ip                          = each.value.bgp_nb3_200_ip_address
+  activate                    = true
+}
+
+resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_503_af" {
+  provider                    = iosxe.cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_503]
+  asn                         = each.value.bgp_asn
+  ip                          = each.value.bgp_nb3_503_ip_address
+  activate                    = true
+}
+
+resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_300_af" {
+  provider                    = iosxe.cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_300]
+  asn                         = each.value.bgp_asn
+  ip                          = each.value.bgp_nb3_300_ip_address
+  activate                    = true
+}
+
+resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_504_af" {
+  provider                    = iosxe.cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_504]
+  asn                         = each.value.bgp_asn
+  ip                          = each.value.bgp_nb3_504_ip_address
+  activate                    = true
+}
+
+resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_400_af" {
+  provider                    = iosxe.cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_400]
+  asn                         = each.value.bgp_asn
+  ip                          = each.value.bgp_nb3_400_ip_address
+  activate                    = true
+}
+
+resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_506_af" {
+  provider                    = iosxe.cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_506]
+  asn                         = each.value.bgp_asn
+  ip                          = each.value.bgp_nb3_506_ip_address
+  activate                    = true
+}
+
+resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_600_af" {
+  provider                    = iosxe.cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_600]
+  asn                         = each.value.bgp_asn
+  ip                          = each.value.bgp_nb3_600_ip_address
   activate                    = true
 }
 

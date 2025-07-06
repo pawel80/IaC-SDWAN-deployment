@@ -9,7 +9,7 @@ Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.
 
 <br/>
 
-Networks:
+Network types:
 - Internet for Github <-> self-hosted runner communication
 - Intranet(open) for management plane and non-encrypted data plane traffic
 - Intranet(secured) for encrypted data plane traffic  
@@ -25,14 +25,21 @@ Design highlights:
 - SD-WAN (green) and SD-Routing (blue) routers are configured through self-hosted runner -> Manager
 - Legacy and Data center routers (orange) are configured directly through self-hosted runner
 
-![alt text](drawings/lab_v12.png)  
-*Network: management plane general drawing*
+<br/>
 
-![alt text](drawings/lab_design_vrf_v03.png)  
-*Network: management and data plane VRFs*
+> [!NOTE]
+> For better design understanding, please analyse below drawings, or even better - call me :relaxed:
 
-![alt text](drawings/lab_design_ip_v05.png)  
+<br/>
+
+![alt text](drawings/lab_v13.png)  
+*Network: management plane - general design*
+
+![alt text](drawings/lab_design_ip_v07.png)  
 *Network: ASN and IP plan*
+
+![alt text](drawings/lab_design_vrf_v05.png)  
+*Network: management and data plane VRFs*
 
 <br/>
 
@@ -40,6 +47,8 @@ Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
 - TLOC extension for mgmt interface
 - TF legacy routers iosxe provider and separate provider for legacy core devices (deployed as list of devices)
+
+<br/>
 
 > [!CAUTION]
 > - iosxe provider will hang if there are no online routers
