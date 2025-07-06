@@ -214,7 +214,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn600_v01" {
 }
 
 resource "sdwan_service_routing_bgp_feature" "bgp_504_v01" {
-  name                     = "BGP_v01"
+  name                     = "BGP_504_v01"
   description              = "BGP towards legacy core routers"
   feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
@@ -251,7 +251,7 @@ resource "sdwan_service_routing_bgp_feature" "bgp_504_v01" {
 }
 
 resource "sdwan_service_routing_bgp_feature" "bgp_400_v01" {
-  name                     = "BGP_v01"
+  name                     = "BGP_400_v01"
   description              = "BGP towards legacy core routers"
   feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
