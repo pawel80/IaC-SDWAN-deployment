@@ -255,13 +255,60 @@ resource "sdwan_service_routing_bgp_feature" "bgp_400_v01" {
   description              = "BGP towards legacy core routers"
   feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
-  # router_id_variable       = "{{bgp_router_id}}"
   ipv4_neighbors = [
     {
       address_variable        = "{{var_nb_400_ip_address}}"
       description_variable    = "{{var_nb_400_desc}}"
       shutdown                = false
       remote_as_variable      = "{{var_nb_400_asn}}"
+      address_families = [
+        {
+          family_type            = "ipv4-unicast"
+          max_number_of_prefixes = 2000
+          threshold              = 75
+          policy_type            = "restart"
+          restart_interval       = 30
+        }
+      ]
+    }
+  ]
+}
+
+resource "sdwan_service_routing_bgp_feature" "bgp_506_v01" {
+  name                     = "BGP_506_v01"
+  description              = "BGP towards legacy core routers"
+  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  as_number_variable       = "{{var_bgp_asn}}"
+  ipv4_neighbors = [
+    {
+      address_variable        = "{{var_nb_506_ip_address}}"
+      description_variable    = "{{var_nb_506_desc}}"
+      shutdown                = false
+      remote_as_variable      = "{{var_nb_506_asn}}"
+      address_families = [
+        {
+          family_type            = "ipv4-unicast"
+          max_number_of_prefixes = 2000
+          threshold              = 75
+          policy_type            = "restart"
+          restart_interval       = 30
+        }
+      ]
+    }
+  ]
+}
+
+resource "sdwan_service_routing_bgp_feature" "bgp_600_v01" {
+  name                     = "BGP_600_v01"
+  description              = "BGP towards legacy core routers"
+  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  as_number_variable       = "{{var_bgp_asn}}"
+  ipv4_neighbors = [
+    {
+      address_variable        = "{{var_nb_600_ip_address}}"
+      description_variable    = "{{var_nb_600_desc}}"
+      shutdown                = false
+      remote_as_variable      = "{{var_nb_600_asn}}"
       address_families = [
         {
           family_type            = "ipv4-unicast"
