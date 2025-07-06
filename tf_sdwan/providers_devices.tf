@@ -222,12 +222,24 @@ sd-wan_edges = [
         value = "65101"
       },
       {
-        name = "var_nb_ip_address"
+        name = "var_nb_504_ip_address"
+        value = "192.168.54.2"
+      },
+      {
+        name = "var_nb_504_desc"
+        value = "DC1R2-VPN:504"
+      },
+      {
+        name = "var_nb_504_asn"
+        value = "65101"
+      },
+      {
+        name = "var_nb_400_ip_address"
         value = "192.168.40.2"
       },
       {
-        name = "var_nb_desc"
-        value = "DC1R2"
+        name = "var_nb_400_desc"
+        value = "DC1R2-VPN:400"
       },
       {
         name = "var_nb_400_asn"
@@ -348,12 +360,24 @@ sd-wan_edges = [
         value = "65201"
       },
       {
-        name = "var_nb_ip_address"
+        name = "var_nb_504_ip_address"
+        value = "192.168.54.6"
+      },
+      {
+        name = "var_nb_504_desc"
+        value = "DC2R2-VPN:504"
+      },
+      {
+        name = "var_nb_504_asn"
+        value = "65201"
+      },
+      {
+        name = "var_nb_400_ip_address"
         value = "192.168.40.6"
       },
       {
-        name = "var_nb_desc"
-        value = "DC2R2"
+        name = "var_nb_400_desc"
+        value = "DC2R2-VPN:400"
       },
       {
         name = "var_nb_400_asn"
@@ -474,12 +498,24 @@ sd-wan_edges = [
         value = "65301"
       },
       {
-        name = "var_nb_ip_address"
+        name = "var_nb_504_ip_address"
+        value = "192.168.54.10"
+      },
+      {
+        name = "var_nb_504_desc"
+        value = "DC3R2-VPN:504"
+      },
+      {
+        name = "var_nb_504_asn"
+        value = "65301"
+      },
+      {
+        name = "var_nb_400_ip_address"
         value = "192.168.40.10"
       },
       {
-        name = "var_nb_desc"
-        value = "DC3R2"
+        name = "var_nb_400_desc"
+        value = "DC3R2-VPN:400"
       },
       {
         name = "var_nb_400_asn"

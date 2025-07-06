@@ -221,10 +221,10 @@ resource "sdwan_service_routing_bgp_feature" "bgp_v01" {
   # router_id_variable       = "{{bgp_router_id}}"
   ipv4_neighbors = [
     {
-      address_variable        = "{{var_nb_ip_address}}"
-      description_variable    = "{{var_nb_desc}}"
+      address_variable        = "{{var_nb_504_ip_address}}"
+      description_variable    = "{{var_nb_504_desc}}"
       shutdown                = false
-      remote_as_variable      = "{{var_nb_400_asn}}"
+      remote_as_variable      = "{{var_nb_504_asn}}"
       # local_as                = 200
       # keepalive_time          = 40
       # hold_time               = 200
@@ -237,6 +237,21 @@ resource "sdwan_service_routing_bgp_feature" "bgp_v01" {
       # send_label              = true
       # as_override             = false
       # allowas_in_number       = 1
+      address_families = [
+        {
+          family_type            = "ipv4-unicast"
+          max_number_of_prefixes = 2000
+          threshold              = 75
+          policy_type            = "restart"
+          restart_interval       = 30
+        }
+      ]
+    },
+    {
+      address_variable        = "{{var_nb_400_ip_address}}"
+      description_variable    = "{{var_nb_400_desc}}"
+      shutdown                = false
+      remote_as_variable      = "{{var_nb_400_asn}}"
       address_families = [
         {
           family_type            = "ipv4-unicast"
