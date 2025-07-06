@@ -340,6 +340,7 @@ resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_600" {
   shutdown             = false
 }
 
+# Route-maps are part of this resource
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1_af" {
   provider                    = iosxe.cores
   for_each                    = {for router in local.legacy_core_routers : router.name => router}
@@ -348,6 +349,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb1_ip_address
   activate                    = true
+  # route_maps = [
+  #   {
+  #     in_out         = "in"
+  #     route_map_name = "RM-WAN1"
+  #   }
+  # ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor2_af" {
