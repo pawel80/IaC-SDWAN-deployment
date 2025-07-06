@@ -223,7 +223,7 @@ sd-wan_edges = [
       },
       {
         name = "var_nb_504_ip_address"
-        value = "192.168.54.2"
+        value = "172.16.54.2"
       },
       {
         name = "var_nb_504_desc"
@@ -361,7 +361,7 @@ sd-wan_edges = [
       },
       {
         name = "var_nb_504_ip_address"
-        value = "192.168.54.6"
+        value = "172.16.54.6"
       },
       {
         name = "var_nb_504_desc"
@@ -499,7 +499,7 @@ sd-wan_edges = [
       },
       {
         name = "var_nb_504_ip_address"
-        value = "192.168.54.10"
+        value = "172.16.54.10"
       },
       {
         name = "var_nb_504_desc"
