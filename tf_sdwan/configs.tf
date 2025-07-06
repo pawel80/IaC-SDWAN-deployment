@@ -334,6 +334,18 @@ resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_serv
   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_400_v01.id
 }
 
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_506_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn506_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_506_v01.id
+}
+
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_600_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn600_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_600_v01.id
+}
+
 # ERROR during subinterface creation:
 # Invalid Payload: doesn't support user settable interface mtu for sub interface
 # resource "sdwan_service_lan_vpn_interface_ethernet_feature" "vpn511_gig2_511_v01" {
@@ -454,6 +466,8 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_service_lan_vpn_feature.vpn600_v01.version,
     sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_504_v01.version,
     sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_400_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_506_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_600_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
