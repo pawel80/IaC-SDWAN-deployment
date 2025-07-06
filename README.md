@@ -9,7 +9,7 @@ Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.
 
 <br/>
 
-Networks:
+Network types:
 - Internet for Github <-> self-hosted runner communication
 - Intranet(open) for management plane and non-encrypted data plane traffic
 - Intranet(secured) for encrypted data plane traffic  
