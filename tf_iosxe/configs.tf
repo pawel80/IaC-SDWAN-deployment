@@ -81,6 +81,16 @@ resource "iosxe_interface_ethernet" "core_gig1" {
   shutdown                       = false
 }
 
+resource "iosxe_interface_ethernet" "core_gig2" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2"
+  description                    = "SERVICES"
+  shutdown                       = false
+}
+
 resource "iosxe_interface_ethernet" "core_gig2_502" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
@@ -234,11 +244,18 @@ resource "iosxe_bgp" "core_bgp" {
 }
 
 resource "iosxe_bgp_address_family_ipv4" "core_bgp_unicast" {
-  provider             = iosxe.cores
-  for_each             = {for router in local.legacy_core_routers : router.name => router}
-  device               = each.value.name
-  asn                  = each.value.bgp_asn
-  af_name              = "unicast"
+  provider                            = iosxe.cores
+  for_each                            = {for router in local.legacy_core_routers : router.name => router}
+  device                              = each.value.name
+  asn                                 = each.value.bgp_asn
+  af_name                             = "unicast"
+  ipv4_unicast_redistribute_connected = true
+  ipv4_unicast_aggregate_addresses = [
+    {
+      ipv4_address = "10.0.0.0"
+      ipv4_mask    = "255.0.0.0"
+    }
+  ]
 }
 
 resource "iosxe_bgp_neighbor" "core_bgp_neighbor1" {
