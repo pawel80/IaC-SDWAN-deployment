@@ -68,6 +68,9 @@ locals {
       # gig2_ip_address         = "172.16.51.2"
       # gig2_mask               = "255.255.255.252"
       shut_interfaces           = ["4"]
+      loop_99_ip_address        = "10.99.10.1"
+      loop_99_mask              = "255.255.255.255"
+      loop_99_desc              = "For default route summary"
       gig1_ip_address           = "192.168.12.1"
       gig1_mask                 = "255.255.255.252"
       gig1_desc                 = "DC1R2-DC2R2"
@@ -137,6 +140,9 @@ locals {
       # gig2_ip_address         = "172.16.51.6"
       # gig2_mask               = "255.255.255.252"
       shut_interfaces           = ["4"]
+      loop_99_ip_address        = "10.99.10.2"
+      loop_99_mask              = "255.255.255.255"
+      loop_99_desc              = "For default route summary"
       gig1_ip_address           = "192.168.12.2"
       gig1_mask                 = "255.255.255.252"
       gig1_desc                 = "DC2R2-DC1R2"
@@ -206,6 +212,9 @@ locals {
       # gig2_ip_address         = "172.16.51.10"
       # gig2_mask               = "255.255.255.252"
       shut_interfaces           = ["4"]
+      loop_99_ip_address        = "10.99.10.3"
+      loop_99_mask              = "255.255.255.255"
+      loop_99_desc              = "For default route summary"
       gig1_ip_address           = "192.168.23.2"
       gig1_mask                 = "255.255.255.252"
       gig1_desc                 = "DC3R2-DC2R2"

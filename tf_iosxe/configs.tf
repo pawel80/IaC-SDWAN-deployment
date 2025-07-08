@@ -185,6 +185,17 @@ resource "iosxe_interface_ethernet" "core_gig2_600" {
   shutdown                       = false
 }
 
+resource "iosxe_interface_loopback" "loop_99" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  name                           = 99
+  description                    = each.value.loop_99_desc
+  ipv4_address                   = each.value.loop_99_ip_address
+  ipv4_address_mask              = each.value.loop_99_mask
+  shutdown                       = false
+}
+
 resource "iosxe_interface_ethernet" "core_gig3" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
