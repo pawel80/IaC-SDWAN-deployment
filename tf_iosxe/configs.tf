@@ -69,21 +69,21 @@ resource "iosxe_system" "core_system_all" {
   ip_domain_name              = "lab.com"
 }
 
-resource "iosxe_vrf" "vrf_506" {
-  name                = "506"
-  description         = "SD-WAN_Monitoring(sec)"
-  # vpn_id              = "506"
-  # rd                  = "22:22"
-  address_family_ipv4 = true
-  address_family_ipv6 = false
-}
+# resource "iosxe_vrf" "vrf_506" {
+#   name                = "506"
+#   description         = "SD-WAN_Monitoring(sec)"
+#   # vpn_id              = "506"
+#   # rd                  = "22:22"
+#   address_family_ipv4 = true
+#   address_family_ipv6 = false
+# }
 
-resource "iosxe_vrf" "vrf_600" {
-  name                = "600"
-  description         = "SD-WAN_Services(sec)"
-  address_family_ipv4 = true
-  address_family_ipv6 = false
-}
+# resource "iosxe_vrf" "vrf_600" {
+#   name                = "600"
+#   description         = "SD-WAN_Services(sec)"
+#   address_family_ipv4 = true
+#   address_family_ipv6 = false
+# }
 
 resource "iosxe_interface_ethernet" "core_gig1" {
   provider                       = iosxe.cores

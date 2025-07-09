@@ -69,7 +69,7 @@ sd-wan_edges = [
       ]
     },
     {
-    id     = var.S1R1_id
+    id     = var.S2R1_id
     deploy = true
     variables = [
       {

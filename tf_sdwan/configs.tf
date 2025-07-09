@@ -136,10 +136,10 @@ resource "sdwan_cli_feature_profile" "cli_core_v01" {
 ##################################### Features ####################################
 resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
   name                       = "VPN511_v01"
-  description                = "VPN511 Legacy DC core routers mgmt"
+  description                = "VPN511 Legacy DC core router mgmt"
   feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
   vpn                        = 511
-  config_description         = "VPN511 - Legacy DC core routers mgmt"
+  config_description         = "VPN511 - Legacy DC core router mgmt"
   # ipv4_static_routes = [
   #   {
   #     network_address = "0.0.0.0"
