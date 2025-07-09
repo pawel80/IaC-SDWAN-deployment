@@ -82,6 +82,7 @@ jobs:
           TF_VAR_admin_account_pass: ${{ secrets.SDWAN_LOCAL_ADMIN_PASS }}
           TF_VAR_S1R1_id: ${{ secrets.SDWAN_S1R1_ID }}
           TF_VAR_S2R1_id: ${{ secrets.SDWAN_S2R1_ID }}
+          TF_VAR_DC1R1_id: ${{ secrets.SDWAN_DC1R1_ID }}
 
       # Executes the actions proposed in a Terraform plan
       - name: 'Terraform Apply'
@@ -98,6 +99,7 @@ jobs:
           TF_VAR_admin_account_pass: ${{ secrets.SDWAN_LOCAL_ADMIN_PASS }}
           TF_VAR_S1R1_id: ${{ secrets.SDWAN_S1R1_ID }}
           TF_VAR_S2R1_id: ${{ secrets.SDWAN_S2R1_ID }}
+          TF_VAR_DC1R1_id: ${{ secrets.SDWAN_DC1R1_ID }}
           # SDWAN_INSECURE: true
           # SDWAN_RETRIES: 3
           # TF_LOG: DEBUG

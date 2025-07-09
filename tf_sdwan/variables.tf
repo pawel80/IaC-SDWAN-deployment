@@ -22,6 +22,12 @@ variable "S2R1_id" {
   default     = ""
 }
 
+variable "DC1R1_id" {
+  description = "SDWAN DC1R1 router ID"
+  type        = string
+  default     = ""
+}
+
 # variable "var_vpn511_gig2_511_if_address" {
 #   description = "Legacy core mgmt address"
 #   type = string
