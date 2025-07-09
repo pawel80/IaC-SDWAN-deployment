@@ -23,7 +23,7 @@ terraform {
 locals {
 sd-wan_edges = [
     {
-    id     = "C8K-0004C57D-A2B1-4D3D-8F7A-ABA9D3AF1D8D"
+    id     = var.S1R1_id
     deploy = true
     variables = [
       {
@@ -69,7 +69,7 @@ sd-wan_edges = [
       ]
     },
     {
-    id     = "C8K-55121EB3-198F-3F17-2F1C-5D73078DBEE0"
+    id     = var.S1R1_id
     deploy = true
     variables = [
       {

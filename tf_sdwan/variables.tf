@@ -10,8 +10,20 @@ variable "admin_account_pass" {
   default     = ""
 }
 
-variable "var_vpn511_gig2_511_if_address" {
-  description = "Legacy core mgmt address"
-  type = string
-  default = "172.16.51.1 255.255.255.252"
+variable "S1R1_id" {
+  description = "SDWAN S1R1 router ID"
+  type        = string
+  default     = ""
 }
+
+variable "S2R1_id" {
+  description = "SDWAN S2R1 router ID"
+  type        = string
+  default     = ""
+}
+
+# variable "var_vpn511_gig2_511_if_address" {
+#   description = "Legacy core mgmt address"
+#   type = string
+#   default = "172.16.51.1 255.255.255.252"
+# }
