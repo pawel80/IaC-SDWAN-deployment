@@ -295,7 +295,7 @@ resource "iosxe_bgp_address_family_ipv4_vrf" "core_bgp_vrf_506_600" {
     # {
     #   name                                = "600"
     # }
-  ]
+  # ]
 }
 
 resource "iosxe_bgp_neighbor" "core_bgp_neighbor1" {
