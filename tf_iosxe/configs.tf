@@ -78,7 +78,7 @@ resource "iosxe_vrf" "vrf_506" {
   address_family_ipv6 = false
 }
 
-resource "iosxe_vrf" "vrf_506" {
+resource "iosxe_vrf" "vrf_600" {
   name                = "600"
   description         = "SD-WAN_Services(sec)"
   address_family_ipv4 = true
