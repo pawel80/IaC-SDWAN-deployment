@@ -320,7 +320,7 @@ sd-wan_edges = [
       ]
     },
     {
-    id     = "C8K-19B2B9DC-8320-438F-7F7A-0A570B80963E"
+    id     = var.DC2R1_id
     deploy = true
     variables = [
       {
@@ -530,7 +530,7 @@ sd-wan_edges = [
       ]
     },
     {
-    id     = "C8K-3CD1F9E6-37A0-7FC9-9B56-F39B676A0082"
+    id     = var.DC3R1_id
     deploy = true
     variables = [
       {

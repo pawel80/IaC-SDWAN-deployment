@@ -197,6 +197,7 @@ resource "iosxe_interface_ethernet" "core_gig2_506" {
   device                         = each.value.name
   type                           = "GigabitEthernet"
   name                           = "2.506"
+  vrf_forwarding                 = "506"
   encapsulation_dot1q_vlan_id    = 506
   ipv4_address                   = each.value.gig2_506_ip_address
   ipv4_address_mask              = each.value.gig2_506_mask
@@ -210,6 +211,7 @@ resource "iosxe_interface_ethernet" "core_gig2_600" {
   device                         = each.value.name
   type                           = "GigabitEthernet"
   name                           = "2.600"
+  vrf_forwarding                 = "600"
   encapsulation_dot1q_vlan_id    = 600
   ipv4_address                   = each.value.gig2_600_ip_address
   ipv4_address_mask              = each.value.gig2_600_mask
