@@ -70,12 +70,12 @@ resource "iosxe_system" "core_system_all" {
 }
 
 resource "iosxe_vrf" "vrf_506" {
-  name                = "VRF506"
+  name                = "506"
   description         = "SD-WAN_Monitoring(sec)"
+  # vpn_id              = "506"
   # rd                  = "22:22"
   address_family_ipv4 = true
   address_family_ipv6 = false
-  vpn_id              = "506"
 }
 
 resource "iosxe_interface_ethernet" "core_gig1" {
