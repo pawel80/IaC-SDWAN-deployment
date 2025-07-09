@@ -78,6 +78,13 @@ resource "iosxe_vrf" "vrf_506" {
   address_family_ipv6 = false
 }
 
+resource "iosxe_vrf" "vrf_506" {
+  name                = "600"
+  description         = "SD-WAN_Services(sec)"
+  address_family_ipv4 = true
+  address_family_ipv6 = false
+}
+
 resource "iosxe_interface_ethernet" "core_gig1" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
