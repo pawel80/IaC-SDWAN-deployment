@@ -308,17 +308,31 @@ resource "iosxe_bgp_address_family_ipv4" "core_bgp_unicast" {
 }
 
 resource "iosxe_bgp_address_family_ipv4_vrf" "core_bgp_vrf_506_600" {
-  provider                            = iosxe.cores
-  for_each                            = {for router in local.legacy_core_routers : router.name => router}
-  device                              = each.value.name
-  asn                                 = each.value.bgp_asn
-  af_name                             = "unicast"
+  provider                                = iosxe.cores
+  for_each                                = {for router in local.legacy_core_routers : router.name => router}
+  device                                  = each.value.name
+  asn                                     = each.value.bgp_asn
+  af_name                                 = "unicast"
   vrfs = [
     {
-      name                            = "506"
+      name                                = "506"
+      ipv4_unicast_redistribute_connected = true
+      ipv4_unicast_aggregate_addresses = [
+        {
+          ipv4_address = "10.0.0.0"
+          ipv4_mask    = "255.0.0.0"
+        }
+      ]
     },
     {
-      name                            = "600"
+      name                                = "600"
+      ipv4_unicast_redistribute_connected = true
+      ipv4_unicast_aggregate_addresses = [
+        {
+          ipv4_address = "10.0.0.0"
+          ipv4_mask    = "255.0.0.0"
+        }
+      ]
     }
   ]
 }
