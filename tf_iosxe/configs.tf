@@ -585,7 +585,7 @@ resource "iosxe_route_map" "core_rm_default_route" {
       seq                                      = 10
       operation                                = "permit"
       description                              = "default-route"
-      match_ip_address_prefix_lists            = "PL-DEFAULT-ROUTE"
+      match_ip_address_prefix_lists            = ["PL-DEFAULT-ROUTE"]
     }
   ]
 }  
