@@ -76,7 +76,7 @@ resource "iosxe_vrf" "core_vrf_506" {
   name                = "506"
   description         = "SD-WAN_Monitoring(sec)"
   # vpn_id              = "506"
-  # rd                  = "22:22"
+  rd                  = each.value.rd_vrf_506
   address_family_ipv4 = true
   address_family_ipv6 = false
 }
@@ -87,6 +87,7 @@ resource "iosxe_vrf" "core_vrf_600" {
   device              = each.value.name
   name                = "600"
   description         = "SD-WAN_Services(sec)"
+  rd                  = each.value.rd_vrf_600
   address_family_ipv4 = true
   address_family_ipv6 = false
 }
@@ -282,21 +283,21 @@ resource "iosxe_bgp_address_family_ipv4" "core_bgp_unicast" {
   ]
 }
 
-resource "iosxe_bgp_address_family_ipv4_vrf" "core_bgp_vrf_506_600" {
-  provider                            = iosxe.cores
-  for_each                            = {for router in local.legacy_core_routers : router.name => router}
-  device                              = each.value.name
-  asn                                 = each.value.bgp_asn
-  af_name                             = "unicast"
-  # vrfs = [
-  #   {
-  #     name                                = "506"
-  #   }
-    # {
-    #   name                                = "600"
-    # }
-  # ]
-}
+# resource "iosxe_bgp_address_family_ipv4_vrf" "core_bgp_vrf_506_600" {
+#   provider                            = iosxe.cores
+#   for_each                            = {for router in local.legacy_core_routers : router.name => router}
+#   device                              = each.value.name
+#   asn                                 = each.value.bgp_asn
+#   af_name                             = "unicast"
+#   # vrfs = [
+#   #   {
+#   #     name                                = "506"
+#   #   }
+#     # {
+#     #   name                                = "600"
+#     # }
+#   # ]
+# }
 
 resource "iosxe_bgp_neighbor" "core_bgp_neighbor1" {
   provider             = iosxe.cores
