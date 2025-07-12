@@ -456,12 +456,6 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb1_ip_address
   activate                    = true
-  # route_maps = [
-  #   {
-  #     in_out         = "in"
-  #     route_map_name = "RM-WAN1"
-  #   }
-  # ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor2_af" {
@@ -482,6 +476,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_502_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_502_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_200_af" {
@@ -492,6 +492,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_200_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_200_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_503_af" {
@@ -502,6 +508,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_503_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_503_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_300_af" {
@@ -512,6 +524,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_300_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_300_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_504_af" {
@@ -522,6 +540,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_504_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_504_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_400_af" {
@@ -532,6 +556,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_400_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_400_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_vrf_neighbor" "core_bgp_nb_506_af" {
@@ -545,6 +575,12 @@ resource "iosxe_bgp_ipv4_unicast_vrf_neighbor" "core_bgp_nb_506_af" {
   description                 = each.value.bgp_nb3_506_desc
   shutdown                    = false
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_vrf_neighbor" "core_bgp_nb_600_af" {
@@ -558,6 +594,12 @@ resource "iosxe_bgp_ipv4_unicast_vrf_neighbor" "core_bgp_nb_600_af" {
   description                 = each.value.bgp_nb3_600_desc
   shutdown                    = false
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_prefix_list" "core_pl_all_prefixes" {
