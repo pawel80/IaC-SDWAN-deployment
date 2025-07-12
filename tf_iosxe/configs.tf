@@ -247,8 +247,8 @@ resource "iosxe_interface_loopback" "core_loop_60" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
   device                         = each.value.name
-  name                           = 56
-  vrf_forwarding                 = "506"
+  name                           = 60
+  vrf_forwarding                 = "600"
   description                    = each.value.loop_60_desc
   ipv4_address                   = each.value.loop_60_ip_address
   ipv4_address_mask              = each.value.loop_60_mask
