@@ -560,6 +560,36 @@ resource "iosxe_bgp_ipv4_unicast_vrf_neighbor" "core_bgp_nb_600_af" {
   activate                    = true
 }
 
+resource "iosxe_prefix_list" "core_pref_list_default" {
+  provider         = iosxe.cores
+  for_each         = {for router in local.legacy_core_routers : router.name => router}
+  device           = each.value.name
+  prefixes = [
+    {
+      name   = "PL-DEFAULT-ROUTE"
+      seq    = 10
+      action = "permit"
+      ip     = "10.0.0.0/8"
+    }
+  ]
+}
+
+resource "iosxe_route_map" "core_rm_default_route" {
+  provider        = iosxe.cores
+  for_each        = {for router in local.legacy_core_routers : router.name => router}
+  device          = each.value.name
+  depends_on      = [iosxe_prefix_list.core_pref_list_default]
+  name = "RM-DEFAULT-ROUTE"
+  entries = [
+    {
+      seq                                      = 10
+      operation                                = "permit"
+      description                              = "default-route"
+      match_ip_address_prefix_lists            = "PL-DEFAULT-ROUTE"
+    }
+  ]
+}  
+
 resource "terraform_data" "core_null_data" {}
 
 resource "time_sleep" "core_wait_x_seconds" {
