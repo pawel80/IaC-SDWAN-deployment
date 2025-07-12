@@ -291,11 +291,11 @@ resource "iosxe_bgp_address_family_ipv4_vrf" "core_bgp_vrf_506_600" {
   af_name                             = "unicast"
   vrfs = [
     {
-      name                                = "506"
+      name                            = "506"
+    },
+    {
+      name                            = "600"
     }
-    # {
-    #   name                                = "600"
-    # }
   ]
 }
 
