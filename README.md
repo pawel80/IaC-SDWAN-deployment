@@ -32,10 +32,10 @@ Design highlights:
 
 <br/>
 
-![alt text](drawings/lab_v13.png)  
+![alt text](drawings/lab_v14.png)  
 *Network: management plane - general design*
 
-![alt text](drawings/lab_design_ip_v07.png)  
+![alt text](drawings/lab_design_ip_v09.png)  
 *Network: ASN and IP plan*
 
 ![alt text](drawings/lab_design_vrf_v05.png)  
