@@ -560,7 +560,22 @@ resource "iosxe_bgp_ipv4_unicast_vrf_neighbor" "core_bgp_nb_600_af" {
   activate                    = true
 }
 
-resource "iosxe_prefix_list" "core_pref_list_default" {
+resource "iosxe_prefix_list" "core_pl_all_prefixes" {
+  provider         = iosxe.cores
+  for_each         = {for router in local.legacy_core_routers : router.name => router}
+  device           = each.value.name
+  prefixes = [
+    {
+      name   = "PL-ALL-PREFIXES"
+      seq    = 10
+      action = "permit"
+      ip     = "0.0.0.0/0"
+      le     = "32"
+    }
+  ]
+}
+
+resource "iosxe_prefix_list" "core_pl_10_0_0_0" {
   provider         = iosxe.cores
   for_each         = {for router in local.legacy_core_routers : router.name => router}
   device           = each.value.name
@@ -578,7 +593,6 @@ resource "iosxe_route_map" "core_rm_default_route" {
   provider        = iosxe.cores
   for_each        = {for router in local.legacy_core_routers : router.name => router}
   device          = each.value.name
-  depends_on      = [iosxe_prefix_list.core_pref_list_default]
   name = "RM-DEFAULT-ROUTE"
   entries = [
     {
@@ -586,6 +600,12 @@ resource "iosxe_route_map" "core_rm_default_route" {
       operation                                = "permit"
       description                              = "default-route"
       match_ip_address_prefix_lists            = ["PL-DEFAULT-ROUTE"]
+    }
+    {
+      seq                                      = 99
+      operation                                = "deny"
+      description                              = "deny-all"
+      match_ip_address_prefix_lists            = ["PL-ALL-PREFIXES"]
     }
   ]
 }  
