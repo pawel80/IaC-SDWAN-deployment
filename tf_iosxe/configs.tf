@@ -200,8 +200,8 @@ resource "iosxe_interface_ethernet" "core_gig2_506" {
   name                           = "2.506"
   vrf_forwarding                 = "506"
   encapsulation_dot1q_vlan_id    = 506
-  # ipv4_address                   = each.value.gig2_506_ip_address
-  # ipv4_address_mask              = each.value.gig2_506_mask
+  ipv4_address                   = each.value.gig2_506_ip_address
+  ipv4_address_mask              = each.value.gig2_506_mask
   description                    = each.value.gig2_506_desc
   shutdown                       = false
 }
