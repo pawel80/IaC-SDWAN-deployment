@@ -69,6 +69,29 @@ resource "iosxe_system" "core_system_all" {
   ip_domain_name              = "lab.com"
 }
 
+resource "iosxe_vrf" "core_vrf_506" {
+  provider            = iosxe.cores
+  for_each            = {for router in local.legacy_core_routers : router.name => router}
+  device              = each.value.name
+  name                = "506"
+  description         = "SD-WAN_Monitoring(sec)"
+  # vpn_id              = "506"
+  rd                  = each.value.rd_vrf_506
+  address_family_ipv4 = true
+  address_family_ipv6 = false
+}
+
+resource "iosxe_vrf" "core_vrf_600" {
+  provider            = iosxe.cores
+  for_each            = {for router in local.legacy_core_routers : router.name => router}
+  device              = each.value.name
+  name                = "600"
+  description         = "SD-WAN_Services(sec)"
+  rd                  = each.value.rd_vrf_600
+  address_family_ipv4 = true
+  address_family_ipv6 = false
+}
+
 resource "iosxe_interface_ethernet" "core_gig1" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}
@@ -78,6 +101,16 @@ resource "iosxe_interface_ethernet" "core_gig1" {
   ipv4_address                   = each.value.gig1_ip_address
   ipv4_address_mask              = each.value.gig1_mask
   description                    = each.value.gig1_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_ethernet" "core_gig2" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  type                           = "GigabitEthernet"
+  name                           = "2"
+  description                    = "SERVICES"
   shutdown                       = false
 }
 
@@ -165,6 +198,7 @@ resource "iosxe_interface_ethernet" "core_gig2_506" {
   device                         = each.value.name
   type                           = "GigabitEthernet"
   name                           = "2.506"
+  vrf_forwarding                 = "506"
   encapsulation_dot1q_vlan_id    = 506
   ipv4_address                   = each.value.gig2_506_ip_address
   ipv4_address_mask              = each.value.gig2_506_mask
@@ -178,10 +212,46 @@ resource "iosxe_interface_ethernet" "core_gig2_600" {
   device                         = each.value.name
   type                           = "GigabitEthernet"
   name                           = "2.600"
+  vrf_forwarding                 = "600"
   encapsulation_dot1q_vlan_id    = 600
   ipv4_address                   = each.value.gig2_600_ip_address
   ipv4_address_mask              = each.value.gig2_600_mask
   description                    = each.value.gig2_600_desc
+  shutdown                       = false
+}
+
+resource "iosxe_interface_loopback" "core_loop_99" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  name                           = 99
+  description                    = each.value.loop_99_desc
+  ipv4_address                   = each.value.loop_99_ip_address
+  ipv4_address_mask              = each.value.loop_99_mask
+  shutdown                       = false
+}
+
+resource "iosxe_interface_loopback" "core_loop_56" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  name                           = 56
+  vrf_forwarding                 = "506"
+  description                    = each.value.loop_56_desc
+  ipv4_address                   = each.value.loop_56_ip_address
+  ipv4_address_mask              = each.value.loop_56_mask
+  shutdown                       = false
+}
+
+resource "iosxe_interface_loopback" "core_loop_60" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  name                           = 60
+  vrf_forwarding                 = "600"
+  description                    = each.value.loop_60_desc
+  ipv4_address                   = each.value.loop_60_ip_address
+  ipv4_address_mask              = each.value.loop_60_mask
   shutdown                       = false
 }
 
@@ -217,17 +287,54 @@ resource "iosxe_bgp" "core_bgp" {
   for_each             = {for router in local.legacy_core_routers : router.name => router}
   device               = each.value.name
   asn                  = each.value.bgp_asn
-  default_ipv4_unicast = true
+  # default_ipv4_unicast = true
   log_neighbor_changes = true
   # router_id_loopback   = 100
 }
 
 resource "iosxe_bgp_address_family_ipv4" "core_bgp_unicast" {
-  provider             = iosxe.cores
-  for_each             = {for router in local.legacy_core_routers : router.name => router}
-  device               = each.value.name
-  asn                  = each.value.bgp_asn
-  af_name              = "unicast"
+  provider                            = iosxe.cores
+  for_each                            = {for router in local.legacy_core_routers : router.name => router}
+  device                              = each.value.name
+  asn                                 = each.value.bgp_asn
+  af_name                             = "unicast"
+  ipv4_unicast_redistribute_connected = true
+  ipv4_unicast_aggregate_addresses = [
+    {
+      ipv4_address = "10.0.0.0"
+      ipv4_mask    = "255.0.0.0"
+    }
+  ]
+}
+
+resource "iosxe_bgp_address_family_ipv4_vrf" "core_bgp_vrf_506_600" {
+  provider                                = iosxe.cores
+  for_each                                = {for router in local.legacy_core_routers : router.name => router}
+  device                                  = each.value.name
+  asn                                     = each.value.bgp_asn
+  af_name                                 = "unicast"
+  vrfs = [
+    {
+      name                                = "506"
+      ipv4_unicast_redistribute_connected = true
+      ipv4_unicast_aggregate_addresses = [
+        {
+          ipv4_address = "10.0.0.0"
+          ipv4_mask    = "255.0.0.0"
+        }
+      ]
+    },
+    {
+      name                                = "600"
+      ipv4_unicast_redistribute_connected = true
+      ipv4_unicast_aggregate_addresses = [
+        {
+          ipv4_address = "10.0.0.0"
+          ipv4_mask    = "255.0.0.0"
+        }
+      ]
+    }
+  ]
 }
 
 resource "iosxe_bgp_neighbor" "core_bgp_neighbor1" {
@@ -318,27 +425,27 @@ resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_400" {
   shutdown             = false
 }
 
-resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_506" {
-  provider             = iosxe.cores
-  for_each             = {for router in local.legacy_core_routers : router.name => router}
-  device               = each.value.name
-  asn                  = each.value.bgp_asn
-  ip                   = each.value.bgp_nb3_506_ip_address
-  remote_as            = each.value.bgp_nb3_506_asn
-  description          = each.value.bgp_nb3_506_desc
-  shutdown             = false
-}
+# resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_506" {
+#   provider             = iosxe.cores
+#   for_each             = {for router in local.legacy_core_routers : router.name => router}
+#   device               = each.value.name
+#   asn                  = each.value.bgp_asn
+#   ip                   = each.value.bgp_nb3_506_ip_address
+#   remote_as            = each.value.bgp_nb3_506_asn
+#   description          = each.value.bgp_nb3_506_desc
+#   shutdown             = false
+# }
 
-resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_600" {
-  provider             = iosxe.cores
-  for_each             = {for router in local.legacy_core_routers : router.name => router}
-  device               = each.value.name
-  asn                  = each.value.bgp_asn
-  ip                   = each.value.bgp_nb3_600_ip_address
-  remote_as            = each.value.bgp_nb3_600_asn
-  description          = each.value.bgp_nb3_600_desc
-  shutdown             = false
-}
+# resource "iosxe_bgp_neighbor" "core_bgp_neighbor3_600" {
+#   provider             = iosxe.cores
+#   for_each             = {for router in local.legacy_core_routers : router.name => router}
+#   device               = each.value.name
+#   asn                  = each.value.bgp_asn
+#   ip                   = each.value.bgp_nb3_600_ip_address
+#   remote_as            = each.value.bgp_nb3_600_asn
+#   description          = each.value.bgp_nb3_600_desc
+#   shutdown             = false
+# }
 
 # Route-maps are part of this resource
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1_af" {
@@ -349,12 +456,6 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor1_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb1_ip_address
   activate                    = true
-  # route_maps = [
-  #   {
-  #     in_out         = "in"
-  #     route_map_name = "RM-WAN1"
-  #   }
-  # ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor2_af" {
@@ -375,6 +476,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_502_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_502_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_200_af" {
@@ -385,6 +492,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_200_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_200_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_503_af" {
@@ -395,6 +508,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_503_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_503_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_300_af" {
@@ -405,6 +524,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_300_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_300_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_504_af" {
@@ -415,6 +540,12 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_504_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_504_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
 resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_400_af" {
@@ -425,27 +556,101 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_400_af" {
   asn                         = each.value.bgp_asn
   ip                          = each.value.bgp_nb3_400_ip_address
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
-resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_506_af" {
+resource "iosxe_bgp_ipv4_unicast_vrf_neighbor" "core_bgp_nb_506_af" {
   provider                    = iosxe.cores
   for_each                    = {for router in local.legacy_core_routers : router.name => router}
   device                      = each.value.name
-  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_506]
   asn                         = each.value.bgp_asn
+  vrf                         = "506"
   ip                          = each.value.bgp_nb3_506_ip_address
+  remote_as                   = each.value.bgp_nb3_506_asn
+  description                 = each.value.bgp_nb3_506_desc
+  shutdown                    = false
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
 
-resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_600_af" {
+resource "iosxe_bgp_ipv4_unicast_vrf_neighbor" "core_bgp_nb_600_af" {
   provider                    = iosxe.cores
   for_each                    = {for router in local.legacy_core_routers : router.name => router}
   device                      = each.value.name
-  depends_on                  = [iosxe_bgp_neighbor.core_bgp_neighbor3_600]
   asn                         = each.value.bgp_asn
+  vrf                         = "600"
   ip                          = each.value.bgp_nb3_600_ip_address
+  remote_as                   = each.value.bgp_nb3_600_asn
+  description                 = each.value.bgp_nb3_600_desc
+  shutdown                    = false
   activate                    = true
+  route_maps = [
+    {
+      in_out         = "out"
+      route_map_name = "RM-DEFAULT-ROUTE"
+    }
+  ]
 }
+
+resource "iosxe_prefix_list" "core_pl_all_prefixes" {
+  provider         = iosxe.cores
+  for_each         = {for router in local.legacy_core_routers : router.name => router}
+  device           = each.value.name
+  prefixes = [
+    {
+      name   = "PL-ALL-PREFIXES"
+      seq    = 10
+      action = "permit"
+      ip     = "0.0.0.0/0"
+      le     = "32"
+    }
+  ]
+}
+
+resource "iosxe_prefix_list" "core_pl_10_0_0_0" {
+  provider         = iosxe.cores
+  for_each         = {for router in local.legacy_core_routers : router.name => router}
+  device           = each.value.name
+  prefixes = [
+    {
+      name   = "PL-DEFAULT-ROUTE"
+      seq    = 10
+      action = "permit"
+      ip     = "10.0.0.0/8"
+    }
+  ]
+}
+
+resource "iosxe_route_map" "core_rm_default_route" {
+  provider        = iosxe.cores
+  for_each        = {for router in local.legacy_core_routers : router.name => router}
+  device          = each.value.name
+  name = "RM-DEFAULT-ROUTE"
+  entries = [
+    {
+      seq                                      = 10
+      operation                                = "permit"
+      description                              = "default-route"
+      match_ip_address_prefix_lists            = ["PL-DEFAULT-ROUTE"]
+    },
+    {
+      seq                                      = 99
+      operation                                = "deny"
+      description                              = "deny-all"
+      match_ip_address_prefix_lists            = ["PL-ALL-PREFIXES"]
+    }
+  ]
+}  
 
 resource "terraform_data" "core_null_data" {}
 
