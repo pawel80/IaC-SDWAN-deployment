@@ -516,6 +516,19 @@ resource "iosxe_bgp_ipv4_unicast_neighbor" "core_bgp_neighbor3_400_af" {
 #   activate                    = true
 # }
 
+resource "iosxe_bgp_ipv4_unicast_vrf_neighbor" "core_bgp_nb_506_af" {
+  provider                    = iosxe.cores
+  for_each                    = {for router in local.legacy_core_routers : router.name => router}
+  device                      = each.value.name
+  asn                         = each.value.bgp_asn
+  vrf                         = "506"
+  ip                          = each.value.bgp_nb3_506_ip_address
+  remote_as                   = each.value.bgp_nb3_506_asn
+  description                 = each.value.bgp_nb3_506_desc
+  shutdown                    = false
+  activate                    = true
+}
+
 resource "terraform_data" "core_null_data" {}
 
 resource "time_sleep" "core_wait_x_seconds" {
