@@ -600,7 +600,7 @@ resource "iosxe_route_map" "core_rm_default_route" {
       operation                                = "permit"
       description                              = "default-route"
       match_ip_address_prefix_lists            = ["PL-DEFAULT-ROUTE"]
-    }
+    },
     {
       seq                                      = 99
       operation                                = "deny"
