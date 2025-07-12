@@ -58,15 +58,7 @@ sd-wan_edges = [
         name = "var_vpn0_gig1_if_mask"
         value = "255.255.255.252"
       }
-      # {
-      #   name = "var_dns_secondary"
-      #   value = "1.2.3.4"
-      # }
-      # {
-      #   name = "var_tunnel_netconf"
-      #   value = true
-      # }
-      ]
+    ]
     },
     {
     id     = var.S2R1_id
@@ -104,7 +96,7 @@ sd-wan_edges = [
         name = "var_vpn0_gig1_if_mask"
         value = "255.255.255.252"
       }
-      ]
+    ]
     }
   ]
 
@@ -317,7 +309,7 @@ sd-wan_edges = [
         name = "var_nb_600_asn"
         value = "65101"
       }
-      ]
+    ]
     },
     {
     id     = var.DC2R1_id
@@ -527,7 +519,7 @@ sd-wan_edges = [
         name = "var_nb_600_asn"
         value = "65201"
       }
-      ]
+    ]
     },
     {
     id     = var.DC3R1_id
@@ -737,7 +729,7 @@ sd-wan_edges = [
         name = "var_nb_600_asn"
         value = "65301"
       }
-      ]
+    ]
     }
   ]
 }
