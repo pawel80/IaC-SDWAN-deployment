@@ -94,10 +94,15 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ]
 }
 
+resource "sdwan_service_feature_profile" "edge_service_v01" {
+  name        = "CORE_SERVICES_v01"
+  description = "Core service feature profiles"
+}
+
 resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
   name                       = "VPN504_v01"
   description                = "VPN504 SD-WAN Monitoring(open)"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
   vpn                        = 504
   config_description         = "VPN504 SD-WAN Monitoring(open)"
 }
@@ -105,7 +110,7 @@ resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
 resource "sdwan_service_lan_vpn_feature" "edge_vpn400_v01" {
   name                       = "VPN400_v01"
   description                = "VPN400 SD-WAN Services(open)"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
   vpn                        = 400
   config_description         = "VPN400 SD-WAN Services(open)"
 }
@@ -118,6 +123,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
   feature_profile_ids = [
     sdwan_system_feature_profile.system_v01.id, 
     sdwan_transport_feature_profile.transport_v01.id
+    sdwan_service_feature_profile.edge_service_v01.id,
   ]
   devices = local.sd-wan_edges
   feature_versions = [
@@ -129,6 +135,8 @@ resource "sdwan_configuration_group" "config_group_v01" {
     sdwan_system_omp_feature.system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
+    sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
+    sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
   ]
 }
 
@@ -140,7 +148,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
 
 ################################# Feature profiles ################################
 resource "sdwan_service_feature_profile" "core_service_v01" {
-  name        = "SERVICE_CORES_v01"
+  name        = "CORE_SERVICES_v01"
   description = "Core service feature profiles"
 }
 
