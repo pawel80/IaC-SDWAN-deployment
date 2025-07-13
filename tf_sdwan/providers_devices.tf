@@ -97,83 +97,83 @@ sd-wan_edges = [
         value = "255.255.255.252"
       }
     ]
-    },
-    {
-    id     = var.S3R1_id
-    deploy = true
-    variables = [
-      {
-        name = "host_name"
-        value = "S3R1"
-      },
-      {
-        name = "pseudo_commit_timer"
-        value = 0
-      },
-      {
-        name = "site_id"
-        value = 103
-      },
-      {
-        name = "system_ip"
-        value = "22.2.3.1"
-      },
-      {
-        name = "ipv6_strict_control"
-        value = "false"
-      },
-      {
-        name = "var_def_gtw"
-        value = "172.16.10.17"
-      },
-      {
-        name = "var_vpn0_gig1_if_address"
-        value = "172.16.10.18"
-      },
-      {
-        name = "var_vpn0_gig1_if_mask"
-        value = "255.255.255.252"
-      }
-    ]
-    },
-    {
-    id     = var.S4R1_id
-    deploy = true
-    variables = [
-      {
-        name = "host_name"
-        value = "S4R1"
-      },
-      {
-        name = "pseudo_commit_timer"
-        value = 0
-      },
-      {
-        name = "site_id"
-        value = 104
-      },
-      {
-        name = "system_ip"
-        value = "22.2.4.1"
-      },
-      {
-        name = "ipv6_strict_control"
-        value = "false"
-      },
-      {
-        name = "var_def_gtw"
-        value = "172.16.10.21"
-      },
-      {
-        name = "var_vpn0_gig1_if_address"
-        value = "172.16.10.22"
-      },
-      {
-        name = "var_vpn0_gig1_if_mask"
-        value = "255.255.255.252"
-      }
-    ]
     }
+    # {
+    # id     = var.S3R1_id
+    # deploy = true
+    # variables = [
+    #   {
+    #     name = "host_name"
+    #     value = "S3R1"
+    #   },
+    #   {
+    #     name = "pseudo_commit_timer"
+    #     value = 0
+    #   },
+    #   {
+    #     name = "site_id"
+    #     value = 103
+    #   },
+    #   {
+    #     name = "system_ip"
+    #     value = "22.2.3.1"
+    #   },
+    #   {
+    #     name = "ipv6_strict_control"
+    #     value = "false"
+    #   },
+    #   {
+    #     name = "var_def_gtw"
+    #     value = "172.16.10.17"
+    #   },
+    #   {
+    #     name = "var_vpn0_gig1_if_address"
+    #     value = "172.16.10.18"
+    #   },
+    #   {
+    #     name = "var_vpn0_gig1_if_mask"
+    #     value = "255.255.255.252"
+    #   }
+    # ]
+    # },
+    # {
+    # id     = var.S4R1_id
+    # deploy = true
+    # variables = [
+    #   {
+    #     name = "host_name"
+    #     value = "S4R1"
+    #   },
+    #   {
+    #     name = "pseudo_commit_timer"
+    #     value = 0
+    #   },
+    #   {
+    #     name = "site_id"
+    #     value = 104
+    #   },
+    #   {
+    #     name = "system_ip"
+    #     value = "22.2.4.1"
+    #   },
+    #   {
+    #     name = "ipv6_strict_control"
+    #     value = "false"
+    #   },
+    #   {
+    #     name = "var_def_gtw"
+    #     value = "172.16.10.21"
+    #   },
+    #   {
+    #     name = "var_vpn0_gig1_if_address"
+    #     value = "172.16.10.22"
+    #   },
+    #   {
+    #     name = "var_vpn0_gig1_if_mask"
+    #     value = "255.255.255.252"
+    #   }
+    # ]
+    # }
   ]
 
   sd-wan_cores = [
