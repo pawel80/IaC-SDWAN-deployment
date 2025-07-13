@@ -158,7 +158,7 @@ resource "sdwan_cli_feature_profile" "core_cli_v01" {
 }
 
 ##################################### Features ####################################
-resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
+resource "sdwan_service_lan_vpn_feature" "core_vpn511_v01" {
   name                       = "VPN511_v01"
   description                = "VPN511 Legacy DC core router mgmt"
   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
@@ -166,7 +166,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
   config_description         = "VPN511 - Legacy DC core router mgmt"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn502_v01" {
+resource "sdwan_service_lan_vpn_feature" "core_vpn502_v01" {
   name                       = "VPN502_v01"
   description                = "VPN502 Legacy DC cores Monitoring(open)"
   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
@@ -174,7 +174,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn502_v01" {
   config_description         = "VPN502 Legacy DC cores Monitoring(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn200_v01" {
+resource "sdwan_service_lan_vpn_feature" "core_vpn200_v01" {
   name                       = "VPN200_v01"
   description                = "VPN200 Legacy DC cores Services(open)"
   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
@@ -182,7 +182,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn200_v01" {
   config_description         = "VPN200 Legacy DC cores Services(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn503_v01" {
+resource "sdwan_service_lan_vpn_feature" "core_vpn503_v01" {
   name                       = "VPN503_v01"
   description                = "VPN503 SD-routing Monitoring(open)"
   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
@@ -190,7 +190,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn503_v01" {
   config_description         = "VPN503 SD-routing Monitoring(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn300_v01" {
+resource "sdwan_service_lan_vpn_feature" "core_vpn300_v01" {
   name                       = "VPN300_v01"
   description                = "VPN300 SD-routing Services(open)"
   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
@@ -198,7 +198,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn300_v01" {
   config_description         = "VPN300 SD-routing Services(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn504_v01" {
+resource "sdwan_service_lan_vpn_feature" "core_vpn504_v01" {
   name                       = "VPN504_v01"
   description                = "VPN504 SD-WAN Monitoring(open)"
   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
@@ -206,7 +206,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn504_v01" {
   config_description         = "VPN504 SD-WAN Monitoring(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn400_v01" {
+resource "sdwan_service_lan_vpn_feature" "core_vpn400_v01" {
   name                       = "VPN400_v01"
   description                = "VPN400 SD-WAN Services(open)"
   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
@@ -214,7 +214,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn400_v01" {
   config_description         = "VPN400 SD-WAN Services(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn506_v01" {
+resource "sdwan_service_lan_vpn_feature" "core_vpn506_v01" {
   name                       = "VPN506_v01"
   description                = "VPN506 SD-WAN Monitoring(sec)"
   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
@@ -222,7 +222,7 @@ resource "sdwan_service_lan_vpn_feature" "vpn506_v01" {
   config_description         = "VPN506 SD-WAN Monitoring(sec)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn600_v01" {
+resource "sdwan_service_lan_vpn_feature" "core_vpn600_v01" {
   name                       = "VPN600_v01"
   description                = "VPN600 SD-WAN Services(sec)"
   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
