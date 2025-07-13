@@ -158,337 +158,331 @@ resource "sdwan_cli_feature_profile" "core_cli_v01" {
 }
 
 ##################################### Features ####################################
-resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
-  name                       = "VPN511_v01"
-  description                = "VPN511 Legacy DC core router mgmt"
-  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-  vpn                        = 511
-  config_description         = "VPN511 - Legacy DC core router mgmt"
-  # ipv4_static_routes = [
-  #   {
-  #     network_address = "0.0.0.0"
-  #     subnet_mask     = "0.0.0.0"
-  #     vpn             = true
-  #   }
-  # ]
-}
+# resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
+#   name                       = "VPN511_v01"
+#   description                = "VPN511 Legacy DC core router mgmt"
+#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+#   vpn                        = 511
+#   config_description         = "VPN511 - Legacy DC core router mgmt"
+# }
 
-resource "sdwan_service_lan_vpn_feature" "vpn502_v01" {
-  name                       = "VPN502_v01"
-  description                = "VPN502 Legacy DC cores Monitoring(open)"
-  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-  vpn                        = 502
-  config_description         = "VPN502 Legacy DC cores Monitoring(open)"
-}
+# resource "sdwan_service_lan_vpn_feature" "vpn502_v01" {
+#   name                       = "VPN502_v01"
+#   description                = "VPN502 Legacy DC cores Monitoring(open)"
+#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+#   vpn                        = 502
+#   config_description         = "VPN502 Legacy DC cores Monitoring(open)"
+# }
 
-resource "sdwan_service_lan_vpn_feature" "vpn200_v01" {
-  name                       = "VPN200_v01"
-  description                = "VPN200 Legacy DC cores Services(open)"
-  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-  vpn                        = 200
-  config_description         = "VPN200 Legacy DC cores Services(open)"
-}
+# resource "sdwan_service_lan_vpn_feature" "vpn200_v01" {
+#   name                       = "VPN200_v01"
+#   description                = "VPN200 Legacy DC cores Services(open)"
+#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+#   vpn                        = 200
+#   config_description         = "VPN200 Legacy DC cores Services(open)"
+# }
 
-resource "sdwan_service_lan_vpn_feature" "vpn503_v01" {
-  name                       = "VPN503_v01"
-  description                = "VPN503 SD-routing Monitoring(open)"
-  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-  vpn                        = 503
-  config_description         = "VPN503 SD-routing Monitoring(open)"
-}
+# resource "sdwan_service_lan_vpn_feature" "vpn503_v01" {
+#   name                       = "VPN503_v01"
+#   description                = "VPN503 SD-routing Monitoring(open)"
+#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+#   vpn                        = 503
+#   config_description         = "VPN503 SD-routing Monitoring(open)"
+# }
 
-resource "sdwan_service_lan_vpn_feature" "vpn300_v01" {
-  name                       = "VPN300_v01"
-  description                = "VPN300 SD-routing Services(open)"
-  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-  vpn                        = 300
-  config_description         = "VPN300 SD-routing Services(open)"
-}
+# resource "sdwan_service_lan_vpn_feature" "vpn300_v01" {
+#   name                       = "VPN300_v01"
+#   description                = "VPN300 SD-routing Services(open)"
+#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+#   vpn                        = 300
+#   config_description         = "VPN300 SD-routing Services(open)"
+# }
 
-resource "sdwan_service_lan_vpn_feature" "vpn504_v01" {
-  name                       = "VPN504_v01"
-  description                = "VPN504 SD-WAN Monitoring(open)"
-  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-  vpn                        = 504
-  config_description         = "VPN504 SD-WAN Monitoring(open)"
-}
+# resource "sdwan_service_lan_vpn_feature" "vpn504_v01" {
+#   name                       = "VPN504_v01"
+#   description                = "VPN504 SD-WAN Monitoring(open)"
+#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+#   vpn                        = 504
+#   config_description         = "VPN504 SD-WAN Monitoring(open)"
+# }
 
-resource "sdwan_service_lan_vpn_feature" "vpn400_v01" {
-  name                       = "VPN400_v01"
-  description                = "VPN400 SD-WAN Services(open)"
-  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-  vpn                        = 400
-  config_description         = "VPN400 SD-WAN Services(open)"
-}
+# resource "sdwan_service_lan_vpn_feature" "vpn400_v01" {
+#   name                       = "VPN400_v01"
+#   description                = "VPN400 SD-WAN Services(open)"
+#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+#   vpn                        = 400
+#   config_description         = "VPN400 SD-WAN Services(open)"
+# }
 
-resource "sdwan_service_lan_vpn_feature" "vpn506_v01" {
-  name                       = "VPN506_v01"
-  description                = "VPN506 SD-WAN Monitoring(sec)"
-  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-  vpn                        = 506
-  config_description         = "VPN506 SD-WAN Monitoring(sec)"
-}
+# resource "sdwan_service_lan_vpn_feature" "vpn506_v01" {
+#   name                       = "VPN506_v01"
+#   description                = "VPN506 SD-WAN Monitoring(sec)"
+#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+#   vpn                        = 506
+#   config_description         = "VPN506 SD-WAN Monitoring(sec)"
+# }
 
-resource "sdwan_service_lan_vpn_feature" "vpn600_v01" {
-  name                       = "VPN600_v01"
-  description                = "VPN600 SD-WAN Services(sec)"
-  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-  vpn                        = 600
-  config_description         = "VPN600 SD-WAN Services(sec)"
-}
+# resource "sdwan_service_lan_vpn_feature" "vpn600_v01" {
+#   name                       = "VPN600_v01"
+#   description                = "VPN600 SD-WAN Services(sec)"
+#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+#   vpn                        = 600
+#   config_description         = "VPN600 SD-WAN Services(sec)"
+# }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_502_v01" {
-  name                     = "BGP_502_v01"
-  description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
-  as_number_variable       = "{{var_bgp_asn}}"
-  ipv4_neighbors = [
-    {
-      address_variable        = "{{var_nb_502_ip_address}}"
-      description_variable    = "{{var_nb_502_desc}}"
-      shutdown                = false
-      remote_as_variable      = "{{var_nb_502_asn}}"
-      address_families = [
-        {
-          family_type            = "ipv4-unicast"
-          max_number_of_prefixes = 2000
-          threshold              = 75
-          policy_type            = "restart"
-          restart_interval       = 30
-        }
-      ]
-    }
-  ]
-}
+# resource "sdwan_service_routing_bgp_feature" "bgp_502_v01" {
+#   name                     = "BGP_502_v01"
+#   description              = "BGP towards legacy core routers"
+#   feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
+#   as_number_variable       = "{{var_bgp_asn}}"
+#   ipv4_neighbors = [
+#     {
+#       address_variable        = "{{var_nb_502_ip_address}}"
+#       description_variable    = "{{var_nb_502_desc}}"
+#       shutdown                = false
+#       remote_as_variable      = "{{var_nb_502_asn}}"
+#       address_families = [
+#         {
+#           family_type            = "ipv4-unicast"
+#           max_number_of_prefixes = 2000
+#           threshold              = 75
+#           policy_type            = "restart"
+#           restart_interval       = 30
+#         }
+#       ]
+#     }
+#   ]
+# }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_200_v01" {
-  name                     = "BGP_200_v01"
-  description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
-  as_number_variable       = "{{var_bgp_asn}}"
-  ipv4_neighbors = [
-    {
-      address_variable        = "{{var_nb_200_ip_address}}"
-      description_variable    = "{{var_nb_200_desc}}"
-      shutdown                = false
-      remote_as_variable      = "{{var_nb_200_asn}}"
-      address_families = [
-        {
-          family_type            = "ipv4-unicast"
-          max_number_of_prefixes = 2000
-          threshold              = 75
-          policy_type            = "restart"
-          restart_interval       = 30
-        }
-      ]
-    }
-  ]
-}
+# resource "sdwan_service_routing_bgp_feature" "bgp_200_v01" {
+#   name                     = "BGP_200_v01"
+#   description              = "BGP towards legacy core routers"
+#   feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
+#   as_number_variable       = "{{var_bgp_asn}}"
+#   ipv4_neighbors = [
+#     {
+#       address_variable        = "{{var_nb_200_ip_address}}"
+#       description_variable    = "{{var_nb_200_desc}}"
+#       shutdown                = false
+#       remote_as_variable      = "{{var_nb_200_asn}}"
+#       address_families = [
+#         {
+#           family_type            = "ipv4-unicast"
+#           max_number_of_prefixes = 2000
+#           threshold              = 75
+#           policy_type            = "restart"
+#           restart_interval       = 30
+#         }
+#       ]
+#     }
+#   ]
+# }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_503_v01" {
-  name                     = "BGP_503_v01"
-  description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
-  as_number_variable       = "{{var_bgp_asn}}"
-  ipv4_neighbors = [
-    {
-      address_variable        = "{{var_nb_503_ip_address}}"
-      description_variable    = "{{var_nb_503_desc}}"
-      shutdown                = false
-      remote_as_variable      = "{{var_nb_503_asn}}"
-      address_families = [
-        {
-          family_type            = "ipv4-unicast"
-          max_number_of_prefixes = 2000
-          threshold              = 75
-          policy_type            = "restart"
-          restart_interval       = 30
-        }
-      ]
-    }
-  ]
-}
+# resource "sdwan_service_routing_bgp_feature" "bgp_503_v01" {
+#   name                     = "BGP_503_v01"
+#   description              = "BGP towards legacy core routers"
+#   feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
+#   as_number_variable       = "{{var_bgp_asn}}"
+#   ipv4_neighbors = [
+#     {
+#       address_variable        = "{{var_nb_503_ip_address}}"
+#       description_variable    = "{{var_nb_503_desc}}"
+#       shutdown                = false
+#       remote_as_variable      = "{{var_nb_503_asn}}"
+#       address_families = [
+#         {
+#           family_type            = "ipv4-unicast"
+#           max_number_of_prefixes = 2000
+#           threshold              = 75
+#           policy_type            = "restart"
+#           restart_interval       = 30
+#         }
+#       ]
+#     }
+#   ]
+# }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_300_v01" {
-  name                     = "BGP_300_v01"
-  description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
-  as_number_variable       = "{{var_bgp_asn}}"
-  ipv4_neighbors = [
-    {
-      address_variable        = "{{var_nb_300_ip_address}}"
-      description_variable    = "{{var_nb_300_desc}}"
-      shutdown                = false
-      remote_as_variable      = "{{var_nb_300_asn}}"
-      address_families = [
-        {
-          family_type            = "ipv4-unicast"
-          max_number_of_prefixes = 2000
-          threshold              = 75
-          policy_type            = "restart"
-          restart_interval       = 30
-        }
-      ]
-    }
-  ]
-}
+# resource "sdwan_service_routing_bgp_feature" "bgp_300_v01" {
+#   name                     = "BGP_300_v01"
+#   description              = "BGP towards legacy core routers"
+#   feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
+#   as_number_variable       = "{{var_bgp_asn}}"
+#   ipv4_neighbors = [
+#     {
+#       address_variable        = "{{var_nb_300_ip_address}}"
+#       description_variable    = "{{var_nb_300_desc}}"
+#       shutdown                = false
+#       remote_as_variable      = "{{var_nb_300_asn}}"
+#       address_families = [
+#         {
+#           family_type            = "ipv4-unicast"
+#           max_number_of_prefixes = 2000
+#           threshold              = 75
+#           policy_type            = "restart"
+#           restart_interval       = 30
+#         }
+#       ]
+#     }
+#   ]
+# }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_504_v01" {
-  name                     = "BGP_504_v01"
-  description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
-  as_number_variable       = "{{var_bgp_asn}}"
-  # router_id_variable       = "{{bgp_router_id}}"
-  ipv4_neighbors = [
-    {
-      address_variable        = "{{var_nb_504_ip_address}}"
-      description_variable    = "{{var_nb_504_desc}}"
-      shutdown                = false
-      remote_as_variable      = "{{var_nb_504_asn}}"
-      # local_as                = 200
-      # keepalive_time          = 40
-      # hold_time               = 200
-      # update_source_interface = "GigabitEthernet0"
-      # next_hop_self           = false
-      # send_community          = true
-      # send_extended_community = true
-      # ebgp_multihop           = 1
-      # password                = "myPassword"
-      # send_label              = true
-      # as_override             = false
-      # allowas_in_number       = 1
-      address_families = [
-        {
-          family_type            = "ipv4-unicast"
-          max_number_of_prefixes = 2000
-          threshold              = 75
-          policy_type            = "restart"
-          restart_interval       = 30
-        }
-      ]
-    }
-  ]
-}
+# resource "sdwan_service_routing_bgp_feature" "bgp_504_v01" {
+#   name                     = "BGP_504_v01"
+#   description              = "BGP towards legacy core routers"
+#   feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
+#   as_number_variable       = "{{var_bgp_asn}}"
+#   # router_id_variable       = "{{bgp_router_id}}"
+#   ipv4_neighbors = [
+#     {
+#       address_variable        = "{{var_nb_504_ip_address}}"
+#       description_variable    = "{{var_nb_504_desc}}"
+#       shutdown                = false
+#       remote_as_variable      = "{{var_nb_504_asn}}"
+#       # local_as                = 200
+#       # keepalive_time          = 40
+#       # hold_time               = 200
+#       # update_source_interface = "GigabitEthernet0"
+#       # next_hop_self           = false
+#       # send_community          = true
+#       # send_extended_community = true
+#       # ebgp_multihop           = 1
+#       # password                = "myPassword"
+#       # send_label              = true
+#       # as_override             = false
+#       # allowas_in_number       = 1
+#       address_families = [
+#         {
+#           family_type            = "ipv4-unicast"
+#           max_number_of_prefixes = 2000
+#           threshold              = 75
+#           policy_type            = "restart"
+#           restart_interval       = 30
+#         }
+#       ]
+#     }
+#   ]
+# }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_400_v01" {
-  name                     = "BGP_400_v01"
-  description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
-  as_number_variable       = "{{var_bgp_asn}}"
-  ipv4_neighbors = [
-    {
-      address_variable        = "{{var_nb_400_ip_address}}"
-      description_variable    = "{{var_nb_400_desc}}"
-      shutdown                = false
-      remote_as_variable      = "{{var_nb_400_asn}}"
-      address_families = [
-        {
-          family_type            = "ipv4-unicast"
-          max_number_of_prefixes = 2000
-          threshold              = 75
-          policy_type            = "restart"
-          restart_interval       = 30
-        }
-      ]
-    }
-  ]
-}
+# resource "sdwan_service_routing_bgp_feature" "bgp_400_v01" {
+#   name                     = "BGP_400_v01"
+#   description              = "BGP towards legacy core routers"
+#   feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
+#   as_number_variable       = "{{var_bgp_asn}}"
+#   ipv4_neighbors = [
+#     {
+#       address_variable        = "{{var_nb_400_ip_address}}"
+#       description_variable    = "{{var_nb_400_desc}}"
+#       shutdown                = false
+#       remote_as_variable      = "{{var_nb_400_asn}}"
+#       address_families = [
+#         {
+#           family_type            = "ipv4-unicast"
+#           max_number_of_prefixes = 2000
+#           threshold              = 75
+#           policy_type            = "restart"
+#           restart_interval       = 30
+#         }
+#       ]
+#     }
+#   ]
+# }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_506_v01" {
-  name                     = "BGP_506_v01"
-  description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
-  as_number_variable       = "{{var_bgp_asn}}"
-  ipv4_neighbors = [
-    {
-      address_variable        = "{{var_nb_506_ip_address}}"
-      description_variable    = "{{var_nb_506_desc}}"
-      shutdown                = false
-      remote_as_variable      = "{{var_nb_506_asn}}"
-      address_families = [
-        {
-          family_type            = "ipv4-unicast"
-          max_number_of_prefixes = 2000
-          threshold              = 75
-          policy_type            = "restart"
-          restart_interval       = 30
-        }
-      ]
-    }
-  ]
-}
+# resource "sdwan_service_routing_bgp_feature" "bgp_506_v01" {
+#   name                     = "BGP_506_v01"
+#   description              = "BGP towards legacy core routers"
+#   feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
+#   as_number_variable       = "{{var_bgp_asn}}"
+#   ipv4_neighbors = [
+#     {
+#       address_variable        = "{{var_nb_506_ip_address}}"
+#       description_variable    = "{{var_nb_506_desc}}"
+#       shutdown                = false
+#       remote_as_variable      = "{{var_nb_506_asn}}"
+#       address_families = [
+#         {
+#           family_type            = "ipv4-unicast"
+#           max_number_of_prefixes = 2000
+#           threshold              = 75
+#           policy_type            = "restart"
+#           restart_interval       = 30
+#         }
+#       ]
+#     }
+#   ]
+# }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_600_v01" {
-  name                     = "BGP_600_v01"
-  description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
-  as_number_variable       = "{{var_bgp_asn}}"
-  ipv4_neighbors = [
-    {
-      address_variable        = "{{var_nb_600_ip_address}}"
-      description_variable    = "{{var_nb_600_desc}}"
-      shutdown                = false
-      remote_as_variable      = "{{var_nb_600_asn}}"
-      address_families = [
-        {
-          family_type            = "ipv4-unicast"
-          max_number_of_prefixes = 2000
-          threshold              = 75
-          policy_type            = "restart"
-          restart_interval       = 30
-        }
-      ]
-    }
-  ]
-}
+# resource "sdwan_service_routing_bgp_feature" "bgp_600_v01" {
+#   name                     = "BGP_600_v01"
+#   description              = "BGP towards legacy core routers"
+#   feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
+#   as_number_variable       = "{{var_bgp_asn}}"
+#   ipv4_neighbors = [
+#     {
+#       address_variable        = "{{var_nb_600_ip_address}}"
+#       description_variable    = "{{var_nb_600_desc}}"
+#       shutdown                = false
+#       remote_as_variable      = "{{var_nb_600_asn}}"
+#       address_families = [
+#         {
+#           family_type            = "ipv4-unicast"
+#           max_number_of_prefixes = 2000
+#           threshold              = 75
+#           policy_type            = "restart"
+#           restart_interval       = 30
+#         }
+#       ]
+#     }
+#   ]
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_502_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn502_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_502_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_502_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn502_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_502_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_200_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn200_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_200_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_200_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn200_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_200_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_503_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn503_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_503_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_503_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn503_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_503_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_300_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn300_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_300_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_300_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn300_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_300_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_504_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn504_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_504_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_504_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn504_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_504_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_400_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn400_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_400_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_400_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn400_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_400_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_506_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn506_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_506_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_506_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn506_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_506_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_600_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn600_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_600_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_600_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn600_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_600_v01.id
+# }
+
 
 # ERROR during subinterface creation:
 # Invalid Payload: doesn't support user settable interface mtu for sub interface
