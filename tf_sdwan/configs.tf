@@ -158,77 +158,77 @@ resource "sdwan_cli_feature_profile" "core_cli_v01" {
 }
 
 ##################################### Features ####################################
-# resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
-#   name                       = "VPN511_v01"
-#   description                = "VPN511 Legacy DC core router mgmt"
-#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-#   vpn                        = 511
-#   config_description         = "VPN511 - Legacy DC core router mgmt"
-# }
+resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
+  name                       = "VPN511_v01"
+  description                = "VPN511 Legacy DC core router mgmt"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  vpn                        = 511
+  config_description         = "VPN511 - Legacy DC core router mgmt"
+}
 
-# resource "sdwan_service_lan_vpn_feature" "vpn502_v01" {
-#   name                       = "VPN502_v01"
-#   description                = "VPN502 Legacy DC cores Monitoring(open)"
-#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-#   vpn                        = 502
-#   config_description         = "VPN502 Legacy DC cores Monitoring(open)"
-# }
+resource "sdwan_service_lan_vpn_feature" "vpn502_v01" {
+  name                       = "VPN502_v01"
+  description                = "VPN502 Legacy DC cores Monitoring(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  vpn                        = 502
+  config_description         = "VPN502 Legacy DC cores Monitoring(open)"
+}
 
-# resource "sdwan_service_lan_vpn_feature" "vpn200_v01" {
-#   name                       = "VPN200_v01"
-#   description                = "VPN200 Legacy DC cores Services(open)"
-#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-#   vpn                        = 200
-#   config_description         = "VPN200 Legacy DC cores Services(open)"
-# }
+resource "sdwan_service_lan_vpn_feature" "vpn200_v01" {
+  name                       = "VPN200_v01"
+  description                = "VPN200 Legacy DC cores Services(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  vpn                        = 200
+  config_description         = "VPN200 Legacy DC cores Services(open)"
+}
 
-# resource "sdwan_service_lan_vpn_feature" "vpn503_v01" {
-#   name                       = "VPN503_v01"
-#   description                = "VPN503 SD-routing Monitoring(open)"
-#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-#   vpn                        = 503
-#   config_description         = "VPN503 SD-routing Monitoring(open)"
-# }
+resource "sdwan_service_lan_vpn_feature" "vpn503_v01" {
+  name                       = "VPN503_v01"
+  description                = "VPN503 SD-routing Monitoring(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  vpn                        = 503
+  config_description         = "VPN503 SD-routing Monitoring(open)"
+}
 
-# resource "sdwan_service_lan_vpn_feature" "vpn300_v01" {
-#   name                       = "VPN300_v01"
-#   description                = "VPN300 SD-routing Services(open)"
-#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-#   vpn                        = 300
-#   config_description         = "VPN300 SD-routing Services(open)"
-# }
+resource "sdwan_service_lan_vpn_feature" "vpn300_v01" {
+  name                       = "VPN300_v01"
+  description                = "VPN300 SD-routing Services(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  vpn                        = 300
+  config_description         = "VPN300 SD-routing Services(open)"
+}
 
-# resource "sdwan_service_lan_vpn_feature" "vpn504_v01" {
-#   name                       = "VPN504_v01"
-#   description                = "VPN504 SD-WAN Monitoring(open)"
-#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-#   vpn                        = 504
-#   config_description         = "VPN504 SD-WAN Monitoring(open)"
-# }
+resource "sdwan_service_lan_vpn_feature" "vpn504_v01" {
+  name                       = "VPN504_v01"
+  description                = "VPN504 SD-WAN Monitoring(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  vpn                        = 504
+  config_description         = "VPN504 SD-WAN Monitoring(open)"
+}
 
-# resource "sdwan_service_lan_vpn_feature" "vpn400_v01" {
-#   name                       = "VPN400_v01"
-#   description                = "VPN400 SD-WAN Services(open)"
-#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-#   vpn                        = 400
-#   config_description         = "VPN400 SD-WAN Services(open)"
-# }
+resource "sdwan_service_lan_vpn_feature" "vpn400_v01" {
+  name                       = "VPN400_v01"
+  description                = "VPN400 SD-WAN Services(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  vpn                        = 400
+  config_description         = "VPN400 SD-WAN Services(open)"
+}
 
-# resource "sdwan_service_lan_vpn_feature" "vpn506_v01" {
-#   name                       = "VPN506_v01"
-#   description                = "VPN506 SD-WAN Monitoring(sec)"
-#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-#   vpn                        = 506
-#   config_description         = "VPN506 SD-WAN Monitoring(sec)"
-# }
+resource "sdwan_service_lan_vpn_feature" "vpn506_v01" {
+  name                       = "VPN506_v01"
+  description                = "VPN506 SD-WAN Monitoring(sec)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  vpn                        = 506
+  config_description         = "VPN506 SD-WAN Monitoring(sec)"
+}
 
-# resource "sdwan_service_lan_vpn_feature" "vpn600_v01" {
-#   name                       = "VPN600_v01"
-#   description                = "VPN600 SD-WAN Services(sec)"
-#   feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
-#   vpn                        = 600
-#   config_description         = "VPN600 SD-WAN Services(sec)"
-# }
+resource "sdwan_service_lan_vpn_feature" "vpn600_v01" {
+  name                       = "VPN600_v01"
+  description                = "VPN600 SD-WAN Services(sec)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  vpn                        = 600
+  config_description         = "VPN600 SD-WAN Services(sec)"
+}
 
 # resource "sdwan_service_routing_bgp_feature" "bgp_502_v01" {
 #   name                     = "BGP_502_v01"
@@ -593,15 +593,15 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_system_omp_feature.system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
-#     # sdwan_service_lan_vpn_feature.vpn511_v01.version,
-#     # sdwan_service_lan_vpn_feature.vpn502_v01.version,
-#     # sdwan_service_lan_vpn_feature.vpn200_v01.version,
-#     # sdwan_service_lan_vpn_feature.vpn503_v01.version,
-#     # sdwan_service_lan_vpn_feature.vpn300_v01.version,
-#     # sdwan_service_lan_vpn_feature.vpn504_v01.version,
-#     # sdwan_service_lan_vpn_feature.vpn400_v01.version,
-#     # sdwan_service_lan_vpn_feature.vpn506_v01.version,
-#     # sdwan_service_lan_vpn_feature.vpn600_v01.version,
+    sdwan_service_lan_vpn_feature.vpn511_v01.version,
+    sdwan_service_lan_vpn_feature.vpn502_v01.version,
+    sdwan_service_lan_vpn_feature.vpn200_v01.version,
+    sdwan_service_lan_vpn_feature.vpn503_v01.version,
+    sdwan_service_lan_vpn_feature.vpn300_v01.version,
+    sdwan_service_lan_vpn_feature.vpn504_v01.version,
+    sdwan_service_lan_vpn_feature.vpn400_v01.version,
+    sdwan_service_lan_vpn_feature.vpn506_v01.version,
+    sdwan_service_lan_vpn_feature.vpn600_v01.version,
 #     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_504_v01.version,
 #     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_400_v01.version,
 #     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_506_v01.version,
