@@ -99,21 +99,21 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ]
 }
 
-resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
-  name                       = "VPN504_v01"
-  description                = "VPN504 SD-WAN Monitoring(open)"
-  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
-  vpn                        = 504
-  config_description         = "VPN504 SD-WAN Monitoring(open)"
-}
+# resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
+#   name                       = "VPN504_v01"
+#   description                = "VPN504 SD-WAN Monitoring(open)"
+#   feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+#   vpn                        = 504
+#   config_description         = "VPN504 SD-WAN Monitoring(open)"
+# }
 
-resource "sdwan_service_lan_vpn_feature" "edge_vpn400_v01" {
-  name                       = "VPN400_v01"
-  description                = "VPN400 SD-WAN Services(open)"
-  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
-  vpn                        = 400
-  config_description         = "VPN400 SD-WAN Services(open)"
-}
+# resource "sdwan_service_lan_vpn_feature" "edge_vpn400_v01" {
+#   name                       = "VPN400_v01"
+#   description                = "VPN400 SD-WAN Services(open)"
+#   feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+#   vpn                        = 400
+#   config_description         = "VPN400 SD-WAN Services(open)"
+# }
 
 ################################ Configuration group ##############################
 resource "sdwan_configuration_group" "config_group_v01" {
@@ -123,7 +123,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
   feature_profile_ids = [
     sdwan_system_feature_profile.system_v01.id, 
     sdwan_transport_feature_profile.transport_v01.id,
-    sdwan_service_feature_profile.edge_service_v01.id,
+    # sdwan_service_feature_profile.edge_service_v01.id,
   ]
   devices = local.sd-wan_edges
   feature_versions = [
@@ -135,8 +135,8 @@ resource "sdwan_configuration_group" "config_group_v01" {
     sdwan_system_omp_feature.system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
-    sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
-    sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
+    # sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
+    # sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
   ]
 }
 
@@ -152,10 +152,10 @@ resource "sdwan_service_feature_profile" "core_service_v01" {
   description = "Core service feature profiles"
 }
 
-resource "sdwan_cli_feature_profile" "core_cli_v01" {
-  name        = "CLI_FEATURE_PROFILE_v01"
-  description = "CLI Feature Profile"
-}
+# resource "sdwan_cli_feature_profile" "core_cli_v01" {
+#   name        = "CLI_FEATURE_PROFILE_v01"
+#   description = "CLI Feature Profile"
+# }
 
 ##################################### Features ####################################
 # resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
@@ -500,77 +500,77 @@ resource "sdwan_cli_feature_profile" "core_cli_v01" {
 #   ipv4_nat_type              = "pool"
 # }
 
-resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
-  feature_profile_id = sdwan_cli_feature_profile.core_cli_v01.id
-  name               = "CORE_CLI_CFG_v01"
-  description        = "Core CLI config"
-  # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
-  cli_configuration  = <<-EOT
-  interface GigabitEthernet2.511
-  description Legacy_cores_mgmt
-  encapsulation dot1Q 511
-  vrf forwarding 511
-  ip address {{var_vpn511_gig2_511_if_address}} {{var_vpn511_gig2_511_if_mask}}
-  !
-  !Route leaking between VRF 511 and global VRF
-  vrf definition 511
-    address-family ipv4
-    route-replicate from vrf global unicast static
-    exit-address-family
-  !
-  global-address-family ipv4
-    route-replicate from vrf 511 unicast connected
-    exit-global-af
-  !
-  interface GigabitEthernet2.502
-  description Legacy_cores_BGP
-  encapsulation dot1Q 502
-  vrf forwarding 502
-  ip address {{var_gig2_502_if_address}} {{var_gig2_502_if_mask}}
-  !
-  interface GigabitEthernet2.200
-  description Legacy_cores_BGP
-  encapsulation dot1Q 200
-  vrf forwarding 200
-  ip address {{var_gig2_200_if_address}} {{var_gig2_200_if_mask}}
-  !
-  interface GigabitEthernet2.503
-  description Legacy_cores_BGP
-  encapsulation dot1Q 503
-  vrf forwarding 503
-  ip address {{var_gig2_503_if_address}} {{var_gig2_503_if_mask}}
-  !
-  interface GigabitEthernet2.300
-  description Legacy_cores_BGP
-  encapsulation dot1Q 300
-  vrf forwarding 300
-  ip address {{var_gig2_300_if_address}} {{var_gig2_300_if_mask}}
-  !
-  interface GigabitEthernet2.504
-  description Legacy_cores_BGP
-  encapsulation dot1Q 504
-  vrf forwarding 504
-  ip address {{var_gig2_504_if_address}} {{var_gig2_504_if_mask}}
-  !
-  interface GigabitEthernet2.400
-  description Legacy_cores_BGP
-  encapsulation dot1Q 400
-  vrf forwarding 400
-  ip address {{var_gig2_400_if_address}} {{var_gig2_400_if_mask}}
-  !
-  interface GigabitEthernet2.506
-  description Legacy_cores_BGP
-  encapsulation dot1Q 506
-  vrf forwarding 506
-  ip address {{var_gig2_506_if_address}} {{var_gig2_506_if_mask}}
-  !
-  interface GigabitEthernet2.600
-  description Legacy_cores_BGP
-  encapsulation dot1Q 600
-  vrf forwarding 600
-  ip address {{var_gig2_600_if_address}} {{var_gig2_600_if_mask}}
-  EOT
-}
+# resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
+#   feature_profile_id = sdwan_cli_feature_profile.core_cli_v01.id
+#   name               = "CORE_CLI_CFG_v01"
+#   description        = "Core CLI config"
+#   # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
+#   cli_configuration  = <<-EOT
+#   interface GigabitEthernet2.511
+#   description Legacy_cores_mgmt
+#   encapsulation dot1Q 511
+#   vrf forwarding 511
+#   ip address {{var_vpn511_gig2_511_if_address}} {{var_vpn511_gig2_511_if_mask}}
+#   !
+#   !Route leaking between VRF 511 and global VRF
+#   vrf definition 511
+#     address-family ipv4
+#     route-replicate from vrf global unicast static
+#     exit-address-family
+#   !
+#   global-address-family ipv4
+#     route-replicate from vrf 511 unicast connected
+#     exit-global-af
+#   !
+#   interface GigabitEthernet2.502
+#   description Legacy_cores_BGP
+#   encapsulation dot1Q 502
+#   vrf forwarding 502
+#   ip address {{var_gig2_502_if_address}} {{var_gig2_502_if_mask}}
+#   !
+#   interface GigabitEthernet2.200
+#   description Legacy_cores_BGP
+#   encapsulation dot1Q 200
+#   vrf forwarding 200
+#   ip address {{var_gig2_200_if_address}} {{var_gig2_200_if_mask}}
+#   !
+#   interface GigabitEthernet2.503
+#   description Legacy_cores_BGP
+#   encapsulation dot1Q 503
+#   vrf forwarding 503
+#   ip address {{var_gig2_503_if_address}} {{var_gig2_503_if_mask}}
+#   !
+#   interface GigabitEthernet2.300
+#   description Legacy_cores_BGP
+#   encapsulation dot1Q 300
+#   vrf forwarding 300
+#   ip address {{var_gig2_300_if_address}} {{var_gig2_300_if_mask}}
+#   !
+#   interface GigabitEthernet2.504
+#   description Legacy_cores_BGP
+#   encapsulation dot1Q 504
+#   vrf forwarding 504
+#   ip address {{var_gig2_504_if_address}} {{var_gig2_504_if_mask}}
+#   !
+#   interface GigabitEthernet2.400
+#   description Legacy_cores_BGP
+#   encapsulation dot1Q 400
+#   vrf forwarding 400
+#   ip address {{var_gig2_400_if_address}} {{var_gig2_400_if_mask}}
+#   !
+#   interface GigabitEthernet2.506
+#   description Legacy_cores_BGP
+#   encapsulation dot1Q 506
+#   vrf forwarding 506
+#   ip address {{var_gig2_506_if_address}} {{var_gig2_506_if_mask}}
+#   !
+#   interface GigabitEthernet2.600
+#   description Legacy_cores_BGP
+#   encapsulation dot1Q 600
+#   vrf forwarding 600
+#   ip address {{var_gig2_600_if_address}} {{var_gig2_600_if_mask}}
+#   EOT
+# }
 
 ################################ Configuration group ##############################
 resource "sdwan_configuration_group" "config_group_core_v01" {
@@ -607,6 +607,6 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_506_v01.version,
     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_600_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
-    sdwan_cli_config_feature.core_cli_cfg_v01.version,
+    # sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
 }
