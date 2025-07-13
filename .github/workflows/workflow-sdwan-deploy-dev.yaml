@@ -82,6 +82,8 @@ jobs:
           TF_VAR_admin_account_pass: ${{ secrets.SDWAN_LOCAL_ADMIN_PASS }}
           TF_VAR_S1R1_id: ${{ secrets.SDWAN_S1R1_ID }}
           TF_VAR_S2R1_id: ${{ secrets.SDWAN_S2R1_ID }}
+          TF_VAR_S3R1_id: ${{ secrets.SDWAN_S3R1_ID }}
+          TF_VAR_S4R1_id: ${{ secrets.SDWAN_S4R1_ID }}
           TF_VAR_DC1R1_id: ${{ secrets.SDWAN_DC1R1_ID }}
           TF_VAR_DC2R1_id: ${{ secrets.SDWAN_DC2R1_ID }}
           TF_VAR_DC3R1_id: ${{ secrets.SDWAN_DC3R1_ID }}
@@ -101,6 +103,8 @@ jobs:
           TF_VAR_admin_account_pass: ${{ secrets.SDWAN_LOCAL_ADMIN_PASS }}
           TF_VAR_S1R1_id: ${{ secrets.SDWAN_S1R1_ID }}
           TF_VAR_S2R1_id: ${{ secrets.SDWAN_S2R1_ID }}
+          TF_VAR_S3R1_id: ${{ secrets.SDWAN_S3R1_ID }}
+          TF_VAR_S4R1_id: ${{ secrets.SDWAN_S4R1_ID }}
           TF_VAR_DC1R1_id: ${{ secrets.SDWAN_DC1R1_ID }}
           TF_VAR_DC2R1_id: ${{ secrets.SDWAN_DC2R1_ID }}
           TF_VAR_DC3R1_id: ${{ secrets.SDWAN_DC3R1_ID }}
