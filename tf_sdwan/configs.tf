@@ -125,7 +125,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
     sdwan_transport_feature_profile.transport_v01.id,
     # sdwan_service_feature_profile.edge_service_v01.id,
   ]
-  devices = local.sd-wan_edges
+  # devices = local.sd-wan_edges
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
@@ -580,7 +580,7 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
   feature_profile_ids = [
     sdwan_system_feature_profile.system_v01.id, 
     sdwan_transport_feature_profile.transport_v01.id,
-    sdwan_service_feature_profile.core_service_v01.id,
+    # sdwan_service_feature_profile.core_service_v01.id,
     # sdwan_cli_feature_profile.core_cli_v01.id
   ]
   # devices = local.sd-wan_cores
