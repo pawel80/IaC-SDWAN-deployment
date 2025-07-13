@@ -122,7 +122,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
   solution     = "sdwan"
   feature_profile_ids = [
     sdwan_system_feature_profile.system_v01.id, 
-    sdwan_transport_feature_profile.transport_v01.id
+    sdwan_transport_feature_profile.transport_v01.id,
     sdwan_service_feature_profile.edge_service_v01.id,
   ]
   devices = local.sd-wan_edges
