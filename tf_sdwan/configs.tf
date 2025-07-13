@@ -13,6 +13,11 @@ resource "sdwan_transport_feature_profile" "transport_v01" {
   description = "Transport and Management config"
 }
 
+resource "sdwan_service_feature_profile" "edge_service_v01" {
+  name        = "EDGE_SERVICES_v01"
+  description = "Edge service feature profiles"
+}
+
 ##################################### Features ####################################
 resource "sdwan_system_basic_feature" "system_basic_v01" {
   name               = "SYSTEM_BASIC_v01"
@@ -92,11 +97,6 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
       encapsulation = "gre"
     }
   ]
-}
-
-resource "sdwan_service_feature_profile" "edge_service_v01" {
-  name        = "CORE_SERVICES_v01"
-  description = "Core service feature profiles"
 }
 
 resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
