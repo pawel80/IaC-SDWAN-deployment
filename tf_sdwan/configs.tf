@@ -99,21 +99,21 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ]
 }
 
-# resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
-#   name                       = "VPN504_v01"
-#   description                = "VPN504 SD-WAN Monitoring(open)"
-#   feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
-#   vpn                        = 504
-#   config_description         = "VPN504 SD-WAN Monitoring(open)"
-# }
+resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
+  name                       = "EDGE_VPN504_v01"
+  description                = "EDGE VPN504 SD-WAN Monitoring(open)"
+  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+  vpn                        = 504
+  config_description         = "EDGE VPN504 SD-WAN Monitoring(open)"
+}
 
-# resource "sdwan_service_lan_vpn_feature" "edge_vpn400_v01" {
-#   name                       = "VPN400_v01"
-#   description                = "VPN400 SD-WAN Services(open)"
-#   feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
-#   vpn                        = 400
-#   config_description         = "VPN400 SD-WAN Services(open)"
-# }
+resource "sdwan_service_lan_vpn_feature" "edge_vpn400_v01" {
+  name                       = "EDGE_VPN400_v01"
+  description                = "EDGE VPN400 SD-WAN Services(open)"
+  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+  vpn                        = 400
+  config_description         = "EDGE VPN400 SD-WAN Services(open)"
+}
 
 ################################ Configuration group ##############################
 resource "sdwan_configuration_group" "config_group_v01" {
@@ -135,8 +135,8 @@ resource "sdwan_configuration_group" "config_group_v01" {
     sdwan_system_omp_feature.system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
-    # sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
-    # sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
+    sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
+    sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
   ]
 }
 
