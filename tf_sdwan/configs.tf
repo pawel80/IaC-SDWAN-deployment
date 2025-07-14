@@ -632,7 +632,7 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
     sdwan_system_feature_profile.system_v01.id, 
     sdwan_transport_feature_profile.transport_v01.id, 
     sdwan_service_feature_profile.core_service_v01.id, 
-    sdwan_cli_feature_profile.core_cli_v01.id
+    sdwan_cli_feature_profile.core_cli_v01.id,
   ]
   devices = local.sd-wan_cores
   feature_versions = [
