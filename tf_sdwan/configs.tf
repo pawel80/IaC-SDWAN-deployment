@@ -178,7 +178,7 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_loop_54_v01" {
 # }
 
 ################################ Configuration group ##############################
-resource "sdwan_configuration_group" "config_group_v01" {
+resource "sdwan_configuration_group" "edge_config_group_v01" {
   name        = "CG_MN_DUAL_TLOC_E_v01"
   description = "Configuration group - Edges"
   solution     = "sdwan"
@@ -199,7 +199,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
     sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
-    # sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version
+    # sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version,
   ]
 }
 
