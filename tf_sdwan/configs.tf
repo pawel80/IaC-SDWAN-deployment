@@ -624,7 +624,7 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
 }
 
 ################################ Configuration group ##############################
-resource "sdwan_configuration_group" "core_config_group_v01" {
+resource "sdwan_configuration_group" "config_group_core_v01" {
   name        = "CG_CORES_v01"
   description = "Configuration group - Cores"
   solution     = "sdwan"
