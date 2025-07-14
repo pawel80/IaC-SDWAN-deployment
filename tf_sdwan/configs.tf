@@ -199,7 +199,7 @@ resource "sdwan_configuration_group" "config_group_v01" {
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
     sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
-    sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version
+    # sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version
   ]
 }
 
