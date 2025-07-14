@@ -199,7 +199,7 @@ resource "sdwan_configuration_group" "edge_config_group_v01" {
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
     sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
     sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
-    # sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version, 
+    # sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version,
   ]
 }
 
@@ -638,7 +638,7 @@ resource "sdwan_configuration_group" "config_group_core_v01" {
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
-    # sdwan_system_bfd_feature.system_bfd_v01.version,
+    # sdwan_system_bfd_feature.system_bfd_v01.version, 
     # sdwan_system_logging_feature.system_logging_v01.version,
     sdwan_system_global_feature.system_global_v01.version,
     sdwan_system_omp_feature.system_omp_v01.version,
