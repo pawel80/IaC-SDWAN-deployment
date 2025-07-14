@@ -125,6 +125,8 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_loop_54_v01" {
   interface_description      = "Monitoring"
   ipv4_address_variable      = "{{var_edge_loop54_address}}"
   ipv4_subnet_mask_variable  = "{{var_edge_loop54_mask}}"
+  ipv4_nat                   = false
+  # ipv4_nat_type              = "pool"
 }
 
 # resource "sdwan_service_routing_bgp_feature" "edge_bgp_504_v01" {
