@@ -123,8 +123,8 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_loop_54_v01" {
   shutdown                   = false
   interface_name             = "Loopback54"
   interface_description      = "Monitoring"
-  ipv4_address               = "{{var_edge_loop54_address}}"
-  ipv4_subnet_mask           = "{{var_edge_loop54_mask}}"
+  ipv4_address_variable      = "{{var_edge_loop54_address}}"
+  ipv4_subnet_mask_variable  = "{{var_edge_loop54_mask}}"
 }
 
 # resource "sdwan_service_routing_bgp_feature" "edge_bgp_504_v01" {
