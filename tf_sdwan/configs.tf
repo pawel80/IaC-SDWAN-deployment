@@ -115,6 +115,66 @@ resource "sdwan_service_lan_vpn_feature" "edge_vpn400_v01" {
   config_description         = "EDGE VPN400 SD-WAN Services(open)"
 }
 
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_loop_54_v01" {
+  name                       = "EDGE_LOOP54_v01"
+  description                = "EDGE LOOPBACK54 Monitoring"
+  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge_vpn504_v01.id
+  shutdown                   = false
+  interface_name             = "Loopback54"
+  interface_description      = "Monitoring"
+  ipv4_address               = "{{var_edge_loop54_address}}"
+  ipv4_subnet_mask           = "{{var_edge_loop54_mask}}"
+}
+
+# resource "sdwan_service_routing_bgp_feature" "edge_bgp_504_v01" {
+#   name                     = "EDGE_BGP_504_v01"
+#   description              = "Edge BGP towards legacy core routers"
+#   feature_profile_id       = sdwan_service_feature_profile.edge_service_v01.id
+#   as_number_variable       = "{{var_edge_bgp_asn}}"
+#   ipv4_neighbors = [
+#     {
+#       address_variable        = "{{var_edge_nb_504_ip_address}}"
+#       description_variable    = "{{var_edge_nb_504_desc}}"
+#       shutdown                = false
+#       remote_as_variable      = "{{var_edge_nb_504_asn}}"
+#       address_families = [
+#         {
+#           family_type            = "ipv4-unicast"
+#           max_number_of_prefixes = 2000
+#           threshold              = 75
+#           policy_type            = "restart"
+#           restart_interval       = 30
+#         }
+#       ]
+#     }
+#   ]
+# }
+
+# resource "sdwan_service_routing_bgp_feature" "edge_bgp_400_v01" {
+#   name                     = "EDGE_BGP_400_v01"
+#   description              = "Edge BGP towards legacy core routers"
+#   feature_profile_id       = sdwan_service_feature_profile.edge_service_v01.id
+#   as_number_variable       = "{{var_edge_bgp_asn}}"
+#   ipv4_neighbors = [
+#     {
+#       address_variable        = "{{var_edge_nb_400_ip_address}}"
+#       description_variable    = "{{var_edge_nb_400_desc}}"
+#       shutdown                = false
+#       remote_as_variable      = "{{var_edge_nb_400_asn}}"
+#       address_families = [
+#         {
+#           family_type            = "ipv4-unicast"
+#           max_number_of_prefixes = 2000
+#           threshold              = 75
+#           policy_type            = "restart"
+#           restart_interval       = 30
+#         }
+#       ]
+#     }
+#   ]
+# }
+
 ################################ Configuration group ##############################
 resource "sdwan_configuration_group" "config_group_v01" {
   name        = "CG_MN_DUAL_TLOC_E_v01"

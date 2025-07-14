@@ -57,7 +57,31 @@ sd-wan_edges = [
       {
         name = "var_vpn0_gig1_if_mask"
         value = "255.255.255.252"
+      },
+      {
+        name = "var_edge_loop54_address"
+        value = "11.1.1.1"
+      },
+      {
+        name = "var_edge_loop54_mask"
+        value = "255.255.255.255"
       }
+      # {
+      #   name = "var_edge_bgp_asn"
+      #   value = "65101"
+      # },
+      # {
+      #   name = "var_edge_nb_504_ip_address"
+      #   value = "172.16.52.2"
+      # },
+      # {
+      #   name = "var_edge_nb_504_desc"
+      #   value = "DC1R2-VPN:502"
+      # },
+      # {
+      #   name = "var_edge_nb_504_asn"
+      #   value = "65101"
+      # },
     ]
     },
     {
@@ -95,6 +119,14 @@ sd-wan_edges = [
       {
         name = "var_vpn0_gig1_if_mask"
         value = "255.255.255.252"
+      },
+      {
+        name = "var_edge_loop54_address"
+        value = "11.1.2.1"
+      },
+      {
+        name = "var_edge_loop54_mask"
+        value = "255.255.255.255"
       }
     ]
     },
@@ -133,6 +165,14 @@ sd-wan_edges = [
       {
         name = "var_vpn0_gig1_if_mask"
         value = "255.255.255.252"
+      },
+      {
+        name = "var_edge_loop54_address"
+        value = "22.2.3.1"
+      },
+      {
+        name = "var_edge_loop54_mask"
+        value = "255.255.255.255"
       }
     ]
     },
@@ -171,6 +211,14 @@ sd-wan_edges = [
       {
         name = "var_vpn0_gig1_if_mask"
         value = "255.255.255.252"
+      },
+      {
+        name = "var_edge_loop54_address"
+        value = "22.2.4.1"
+      },
+      {
+        name = "var_edge_loop54_mask"
+        value = "255.255.255.255"
       }
     ]
     }
