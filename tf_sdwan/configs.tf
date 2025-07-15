@@ -436,8 +436,8 @@ resource "sdwan_service_routing_bgp_feature" "core_bgp_504_v01" {
   ]
   ipv4_redistributes = [
     {
-      protocol = "omp",
-      protocol = "connected"
+      protocol = "omp"
+      # protocol = "connected"
     }
   ]
 }
@@ -514,6 +514,7 @@ resource "sdwan_service_routing_bgp_feature" "core_bgp_600_v01" {
   ]
 }
 
+# Needed for routing protocol redistribution
 resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_502_v01" {
   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn502_v01.id
