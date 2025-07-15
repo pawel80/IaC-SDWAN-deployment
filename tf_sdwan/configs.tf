@@ -37,13 +37,14 @@ resource "sdwan_system_aaa_feature" "system_aaa_v01" {
 resource "sdwan_system_omp_feature" "system_omp_v01" {
   name                        = "SYSTEM_OMP_v01"
   feature_profile_id          = sdwan_system_feature_profile.system_v01.id
-  advertise_ipv6_bgp          = false
-  advertise_ipv6_ospf         = false
-  advertise_ipv6_connected    = false
-  advertise_ipv6_static       = false
-  advertise_ipv6_eigrp        = false
-  advertise_ipv6_lisp         = false
-  advertise_ipv6_isis         = false
+  advertise_ipv4_bgp          = true
+  # advertise_ipv6_bgp          = false
+  # advertise_ipv6_ospf         = false
+  # advertise_ipv6_connected    = false
+  # advertise_ipv6_static       = false
+  # advertise_ipv6_eigrp        = false
+  # advertise_ipv6_lisp         = false
+  # advertise_ipv6_isis         = false
 }
 
 # resource "sdwan_system_bfd_feature" "system_bfd_v01" {
@@ -655,7 +656,7 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
     sdwan_service_feature_profile.core_service_v01.id, 
     sdwan_cli_feature_profile.core_cli_v01.id,
   ]
-  # devices = local.sd-wan_cores
+  devices = local.sd-wan_cores
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
