@@ -679,7 +679,7 @@ sd-wan_edges = [
       },
       {
         name = "system_ip"
-        value = "99.9.1.3"
+        value = "99.9.3.1"
       },
       {
         name = "ipv6_strict_control"
