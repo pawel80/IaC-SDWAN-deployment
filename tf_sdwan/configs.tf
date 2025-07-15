@@ -434,6 +434,11 @@ resource "sdwan_service_routing_bgp_feature" "core_bgp_504_v01" {
       ]
     }
   ]
+  ipv4_redistributes = [
+    {
+      protocol = "omp"
+    }
+  ]
 }
 
 resource "sdwan_service_routing_bgp_feature" "core_bgp_400_v01" {
