@@ -195,7 +195,7 @@ resource "sdwan_configuration_group" "edge_config_group_v01" {
     sdwan_transport_feature_profile.transport_v01.id,
     sdwan_service_feature_profile.edge_service_v01.id,
   ]
-  devices = local.sd-wan_edges
+  # devices = local.sd-wan_edges
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
@@ -513,7 +513,6 @@ resource "sdwan_service_routing_bgp_feature" "core_bgp_600_v01" {
     }
   ]
 }
-
 
 # Needed for routing protocol redistribution
 # resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_502_v01" {
