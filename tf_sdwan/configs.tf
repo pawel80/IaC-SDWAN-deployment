@@ -515,53 +515,53 @@ resource "sdwan_service_routing_bgp_feature" "core_bgp_600_v01" {
 }
 
 # Needed for routing protocol redistribution
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_502_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn502_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_502_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_502_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn502_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_502_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_200_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_200_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_200_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_200_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_503_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn503_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_503_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_503_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn503_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_503_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_300_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn300_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_300_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_300_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn300_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_300_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_504_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn504_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_504_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_504_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn504_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_504_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_400_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn400_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_400_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_400_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn400_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_400_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_506_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn506_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_506_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_506_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn506_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_506_v01.id
+# }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_600_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn600_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_600_v01.id
-}
+# resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_600_v01" {
+#   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+#   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn600_v01.id
+#   service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_600_v01.id
+# }
 
 
 # ERROR during subinterface creation:
