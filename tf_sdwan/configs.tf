@@ -685,7 +685,7 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_200_v01.version,
     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_503_v01.version,
     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_300_v01.version,
-    # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_504_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_504_v01.version,
     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_400_v01.version,
     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_506_v01.version,
     # sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_600_v01.version,
