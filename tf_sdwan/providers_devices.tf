@@ -334,6 +334,14 @@ sd-wan_edges = [
         value = "255.255.255.252"
       },
       {
+        name = "var_core_loop54_address"
+        value = "99.9.1.1"
+      },
+      {
+        name = "var_core_loop54_mask"
+        value = "255.255.255.255"
+      },
+      {
         name = "var_bgp_asn"
         value = "65101"
       },
@@ -544,6 +552,14 @@ sd-wan_edges = [
         value = "255.255.255.252"
       },
       {
+        name = "var_core_loop54_address"
+        value = "99.9.1.2"
+      },
+      {
+        name = "var_core_loop54_mask"
+        value = "255.255.255.255"
+      },
+      {
         name = "var_bgp_asn"
         value = "65201"
       },
@@ -752,6 +768,14 @@ sd-wan_edges = [
       {
         name = "var_gig2_600_if_mask"
         value = "255.255.255.252"
+      },
+      {
+        name = "var_core_loop54_address"
+        value = "99.9.1.3"
+      },
+      {
+        name = "var_core_loop54_mask"
+        value = "255.255.255.255"
       },
       {
         name = "var_bgp_asn"
