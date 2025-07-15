@@ -66,22 +66,6 @@ sd-wan_edges = [
         name = "var_edge_loop54_mask"
         value = "255.255.255.255"
       }
-      # {
-      #   name = "var_edge_bgp_asn"
-      #   value = "65101"
-      # },
-      # {
-      #   name = "var_edge_nb_504_ip_address"
-      #   value = "172.16.52.2"
-      # },
-      # {
-      #   name = "var_edge_nb_504_desc"
-      #   value = "DC1R2-VPN:502"
-      # },
-      # {
-      #   name = "var_edge_nb_504_asn"
-      #   value = "65101"
-      # },
     ]
     },
     {
