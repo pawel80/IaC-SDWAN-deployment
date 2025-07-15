@@ -37,7 +37,7 @@ resource "sdwan_system_aaa_feature" "system_aaa_v01" {
 resource "sdwan_system_omp_feature" "system_omp_v01" {
   name                        = "SYSTEM_OMP_v01"
   feature_profile_id          = sdwan_system_feature_profile.system_v01.id
-  # advertise_ipv4_bgp          = true
+  advertise_ipv4_bgp          = true
   # advertise_ipv6_bgp          = false
   # advertise_ipv6_ospf         = false
   # advertise_ipv6_connected    = false
