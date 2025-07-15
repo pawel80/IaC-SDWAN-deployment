@@ -771,7 +771,7 @@ sd-wan_edges = [
       },
       {
         name = "var_core_loop54_address"
-        value = "99.9.3.`"
+        value = "99.9.3.1"
       },
       {
         name = "var_core_loop54_mask"
