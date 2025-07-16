@@ -121,14 +121,16 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
   ]
 }
 
-# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
-#   name                         = "WAN_VPN0_IF_ETH_v02"
-#   feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
-#   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
-#   interface_name               = "GigabitEthernet2"
-#   shutdown                     = true
-#   interface_description        = "NOT-USED"
-# }
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
+  name                         = "WAN_VPN0_IF_ETH_v02"
+  feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+  interface_name               = "GigabitEthernet2"
+  shutdown                     = true
+  interface_description        = "NOT-USED"
+  ipv4_address                 = "1.1.1.1"
+  ipv4_subnet_mask             = "255.255.255.255"
+}
 
 # resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth4_v01" {
 #   name                         = "WAN_VPN0_IF_ETH_v04"
@@ -139,15 +141,15 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
 #   interface_description        = "NOT-USED"
 # }
 
-resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_dual1_vpn400_if_eth2_v01" {
-  name                       = "EDGE_DUAL1_ETH2_v01"
-  description                = "NOT-USED"
-  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
-  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge_vpn400_v01.id
-  shutdown                   = true
-  interface_name             = "GigabitEthernet2"
-  interface_description      = "NOT-USED"
-}
+# resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_dual1_vpn400_if_eth2_v01" {
+#   name                       = "EDGE_DUAL1_ETH2_v01"
+#   description                = "NOT-USED"
+#   feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+#   service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge_vpn400_v01.id
+#   shutdown                   = true
+#   interface_name             = "GigabitEthernet2"
+#   interface_description      = "NOT-USED"
+# }
 
 resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
   name                       = "EDGE_VPN504_v01"
