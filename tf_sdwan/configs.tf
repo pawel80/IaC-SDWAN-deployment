@@ -750,7 +750,7 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
     sdwan_system_global_feature.system_global_v01.version,
     sdwan_system_omp_feature.core_system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
-    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth1_v01.version,
     sdwan_service_lan_vpn_feature.core_vpn511_v01.version,
     sdwan_service_lan_vpn_feature.core_vpn502_v01.version,
     sdwan_service_lan_vpn_feature.core_vpn200_v01.version,
