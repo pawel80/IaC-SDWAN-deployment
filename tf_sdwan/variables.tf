@@ -16,8 +16,20 @@ variable "S1R1_id" {
   default     = ""
 }
 
+variable "S1R2_id" {
+  description = "SDWAN S1R2 router ID"
+  type        = string
+  default     = ""
+}
+
 variable "S2R1_id" {
   description = "SDWAN S2R1 router ID"
+  type        = string
+  default     = ""
+}
+
+variable "S2R2_id" {
+  description = "SDWAN S2R2 router ID"
   type        = string
   default     = ""
 }

@@ -21,7 +21,7 @@ terraform {
 # }
 
 locals {
-sd-wan_edges = [
+  sdwan_edges_dual1 = [
     {
     id     = var.S1R1_id
     deploy = true
@@ -113,7 +113,105 @@ sd-wan_edges = [
         value = "255.255.255.255"
       }
     ]
+    }
+  ]
+
+  sdwan_edges_dual2 = [
+    {
+    id     = var.S1R2_id
+    deploy = true
+    variables = [
+      {
+        name = "host_name"
+        value = "S1R2"
+      },
+      {
+        name = "pseudo_commit_timer"
+        value = 0
+      },
+      {
+        name = "site_id"
+        value = 101
+      },
+      {
+        name = "system_ip"
+        value = "11.1.1.2"
+      },
+      {
+        name = "ipv6_strict_control"
+        value = "false"
+      },
+      {
+        name = "var_def_gtw"
+        value = "172.16.10.1"
+      },
+      {
+        name = "var_vpn0_gig1_if_address"
+        value = "172.16.10.2"
+      },
+      {
+        name = "var_vpn0_gig1_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_edge_loop54_address"
+        value = "11.1.1.1"
+      },
+      {
+        name = "var_edge_loop54_mask"
+        value = "255.255.255.255"
+      }
+    ]
     },
+    {
+    id     = var.S2R2_id
+    deploy = true
+    variables = [
+      {
+        name = "host_name"
+        value = "S2R2"
+      },
+      {
+        name = "pseudo_commit_timer"
+        value = 0
+      },
+      {
+        name = "site_id"
+        value = 101
+      },
+      {
+        name = "system_ip"
+        value = "11.1.2.2"
+      },
+      {
+        name = "ipv6_strict_control"
+        value = "false"
+      },
+      {
+        name = "var_def_gtw"
+        value = "172.16.10.1"
+      },
+      {
+        name = "var_vpn0_gig1_if_address"
+        value = "172.16.10.2"
+      },
+      {
+        name = "var_vpn0_gig1_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_edge_loop54_address"
+        value = "11.1.1.1"
+      },
+      {
+        name = "var_edge_loop54_mask"
+        value = "255.255.255.255"
+      }
+    ]
+    }
+ ]
+
+  sdwan_edges_single = [
     {
     id     = var.S3R1_id
     deploy = true
@@ -208,7 +306,7 @@ sd-wan_edges = [
     }
   ]
 
-  sd-wan_cores = [
+  sdwan_cores = [
     {
     id     = var.DC1R1_id
     deploy = true
