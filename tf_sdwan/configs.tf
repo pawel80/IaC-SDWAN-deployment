@@ -85,7 +85,6 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ipv4_configuration_type      = "static"
   ipv4_address_variable        = "{{var_vpn0_gig1_if_address}}"
   ipv4_subnet_mask_variable    = "{{var_vpn0_gig1_if_mask}}"
-
   tunnel_interface             = true
   tunnel_interface_color       = "biz-internet"
   tunnel_interface_allow_icmp  = true
@@ -98,6 +97,37 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
     }
   ]
 }
+
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth_v03" {
+  name                         = "TLOC_EXT_VPN0_IF_ETH_v03"
+  feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+  interface_name               = "GigabitEthernet3"
+  shutdown                     = false
+  interface_description        = "TLOC_EXT"
+  ipv4_configuration_type      = "static"
+  ipv4_address_variable        = "{{var_vpn0_gig3_if_address}}"
+  ipv4_subnet_mask_variable    = "{{var_vpn0_gig3_if_mask}}"
+  tunnel_interface             = true
+  tunnel_interface_color       = "private1"
+  tunnel_interface_allow_icmp  = true
+  tunnel_interface_allow_dns   = true
+  tunnel_interface_allow_ntp   = true
+  tunnel_interface_encapsulations = [
+    {
+      encapsulation = "gre"
+    }
+  ]
+}
+
+# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth_v02" {
+#   name                         = "WAN_VPN0_IF_ETH_v02"
+#   feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
+#   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+#   interface_name               = "GigabitEthernet2"
+#   shutdown                     = true
+#   interface_description        = "NOT-USED"
+# }
 
 resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
   name                       = "EDGE_VPN504_v01"

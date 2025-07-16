@@ -59,6 +59,14 @@ locals {
         value = "255.255.255.252"
       },
       {
+        name = "var_vpn0_gig3_if_address"
+        value = "192.168.0.1"
+      },
+      {
+        name = "var_vpn0_gig3_if_mask"
+        value = "255.255.255.252"
+      },
+      {
         name = "var_edge_loop54_address"
         value = "11.1.1.1"
       },
@@ -102,6 +110,14 @@ locals {
       },
       {
         name = "var_vpn0_gig1_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_vpn0_gig3_if_address"
+        value = "192.168.0.5"
+      },
+      {
+        name = "var_vpn0_gig3_if_mask"
         value = "255.255.255.252"
       },
       {
