@@ -240,8 +240,8 @@ resource "sdwan_cli_feature_profile" "core_cli_v01" {
 }
 
 ##################################### Features ####################################
-resource "sdwan_system_omp_feature" "system_omp_v01" {
-  name                        = "SYSTEM_OMP_v01"
+resource "sdwan_system_omp_feature" "core_system_omp_v01" {
+  name                        = "CORE_SYSTEM_OMP_v01"
   feature_profile_id          = sdwan_system_feature_profile.core_system_v01.id
   advertise_ipv4_bgp          = true
 }
@@ -687,7 +687,7 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
 #     # sdwan_system_bfd_feature.system_bfd_v01.version,
 #     # sdwan_system_logging_feature.system_logging_v01.version,
 #     sdwan_system_global_feature.system_global_v01.version,
-#     sdwan_system_omp_feature.system_omp_v01.version,
+#     sdwan_system_omp_feature.core_system_omp_v01.version,
 #     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
 #     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
 #     sdwan_service_lan_vpn_feature.core_vpn511_v01.version,
