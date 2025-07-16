@@ -75,8 +75,8 @@ resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
   ]
 }
 
-resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn_if_eth_v01" {
-  name                         = "TRANSPORT_WAN_VPN0_IF_ETH_v01"
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn_if_eth1_v01" {
+  name                         = "TRANSPORT_WAN_VPN0_IF_ETH1_v01"
   feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
   interface_name               = "GigabitEthernet1"
@@ -98,8 +98,8 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ]
 }
 
-resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth_v03" {
-  name                         = "TLOC_EXT_VPN0_IF_ETH_v03"
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth3_v01" {
+  name                         = "TLOC_EXT_VPN0_IF_ETH3_v01"
   feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
   interface_name               = "GigabitEthernet3"
@@ -121,16 +121,16 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
   ]
 }
 
-resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth_v02" {
-  name                         = "WAN_VPN0_IF_ETH_v02"
-  feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
-  # transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
-  interface_name               = "GigabitEthernet2"
-  shutdown                     = true
-  interface_description        = "NOT-USED"
-}
+# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
+#   name                         = "WAN_VPN0_IF_ETH_v02"
+#   feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
+#   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+#   interface_name               = "GigabitEthernet2"
+#   shutdown                     = true
+#   interface_description        = "NOT-USED"
+# }
 
-# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth_v04" {
+# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth4_v01" {
 #   name                         = "WAN_VPN0_IF_ETH_v04"
 #   feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
 #   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
@@ -139,17 +139,15 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
 #   interface_description        = "NOT-USED"
 # }
 
-# resource "sdwan_service_lan_vpn_interface_ethernet_feature" "example" {
-#   name                       = "Example"
-#   description                = "My Example"
-#   feature_profile_id         = "f6dd22c8-0b4f-496c-9a0b-6813d1f8b8ac"
-#   service_lan_vpn_feature_id = "140331f6-5418-4755-a059-13c77eb96037"
-#   shutdown                   = false
-#   interface_name             = "GigabitEthernet3"
-#   interface_description      = "LAN"
-#   ipv4_address               = "1.2.3.4"
-#   ipv4_subnet_mask           = "0.0.0.0"
-# }
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_dual1_vpn400_if_eth2_v01" {
+  name                       = "EDGE_DUAL1_ETH2_v01"
+  description                = "NOT-USED"
+  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge_vpn400_v01.id
+  shutdown                   = true
+  interface_name             = "GigabitEthernet2"
+  interface_description      = "NOT-USED"
+}
 
 resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
   name                       = "EDGE_VPN504_v01"
@@ -248,7 +246,7 @@ resource "sdwan_configuration_group" "edge_config_group_v01" {
     sdwan_system_global_feature.system_global_v01.version,
     sdwan_system_omp_feature.edge_system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
-    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth1_v01.version,
     sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
     sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version,
