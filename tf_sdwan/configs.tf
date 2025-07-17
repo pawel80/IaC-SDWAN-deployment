@@ -113,7 +113,7 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
   tunnel_interface_allow_icmp  = true
   tunnel_interface_allow_dns   = true
   tunnel_interface_allow_ntp   = true
-  # tloc_extension               = "GigabitEthernet1"
+  tloc_extension               = "GigabitEthernet1"
   tunnel_interface_encapsulations = [
     {
       encapsulation = "gre"
