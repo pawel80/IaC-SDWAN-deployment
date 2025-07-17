@@ -108,7 +108,7 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
   ipv4_configuration_type      = "static"
   ipv4_address_variable        = "{{var_vpn0_gig3_if_address}}"
   ipv4_subnet_mask_variable    = "{{var_vpn0_gig3_if_mask}}"
-  # tunnel_interface             = true
+  tunnel_interface             = false
   # tunnel_interface_color       = "private1"
   # tunnel_interface_allow_icmp  = true
   # tunnel_interface_allow_dns   = true
@@ -249,6 +249,7 @@ resource "sdwan_configuration_group" "edge_config_group_v01" {
     sdwan_system_omp_feature.edge_system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth1_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.edge_dual1_vpn0_if_eth3_v01.version,
     sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
     sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version,
