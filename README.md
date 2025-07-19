@@ -61,6 +61,21 @@ Non standard config:
 > - iosxe provider will hang if there are no online routers
 > - for iosxe provider, I've skipped TF config for mgmt interfaces. There is too much risk that TF will remove that config
 > - impossible to create a sub interface via sd-wan provider, resource: sdwan_service_lan_vpn_interface_ethernet_feature
+> - if you want to shutdown interface based on resource: sdwan_transport_wan_vpn_interface_ethernet_feature or sdwan_service_lan_vpn_interface_ethernet_feature, then you need to first assigned IP address and eventually also nat type ...  
+
+```terraform
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
+  name                         = "WAN_VPN0_IF_ETH_v02"
+  feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+  interface_name               = "GigabitEthernet2"
+  shutdown                     = true
+  interface_description        = "NOT-USED"
+  ipv4_configuration_type      = "static"
+  ipv4_address                 = "1.1.1.1"
+  ipv4_subnet_mask             = "255.255.255.254"
+}
+```
 
 <!--- 
 ![screenshot](drawings/lab_v01.png)

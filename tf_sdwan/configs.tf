@@ -117,17 +117,17 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
   tloc_extension               = "GigabitEthernet1"
 }
 
-resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
-  name                         = "WAN_VPN0_IF_ETH_v02"
-  feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
-  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
-  interface_name               = "GigabitEthernet2"
-  shutdown                     = true
-  interface_description        = "NOT-USED"
-  ipv4_configuration_type      = "static"
-  ipv4_address                 = "1.1.1.1"
-  ipv4_subnet_mask             = "255.255.255.254"
-}
+# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
+#   name                         = "WAN_VPN0_IF_ETH_v02"
+#   feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
+#   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+#   interface_name               = "GigabitEthernet2"
+#   shutdown                     = true
+#   interface_description        = "NOT-USED"
+#   ipv4_configuration_type      = "static"
+#   ipv4_address                 = "1.1.1.1"
+#   ipv4_subnet_mask             = "255.255.255.254"
+# }
 
 # resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth4_v01" {
 #   name                         = "WAN_VPN0_IF_ETH_v04"
