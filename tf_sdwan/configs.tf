@@ -187,8 +187,8 @@ resource "sdwan_cli_config_feature" "edge_cli_cfg_v01" {
   name               = "EDGE_CLI_CFG_v01"
   description        = "EDGE CLI config"
   cli_configuration  = <<-EOT
-  !interface GigabitEthernet2
-  !shutdown
+  interface GigabitEthernet2
+  shutdown
   !
   interface GigabitEthernet4
   shutdown
