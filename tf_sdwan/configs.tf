@@ -143,6 +143,8 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_dual1_vpn400_i
   interface_description      = "NOT-USED"
   ipv4_nat                   = false
   ipv4_nat_type              = "pool"
+  ipv4_address                 = "1.1.1.1"
+  ipv4_subnet_mask             = "255.255.255.252"
 }
 
 resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
