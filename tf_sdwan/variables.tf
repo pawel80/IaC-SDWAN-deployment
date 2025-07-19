@@ -16,8 +16,32 @@ variable "S1R1_id" {
   default     = ""
 }
 
+variable "S1R2_id" {
+  description = "SDWAN S1R2 router ID"
+  type        = string
+  default     = ""
+}
+
 variable "S2R1_id" {
   description = "SDWAN S2R1 router ID"
+  type        = string
+  default     = ""
+}
+
+variable "S2R2_id" {
+  description = "SDWAN S2R2 router ID"
+  type        = string
+  default     = ""
+}
+
+variable "S3R1_id" {
+  description = "SDWAN S3R1 router ID"
+  type        = string
+  default     = ""
+}
+
+variable "S4R1_id" {
+  description = "SDWAN S4R1 router ID"
   type        = string
   default     = ""
 }
@@ -39,9 +63,3 @@ variable "DC3R1_id" {
   type        = string
   default     = ""
 }
-
-# variable "var_vpn511_gig2_511_if_address" {
-#   description = "Legacy core mgmt address"
-#   type = string
-#   default = "172.16.51.1 255.255.255.252"
-# }

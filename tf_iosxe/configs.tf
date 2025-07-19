@@ -231,6 +231,18 @@ resource "iosxe_interface_loopback" "core_loop_99" {
   shutdown                       = false
 }
 
+resource "iosxe_interface_loopback" "core_loop_54" {
+  provider                       = iosxe.cores
+  for_each                       = {for router in local.legacy_core_routers : router.name => router}
+  device                         = each.value.name
+  name                           = 54
+  # vrf_forwarding                 = "504"
+  description                    = each.value.loop_54_desc
+  ipv4_address                   = each.value.loop_54_ip_address
+  ipv4_address_mask              = each.value.loop_54_mask
+  shutdown                       = false
+}
+
 resource "iosxe_interface_loopback" "core_loop_56" {
   provider                       = iosxe.cores
   for_each                       = {for router in local.legacy_core_routers : router.name => router}

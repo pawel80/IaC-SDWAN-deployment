@@ -1,27 +1,37 @@
 ###################################################################################
 ################################## SD-WAN cEDGEs ##################################
 ###################################################################################
-
+#---------------------- Dual routers site - intranet (open) ------=----------------
 ################################# Feature profiles ################################
-resource "sdwan_system_feature_profile" "system_v01" {
-  name        = "SYSTEM_v01"
-  description = "System settings for all of the sites"
+resource "sdwan_system_feature_profile" "edge_system_v01" {
+  name        = "EDGE_SYSTEM_v01"
+  description = "EDGE System settings"
 }
 
-resource "sdwan_transport_feature_profile" "transport_v01" {
-  name        = "TRANSPORT_v01"
-  description = "Transport and Management config"
+resource "sdwan_transport_feature_profile" "edge_transport_v01" {
+  name        = "EDGE_TRANSPORT_v01"
+  description = "EDGE Transport and Management config"
+}
+
+resource "sdwan_service_feature_profile" "edge_service_v01" {
+  name        = "EDGE_SERVICES_v01"
+  description = "EDGE service feature profiles"
+}
+
+resource "sdwan_cli_feature_profile" "edge_cli_v01" {
+  name        = "EDGE_CLI_FEATURE_PROFILE_v01"
+  description = "EDGE CLI Feature Profile"
 }
 
 ##################################### Features ####################################
 resource "sdwan_system_basic_feature" "system_basic_v01" {
   name               = "SYSTEM_BASIC_v01"
-  feature_profile_id = sdwan_system_feature_profile.system_v01.id
+  feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
 }
 
 resource "sdwan_system_aaa_feature" "system_aaa_v01" {
   name               = "SYSTEM_AAA_v01"
-  feature_profile_id = sdwan_system_feature_profile.system_v01.id
+  feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
   server_auth_order  = ["local"]
   users = [{
     name     = var.admin_account
@@ -29,29 +39,29 @@ resource "sdwan_system_aaa_feature" "system_aaa_v01" {
   }]
 }
 
-resource "sdwan_system_omp_feature" "system_omp_v01" {
-  name               = "SYSTEM_OMP_v01"
-  feature_profile_id = sdwan_system_feature_profile.system_v01.id
+resource "sdwan_system_omp_feature" "edge_system_omp_v01" {
+  name                        = "EDGE_SYSTEM_OMP_v01"
+  feature_profile_id          = sdwan_system_feature_profile.edge_system_v01.id
 }
 
 # resource "sdwan_system_bfd_feature" "system_bfd_v01" {
 #   name               = "SYSTEM_BFD_v01"
-#   feature_profile_id = sdwan_system_feature_profile.system_v01.id
+#   feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
 # }
 
 resource "sdwan_system_global_feature" "system_global_v01" {
   name               = "SYSTEM_GLOBAL_v01"
-  feature_profile_id = sdwan_system_feature_profile.system_v01.id
+  feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
 }
 
 # resource "sdwan_system_logging_feature" "system_logging_v01" {
 #   name               = "SYSTEM_LOGGING_v01"
-#   feature_profile_id = sdwan_system_feature_profile.system_v01.id
+#   feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
 # }
 
 resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
   name                        = "TRANSPORT_WAN_VPN0_v01"
-  feature_profile_id          = sdwan_transport_feature_profile.transport_v01.id
+  feature_profile_id          = sdwan_transport_feature_profile.edge_transport_v01.id
   vpn                         = 0
   primary_dns_address_ipv4    = "8.8.8.8"
   secondary_dns_address_ipv4  = "1.1.1.1"
@@ -70,9 +80,9 @@ resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
   ]
 }
 
-resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn_if_eth_v01" {
-  name                         = "TRANSPORT_WAN_VPN0_IF_ETH_v01"
-  feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn_if_eth1_v01" {
+  name                         = "TRANSPORT_WAN_VPN0_IF_ETH1_v01"
+  feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
   interface_name               = "GigabitEthernet1"
   shutdown                     = false
@@ -80,7 +90,6 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ipv4_configuration_type      = "static"
   ipv4_address_variable        = "{{var_vpn0_gig1_if_address}}"
   ipv4_subnet_mask_variable    = "{{var_vpn0_gig1_if_mask}}"
-
   tunnel_interface             = true
   tunnel_interface_color       = "biz-internet"
   tunnel_interface_allow_icmp  = true
@@ -94,25 +103,125 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ]
 }
 
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth3_v01" {
+  name                         = "TLOC_EXT_VPN0_IF_ETH3_v01"
+  feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+  interface_name               = "GigabitEthernet3"
+  shutdown                     = false
+  interface_description        = "TLOC_EXT"
+  ipv4_configuration_type      = "static"
+  ipv4_address_variable        = "{{var_vpn0_gig3_if_address}}"
+  ipv4_subnet_mask_variable    = "{{var_vpn0_gig3_if_mask}}"
+  tunnel_interface             = false
+  tloc_extension               = "GigabitEthernet1"
+}
+
+# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
+#   name                         = "WAN_VPN0_IF_ETH_v02"
+#   feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
+#   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+#   interface_name               = "GigabitEthernet2"
+#   shutdown                     = true
+#   interface_description        = "NOT-USED"
+#   ipv4_configuration_type      = "static"
+#   ipv4_address                 = "1.1.1.1"
+#   ipv4_subnet_mask             = "255.255.255.254"
+# }
+
+# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth4_v01" {
+#   name                         = "WAN_VPN0_IF_ETH_v04"
+#   feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
+#   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+#   interface_name               = "GigabitEthernet4"
+#   shutdown                     = true
+#   interface_description        = "NOT-USED"
+# }
+
+# resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_dual1_vpn400_if_eth2_v01" {
+#   name                       = "EDGE_DUAL1_ETH2_v01"
+#   description                = "NOT-USED"
+#   feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+#   service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge_vpn400_v01.id
+#   interface_name             = "GigabitEthernet2"
+#   shutdown                   = true
+#   interface_description      = "NOT-USED"
+#   ipv4_address               = "1.1.1.1"
+#   ipv4_subnet_mask           = "255.255.255.252"
+#   ipv4_nat                   = false
+#   ipv4_nat_type              = "pool"
+# }
+
+resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
+  name                       = "EDGE_VPN504_v01"
+  description                = "EDGE VPN504 SD-WAN Monitoring(open)"
+  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+  vpn                        = 504
+  config_description         = "EDGE VPN504 SD-WAN Monitoring(open)"
+}
+
+resource "sdwan_service_lan_vpn_feature" "edge_vpn400_v01" {
+  name                       = "EDGE_VPN400_v01"
+  description                = "EDGE VPN400 SD-WAN Services(open)"
+  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+  vpn                        = 400
+  config_description         = "EDGE VPN400 SD-WAN Services(open)"
+}
+
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_loop_54_v01" {
+  name                       = "EDGE_LOOP54_v01"
+  description                = "EDGE LOOPBACK54 Monitoring"
+  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge_vpn504_v01.id
+  shutdown                   = false
+  interface_name             = "Loopback54"
+  interface_description      = "Monitoring(open)"
+  ipv4_address_variable      = "{{var_edge_loop54_address}}"
+  ipv4_subnet_mask_variable  = "{{var_edge_loop54_mask}}"
+  ipv4_nat                   = false
+  ipv4_nat_type              = "pool"
+}
+
+resource "sdwan_cli_config_feature" "edge_cli_cfg_v01" {
+  feature_profile_id = sdwan_cli_feature_profile.edge_cli_v01.id
+  name               = "EDGE_CLI_CFG_v01"
+  description        = "EDGE CLI config"
+  cli_configuration  = <<-EOT
+  interface GigabitEthernet2
+  shutdown
+  !
+  interface GigabitEthernet4
+  shutdown
+  !
+  EOT
+}
+
 ################################ Configuration group ##############################
-resource "sdwan_configuration_group" "config_group_v01" {
-  name        = "CG_MN_DUAL_TLOC_E_v01"
+resource "sdwan_configuration_group" "edge_config_group_v01" {
+  name        = "CG_EDGES_v01"
   description = "Configuration group - Edges"
   solution     = "sdwan"
   feature_profile_ids = [
-    sdwan_system_feature_profile.system_v01.id, 
-    sdwan_transport_feature_profile.transport_v01.id
+    sdwan_system_feature_profile.edge_system_v01.id, 
+    sdwan_transport_feature_profile.edge_transport_v01.id,
+    sdwan_service_feature_profile.edge_service_v01.id,
+    sdwan_cli_feature_profile.edge_cli_v01.id,
   ]
-  devices = local.sd-wan_edges
+  devices = local.sdwan_edges_dual1
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
     # sdwan_system_bfd_feature.system_bfd_v01.version,
-    sdwan_system_global_feature.system_global_v01.version,
     # sdwan_system_logging_feature.system_logging_v01.version,
-    sdwan_system_omp_feature.system_omp_v01.version,
+    sdwan_system_global_feature.system_global_v01.version,
+    sdwan_system_omp_feature.edge_system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
-    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth1_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.edge_dual1_vpn0_if_eth3_v01.version,
+    sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
+    sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
+    # sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version,
+    sdwan_cli_config_feature.edge_cli_cfg_v01.version,
   ]
 }
 
@@ -123,100 +232,188 @@ resource "sdwan_configuration_group" "config_group_v01" {
 ###################################################################################
 
 ################################# Feature profiles ################################
-resource "sdwan_service_feature_profile" "service_core_v01" {
-  name        = "SERVICE_CORES_v01"
-  description = "Core service feature profiles"
+################################# Feature profiles ################################
+resource "sdwan_system_feature_profile" "core_system_v01" {
+  name        = "CORE_SYSTEM_v01"
+  description = "CORE System settings"
 }
 
-resource "sdwan_cli_feature_profile" "cli_core_v01" {
-  name        = "CLI_FEATURE_PROFILE_v01"
-  description = "CLI Feature Profile"
+resource "sdwan_transport_feature_profile" "core_transport_v01" {
+  name        = "CORE_TRANSPORT_v01"
+  description = "CORE Transport and Management config"
+}
+
+resource "sdwan_service_feature_profile" "core_service_v01" {
+  name        = "CORE_SERVICES_v01"
+  description = "CORE service feature profiles"
+}
+
+resource "sdwan_cli_feature_profile" "core_cli_v01" {
+  name        = "CORE_CLI_FEATURE_PROFILE_v01"
+  description = "CORE CLI Feature Profile"
 }
 
 ##################################### Features ####################################
-resource "sdwan_service_lan_vpn_feature" "vpn511_v01" {
-  name                       = "VPN511_v01"
-  description                = "VPN511 Legacy DC core router mgmt"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+resource "sdwan_system_basic_feature" "core_system_basic_v01" {
+  name               = "CORE_SYSTEM_BASIC_v01"
+  feature_profile_id = sdwan_system_feature_profile.core_system_v01.id
+}
+
+resource "sdwan_system_aaa_feature" "core_system_aaa_v01" {
+  name               = "CORE_SYSTEM_AAA_v01"
+  feature_profile_id = sdwan_system_feature_profile.core_system_v01.id
+  server_auth_order  = ["local"]
+  users = [{
+    name     = var.admin_account
+    password = var.admin_account_pass
+  }]
+}
+
+resource "sdwan_system_global_feature" "core_system_global_v01" {
+  name               = "CORE_SYSTEM_GLOBAL_v01"
+  feature_profile_id = sdwan_system_feature_profile.core_system_v01.id
+}
+
+resource "sdwan_system_omp_feature" "core_system_omp_v01" {
+  name                        = "CORE_SYSTEM_OMP_v01"
+  feature_profile_id          = sdwan_system_feature_profile.core_system_v01.id
+  advertise_ipv4_bgp          = true
+}
+
+resource "sdwan_transport_wan_vpn_feature" "core_transport_wan_vpn_v01" {
+  name                        = "CORE_TRANSPORT_WAN_VPN0_v01"
+  feature_profile_id          = sdwan_transport_feature_profile.core_transport_v01.id
+  vpn                         = 0
+  primary_dns_address_ipv4    = "8.8.8.8"
+  secondary_dns_address_ipv4  = "1.1.1.1"
+  ipv4_static_routes = [
+    {
+      network_address = "0.0.0.0"
+      subnet_mask     = "0.0.0.0"
+      gateway         = "nextHop"
+      next_hops = [
+        {
+          address_variable        = "{{var_def_gtw}}"
+          administrative_distance = 1
+        }
+      ]
+    }
+  ]
+}
+
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "core_transport_wan_vpn_if_eth1_v01" {
+  name                         = "CORE_TRANSPORT_WAN_VPN0_IF_ETH1_v01"
+  feature_profile_id           = sdwan_transport_feature_profile.core_transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.core_transport_wan_vpn_v01.id
+  interface_name               = "GigabitEthernet1"
+  shutdown                     = false
+  interface_description        = "WAN"
+  ipv4_configuration_type      = "static"
+  ipv4_address_variable        = "{{var_vpn0_gig1_if_address}}"
+  ipv4_subnet_mask_variable    = "{{var_vpn0_gig1_if_mask}}"
+  tunnel_interface             = true
+  tunnel_interface_color       = "biz-internet"
+  tunnel_interface_allow_icmp  = true
+  tunnel_interface_allow_dns   = true
+  tunnel_interface_allow_ntp   = true
+  # tunnel_interface_allow_netconf_variable = "{{var_tunnel_netconf}}"
+  tunnel_interface_encapsulations = [
+    {
+      encapsulation = "gre"
+    }
+  ]
+}
+
+resource "sdwan_service_lan_vpn_feature" "core_vpn511_v01" {
+  name                       = "CORE_VPN511_v01"
+  description                = "CORE VPN511 Legacy DC core router mgmt"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
   vpn                        = 511
-  config_description         = "VPN511 - Legacy DC core router mgmt"
-  # ipv4_static_routes = [
-  #   {
-  #     network_address = "0.0.0.0"
-  #     subnet_mask     = "0.0.0.0"
-  #     vpn             = true
-  #   }
-  # ]
+  config_description         = "CORE VPN511 - Legacy DC core router mgmt"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn502_v01" {
-  name                       = "VPN502_v01"
-  description                = "VPN502 Legacy DC cores Monitoring(open)"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+resource "sdwan_service_lan_vpn_feature" "core_vpn502_v01" {
+  name                       = "CORE_VPN502_v01"
+  description                = "CORE VPN502 Legacy DC cores Monitoring(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
   vpn                        = 502
-  config_description         = "VPN502 Legacy DC cores Monitoring(open)"
+  config_description         = "CORE VPN502 Legacy DC cores Monitoring(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn200_v01" {
-  name                       = "VPN200_v01"
-  description                = "VPN200 Legacy DC cores Services(open)"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+resource "sdwan_service_lan_vpn_feature" "core_vpn200_v01" {
+  name                       = "CORE_VPN200_v01"
+  description                = "CORE VPN200 Legacy DC cores Services(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
   vpn                        = 200
-  config_description         = "VPN200 Legacy DC cores Services(open)"
+  config_description         = "CORE VPN200 Legacy DC cores Services(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn503_v01" {
-  name                       = "VPN503_v01"
-  description                = "VPN503 SD-routing Monitoring(open)"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+resource "sdwan_service_lan_vpn_feature" "core_vpn503_v01" {
+  name                       = "CORE_VPN503_v01"
+  description                = "CORE VPN503 SD-routing Monitoring(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
   vpn                        = 503
-  config_description         = "VPN503 SD-routing Monitoring(open)"
+  config_description         = "CORE VPN503 SD-routing Monitoring(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn300_v01" {
-  name                       = "VPN300_v01"
-  description                = "VPN300 SD-routing Services(open)"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+resource "sdwan_service_lan_vpn_feature" "core_vpn300_v01" {
+  name                       = "CORE_VPN300_v01"
+  description                = "CORE VPN300 SD-routing Services(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
   vpn                        = 300
-  config_description         = "VPN300 SD-routing Services(open)"
+  config_description         = "CORE VPN300 SD-routing Services(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn504_v01" {
-  name                       = "VPN504_v01"
-  description                = "VPN504 SD-WAN Monitoring(open)"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+resource "sdwan_service_lan_vpn_feature" "core_vpn504_v01" {
+  name                       = "CORE_VPN504_v01"
+  description                = "CORE VPN504 SD-WAN Monitoring(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
   vpn                        = 504
-  config_description         = "VPN504 SD-WAN Monitoring(open)"
+  config_description         = "CORE VPN504 SD-WAN Monitoring(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn400_v01" {
-  name                       = "VPN400_v01"
-  description                = "VPN400 SD-WAN Services(open)"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+resource "sdwan_service_lan_vpn_feature" "core_vpn400_v01" {
+  name                       = "CORE_VPN400_v01"
+  description                = "CORE VPN400 SD-WAN Services(open)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
   vpn                        = 400
-  config_description         = "VPN400 SD-WAN Services(open)"
+  config_description         = "CORE VPN400 SD-WAN Services(open)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn506_v01" {
-  name                       = "VPN506_v01"
-  description                = "VPN506 SD-WAN Monitoring(sec)"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+resource "sdwan_service_lan_vpn_feature" "core_vpn506_v01" {
+  name                       = "CORE_VPN506_v01"
+  description                = "CORE VPN506 SD-WAN Monitoring(sec)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
   vpn                        = 506
-  config_description         = "VPN506 SD-WAN Monitoring(sec)"
+  config_description         = "CORE VPN506 SD-WAN Monitoring(sec)"
 }
 
-resource "sdwan_service_lan_vpn_feature" "vpn600_v01" {
-  name                       = "VPN600_v01"
-  description                = "VPN600 SD-WAN Services(sec)"
-  feature_profile_id         = sdwan_service_feature_profile.service_core_v01.id
+resource "sdwan_service_lan_vpn_feature" "core_vpn600_v01" {
+  name                       = "CORE_VPN600_v01"
+  description                = "CORE VPN600 SD-WAN Services(sec)"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
   vpn                        = 600
-  config_description         = "VPN600 SD-WAN Services(sec)"
+  config_description         = "CORE VPN600 SD-WAN Services(sec)"
 }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_502_v01" {
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_54_v01" {
+  name                       = "CORE_LOOP54_v01"
+  description                = "CORE LOOPBACK54 Monitoring"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.core_vpn504_v01.id
+  shutdown                   = false
+  interface_name             = "Loopback54"
+  interface_description      = "Monitoring(open)"
+  ipv4_address_variable      = "{{var_core_loop54_address}}"
+  ipv4_subnet_mask_variable  = "{{var_core_loop54_mask}}"
+  ipv4_nat                   = false
+  ipv4_nat_type              = "pool"
+}
+
+resource "sdwan_service_routing_bgp_feature" "core_bgp_502_v01" {
   name                     = "BGP_502_v01"
   description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
   ipv4_neighbors = [
     {
@@ -237,10 +434,10 @@ resource "sdwan_service_routing_bgp_feature" "bgp_502_v01" {
   ]
 }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_200_v01" {
+resource "sdwan_service_routing_bgp_feature" "core_bgp_200_v01" {
   name                     = "BGP_200_v01"
   description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
   ipv4_neighbors = [
     {
@@ -261,10 +458,10 @@ resource "sdwan_service_routing_bgp_feature" "bgp_200_v01" {
   ]
 }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_503_v01" {
+resource "sdwan_service_routing_bgp_feature" "core_bgp_503_v01" {
   name                     = "BGP_503_v01"
   description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
   ipv4_neighbors = [
     {
@@ -285,10 +482,10 @@ resource "sdwan_service_routing_bgp_feature" "bgp_503_v01" {
   ]
 }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_300_v01" {
+resource "sdwan_service_routing_bgp_feature" "core_bgp_300_v01" {
   name                     = "BGP_300_v01"
   description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
   ipv4_neighbors = [
     {
@@ -309,10 +506,10 @@ resource "sdwan_service_routing_bgp_feature" "bgp_300_v01" {
   ]
 }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_504_v01" {
+resource "sdwan_service_routing_bgp_feature" "core_bgp_504_v01" {
   name                     = "BGP_504_v01"
   description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
   # router_id_variable       = "{{bgp_router_id}}"
   ipv4_neighbors = [
@@ -321,18 +518,6 @@ resource "sdwan_service_routing_bgp_feature" "bgp_504_v01" {
       description_variable    = "{{var_nb_504_desc}}"
       shutdown                = false
       remote_as_variable      = "{{var_nb_504_asn}}"
-      # local_as                = 200
-      # keepalive_time          = 40
-      # hold_time               = 200
-      # update_source_interface = "GigabitEthernet0"
-      # next_hop_self           = false
-      # send_community          = true
-      # send_extended_community = true
-      # ebgp_multihop           = 1
-      # password                = "myPassword"
-      # send_label              = true
-      # as_override             = false
-      # allowas_in_number       = 1
       address_families = [
         {
           family_type            = "ipv4-unicast"
@@ -344,12 +529,18 @@ resource "sdwan_service_routing_bgp_feature" "bgp_504_v01" {
       ]
     }
   ]
+  ipv4_redistributes = [
+    {
+      protocol = "omp"
+      # protocol = "connected"
+    }
+  ]
 }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_400_v01" {
+resource "sdwan_service_routing_bgp_feature" "core_bgp_400_v01" {
   name                     = "BGP_400_v01"
   description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
   ipv4_neighbors = [
     {
@@ -370,10 +561,10 @@ resource "sdwan_service_routing_bgp_feature" "bgp_400_v01" {
   ]
 }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_506_v01" {
+resource "sdwan_service_routing_bgp_feature" "core_bgp_506_v01" {
   name                     = "BGP_506_v01"
   description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
   ipv4_neighbors = [
     {
@@ -394,10 +585,10 @@ resource "sdwan_service_routing_bgp_feature" "bgp_506_v01" {
   ]
 }
 
-resource "sdwan_service_routing_bgp_feature" "bgp_600_v01" {
+resource "sdwan_service_routing_bgp_feature" "core_bgp_600_v01" {
   name                     = "BGP_600_v01"
   description              = "BGP towards legacy core routers"
-  feature_profile_id       = sdwan_service_feature_profile.service_core_v01.id
+  feature_profile_id       = sdwan_service_feature_profile.core_service_v01.id
   as_number_variable       = "{{var_bgp_asn}}"
   ipv4_neighbors = [
     {
@@ -418,53 +609,54 @@ resource "sdwan_service_routing_bgp_feature" "bgp_600_v01" {
   ]
 }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_502_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn502_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_502_v01.id
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_502_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn502_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_502_v01.id
 }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_200_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn200_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_200_v01.id
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_200_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_200_v01.id
 }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_503_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn503_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_503_v01.id
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_503_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn503_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_503_v01.id
 }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_300_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn300_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_300_v01.id
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_300_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn300_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_300_v01.id
 }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_504_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn504_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_504_v01.id
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_504_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn504_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_504_v01.id
 }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_400_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn400_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_400_v01.id
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_400_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn400_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_400_v01.id
 }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_506_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn506_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_506_v01.id
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_506_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn506_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_506_v01.id
 }
 
-resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_service_associate_600_v01" {
-  feature_profile_id             = sdwan_service_feature_profile.service_core_v01.id
-  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.vpn600_v01.id
-  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.bgp_600_v01.id
+resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_600_v01" {
+  feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn600_v01.id
+  service_routing_bgp_feature_id = sdwan_service_routing_bgp_feature.core_bgp_600_v01.id
 }
+
 
 # ERROR during subinterface creation:
 # Invalid Payload: doesn't support user settable interface mtu for sub interface
@@ -483,7 +675,7 @@ resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "bgp_serv
 # }
 
 resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
-  feature_profile_id = sdwan_cli_feature_profile.cli_core_v01.id
+  feature_profile_id = sdwan_cli_feature_profile.core_cli_v01.id
   name               = "CORE_CLI_CFG_v01"
   description        = "Core CLI config"
   # cli_configuration  = "bfd default-dscp 48\nbfd app-route multiplier 6\nbfd app-route poll-interval 600000"
@@ -555,39 +747,43 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
 }
 
 ################################ Configuration group ##############################
-resource "sdwan_configuration_group" "config_group_core_v01" {
+resource "sdwan_configuration_group" "core_config_group_v01" {
   name        = "CG_CORES_v01"
   description = "Configuration group - Cores"
   solution     = "sdwan"
   feature_profile_ids = [
-    sdwan_system_feature_profile.system_v01.id, 
-    sdwan_transport_feature_profile.transport_v01.id,
-    sdwan_service_feature_profile.service_core_v01.id,
-    sdwan_cli_feature_profile.cli_core_v01.id
+    sdwan_system_feature_profile.core_system_v01.id, 
+    sdwan_transport_feature_profile.core_transport_v01.id, 
+    sdwan_service_feature_profile.core_service_v01.id, 
+    sdwan_cli_feature_profile.core_cli_v01.id,
   ]
-  devices = local.sd-wan_cores
+  devices = local.sdwan_cores
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
     # sdwan_system_bfd_feature.system_bfd_v01.version,
-    sdwan_system_global_feature.system_global_v01.version,
     # sdwan_system_logging_feature.system_logging_v01.version,
-    sdwan_system_omp_feature.system_omp_v01.version,
-    sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
-    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth_v01.version,
-    sdwan_service_lan_vpn_feature.vpn511_v01.version,
-    sdwan_service_lan_vpn_feature.vpn502_v01.version,
-    sdwan_service_lan_vpn_feature.vpn200_v01.version,
-    sdwan_service_lan_vpn_feature.vpn503_v01.version,
-    sdwan_service_lan_vpn_feature.vpn300_v01.version,
-    sdwan_service_lan_vpn_feature.vpn504_v01.version,
-    sdwan_service_lan_vpn_feature.vpn400_v01.version,
-    sdwan_service_lan_vpn_feature.vpn506_v01.version,
-    sdwan_service_lan_vpn_feature.vpn600_v01.version,
-    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_504_v01.version,
-    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_400_v01.version,
-    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_506_v01.version,
-    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.bgp_service_associate_600_v01.version,
+    sdwan_system_global_feature.system_global_v01.version,
+    sdwan_system_omp_feature.core_system_omp_v01.version,
+    sdwan_transport_wan_vpn_feature.core_transport_wan_vpn_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth1_v01.version,
+    sdwan_service_lan_vpn_feature.core_vpn511_v01.version,
+    sdwan_service_lan_vpn_feature.core_vpn502_v01.version,
+    sdwan_service_lan_vpn_feature.core_vpn200_v01.version,
+    sdwan_service_lan_vpn_feature.core_vpn503_v01.version,
+    sdwan_service_lan_vpn_feature.core_vpn300_v01.version,
+    sdwan_service_lan_vpn_feature.core_vpn504_v01.version,
+    sdwan_service_lan_vpn_feature.core_vpn400_v01.version,
+    sdwan_service_lan_vpn_feature.core_vpn506_v01.version,
+    sdwan_service_lan_vpn_feature.core_vpn600_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_502_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_200_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_503_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_300_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_504_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_400_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_506_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_600_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
