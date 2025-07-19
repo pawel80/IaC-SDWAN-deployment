@@ -141,6 +141,8 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_dual1_vpn400_i
   shutdown                   = true
   interface_name             = "GigabitEthernet2"
   interface_description      = "NOT-USED"
+  ipv4_nat                   = false
+  ipv4_nat_type              = "pool"
 }
 
 resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
