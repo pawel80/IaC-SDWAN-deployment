@@ -120,8 +120,8 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
   shutdown                     = true
   interface_description        = "NOT-USED"
   ipv4_configuration_type      = "static"
-  ipv4_address                 = "1.1.1.1"
-  ipv4_subnet_mask             = "255.255.255.252"
+  # ipv4_address                 = "1.1.1.1"
+  # ipv4_subnet_mask             = "255.255.255.252"
 }
 
 # resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth4_v01" {
@@ -736,7 +736,7 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
     sdwan_service_feature_profile.core_service_v01.id, 
     sdwan_cli_feature_profile.core_cli_v01.id,
   ]
-  # devices = local.sdwan_cores
+  devices = local.sdwan_cores
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
