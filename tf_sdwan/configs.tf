@@ -170,7 +170,7 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_loop_54_v01" {
   service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge_vpn504_v01.id
   shutdown                   = false
   interface_name             = "Loopback54"
-  interface_description      = "Monitoring"
+  interface_description      = "Monitoring(open)"
   ipv4_address_variable      = "{{var_edge_loop54_address}}"
   ipv4_subnet_mask_variable  = "{{var_edge_loop54_mask}}"
   ipv4_nat                   = false
