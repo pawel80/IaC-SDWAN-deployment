@@ -109,28 +109,19 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
   ipv4_address_variable        = "{{var_vpn0_gig3_if_address}}"
   ipv4_subnet_mask_variable    = "{{var_vpn0_gig3_if_mask}}"
   tunnel_interface             = false
-  # tunnel_interface_color       = "private1"
-  # tunnel_interface_allow_icmp  = true
-  # tunnel_interface_allow_dns   = true
-  # tunnel_interface_allow_ntp   = true
   tloc_extension               = "GigabitEthernet1"
-  # tunnel_interface_encapsulations = [
-  #   {
-  #     encapsulation = "gre"
-  #   }
-  # ]
 }
 
-# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
-#   name                         = "WAN_VPN0_IF_ETH_v02"
-#   feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
-#   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
-#   interface_name               = "GigabitEthernet2"
-#   shutdown                     = true
-#   interface_description        = "NOT-USED"
-#   ipv4_address                 = "1.1.1.1"
-#   ipv4_subnet_mask             = "255.255.255.0"
-# }
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
+  name                         = "WAN_VPN0_IF_ETH_v02"
+  feature_profile_id           = sdwan_transport_feature_profile.transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+  interface_name               = "GigabitEthernet2"
+  shutdown                     = true
+  interface_description        = "NOT-USED"
+  ipv4_address                 = "1.1.1.1"
+  ipv4_subnet_mask             = "255.255.255.255"
+}
 
 # resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth4_v01" {
 #   name                         = "WAN_VPN0_IF_ETH_v04"
