@@ -430,7 +430,7 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_54_v01" {
   service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.core_vpn504_v01.id
   shutdown                   = false
   interface_name             = "Loopback54"
-  interface_description      = "Monitoring(open)"
+  interface_description      = "Monitoring(open2)"
   ipv4_address_variable      = "{{var_core_loop54_address}}"
   ipv4_subnet_mask_variable  = "{{var_core_loop54_mask}}"
   ipv4_nat                   = false
@@ -784,7 +784,7 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
     sdwan_service_feature_profile.core_service_v01.id, 
     sdwan_cli_feature_profile.core_cli_v01.id,
   ]
-  # devices = local.sdwan_cores
+  devices = local.sdwan_cores
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
