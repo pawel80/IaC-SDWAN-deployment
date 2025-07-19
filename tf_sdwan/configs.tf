@@ -235,7 +235,7 @@ resource "sdwan_configuration_group" "edge_config_group_v01" {
     sdwan_transport_feature_profile.transport_v01.id,
     sdwan_service_feature_profile.edge_service_v01.id,
   ]
-  devices = local.sdwan_edges_dual1
+  # devices = local.sdwan_edges_dual1
   feature_versions = [
     sdwan_system_basic_feature.system_basic_v01.version,
     sdwan_system_aaa_feature.system_aaa_v01.version,
@@ -430,7 +430,7 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_54_v01" {
   service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.core_vpn504_v01.id
   shutdown                   = false
   interface_name             = "Loopback54"
-  interface_description      = "Monitoring(open2)"
+  interface_description      = "Monitoring(open)"
   ipv4_address_variable      = "{{var_core_loop54_address}}"
   ipv4_subnet_mask_variable  = "{{var_core_loop54_mask}}"
   ipv4_nat                   = false
