@@ -119,6 +119,7 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
 #   interface_name               = "GigabitEthernet2"
 #   shutdown                     = true
 #   interface_description        = "NOT-USED"
+#   ipv4_configuration_type      = "static"
 #   ipv4_address                 = "1.1.1.1"
 #   ipv4_subnet_mask             = "255.255.255.252"
 # }
