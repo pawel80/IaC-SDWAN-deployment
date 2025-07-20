@@ -51,7 +51,7 @@ Below drawing presents TLOC-extension mechanism as management access to routers 
 ![alt text](drawings/lab_design_vrf_v05.png)  
 *Network: Management and data plane VRFs*
 
-![alt text](drawings/lab_data_plane_v10)  
+![alt text](drawings/lab_data_plane_v10.png)  
 *Network: Data plane (Intranet)*
 
 <br/>
