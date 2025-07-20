@@ -347,15 +347,15 @@ resource "sdwan_cli_config_feature" "edge2_cli_cfg_v01" {
 
 ################################ Configuration group ##############################
 #-------------------------- Configuration group dual edge1 ------------------------
-resource "sdwan_configuration_group" "edge2_config_group_v01" {
-  name        = "CG_EDGE2_v01"
-  description = "Configuration group - Edges dual"
+resource "sdwan_configuration_group" "edge_config_group_v01" {
+  name        = "CG_EDGES_v01"
+  description = "Configuration group - Edge1 dual"
   solution     = "sdwan"
   feature_profile_ids = [
-    sdwan_system_feature_profile.edge2_system_v01.id, 
-    sdwan_transport_feature_profile.edge2_transport_v01.id,
-    sdwan_service_feature_profile.edge2_service_v01.id,
-    sdwan_cli_feature_profile.edge2_cli_v01.id,
+    sdwan_system_feature_profile.edge_system_v01.id, 
+    sdwan_transport_feature_profile.edge_transport_v01.id,
+    sdwan_service_feature_profile.edge_service_v01.id,
+    sdwan_cli_feature_profile.edge_cli_v01.id,
   ]
   devices = local.sdwan_edges_dual1
   feature_versions = [
@@ -368,37 +368,37 @@ resource "sdwan_configuration_group" "edge2_config_group_v01" {
     sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth1_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.edge_dual1_vpn0_if_eth3_v01.version,
-    sdwan_service_lan_vpn_feature.edge2_vpn506_v01.version,
-    sdwan_service_lan_vpn_feature.edge2_vpn600_v01.version,
+    sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
+    sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
     sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version,
-    sdwan_cli_config_feature.edge2_cli_cfg_v01.version,
+    sdwan_cli_config_feature.edge_cli_cfg_v01.version,
   ]
 }
 
 #-------------------------- Configuration group dual edge2 ------------------------
-resource "sdwan_configuration_group" "edge_config_group_v01" {
-  name        = "CG_EDGES_v01"
-  description = "Configuration group - Edges"
+resource "sdwan_configuration_group" "edge2_config_group_v01" {
+  name        = "CG_EDGE2_v01"
+  description = "Configuration group - Edge2 dual"
   solution     = "sdwan"
   feature_profile_ids = [
-    sdwan_system_feature_profile.edge_system_v01.id, 
-    sdwan_transport_feature_profile.edge_transport_v01.id,
-    sdwan_service_feature_profile.edge_service_v01.id,
-    sdwan_cli_feature_profile.edge_cli_v01.id,
+    sdwan_system_feature_profile.edge2_system_v01.id, 
+    sdwan_transport_feature_profile.edge2_transport_v01.id,
+    sdwan_service_feature_profile.edge2_service_v01.id,
+    sdwan_cli_feature_profile.edge2_cli_v01.id,
   ]
-  devices = local.sdwan_edges_dual1
+  devices = local.sdwan_edges_dual2
   feature_versions = [
-    sdwan_system_basic_feature.system_basic_v01.version,
-    sdwan_system_aaa_feature.system_aaa_v01.version,
+    sdwan_system_basic_feature.edge2_system_basic_v01.version,
+    sdwan_system_aaa_feature.edge2_system_aaa_v01.version,
     sdwan_system_global_feature.edge2_system_global_v01.version,
     sdwan_system_omp_feature.edge2_system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.edge2_tr_wan_vpn_if_eth2_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.edge2_vpn0_if_eth3_v01.version,
-    sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
-    sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
+    sdwan_service_lan_vpn_feature.edge2_vpn506_v01.version,
+    sdwan_service_lan_vpn_feature.edge2_vpn600_v01.version,
     sdwan_service_lan_vpn_interface_ethernet_feature.edge2_loop_56_v01.version,
-    sdwan_cli_config_feature.edge_cli_cfg_v01.version,
+    sdwan_cli_config_feature.edge2_cli_cfg_v01.version,
   ]
 }
 
