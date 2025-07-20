@@ -397,7 +397,7 @@ resource "sdwan_configuration_group" "edge2_config_group_v01" {
     sdwan_service_feature_profile.edge2_service_v01.id,
     sdwan_cli_feature_profile.edge2_cli_v01.id,
   ]
-  devices = local.sdwan_edges_dual2
+  # devices = local.sdwan_edges_dual2
   feature_versions = [
     sdwan_system_basic_feature.edge2_system_basic_v01.version,
     sdwan_system_aaa_feature.edge2_system_aaa_v01.version,
