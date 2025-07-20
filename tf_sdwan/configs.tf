@@ -1,8 +1,9 @@
 ###################################################################################
 ################################## SD-WAN cEDGEs ##################################
 ###################################################################################
-#---------------------- Dual routers site - intranet (open) ------=----------------
+
 ################################# Feature profiles ################################
+#---------------------------- Feature profiles dual edge1 -------------------------
 resource "sdwan_system_feature_profile" "edge_system_v01" {
   name        = "EDGE_SYSTEM_v01"
   description = "EDGE System settings"
@@ -23,7 +24,31 @@ resource "sdwan_cli_feature_profile" "edge_cli_v01" {
   description = "EDGE CLI Feature Profile"
 }
 
+#---------------------------- Feature profiles dual edge2 -------------------------
+resource "sdwan_system_feature_profile" "edge2_system_v01" {
+  name        = "EDGE2_SYSTEM_v01"
+  description = "EDGE2 System settings"
+}
+
+resource "sdwan_transport_feature_profile" "edge2_transport_v01" {
+  name        = "EDGE2_TRANSPORT_v01"
+  description = "EDGE2 Transport and Management config"
+}
+
+resource "sdwan_service_feature_profile" "edge2_service_v01" {
+  name        = "EDGE2_SERVICES_v01"
+  description = "EDGE2 service feature profiles"
+}
+
+resource "sdwan_cli_feature_profile" "edge2_cli_v01" {
+  name        = "EDGE2_CLI_FEATURE_PROFILE_v01"
+  description = "EDGE2 CLI Feature Profile"
+}
+
+#--------------------------- Feature profiles single edge -------------------------
+
 ##################################### Features ####################################
+#-------------------------------- Features dual edge1 -----------------------------
 resource "sdwan_system_basic_feature" "system_basic_v01" {
   name               = "SYSTEM_BASIC_v01"
   feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
@@ -196,7 +221,11 @@ resource "sdwan_cli_config_feature" "edge_cli_cfg_v01" {
   EOT
 }
 
+#-------------------------------- Features dual edge2 -----------------------------
+#------------------------------- Features single edge -----------------------------
+
 ################################ Configuration group ##############################
+#-------------------------- Configuration group dual edge1 ------------------------
 resource "sdwan_configuration_group" "edge_config_group_v01" {
   name        = "CG_EDGES_v01"
   description = "Configuration group - Edges"
@@ -224,6 +253,9 @@ resource "sdwan_configuration_group" "edge_config_group_v01" {
     sdwan_cli_config_feature.edge_cli_cfg_v01.version,
   ]
 }
+
+#-------------------------- Configuration group dual edge2 ------------------------
+#------------------------- Configuration group single edge ------------------------
 
 
 

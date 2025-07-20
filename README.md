@@ -40,13 +40,19 @@ Design highlights:
 Below drawing presents TLOC-extension mechanism as management access to routers which are not connected directly to the Intranet (open) cloud.
 
 ![alt text](drawings/lab_tloc_extension_v10.png)  
-*Network: management plane - TLOC-extension*
+*Network: Management plane - TLOC-extension*
 
 ![alt text](drawings/lab_design_ip_v11.png)  
 *Network: ASN and IP plan*
 
+![alt text](drawings/lab_control_plane_v10.png)  
+*Network: Control plane*
+
 ![alt text](drawings/lab_design_vrf_v05.png)  
-*Network: management and data plane VRFs*
+*Network: Management and data plane VRFs*
+
+![alt text](drawings/lab_data_plane_v10)  
+*Network: Data plane (Intranet)*
 
 <br/>
 
