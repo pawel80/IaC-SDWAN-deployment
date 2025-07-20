@@ -320,8 +320,17 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge2_vpn0_if_eth
   ipv4_configuration_type      = "static"
   ipv4_address_variable        = "{{var_edge2_vpn0_gig3_if_address}}"
   ipv4_subnet_mask_variable    = "{{var_edge2_vpn0_gig3_if_mask}}"
-  tunnel_interface             = false
-  tloc_extension               = "GigabitEthernet1"
+  # tloc_extension               = "GigabitEthernet1"
+  tunnel_interface             = true
+  tunnel_interface_color       = "private1"
+  tunnel_interface_allow_icmp  = true
+  tunnel_interface_allow_dns   = true
+  tunnel_interface_allow_ntp   = true
+  tunnel_interface_encapsulations = [
+    {
+      encapsulation = "gre"
+    }
+  ]
 }
 
 resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge2_loop_56_v01" {
