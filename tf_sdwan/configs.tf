@@ -241,7 +241,7 @@ resource "sdwan_system_omp_feature" "edge2_system_omp_v01" {
 }
 
 resource "sdwan_transport_wan_vpn_feature" "edge2_transport_wan_vpn_v01" {
-  name                        = "TRANSPORT_WAN_VPN0_v01"
+  name                        = "EDGE2_TRANSPORT_WAN_VPN0_v01"
   feature_profile_id          = sdwan_transport_feature_profile.edge2_transport_v01.id
   vpn                         = 0
   primary_dns_address_ipv4    = "8.8.8.8"
@@ -253,7 +253,18 @@ resource "sdwan_transport_wan_vpn_feature" "edge2_transport_wan_vpn_v01" {
       gateway         = "nextHop"
       next_hops = [
         {
-          address_variable        = "{{var_def_gtw}}"
+          address_variable        = "{{var_edge2_def_gtw}}"
+          administrative_distance = 1
+        }
+      ]
+    },
+    {
+      network_address = "172.16.9.0"
+      subnet_mask     = "255.255.255.0"
+      gateway         = "nextHop"
+      next_hops = [
+        {
+          address_variable        = "{{var_edge2_tloc_ext_gtw}}"
           administrative_distance = 1
         }
       ]

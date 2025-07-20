@@ -158,23 +158,35 @@ locals {
         value = "false"
       },
       {
-        name = "var_def_gtw"
-        value = "172.16.10.1"
+        name = "var_edge2_def_gtw"
+        value = "172.16.11.5"
       },
       {
-        name = "var_vpn0_gig1_if_address"
-        value = "172.16.10.2"
+        name = "var_edge2_tloc_ext_gtw"
+        value = "192.168.0.1"
       },
       {
-        name = "var_vpn0_gig1_if_mask"
+        name = "var_edge2_vpn0_gig2_if_address"
+        value = "172.16.11.6"
+      },
+      {
+        name = "var_edge2_vpn0_gig2_if_mask"
         value = "255.255.255.252"
       },
       {
-        name = "var_edge_loop54_address"
-        value = "11.1.1.1"
+        name = "var_edge2_vpn0_gig3_if_address"
+        value = "192.168.0.2"
       },
       {
-        name = "var_edge_loop54_mask"
+        name = "var_edge2_vpn0_gig3_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_edge2_loop56_address"
+        value = "11.1.1.2"
+      },
+      {
+        name = "var_edge2_loop56_mask"
         value = "255.255.255.255"
       }
     ]
@@ -204,23 +216,35 @@ locals {
         value = "false"
       },
       {
-        name = "var_def_gtw"
-        value = "172.16.10.1"
+        name = "var_edge2_def_gtw"
+        value = "172.16.11.13"
       },
       {
-        name = "var_vpn0_gig1_if_address"
-        value = "172.16.10.2"
+        name = "var_edge2_tloc_ext_gtw"
+        value = "192.168.0.5"
       },
       {
-        name = "var_vpn0_gig1_if_mask"
+        name = "var_edge2_vpn0_gig2_if_address"
+        value = "172.16.11.14"
+      },
+      {
+        name = "var_edge2_vpn0_gig2_if_mask"
         value = "255.255.255.252"
       },
       {
-        name = "var_edge_loop54_address"
-        value = "11.1.1.1"
+        name = "var_edge2_vpn0_gig3_if_address"
+        value = "192.168.0.6"
       },
       {
-        name = "var_edge_loop54_mask"
+        name = "var_edge2_vpn0_gig3_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_edge2_loop56_address"
+        value = "11.1.2.2"
+      },
+      {
+        name = "var_edge2_loop56_mask"
         value = "255.255.255.255"
       }
     ]
