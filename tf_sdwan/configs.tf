@@ -498,6 +498,17 @@ resource "sdwan_transport_wan_vpn_feature" "core_transport_wan_vpn_v01" {
       ]
     },
     {
+      network_address = "0.0.0.0"
+      subnet_mask     = "0.0.0.0"
+      gateway         = "nextHop"
+      next_hops = [
+        {
+          address_variable        = "{{var_def_sec_gtw}}"
+          administrative_distance = 1
+        }
+      ]
+    },
+    {
       network_address = "172.16.11.0"
       subnet_mask     = "255.255.255.0"
       gateway         = "nextHop"
