@@ -51,6 +51,10 @@ Below drawing presents TLOC-extension mechanism as management access to routers 
 ![alt text](drawings/lab_design_vrf_v05.png)  
 *Network: Management and data plane VRFs*
 
+<br/>
+
+For data plane, I'm using color restriction, so it possible to build IPsec tunnel only between the same colors, in this case: private2 - private2
+
 ![alt text](drawings/lab_data_plane_v11.png)  
 *Network: Data plane (Intranet)*
 

@@ -476,6 +476,14 @@ locals {
         value = "255.255.255.255"
       },
       {
+        name = "var_core_loop56_address"
+        value = "99.9.1.1"
+      },
+      {
+        name = "var_core_loop56_mask"
+        value = "255.255.255.255"
+      },
+      {
         name = "var_bgp_asn"
         value = "65101"
       },
@@ -706,6 +714,14 @@ locals {
         value = "255.255.255.255"
       },
       {
+        name = "var_core_loop56_address"
+        value = "99.9.2.1"
+      },
+      {
+        name = "var_core_loop56_mask"
+        value = "255.255.255.255"
+      },
+      {
         name = "var_bgp_asn"
         value = "65201"
       },
@@ -933,6 +949,14 @@ locals {
       },
       {
         name = "var_core_loop54_mask"
+        value = "255.255.255.255"
+      },
+      {
+        name = "var_core_loop56_address"
+        value = "99.9.2.1"
+      },
+      {
+        name = "var_core_loop56_mask"
         value = "255.255.255.255"
       },
       {

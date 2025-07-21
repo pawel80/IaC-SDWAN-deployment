@@ -643,6 +643,20 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_54_v01" {
   ipv4_nat_type              = "pool"
 }
 
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_56_v01" {
+  name                       = "CORE_LOOP56_v01"
+  description                = "CORE LOOPBACK56 Monitoring"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.core_vpn506_v01.id
+  shutdown                   = false
+  interface_name             = "Loopback56"
+  interface_description      = "Monitoring(secured)"
+  ipv4_address_variable      = "{{var_core_loop56_address}}"
+  ipv4_subnet_mask_variable  = "{{var_core_loop56_mask}}"
+  ipv4_nat                   = false
+  ipv4_nat_type              = "pool"
+}
+
 resource "sdwan_service_routing_bgp_feature" "core_bgp_502_v01" {
   name                     = "BGP_502_v01"
   description              = "BGP towards legacy core routers"
@@ -1018,6 +1032,8 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
     sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_506_v01.version,
     sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_600_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
+    sdwan_service_lan_vpn_interface_ethernet_feature.core_loop_54_v01.version,
+    sdwan_service_lan_vpn_interface_ethernet_feature.core_loop_56_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
 }
