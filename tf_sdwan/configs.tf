@@ -323,7 +323,7 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge2_vpn0_if_eth
   ipv4_subnet_mask_variable    = "{{var_edge2_vpn0_gig3_if_mask}}"
   # tloc_extension               = "GigabitEthernet1"
   tunnel_interface             = true
-  tunnel_interface_color       = "private1"
+  tunnel_interface_color       = "private2"
   tunnel_interface_allow_icmp  = true
   tunnel_interface_allow_dns   = true
   tunnel_interface_allow_ntp   = true
