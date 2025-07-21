@@ -132,7 +132,7 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ipv4_address_variable        = "{{var_vpn0_gig1_if_address}}"
   ipv4_subnet_mask_variable    = "{{var_vpn0_gig1_if_mask}}"
   tunnel_interface             = true
-  tunnel_interface_color       = "biz-internet"
+  tunnel_interface_color       = "private1"
   tunnel_interface_allow_icmp  = true
   tunnel_interface_allow_dns   = true
   tunnel_interface_allow_ntp   = true
