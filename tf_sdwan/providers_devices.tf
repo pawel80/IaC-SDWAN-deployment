@@ -953,7 +953,7 @@ locals {
       },
       {
         name = "var_core_loop56_address"
-        value = "99.9.2.1"
+        value = "99.9.3.1"
       },
       {
         name = "var_core_loop56_mask"
