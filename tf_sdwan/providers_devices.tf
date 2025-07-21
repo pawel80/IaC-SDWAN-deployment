@@ -376,11 +376,23 @@ locals {
         value = "172.16.99.1"
       },
       {
+        name = "var_sec_gtw"
+        value = "172.16.66.1"
+      },
+      {
         name = "var_vpn0_gig1_if_address"
         value = "172.16.99.2"
       },
       {
         name = "var_vpn0_gig1_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_vpn0_gig3_if_address"
+        value = "172.16.66.2"
+      },
+      {
+        name = "var_vpn0_gig3_if_mask"
         value = "255.255.255.252"
       },
       {
@@ -594,11 +606,23 @@ locals {
         value = "172.16.99.5"
       },
       {
+        name = "var_sec_gtw"
+        value = "172.16.66.5"
+      },
+      {
         name = "var_vpn0_gig1_if_address"
         value = "172.16.99.6"
       },
       {
         name = "var_vpn0_gig1_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_vpn0_gig3_if_address"
+        value = "172.16.66.6"
+      },
+      {
+        name = "var_vpn0_gig3_if_mask"
         value = "255.255.255.252"
       },
       {
@@ -812,11 +836,23 @@ locals {
         value = "172.16.99.9"
       },
       {
+        name = "var_sec_gtw"
+        value = "172.16.66.9"
+      },
+      {
         name = "var_vpn0_gig1_if_address"
         value = "172.16.99.10"
       },
       {
         name = "var_vpn0_gig1_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_vpn0_gig3_if_address"
+        value = "172.16.66.10"
+      },
+      {
+        name = "var_vpn0_gig3_if_mask"
         value = "255.255.255.252"
       },
       {
