@@ -173,14 +173,14 @@ locals {
         name = "var_edge2_vpn0_gig2_if_mask"
         value = "255.255.255.252"
       },
-      {
-        name = "var_edge2_vpn0_gig3_if_address"
-        value = "192.168.0.2"
-      },
-      {
-        name = "var_edge2_vpn0_gig3_if_mask"
-        value = "255.255.255.252"
-      },
+      # {
+      #   name = "var_edge2_vpn0_gig3_if_address"
+      #   value = "192.168.0.2"
+      # },
+      # {
+      #   name = "var_edge2_vpn0_gig3_if_mask"
+      #   value = "255.255.255.252"
+      # },
       {
         name = "var_edge2_loop56_address"
         value = "11.1.1.2"
@@ -231,14 +231,14 @@ locals {
         name = "var_edge2_vpn0_gig2_if_mask"
         value = "255.255.255.252"
       },
-      {
-        name = "var_edge2_vpn0_gig3_if_address"
-        value = "192.168.0.6"
-      },
-      {
-        name = "var_edge2_vpn0_gig3_if_mask"
-        value = "255.255.255.252"
-      },
+      # {
+      #   name = "var_edge2_vpn0_gig3_if_address"
+      #   value = "192.168.0.6"
+      # },
+      # {
+      #   name = "var_edge2_vpn0_gig3_if_mask"
+      #   value = "255.255.255.252"
+      # },
       {
         name = "var_edge2_loop56_address"
         value = "11.1.2.2"
