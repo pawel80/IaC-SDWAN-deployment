@@ -205,7 +205,7 @@ locals {
       },
       {
         name = "site_id"
-        value = 101
+        value = 102
       },
       {
         name = "system_ip"
