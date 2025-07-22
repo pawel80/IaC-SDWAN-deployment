@@ -500,17 +500,17 @@ resource "sdwan_transport_wan_vpn_feature" "core_transport_wan_vpn_v01" {
         }
       ]
     },
-    {
-      network_address = "0.0.0.0"
-      subnet_mask     = "0.0.0.0"
-      gateway         = "nextHop"
-      next_hops = [
-        {
-          address_variable        = "{{var_def_sec_gtw}}"
-          administrative_distance = 1
-        }
-      ]
-    },
+    # {
+    #   network_address = "0.0.0.0"
+    #   subnet_mask     = "0.0.0.0"
+    #   gateway         = "nextHop"
+    #   next_hops = [
+    #     {
+    #       address_variable        = "{{var_def_sec_gtw}}"
+    #       administrative_distance = 1
+    #     }
+    #   ]
+    # },
     {
       network_address = "172.16.11.0"
       subnet_mask     = "255.255.255.0"
@@ -549,22 +549,23 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "core_transport_wa
 }
 
 resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "core_transport_wan_vpn_if_eth3_v01" {
-  name                            = "CORE_TRANSPORT_WAN_VPN0_IF_ETH3_v01"
-  feature_profile_id              = sdwan_transport_feature_profile.core_transport_v01.id
-  transport_wan_vpn_feature_id    = sdwan_transport_wan_vpn_feature.core_transport_wan_vpn_v01.id
-  interface_name                  = "GigabitEthernet3"
-  shutdown                        = false
-  interface_description           = "WAN"
-  ipv4_configuration_type         = "static"
-  ipv4_address_variable           = "{{var_vpn0_gig3_if_address}}"
-  ipv4_subnet_mask_variable       = "{{var_vpn0_gig3_if_mask}}"
-  tunnel_interface                = true
-  tunnel_interface_color          = "private2"
-  tunnel_interface_color_restrict = true
-  tunnel_interface_allow_icmp     = true
-  tunnel_interface_allow_dns      = true
-  tunnel_interface_allow_ntp      = true
-  tunnel_interface_encapsulations = [
+  name                                     = "CORE_TRANSPORT_WAN_VPN0_IF_ETH3_v01"
+  feature_profile_id                       = sdwan_transport_feature_profile.core_transport_v01.id
+  transport_wan_vpn_feature_id             = sdwan_transport_wan_vpn_feature.core_transport_wan_vpn_v01.id
+  interface_name                           = "GigabitEthernet3"
+  shutdown                                 = false
+  interface_description                    = "WAN"
+  ipv4_configuration_type                  = "static"
+  ipv4_address_variable                    = "{{var_vpn0_gig3_if_address}}"
+  ipv4_subnet_mask_variable                = "{{var_vpn0_gig3_if_mask}}"
+  tunnel_interface                         = true
+  tunnel_interface_color                   = "private2"
+  tunnel_interface_color_restrict          = true
+  # tunnel_interface_max_control_connections = 0
+  tunnel_interface_allow_icmp              = true
+  tunnel_interface_allow_dns               = true
+  tunnel_interface_allow_ntp               = true
+  tunnel_interface_encapsulations          = [
     {
       encapsulation = "ipsec"
     }

@@ -37,6 +37,7 @@ Design highlights:
 
 <br/>
 
+Intranet (secured) cloud does not have direct access to the Manager/Controller.
 Below drawing presents TLOC-extension mechanism as management access to routers which are not connected directly to the Intranet (open) cloud.
 
 ![alt text](drawings/lab_tloc_extension_v10.png)  
