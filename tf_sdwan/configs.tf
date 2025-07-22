@@ -415,7 +415,7 @@ resource "sdwan_configuration_group" "edge2_config_group_v01" {
     sdwan_system_omp_feature.edge2_system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.edge2_tr_wan_vpn_if_eth2_v01.version,
-    sdwan_transport_wan_vpn_interface_ethernet_feature.edge2_vpn0_if_eth3_v01.version,
+    # sdwan_transport_wan_vpn_interface_ethernet_feature.edge2_vpn0_if_eth3_v01.version,
     sdwan_service_lan_vpn_feature.edge2_vpn506_v01.version,
     sdwan_service_lan_vpn_feature.edge2_vpn600_v01.version,
     sdwan_service_lan_vpn_interface_ethernet_feature.edge2_loop_56_v01.version,
