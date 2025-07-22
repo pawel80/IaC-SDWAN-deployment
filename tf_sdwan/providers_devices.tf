@@ -375,10 +375,10 @@ locals {
         name = "var_def_gtw"
         value = "172.16.99.1"
       },
-      {
-        name = "var_sec_gtw"
-        value = "172.16.66.1"
-      },
+      # {
+      #   name = "var_sec_gtw"
+      #   value = "172.16.66.1"
+      # },
       {
         name = "var_def_sec_gtw"
         value = "172.16.66.1"
@@ -621,10 +621,10 @@ locals {
         name = "var_sec_gtw"
         value = "172.16.66.5"
       },
-      {
-        name = "var_def_sec_gtw"
-        value = "172.16.66.5"
-      },
+      # {
+      #   name = "var_def_sec_gtw"
+      #   value = "172.16.66.5"
+      # },
       {
         name = "var_vpn0_gig1_if_address"
         value = "172.16.99.6"
@@ -863,10 +863,10 @@ locals {
         name = "var_sec_gtw"
         value = "172.16.66.9"
       },
-      {
-        name = "var_def_sec_gtw"
-        value = "172.16.66.9"
-      },
+      # {
+      #   name = "var_def_sec_gtw"
+      #   value = "172.16.66.9"
+      # },
       {
         name = "var_vpn0_gig1_if_address"
         value = "172.16.99.10"
