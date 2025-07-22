@@ -12,7 +12,7 @@ Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.
 Network types:
 - Internet for Github <-> self-hosted runner communication
 - Intranet(open) for management plane and non-encrypted data plane traffic
-- Intranet(secured) for encrypted data plane traffic  
+- Intranet(secure) for encrypted data plane traffic  
 
 <br/>
 
@@ -37,11 +37,10 @@ Design highlights:
 
 <br/>
 
-Intranet (secured) cloud does not have direct access to the Manager/Controller.
-Below drawing presents TLOC-extension mechanism as management access to routers which are not connected directly to the Intranet (open) cloud.
+Management and control plane are done only via Intranet(open) network. Config modifications are described in a **Non standard config** paragraf.
 
 ![alt text](drawings/lab_tloc_extension_v10.png)  
-*Network: Management plane - TLOC-extension and max-control-connections*
+*Network: Management/control plane - TLOC-extension and max-control-connections*
 
 ![alt text](drawings/lab_design_ip_v11.png)  
 *Network: ASN and IP plan*
@@ -64,7 +63,7 @@ For data plane, I'm using color restriction, so it possible to build IPsec tunne
 Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
 - TLOC extension was used for management/control plane of S1R2 and S2R2 routers
-- *max-control-connections 0* was used to force Cores on private2 links - Intranet (secured), to use private1 links to establish control plane connectivity
+- *max-control-connections 0* was used to force Cores on private2 links - Intranet(secure), to use private1 links - Intranet(open) to establish control plane connectivity
 - default Controller value of OMP *send-path-limit* parameter, was extended from 4 to 6, so all of the Edges could see all of the routes from the Cores
 - TF legacy routers iosxe provider and separate provider for legacy core devices (deployed as list of devices)
 
