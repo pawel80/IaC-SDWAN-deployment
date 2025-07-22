@@ -63,6 +63,7 @@ For data plane, I'm using color restriction, so it possible to build IPsec tunne
 Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
 - TLOC extension for mgmt interface
+- default Controller value of OMP *send-path-limit* parameter, was extended from 4 to 6, so all of the Edges could see all of the routers from the Cores
 - TF legacy routers iosxe provider and separate provider for legacy core devices (deployed as list of devices)
 
 <br/>

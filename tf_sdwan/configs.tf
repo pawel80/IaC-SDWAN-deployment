@@ -72,6 +72,7 @@ resource "sdwan_system_global_feature" "system_global_v01" {
 resource "sdwan_system_omp_feature" "edge_system_omp_v01" {
   name                        = "EDGE_SYSTEM_OMP_v01"
   feature_profile_id          = sdwan_system_feature_profile.edge_system_v01.id
+  paths_advertised_per_prefix = 6
 }
 
 # resource "sdwan_system_bfd_feature" "system_bfd_v01" {
@@ -238,6 +239,7 @@ resource "sdwan_system_global_feature" "edge2_system_global_v01" {
 resource "sdwan_system_omp_feature" "edge2_system_omp_v01" {
   name                        = "EDGE2_SYSTEM_OMP_v01"
   feature_profile_id          = sdwan_system_feature_profile.edge2_system_v01.id
+  paths_advertised_per_prefix = 6
 }
 
 resource "sdwan_transport_wan_vpn_feature" "edge2_transport_wan_vpn_v01" {
@@ -259,8 +261,8 @@ resource "sdwan_transport_wan_vpn_feature" "edge2_transport_wan_vpn_v01" {
       ]
     },
     {
-      network_address = "0.0.0.0"
-      subnet_mask     = "0.0.0.0"
+      network_address = "172.16.9.0"
+      subnet_mask     = "255.255.255.0"
       gateway         = "nextHop"
       next_hops = [
         {
@@ -311,28 +313,28 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge2_tr_wan_vpn_
   ]
 }
 
-# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge2_vpn0_if_eth3_v01" {
-#   name                         = "EDGE2_TLOC_EXT_VPN0_IF_ETH3_v01"
-#   feature_profile_id           = sdwan_transport_feature_profile.edge2_transport_v01.id
-#   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.id
-#   interface_name               = "GigabitEthernet3"
-#   shutdown                     = false
-#   interface_description        = "TLOC_EXT"
-#   ipv4_configuration_type      = "static"
-#   ipv4_address_variable        = "{{var_edge2_vpn0_gig3_if_address}}"
-#   ipv4_subnet_mask_variable    = "{{var_edge2_vpn0_gig3_if_mask}}"
-#   # tloc_extension               = "GigabitEthernet1"
-#   tunnel_interface             = true
-#   tunnel_interface_color       = "private1"
-#   tunnel_interface_allow_icmp  = true
-#   tunnel_interface_allow_dns   = true
-#   tunnel_interface_allow_ntp   = true
-#   tunnel_interface_encapsulations = [
-#     {
-#       encapsulation = "gre"
-#     }
-#   ]
-# }
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge2_vpn0_if_eth3_v01" {
+  name                         = "EDGE2_TLOC_EXT_VPN0_IF_ETH3_v01"
+  feature_profile_id           = sdwan_transport_feature_profile.edge2_transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.id
+  interface_name               = "GigabitEthernet3"
+  shutdown                     = false
+  interface_description        = "TLOC_EXT"
+  ipv4_configuration_type      = "static"
+  ipv4_address_variable        = "{{var_edge2_vpn0_gig3_if_address}}"
+  ipv4_subnet_mask_variable    = "{{var_edge2_vpn0_gig3_if_mask}}"
+  # tloc_extension               = "GigabitEthernet1"
+  tunnel_interface             = true
+  tunnel_interface_color       = "private1"
+  tunnel_interface_allow_icmp  = true
+  tunnel_interface_allow_dns   = true
+  tunnel_interface_allow_ntp   = true
+  tunnel_interface_encapsulations = [
+    {
+      encapsulation = "gre"
+    }
+  ]
+}
 
 resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge2_loop_56_v01" {
   name                       = "EDGE2_LOOP56_v01"
@@ -477,6 +479,7 @@ resource "sdwan_system_omp_feature" "core_system_omp_v01" {
   name                        = "CORE_SYSTEM_OMP_v01"
   feature_profile_id          = sdwan_system_feature_profile.core_system_v01.id
   advertise_ipv4_bgp          = true
+  paths_advertised_per_prefix = 6
 }
 
 resource "sdwan_transport_wan_vpn_feature" "core_transport_wan_vpn_v01" {
