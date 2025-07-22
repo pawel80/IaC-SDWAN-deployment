@@ -39,7 +39,7 @@ Design highlights:
 
 Management and control plane are done only via Intranet(open) network. Config modifications are described in a **Non standard config** paragraf.
 
-![alt text](drawings/lab_tloc_extension_v10.png)  
+![alt text](drawings/lab_tloc_ext_max_con_v11.png)  
 *Network: Management/control plane - TLOC-extension and max-control-connections*
 
 ![alt text](drawings/lab_design_ip_v11.png)  
