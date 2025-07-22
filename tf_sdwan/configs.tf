@@ -561,7 +561,7 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "core_transport_wa
   tunnel_interface                         = true
   tunnel_interface_color                   = "private2"
   tunnel_interface_color_restrict          = true
-  # tunnel_interface_max_control_connections = 0
+  tunnel_interface_max_control_connections = 0
   tunnel_interface_allow_icmp              = true
   tunnel_interface_allow_dns               = true
   tunnel_interface_allow_ntp               = true
