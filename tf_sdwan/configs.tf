@@ -283,7 +283,7 @@ resource "sdwan_service_lan_vpn_feature" "edge2_vpn600_v01" {
   config_description         = "EDGE2 VPN600 SD-WAN Services(secured)"
 }
 
-resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge2_tr_wan_vpn_if_eth2_v01" {
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge2_vpn0_if_eth2_v01" {
   name                            = "EDGE2_TRANSPORT_WAN_VPN0_IF_ETH2_v01"
   feature_profile_id              = sdwan_transport_feature_profile.edge2_transport_v01.id
   transport_wan_vpn_feature_id    = sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.id
@@ -423,7 +423,7 @@ resource "sdwan_service_lan_vpn_feature" "edge_single_vpn400_v01" {
   config_description         = "EDGE SINGLE VPN400 SD-WAN Services(open)"
 }
 
-resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_single_tr_wan_vpn_if_eth1_v01" {
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_single_vpn0_if_eth1_v01" {
   name                         = "EDGE_SINGLE_TRANSPORT_WAN_VPN0_IF_ETH1_v01"
   feature_profile_id           = sdwan_transport_feature_profile.edge_single_transport_v01.id
   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.edge_single_transport_wan_vpn_v01.id
@@ -527,7 +527,7 @@ resource "sdwan_configuration_group" "edge2_config_group_v01" {
     sdwan_system_global_feature.edge2_system_global_v01.version,
     sdwan_system_omp_feature.edge2_system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.version,
-    sdwan_transport_wan_vpn_interface_ethernet_feature.edge2_tr_wan_vpn_if_eth2_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.edge2_vpn0_if_eth2_v01.version,
     sdwan_transport_wan_vpn_interface_ethernet_feature.edge2_vpn0_if_eth3_v01.version,
     sdwan_service_lan_vpn_feature.edge2_vpn506_v01.version,
     sdwan_service_lan_vpn_feature.edge2_vpn600_v01.version,
@@ -554,7 +554,7 @@ resource "sdwan_configuration_group" "edge_single_config_group_v01" {
     sdwan_system_global_feature.edge_single_system_global_v01.version,
     sdwan_system_omp_feature.edge_single_system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.edge_single_transport_wan_vpn_v01.version,
-    sdwan_transport_wan_vpn_interface_ethernet_feature.edge_single_tr_wan_vpn_if_eth1_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.edge_single_vpn0_if_eth1_v01.version,
     sdwan_service_lan_vpn_feature.edge_single_vpn504_v01.version,
     sdwan_service_lan_vpn_feature.edge_single_vpn400_v01.version,
     sdwan_service_lan_vpn_interface_ethernet_feature.edge_single_loop_54_v01.version,
