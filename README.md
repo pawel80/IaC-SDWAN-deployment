@@ -17,7 +17,8 @@ Network types:
 <br/>
 
 Design highlights:
-- SD-WAN routers: S1R1, S2R2, S3R1 and S4R1 are connected only to the open, non-encrypted intranet network
+- HUB-SPOKE topology forced by Centralized Policy
+- SD-WAN routers: S1R1, S2R1, S3R1 and S4R1 are connected only to the open, non-encrypted intranet network
 - SD-WAN routers: S1R2 and S2R2 are connected only to secured, encrypted intranet network, management is done via TLOC extension
 - SD-Routing routers: S5R1 and S6R1 are connected only to the open, non-encrypted intranet network
 - Legacy routers (no controllers, vanilla IOS-XE): S7R1 and S8R1 are connected only to the open, non-encrypted intranet network

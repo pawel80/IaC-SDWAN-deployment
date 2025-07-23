@@ -485,7 +485,7 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_single_loop_54
   ipv4_nat_type              = "pool"
 }
 
-resource "sdwan_cli_config_feature" "edge2_cli_cfg_v01" {
+resource "sdwan_cli_config_feature" "edge_single_cli_cfg_v01" {
   feature_profile_id = sdwan_cli_feature_profile.edge_single_cli_v01.id
   name               = "EDGE_SINGLE_CLI_CFG_v01"
   description        = "EDGE SINGLE CLI config"
@@ -584,7 +584,7 @@ resource "sdwan_configuration_group" "edge_single_config_group_v01" {
     sdwan_service_lan_vpn_feature.edge_single_vpn504_v01.version,
     sdwan_service_lan_vpn_feature.edge_single_vpn400_v01.version,
     sdwan_service_lan_vpn_interface_ethernet_feature.edge2_loop_56_v01.version,
-    sdwan_cli_config_feature.edge_single_cli_v01.version,
+    sdwan_cli_config_feature.edge_single_cli_cfg_v01.version,
   ]
 }
 
