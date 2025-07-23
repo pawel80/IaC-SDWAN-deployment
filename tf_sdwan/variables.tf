@@ -63,3 +63,9 @@ variable "DC3R1_id" {
   type        = string
   default     = ""
 }
+
+variable "CTR1_id" {
+  description = "SDWAN Controller1 ID"
+  type        = string
+  default     = ""
+}

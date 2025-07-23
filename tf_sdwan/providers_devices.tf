@@ -1077,23 +1077,9 @@ locals {
 
   controllers = [
     {
-    # id     = var.S1R1_id
-    id = "ac7216ad-4c4a-43b1-90b7-db472c0c8df3"
+    id     = var.CTR1_id
     deploy = true
-    # variables = [
-    #   {
-    #     name = "host_name"
-    #     value = "S1R1"
-    #   },
-    #   {
-    #     name = "pseudo_commit_timer"
-    #     value = 0
-    #   },
-    #   {
-    #     name = "site_id"
-    #     value = 101
-    #   },
-    # ]
+    # variables = []
     }
   ]
 }
