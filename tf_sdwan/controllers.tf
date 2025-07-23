@@ -1,6 +1,6 @@
 resource "sdwan_cli_feature_profile" "controller1_cli_v01" {
-  name        = "EDGE1_CLI_FEATURE_PROFILE_v01"
-  description = "EDGE1 CLI Feature Profile"
+  name        = "CONTROLLER1_CLI_FEATURE_PROFILE_v01"
+  description = "CONTROLLER1 CLI Feature Profile"
 }
 
 resource "sdwan_cli_config_feature" "controller1_cli_cfg_v01" {
