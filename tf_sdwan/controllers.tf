@@ -1,3 +1,8 @@
+resource "sdwan_system_feature_profile" "controller1_system_v01" {
+  name        = "CONTROLLER1_SYSTEM_v01"
+  description = "CONTROLLER1 System settings"
+}
+
 resource "sdwan_cli_feature_profile" "controller1_cli_v01" {
   name        = "CONTROLLER1_CLI_FEATURE_PROFILE_v01"
   description = "CONTROLLER1 CLI Feature Profile"
@@ -87,6 +92,7 @@ resource "sdwan_configuration_group" "controller1_config_group_v01" {
   description = "Configuration group - Controllers"
   solution     = "sdwan"
   feature_profile_ids = [
+    sdwan_system_feature_profile.controller1_system_v01.id, 
     sdwan_cli_feature_profile.controller1_cli_v01.id,
   ]
   devices = local.controllers
