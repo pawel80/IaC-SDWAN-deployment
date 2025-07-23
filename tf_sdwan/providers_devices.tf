@@ -270,30 +270,30 @@ locals {
       },
       {
         name = "system_ip"
-        value = "22.2.3.1"
+        value = "11.1.3.1"
       },
       {
         name = "ipv6_strict_control"
         value = "false"
       },
       {
-        name = "var_def_gtw"
+        name = "var_edge_single_def_gtw"
         value = "172.16.10.17"
       },
       {
-        name = "var_vpn0_gig1_if_address"
+        name = "var_edge_single_vpn0_gig1_if_address"
         value = "172.16.10.18"
       },
       {
-        name = "var_vpn0_gig1_if_mask"
+        name = "var_edge_single_vpn0_gig1_if_mask"
         value = "255.255.255.252"
       },
       {
-        name = "var_edge_loop54_address"
-        value = "22.2.3.1"
+        name = "var_edge_single_loop54_address"
+        value = "11.1.3.1"
       },
       {
-        name = "var_edge_loop54_mask"
+        name = "var_edge_single_loop54_mask"
         value = "255.255.255.255"
       }
     ]
@@ -316,30 +316,30 @@ locals {
       },
       {
         name = "system_ip"
-        value = "22.2.4.1"
+        value = "11.1.4.1"
       },
       {
         name = "ipv6_strict_control"
         value = "false"
       },
       {
-        name = "var_def_gtw"
+        name = "var_edge_single_def_gtw"
         value = "172.16.10.21"
       },
       {
-        name = "var_vpn0_gig1_if_address"
+        name = "var_edge_single_vpn0_gig1_if_address"
         value = "172.16.10.22"
       },
       {
-        name = "var_vpn0_gig1_if_mask"
+        name = "var_edge_single_vpn0_gig1_if_mask"
         value = "255.255.255.252"
       },
       {
-        name = "var_edge_loop54_address"
-        value = "22.2.4.1"
+        name = "var_edge_single_loop54_address"
+        value = "11.1.4.1"
       },
       {
-        name = "var_edge_loop54_mask"
+        name = "var_edge_single_loop54_mask"
         value = "255.255.255.255"
       }
     ]
