@@ -46,6 +46,25 @@ resource "sdwan_cli_feature_profile" "edge2_cli_v01" {
 }
 
 #--------------------------- Feature profiles single edge -------------------------
+resource "sdwan_system_feature_profile" "edge_single_system_v01" {
+  name        = "EDGE_SINGLE_SYSTEM_v01"
+  description = "EDGE single System settings"
+}
+
+resource "sdwan_transport_feature_profile" "edge_single_transport_v01" {
+  name        = "EDGE_SINGLE_TRANSPORT_v01"
+  description = "EDGE single Transport and Management config"
+}
+
+resource "sdwan_service_feature_profile" "edge_single_service_v01" {
+  name        = "EDGE_SINGLE_SERVICES_v01"
+  description = "EDGE single service feature profiles"
+}
+
+resource "sdwan_cli_feature_profile" "edge_single_cli_v01" {
+  name        = "EDGE_SINGLE_CLI_FEATURE_PROFILE_v01"
+  description = "EDGE single CLI Feature Profile"
+}
 
 ##################################### Features ####################################
 #-------------------------------- Features dual edge1 -----------------------------
@@ -261,8 +280,8 @@ resource "sdwan_transport_wan_vpn_feature" "edge2_transport_wan_vpn_v01" {
       ]
     },
     {
-      network_address = "172.16.9.0"
-      subnet_mask     = "255.255.255.0"
+      network_address = "0.0.0.0"
+      subnet_mask     = "0.0.0.0"
       gateway         = "nextHop"
       next_hops = [
         {

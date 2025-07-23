@@ -28,7 +28,7 @@ Design highlights:
 <br/>
 
 > [!NOTE]
-> For better design understanding, please analyse below drawings, or even better - call me :relaxed:
+> For a better design understanding, please analyse below drawings, or even better - call me :relaxed:
 
 <br/>
 
@@ -37,9 +37,9 @@ Design highlights:
 
 <br/>
 
-Management and control plane are done only via Intranet(open) network. Config modifications are described in a **Non standard config** paragraf.
+Management and control plane are done only via Intranet(open) network. Config modifications are described in a **Non standard config** paragraph.
 
-![alt text](drawings/lab_tloc_ext_max_con_v11.png)  
+![alt text](drawings/lab_tloc_ext_max_con_v12.png)  
 *Network: Management/control plane - TLOC-extension and max-control-connections*
 
 ![alt text](drawings/lab_design_ip_v11.png)  
