@@ -1079,28 +1079,28 @@ locals {
     {
     id     = var.CTR1_id
     deploy = true
-    variables = [
-      {
-        name = "host_name"
-        value = "SDWAN-CTR1"
-      },
-      # {
-      #   name = "pseudo_commit_timer"
-      #   value = 0
-      # },
-      {
-        name = "site_id"
-        value = 9000
-      },
-      {
-        name = "system_ip"
-        value = "10.99.1.3"
-      },
-      # {
-      #   name = "ipv6_strict_control"
-      #   value = "false"
-      # },
-    ]
+    # variables = [
+    #   {
+    #     name = "host_name"
+    #     value = "SDWAN-CTR1"
+    #   },
+    #   # {
+    #   #   name = "pseudo_commit_timer"
+    #   #   value = 0
+    #   # },
+    #   {
+    #     name = "site_id"
+    #     value = 9000
+    #   },
+    #   {
+    #     name = "system_ip"
+    #     value = "10.99.1.3"
+    #   },
+    #   # {
+    #   #   name = "ipv6_strict_control"
+    #   #   value = "false"
+    #   # },
+    # ]
     }
   ]
 }
