@@ -102,7 +102,7 @@ resource "sdwan_configuration_group" "controller1_config_group_v01" {
   ]
   devices = local.controllers
   feature_versions = [
-    sdwan_system_feature_profile.controller1_system_v01.version,
+    sdwan_system_basic_feature.controller1_system_basic_v01.version,
     sdwan_cli_config_feature.controller1_cli_cfg_v01.version,
   ]
 }
