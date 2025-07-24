@@ -1079,7 +1079,24 @@ locals {
     {
     id     = var.CTR1_id
     deploy = true
-    # variables = []
+    variables = [
+      {
+        name = "host_name"
+        value = "SDWAN-Controller"
+      },
+      {
+        name = "pseudo_commit_timer"
+        value = 0
+      },
+      {
+        name = "site_id"
+        value = 9000
+      },
+      {
+        name = "system_ip"
+        value = "10.99.1.3"
+      }
+    ]
     }
   ]
 }

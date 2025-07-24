@@ -116,6 +116,6 @@ resource "sdwan_centralized_policy" "hub_spoke_policy_v1" {
   ]
 }
 
-resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
-  id = sdwan_centralized_policy.hub_spoke_policy_v1.id
-}
+# resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
+#   id = sdwan_centralized_policy.hub_spoke_policy_v1.id
+# }
