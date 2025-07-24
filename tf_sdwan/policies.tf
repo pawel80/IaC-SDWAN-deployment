@@ -21,6 +21,48 @@ resource "sdwan_site_list_policy_object" "spokes_v1" {
   ]
 }
 
+resource "sdwan_tloc_list_policy_object" "hub_tlocs_v1" {
+  name = "HUB-TLOCS"
+  entries = [
+    {
+      tloc_ip       = "99.9.1.1"
+      color         = "private1"
+      encapsulation = "gre"
+      preference    = 10
+    },
+    {
+      tloc_ip       = "99.9.2.1"
+      color         = "private1"
+      encapsulation = "gre"
+      preference    = 10
+    },
+    {
+      tloc_ip       = "99.9.3.1"
+      color         = "private1"
+      encapsulation = "gre"
+      preference    = 10
+    },
+    {
+      tloc_ip       = "99.9.1.1"
+      color         = "private2"
+      encapsulation = "ipsec"
+      preference    = 10
+    },
+    {
+      tloc_ip       = "99.9.2.1"
+      color         = "private2"
+      encapsulation = "ipsec"
+      preference    = 10
+    },
+    {
+      tloc_ip       = "99.9.3.1"
+      color         = "private2"
+      encapsulation = "ipsec"
+      preference    = 10
+    }
+  ]
+}
+
 resource "sdwan_vpn_list_policy_object" "vpns_v1" {
   name = "VPNS"
   entries = [
@@ -40,7 +82,7 @@ resource "sdwan_hub_and_spoke_topology_policy_definition" "hub_spoke_v1" {
       name                = "HUB-SPOKE"
       all_hubs_are_equal  = true
       advertise_hub_tlocs = true
-      # tloc_list_id        = "b326e448-bf33-47e4-83e7-f947e6981382"
+      tloc_list_id        = sdwan_tloc_list_policy_object.hub_tlocs_v1.id
       spokes = [
         {
           site_list_id = sdwan_site_list_policy_object.spokes_v1.id
