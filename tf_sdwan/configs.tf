@@ -248,18 +248,29 @@ resource "sdwan_transport_wan_vpn_feature" "edge2_transport_wan_vpn_v01" {
       gateway         = "nextHop"
       next_hops = [
         {
+          address_variable        = "{{var_edge2_tloc_ext_gtw}}"
+          administrative_distance = 1
+        }
+      ]
+    },
+    {
+      network_address = "172.16.11.0"
+      subnet_mask     = "255.255.255.0"
+      gateway         = "nextHop"
+      next_hops = [
+        {
           address_variable        = "{{var_edge2_def_gtw}}"
           administrative_distance = 1
         }
       ]
     },
     {
-      network_address = "0.0.0.0"
-      subnet_mask     = "0.0.0.0"
+      network_address = "172.16.66.0"
+      subnet_mask     = "255.255.255.0"
       gateway         = "nextHop"
       next_hops = [
         {
-          address_variable        = "{{var_edge2_tloc_ext_gtw}}"
+          address_variable        = "{{var_edge2_def_gtw}}"
           administrative_distance = 1
         }
       ]
