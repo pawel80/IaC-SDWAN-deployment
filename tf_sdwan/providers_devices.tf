@@ -1082,7 +1082,7 @@ locals {
     variables = [
       {
         name = "host_name"
-        value = "SDWAN-Controller"
+        value = "SDWAN-CTR1"
       },
       {
         name = "pseudo_commit_timer"
