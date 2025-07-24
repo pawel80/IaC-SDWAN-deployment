@@ -284,22 +284,23 @@ resource "sdwan_service_lan_vpn_feature" "edge2_vpn600_v01" {
 }
 
 resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge2_vpn0_if_eth2_v01" {
-  name                            = "EDGE2_TRANSPORT_WAN_VPN0_IF_ETH2_v01"
-  feature_profile_id              = sdwan_transport_feature_profile.edge2_transport_v01.id
-  transport_wan_vpn_feature_id    = sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.id
-  interface_name                  = "GigabitEthernet2"
-  shutdown                        = false
-  interface_description           = "WAN"
-  ipv4_configuration_type         = "static"
-  ipv4_address_variable           = "{{var_edge2_vpn0_gig2_if_address}}"
-  ipv4_subnet_mask_variable       = "{{var_edge2_vpn0_gig2_if_mask}}"
-  tunnel_interface                = true
-  tunnel_interface_color          = "private2"
-  tunnel_interface_color_restrict = true
-  tunnel_interface_allow_icmp     = true
-  tunnel_interface_allow_dns      = true
-  tunnel_interface_allow_ntp      = true
-  tunnel_interface_encapsulations = [
+  name                                     = "EDGE2_TRANSPORT_WAN_VPN0_IF_ETH2_v01"
+  feature_profile_id                       = sdwan_transport_feature_profile.edge2_transport_v01.id
+  transport_wan_vpn_feature_id             = sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.id
+  interface_name                           = "GigabitEthernet2"
+  shutdown                                 = false
+  interface_description                    = "WAN"
+  ipv4_configuration_type                  = "static"
+  ipv4_address_variable                    = "{{var_edge2_vpn0_gig2_if_address}}"
+  ipv4_subnet_mask_variable                = "{{var_edge2_vpn0_gig2_if_mask}}"
+  tunnel_interface                         = true
+  tunnel_interface_color                   = "private2"
+  tunnel_interface_color_restrict          = true
+  tunnel_interface_max_control_connections = 0
+  tunnel_interface_allow_icmp              = true
+  tunnel_interface_allow_dns               = true
+  tunnel_interface_allow_ntp               = true
+  tunnel_interface_encapsulations          = [
     {
       encapsulation = "ipsec"
     }
