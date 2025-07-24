@@ -232,7 +232,7 @@ resource "sdwan_system_global_feature" "edge2_system_global_v01" {
 resource "sdwan_system_omp_feature" "edge2_system_omp_v01" {
   name                        = "EDGE2_SYSTEM_OMP_v01"
   feature_profile_id          = sdwan_system_feature_profile.edge2_system_v01.id
-  # paths_advertised_per_prefix = 6
+  paths_advertised_per_prefix = 6
 }
 
 resource "sdwan_transport_wan_vpn_feature" "edge2_transport_wan_vpn_v01" {

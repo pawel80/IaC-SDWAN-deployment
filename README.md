@@ -40,7 +40,7 @@ Design highlights:
 
 Management and control plane are done only via Intranet(open) network. Config modifications are described in a **Non standard config** paragraph.
 
-![alt text](drawings/lab_tloc_ext_max_con_v12.png)  
+![alt text](drawings/lab_tloc_ext_max_con_v13.png)  
 *Network: Management/control plane - TLOC-extension and max-control-connections*
 
 ![alt text](drawings/lab_design_ip_v11.png)  
@@ -63,7 +63,7 @@ For data plane, I'm using color restriction, so it possible to build IPsec tunne
 
 Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
-- TLOC extension was used for management/control plane of S1R2 and S2R2 routers
+- TLOC extension and *max-control-connections 0* was used for management/control plane of S1R2 and S2R2 routers
 - *max-control-connections 0* was used to force Cores on private2 links - Intranet(secure), to use private1 links - Intranet(open) to establish control plane connectivity
 - default Controller value of OMP *send-path-limit* parameter, was extended from 4 to 6, so all of the Edges could see all of the routes from the Cores
 - TF legacy routers iosxe provider and separate provider for legacy core devices (deployed as list of devices)
