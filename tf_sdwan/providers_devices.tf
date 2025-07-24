@@ -1095,7 +1095,11 @@ locals {
       {
         name = "system_ip"
         value = "10.99.1.3"
-      }
+      },
+      {
+        name = "ipv6_strict_control"
+        value = "false"
+      },
     ]
     }
   ]
