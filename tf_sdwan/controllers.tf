@@ -11,6 +11,7 @@ resource "sdwan_cli_feature_profile" "controller1_cli_v01" {
 resource "sdwan_system_basic_feature" "controller1_system_basic_v01" {
   name               = "CONTROLLER1_SYSTEM_BASIC_v01"
   feature_profile_id = sdwan_system_feature_profile.controller1_system_v01.id
+  controller_groups  = [1]
 }
 
 resource "sdwan_system_global_feature" "controller1_system_global_v01" {
