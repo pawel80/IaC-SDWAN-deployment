@@ -105,17 +105,17 @@ resource "sdwan_centralized_policy" "hub_spoke_policy_v1" {
     {
       id   = sdwan_hub_and_spoke_topology_policy_definition.hub_spoke_v1.id
       type = "hubAndSpoke"
-      # entries = [
-      #   {
-      #     site_list_ids = ["2081c2f4-3f9f-4fee-8078-dcc8904e368d"]
-      #     vpn_list_ids  = ["7d0c2444-8743-4414-add0-866945ea9f70"]
-      #     direction     = "service"
-      #   }
-      # ]
+      entries = [
+        {
+          site_list_ids = [sdwan_site_list_policy_object.hubs_v1.id, sdwan_site_list_policy_object.spokes_v1.id]
+          vpn_list_ids  = [sdwan_vpn_list_policy_object.vpns_v1.id]
+          direction     = "out"
+        }
+      ]
     }
   ]
 }
 
-resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
-  id = sdwan_centralized_policy.hub_spoke_policy_v1.id
-}
+# resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
+#   id = sdwan_centralized_policy.hub_spoke_policy_v1.id
+# }
