@@ -117,13 +117,13 @@ resource "sdwan_centralized_policy" "hub_spoke_policy_v1" {
 }
 
 # This resource will destroy (potentially immediately) after null_resource.next
-resource "null_resource" "previous" {}
+# resource "null_resource" "previous" {}
 
-resource "time_sleep" "wait_x_seconds" {
-  depends_on = [null_resource.previous]
+# resource "time_sleep" "wait_x_seconds" {
+#   depends_on = [null_resource.previous]
 
-  create_duration = "30s"
-}
+#   create_duration = "30s"
+# }
 
 # This resource will create (at least) 30 seconds after null_resource.previous
 # resource "null_resource" "next" {
@@ -132,5 +132,5 @@ resource "time_sleep" "wait_x_seconds" {
 
 resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
   id = sdwan_centralized_policy.hub_spoke_policy_v1.id
-  depends_on = [time_sleep.wait_x_seconds]
+  # depends_on = [time_sleep.wait_x_seconds]
 }
