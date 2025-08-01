@@ -1078,7 +1078,8 @@ locals {
   controllers = [
     {
     id     = var.CTR1_id
-    deploy = true
+    variables = {}
+    # deploy = true
     # variables = [
     #   {
     #     name = "host_name"
