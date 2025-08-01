@@ -1,3 +1,23 @@
+###################################################################################
+############################### SD-WAN Controllers ################################
+###################################################################################
+
+#------------------------------ Feature Device Template ---------------------------
+resource "sdwan_feature_device_template" "controller_v1" {
+  name        = "DT_CONTROLLER_v01"
+  description = "Template for Controllers v1"
+  device_type = "vsmart"
+  # general_templates = [
+  #   {
+  #     id   = "2081c2f4-3f9f-4fee-8078-dcc8904e368d"
+  #     type = "cisco_system"
+  #   }
+  # ]
+}
+
+
+
+#-------------------------------- Configuration Group -----------------------------
 resource "sdwan_system_feature_profile" "controller1_system_v01" {
   name        = "CONTROLLER1_SYSTEM_v01"
   description = "CONTROLLER1 System settings"
@@ -7,17 +27,6 @@ resource "sdwan_cli_feature_profile" "controller1_cli_v01" {
   name        = "CONTROLLER1_CLI_FEATURE_PROFILE_v01"
   description = "CONTROLLER1 CLI Feature Profile"
 }
-
-# resource "sdwan_system_basic_feature" "controller1_system_basic_v01" {
-#   name               = "CONTROLLER1_SYSTEM_BASIC_v01"
-#   feature_profile_id = sdwan_system_feature_profile.controller1_system_v01.id
-#   controller_groups  = [1]
-# }
-
-# resource "sdwan_system_global_feature" "controller1_system_global_v01" {
-#   name               = "CONTROLLER1_SYSTEM_GLOBAL_v01"
-#   feature_profile_id = sdwan_system_feature_profile.controller1_system_v01.id
-# }
 
 resource "sdwan_cli_config_feature" "controller1_cli_cfg_v01" {
   feature_profile_id = sdwan_cli_feature_profile.controller1_cli_v01.id
@@ -108,8 +117,6 @@ resource "sdwan_configuration_group" "controller1_config_group_v01" {
   ]
   devices = local.controllers
   feature_versions = [
-    # sdwan_system_basic_feature.controller1_system_basic_v01.version,
-    # sdwan_system_global_feature.controller1_system_global_v01.version,
     sdwan_cli_config_feature.controller1_cli_cfg_v01.version,
   ]
 }
