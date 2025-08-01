@@ -100,7 +100,7 @@ vpn 512
 
 resource "sdwan_attach_feature_device_template" "controller_attached_v1" {
   id = sdwan_cli_device_template.controller_cli_v1.id
-  # devices = local.controllers
+  devices = local.controllers
 }
 
 
