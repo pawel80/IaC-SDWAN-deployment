@@ -130,7 +130,7 @@ resource "sdwan_centralized_policy" "hub_spoke_policy_v1" {
 #   depends_on = [time_sleep.wait_30_seconds]
 # }
 
-# resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
-#   id = sdwan_centralized_policy.hub_spoke_policy_v1.id
-#   # depends_on = [time_sleep.wait_x_seconds]
-# }
+resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
+  id = sdwan_centralized_policy.hub_spoke_policy_v1.id
+  # depends_on = [time_sleep.wait_x_seconds]
+}
