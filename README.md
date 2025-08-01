@@ -74,6 +74,7 @@ Non standard config:
 > - iosxe provider will hang if there are no online routers
 > - for iosxe provider, I've skipped TF config for mgmt interfaces. There is too much risk that TF will remove that config
 > - impossible to create a sub interface via sd-wan provider, resource: *sdwan_service_lan_vpn_interface_ethernet_feature*
+> - it is impossible to activate Centralized Policy on a Controller which is using the Configuration Group template. Error:  *Failed to Apply policy - No template found for id null*. Solution is to create a Device Template for a Controller and then activate the policy
 > - if you want to shutdown interface based on a resource: *sdwan_transport_wan_vpn_interface_ethernet_feature* or *sdwan_service_lan_vpn_interface_ethernet_feature*, then you need to first assigned IP address and/or nat type ...  
 ```terraform
 resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
@@ -101,8 +102,6 @@ resource "sdwan_cli_config_feature" "edge_cli_cfg_v01" {
   EOT
 }
 ```
-> - it is impossible to activate Centralized Policy on a Controller which is using the Configuration Group template. Error:  *Failed to Apply policy - No template found for id null*. Solution is to create a Device Template for a Controller and then activate the policy
-
 
 <!--- 
 ![screenshot](drawings/lab_v01.png)

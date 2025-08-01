@@ -23,7 +23,6 @@ resource "sdwan_cli_device_template" "controller_cli_v1" {
   description       = "CLI Template for Controllers v1"
   device_type       = "vsmart"
   cli_type          = "intend"
-  # cli_configuration = " system\n host-name             R1-ISR4331-1200-1"
   cli_configuration  = <<-EOT
 system                                                                                                                                                                                                                                             
   host-name             SDWAN-CTR1                                                                                                                                                                                                           
@@ -98,6 +97,22 @@ vpn 512
 !
   EOT
 }
+
+# resource "sdwan_attach_feature_device_template" "controller_attached_v1" {
+#   id = sdwan_cli_device_template.controller_cli_v1.id
+#   devices = local.controllers
+#   # devices = [
+#   #   {
+#   #     id = "C8K-CC678D1C-8EDF-3966-4F51-ABFAB64F5ABE"
+#   #     variables = {
+#   #       system_site_id                                  = "1001"
+#   #       system_system_ip                                = "1.1.1.1"
+#   #       system_host_name                                = "router1"
+#   #       vpn_if_name_Default_vEdge_DHCP_Tunnel_Interface = "GigabitEthernet1"
+#   #     }
+#   #   }
+#   # ]
+# }
 
 
 
@@ -191,16 +206,16 @@ vpn 512
   EOT
 }
 
-resource "sdwan_configuration_group" "controller1_config_group_v01" {
-  name        = "CG_CONTROLLER_v01"
-  description = "Configuration group - Controllers"
-  solution     = "sdwan"
-  feature_profile_ids = [
-    sdwan_system_feature_profile.controller1_system_v01.id, 
-    sdwan_cli_feature_profile.controller1_cli_v01.id,
-  ]
-  devices = local.controllers
-  feature_versions = [
-    sdwan_cli_config_feature.controller1_cli_cfg_v01.version,
-  ]
-}
+# resource "sdwan_configuration_group" "controller1_config_group_v01" {
+#   name        = "CG_CONTROLLER_v01"
+#   description = "Configuration group - Controllers"
+#   solution     = "sdwan"
+#   feature_profile_ids = [
+#     sdwan_system_feature_profile.controller1_system_v01.id, 
+#     sdwan_cli_feature_profile.controller1_cli_v01.id,
+#   ]
+#   devices = local.controllers
+#   feature_versions = [
+#     sdwan_cli_config_feature.controller1_cli_cfg_v01.version,
+#   ]
+# }
