@@ -1079,9 +1079,9 @@ locals {
     {
     id     = var.CTR1_id
     variables = {
-      # system_site_id    = "9000"
-      # system_system_ip  = "10.99.1.3"
-      # system_host_name  = "SDWAN-CTR1-1"
+      system_site_id    = "9000"
+      system_system_ip  = "10.99.1.3"
+      system_host_name  = "SDWAN-CTR1-1"
     }
     # deploy = true
     # variables = [

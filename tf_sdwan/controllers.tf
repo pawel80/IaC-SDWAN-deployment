@@ -24,10 +24,7 @@ resource "sdwan_cli_device_template" "controller_cli_v1" {
   device_type       = "vsmart"
   cli_type          = "intend"
   cli_configuration  = <<-EOT
-system                                                                                                                                                                                                                                             
-  host-name             SDWAN-CTR1                                                                                                                                                                                                           
-  system-ip             10.99.1.3                                                                                                                                                                                                                   
-  site-id               9000                                                                                                                                                                                                                        
+system                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
   admin-tech-on-failure                                                                                                                                                                                                                             
   no vrrp-advt-with-phymac                                                                                                                                                                                                                          
   organization-name     "network-lab-sdwan - 401109"                                                                                                                                                                                                
