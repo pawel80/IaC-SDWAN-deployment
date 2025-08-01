@@ -101,6 +101,7 @@ resource "sdwan_cli_config_feature" "edge_cli_cfg_v01" {
   EOT
 }
 ```
+> - it is impossible to activate Centralized Policy on a Controller which is using the Configuration Group template. Error:  *Failed to Apply policy - No template found for id null*. Solution is to create a Device Template for a Controller and then activate the policy
 
 
 <!--- 
