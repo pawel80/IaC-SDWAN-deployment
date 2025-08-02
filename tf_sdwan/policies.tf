@@ -97,7 +97,7 @@ resource "sdwan_hub_and_spoke_topology_policy_definition" "hub_spoke_v1" {
           site_list_id = sdwan_site_list_policy_object.spokes_v1.id
           hubs = [
             {
-              # site_list_id = sdwan_site_list_policy_object.hubs_v1.id
+              site_list_id = sdwan_site_list_policy_object.hubs_v1.id
               ipv4_prefix_list_ids = [sdwan_ipv4_prefix_list_policy_object.default_route_v1.id]
             }
           ]
