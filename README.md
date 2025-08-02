@@ -40,7 +40,7 @@ Design highlights:
 
 Management and control plane are done only via Intranet(open) network. Config modifications are described in a **Non standard config** paragraph.
 
-![alt text](drawings/lab_tloc_ext_max_con_v13.png)  
+![alt text](drawings/lab_tloc_ext_max_con_v14.png)  
 *Network: Management/control plane - TLOC-extension and max-control-connections*
 
 ![alt text](drawings/lab_design_ip_v11.png)  
@@ -74,7 +74,7 @@ Non standard config:
 > - iosxe provider will hang if there are no online routers
 > - for iosxe provider, I've skipped TF config for mgmt interfaces. There is too much risk that TF will remove that config
 > - it is impossible to create a sub interface via sd-wan provider, resource: *sdwan_service_lan_vpn_interface_ethernet_feature*
-> - it is impossible to activate Centralized Policy on a Controller which is using the Configuration Group template. Error:  *Failed to Apply policy - No template found for id null*. Solution is to create a Device Template for a Controller and then activate the policy
+> - it is impossible to activate Centralized Policy on a Controller which is using the Configuration Group template. Error:  *Failed to Apply policy - No template found for id null*. The solution is to create a Device Template for a Controller and then activate the policy (manually)
 > - it is impossible to attach CLI based Device Template to Controller via Terraform. Manual process works fine
 > - if you want to shutdown interface based on a resource: *sdwan_transport_wan_vpn_interface_ethernet_feature* or *sdwan_service_lan_vpn_interface_ethernet_feature*, then you need to first assigned IP address and/or nat type ...  
 ```terraform
