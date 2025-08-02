@@ -117,7 +117,8 @@ resource "sdwan_centralized_policy" "hub_spoke_policy_v1" {
       type = "hubAndSpoke"
       entries = [
         {
-          site_list_ids = [sdwan_site_list_policy_object.hubs_v1.id, sdwan_site_list_policy_object.spokes_v1.id]
+          # site_list_ids = [sdwan_site_list_policy_object.hubs_v1.id, sdwan_site_list_policy_object.spokes_v1.id]
+          site_list_ids = [sdwan_site_list_policy_object.hubs_v1.id]
           vpn_list_ids  = [sdwan_vpn_list_policy_object.vpns_v1.id]
           direction     = "out"
         }
