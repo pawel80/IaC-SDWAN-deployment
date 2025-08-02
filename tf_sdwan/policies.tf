@@ -99,7 +99,7 @@ resource "sdwan_hub_and_spoke_topology_policy_definition" "hub_spoke_v1" {
             {
               site_list_id = sdwan_site_list_policy_object.hubs_v1.id
               preference   = "30"
-              ipv4_prefix_list_ids = [sdwan_ipv4_prefix_list_policy_object.default_route_v1.id]
+              # ipv4_prefix_list_ids = [sdwan_ipv4_prefix_list_policy_object.default_route_v1.id]
             }
           ]
         }
@@ -129,6 +129,6 @@ resource "sdwan_centralized_policy" "hub_spoke_policy_v1" {
 
 
 #--------------------- Activate/De-activate Centralized Policy --------------------
-resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
-  id = sdwan_centralized_policy.hub_spoke_policy_v1.id
-}
+# resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
+#   id = sdwan_centralized_policy.hub_spoke_policy_v1.id
+# }
