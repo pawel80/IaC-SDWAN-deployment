@@ -9,6 +9,24 @@ resource "sdwan_cisco_system_feature_template" "controller_system_v1" {
   device_types       = ["vsmart"]
 }
 
+resource "sdwan_cisco_vpn_feature_template" "controller_transport_v1" {
+  name                    = "CONTROLLER_TRANSPORT_v01"
+  description             = "ontroller Transport v1"
+  device_types            = ["vsmart"]
+  vpn_id                  = 0
+  vpn_name                = "TRANSPORT"
+  dns_ipv4_servers = [
+    {
+      address = "8.8.8.8"
+      role    = "primary"
+    },
+    {
+      address = "1.1.1.1"
+      role    = "secondary"
+    }
+  ]
+}
+
 #---------------------------------- Device Template -------------------------------
 resource "sdwan_feature_device_template" "controller_device_temp_v1" {
   name        = "DT_CONTROLLER_v01"
