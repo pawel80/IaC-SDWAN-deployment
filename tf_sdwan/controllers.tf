@@ -165,11 +165,11 @@ vpn 512
   EOT
 }
 
-resource "sdwan_attach_feature_device_template" "controller_attached_v1" {
-  # id = sdwan_cli_device_template.controller_cli_v1.id
-  id = sdwan_feature_device_template.controller_device_temp_v1.id
-  devices = local.controllers
-}
+# resource "sdwan_attach_feature_device_template" "controller_attached_v1" {
+#   # id = sdwan_cli_device_template.controller_cli_v1.id
+#   id = sdwan_feature_device_template.controller_device_temp_v1.id
+#   devices = local.controllers
+# }
 
 
 
