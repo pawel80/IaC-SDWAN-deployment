@@ -98,9 +98,30 @@ resource "sdwan_hub_and_spoke_topology_policy_definition" "hub_spoke_v1" {
           hubs = [
             {
               site_list_id = sdwan_site_list_policy_object.hubs_v1.id
-              ipv4_prefix_list_ids = [sdwan_ipv4_prefix_list_policy_object.default_route_v1.id]
+              # ipv4_prefix_list_ids = [sdwan_ipv4_prefix_list_policy_object.default_route_v1.id]
             }
           ]
+        }
+      ]
+    }
+  ]
+}
+
+resource "sdwan_custom_control_topology_policy_definition" "hub_filter_traffic_v1" {
+  name           = "HUB-FILTER-TRAFFIC_v1"
+  description    = "Filter traffic from HUB to SPOKES"
+  default_action = "reject"
+  sequences = [
+    {
+      id          = 1
+      name        = "Default_route"
+      type        = "route"
+      ip_type     = "ipv4"
+      base_action = "accept"
+      match_entries = [
+        {
+          type    = "prefixList"
+          prefix_list_id = sdwan_ipv4_prefix_list_policy_object.default_route_v1.id
         }
       ]
     }
@@ -121,6 +142,10 @@ resource "sdwan_centralized_policy" "hub_spoke_policy_v1" {
       #     direction     = "out"
       #   }
       # ]
+    },
+    {
+      id = sdwan_custom_control_topology_policy_definition.hub_filter_traffic_v1.id
+      type = "control"
     }
   ]
 }
@@ -130,6 +155,6 @@ resource "sdwan_centralized_policy" "hub_spoke_policy_v1" {
 
 
 #--------------------- Activate/De-activate Centralized Policy --------------------
-resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
-  id = sdwan_centralized_policy.hub_spoke_policy_v1.id
-}
+# resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
+#   id = sdwan_centralized_policy.hub_spoke_policy_v1.id
+# }
