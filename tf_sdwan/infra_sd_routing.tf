@@ -1,5 +1,5 @@
 
-# FOR SD-ROUTING, I will need a higher software version 17.13 and 20.13 ?
+# FOR SD-ROUTING, higher software version needed - 17.13 and 20.13 ?
 
 # CONFIGURATION GROUP:
 # resource "sdwan_configuration_group" "config_group_sdr_v01" {

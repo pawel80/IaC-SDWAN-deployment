@@ -158,23 +158,35 @@ locals {
         value = "false"
       },
       {
-        name = "var_def_gtw"
-        value = "172.16.10.1"
+        name = "var_edge2_def_gtw"
+        value = "172.16.11.5"
       },
       {
-        name = "var_vpn0_gig1_if_address"
-        value = "172.16.10.2"
+        name = "var_edge2_tloc_ext_gtw"
+        value = "192.168.0.1"
       },
       {
-        name = "var_vpn0_gig1_if_mask"
+        name = "var_edge2_vpn0_gig2_if_address"
+        value = "172.16.11.6"
+      },
+      {
+        name = "var_edge2_vpn0_gig2_if_mask"
         value = "255.255.255.252"
       },
       {
-        name = "var_edge_loop54_address"
-        value = "11.1.1.1"
+        name = "var_edge2_vpn0_gig3_if_address"
+        value = "192.168.0.2"
       },
       {
-        name = "var_edge_loop54_mask"
+        name = "var_edge2_vpn0_gig3_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_edge2_loop56_address"
+        value = "11.1.1.2"
+      },
+      {
+        name = "var_edge2_loop56_mask"
         value = "255.255.255.255"
       }
     ]
@@ -193,7 +205,7 @@ locals {
       },
       {
         name = "site_id"
-        value = 101
+        value = 102
       },
       {
         name = "system_ip"
@@ -204,23 +216,35 @@ locals {
         value = "false"
       },
       {
-        name = "var_def_gtw"
-        value = "172.16.10.1"
+        name = "var_edge2_def_gtw"
+        value = "172.16.11.13"
       },
       {
-        name = "var_vpn0_gig1_if_address"
-        value = "172.16.10.2"
+        name = "var_edge2_tloc_ext_gtw"
+        value = "192.168.0.5"
       },
       {
-        name = "var_vpn0_gig1_if_mask"
+        name = "var_edge2_vpn0_gig2_if_address"
+        value = "172.16.11.14"
+      },
+      {
+        name = "var_edge2_vpn0_gig2_if_mask"
         value = "255.255.255.252"
       },
       {
-        name = "var_edge_loop54_address"
-        value = "11.1.1.1"
+        name = "var_edge2_vpn0_gig3_if_address"
+        value = "192.168.0.6"
       },
       {
-        name = "var_edge_loop54_mask"
+        name = "var_edge2_vpn0_gig3_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_edge2_loop56_address"
+        value = "11.1.2.2"
+      },
+      {
+        name = "var_edge2_loop56_mask"
         value = "255.255.255.255"
       }
     ]
@@ -246,30 +270,30 @@ locals {
       },
       {
         name = "system_ip"
-        value = "22.2.3.1"
+        value = "11.1.3.1"
       },
       {
         name = "ipv6_strict_control"
         value = "false"
       },
       {
-        name = "var_def_gtw"
+        name = "var_edge_single_def_gtw"
         value = "172.16.10.17"
       },
       {
-        name = "var_vpn0_gig1_if_address"
+        name = "var_edge_single_vpn0_gig1_if_address"
         value = "172.16.10.18"
       },
       {
-        name = "var_vpn0_gig1_if_mask"
+        name = "var_edge_single_vpn0_gig1_if_mask"
         value = "255.255.255.252"
       },
       {
-        name = "var_edge_loop54_address"
-        value = "22.2.3.1"
+        name = "var_edge_single_loop54_address"
+        value = "11.1.3.1"
       },
       {
-        name = "var_edge_loop54_mask"
+        name = "var_edge_single_loop54_mask"
         value = "255.255.255.255"
       }
     ]
@@ -292,30 +316,30 @@ locals {
       },
       {
         name = "system_ip"
-        value = "22.2.4.1"
+        value = "11.1.4.1"
       },
       {
         name = "ipv6_strict_control"
         value = "false"
       },
       {
-        name = "var_def_gtw"
+        name = "var_edge_single_def_gtw"
         value = "172.16.10.21"
       },
       {
-        name = "var_vpn0_gig1_if_address"
+        name = "var_edge_single_vpn0_gig1_if_address"
         value = "172.16.10.22"
       },
       {
-        name = "var_vpn0_gig1_if_mask"
+        name = "var_edge_single_vpn0_gig1_if_mask"
         value = "255.255.255.252"
       },
       {
-        name = "var_edge_loop54_address"
-        value = "22.2.4.1"
+        name = "var_edge_single_loop54_address"
+        value = "11.1.4.1"
       },
       {
-        name = "var_edge_loop54_mask"
+        name = "var_edge_single_loop54_mask"
         value = "255.255.255.255"
       }
     ]
@@ -352,11 +376,27 @@ locals {
         value = "172.16.99.1"
       },
       {
+        name = "var_sec_gtw"
+        value = "172.16.66.1"
+      },
+      # {
+      #   name = "var_def_sec_gtw"
+      #   value = "172.16.66.1"
+      # },
+      {
         name = "var_vpn0_gig1_if_address"
         value = "172.16.99.2"
       },
       {
         name = "var_vpn0_gig1_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_vpn0_gig3_if_address"
+        value = "172.16.66.2"
+      },
+      {
+        name = "var_vpn0_gig3_if_mask"
         value = "255.255.255.252"
       },
       {
@@ -437,6 +477,14 @@ locals {
       },
       {
         name = "var_core_loop54_mask"
+        value = "255.255.255.255"
+      },
+      {
+        name = "var_core_loop56_address"
+        value = "99.9.1.1"
+      },
+      {
+        name = "var_core_loop56_mask"
         value = "255.255.255.255"
       },
       {
@@ -570,11 +618,27 @@ locals {
         value = "172.16.99.5"
       },
       {
+        name = "var_sec_gtw"
+        value = "172.16.66.5"
+      },
+      # {
+      #   name = "var_def_sec_gtw"
+      #   value = "172.16.66.5"
+      # },
+      {
         name = "var_vpn0_gig1_if_address"
         value = "172.16.99.6"
       },
       {
         name = "var_vpn0_gig1_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_vpn0_gig3_if_address"
+        value = "172.16.66.6"
+      },
+      {
+        name = "var_vpn0_gig3_if_mask"
         value = "255.255.255.252"
       },
       {
@@ -655,6 +719,14 @@ locals {
       },
       {
         name = "var_core_loop54_mask"
+        value = "255.255.255.255"
+      },
+      {
+        name = "var_core_loop56_address"
+        value = "99.9.2.1"
+      },
+      {
+        name = "var_core_loop56_mask"
         value = "255.255.255.255"
       },
       {
@@ -788,11 +860,27 @@ locals {
         value = "172.16.99.9"
       },
       {
+        name = "var_sec_gtw"
+        value = "172.16.66.9"
+      },
+      # {
+      #   name = "var_def_sec_gtw"
+      #   value = "172.16.66.9"
+      # },
+      {
         name = "var_vpn0_gig1_if_address"
         value = "172.16.99.10"
       },
       {
         name = "var_vpn0_gig1_if_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_vpn0_gig3_if_address"
+        value = "172.16.66.10"
+      },
+      {
+        name = "var_vpn0_gig3_if_mask"
         value = "255.255.255.252"
       },
       {
@@ -873,6 +961,14 @@ locals {
       },
       {
         name = "var_core_loop54_mask"
+        value = "255.255.255.255"
+      },
+      {
+        name = "var_core_loop56_address"
+        value = "99.9.3.1"
+      },
+      {
+        name = "var_core_loop56_mask"
         value = "255.255.255.255"
       },
       {
@@ -976,6 +1072,40 @@ locals {
         value = "65301"
       }
     ]
+    }
+  ]
+
+  controllers = [
+    {
+    id     = var.CTR1_id
+    variables = {
+      # system_site_id    = "9000"
+      # system_system_ip  = "10.99.1.3"
+      # system_host_name  = "SDWAN-CTR1-1"
+    }
+    # deploy = true
+    # variables = [
+    #   {
+    #     name = "host_name"
+    #     value = "SDWAN-CTR1"
+    #   },
+    #   # {
+    #   #   name = "pseudo_commit_timer"
+    #   #   value = 0
+    #   # },
+    #   {
+    #     name = "site_id"
+    #     value = 9000
+    #   },
+    #   {
+    #     name = "system_ip"
+    #     value = "10.99.1.3"
+    #   },
+    #   # {
+    #   #   name = "ipv6_strict_control"
+    #   #   value = "false"
+    #   # },
+    # ]
     }
   ]
 }

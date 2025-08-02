@@ -89,6 +89,7 @@ jobs:
           TF_VAR_DC1R1_id: ${{ secrets.SDWAN_DC1R1_ID }}
           TF_VAR_DC2R1_id: ${{ secrets.SDWAN_DC2R1_ID }}
           TF_VAR_DC3R1_id: ${{ secrets.SDWAN_DC3R1_ID }}
+          TF_VAR_CTR1_id: ${{ secrets.SDWAN_CTR1_ID }}
 
       # Executes the actions proposed in a Terraform plan
       - name: 'Terraform Apply'
@@ -112,6 +113,7 @@ jobs:
           TF_VAR_DC1R1_id: ${{ secrets.SDWAN_DC1R1_ID }}
           TF_VAR_DC2R1_id: ${{ secrets.SDWAN_DC2R1_ID }}
           TF_VAR_DC3R1_id: ${{ secrets.SDWAN_DC3R1_ID }}
+          TF_VAR_CTR1_id: ${{ secrets.SDWAN_CTR1_ID }}
           # SDWAN_INSECURE: true
           # SDWAN_RETRIES: 3
           # TF_LOG: DEBUG

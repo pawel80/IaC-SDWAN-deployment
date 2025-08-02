@@ -1,37 +1,81 @@
 ###################################################################################
 ################################## SD-WAN cEDGEs ##################################
 ###################################################################################
-#---------------------- Dual routers site - intranet (open) ------=----------------
+
 ################################# Feature profiles ################################
-resource "sdwan_system_feature_profile" "edge_system_v01" {
-  name        = "EDGE_SYSTEM_v01"
-  description = "EDGE System settings"
+#---------------------------- Feature profiles dual edge1 -------------------------
+resource "sdwan_system_feature_profile" "edge1_system_v01" {
+  name        = "EDGE1_SYSTEM_v01"
+  description = "EDGE1 System settings"
 }
 
-resource "sdwan_transport_feature_profile" "edge_transport_v01" {
-  name        = "EDGE_TRANSPORT_v01"
-  description = "EDGE Transport and Management config"
+resource "sdwan_transport_feature_profile" "edge1_transport_v01" {
+  name        = "EDGE1_TRANSPORT_v01"
+  description = "EDGE1 Transport and Management config"
 }
 
-resource "sdwan_service_feature_profile" "edge_service_v01" {
-  name        = "EDGE_SERVICES_v01"
-  description = "EDGE service feature profiles"
+resource "sdwan_service_feature_profile" "edge1_service_v01" {
+  name        = "EDGE1_SERVICES_v01"
+  description = "EDGE1 service feature profiles"
 }
 
-resource "sdwan_cli_feature_profile" "edge_cli_v01" {
-  name        = "EDGE_CLI_FEATURE_PROFILE_v01"
-  description = "EDGE CLI Feature Profile"
+resource "sdwan_cli_feature_profile" "edge1_cli_v01" {
+  name        = "EDGE1_CLI_FEATURE_PROFILE_v01"
+  description = "EDGE1 CLI Feature Profile"
+}
+
+#---------------------------- Feature profiles dual edge2 -------------------------
+resource "sdwan_system_feature_profile" "edge2_system_v01" {
+  name        = "EDGE2_SYSTEM_v01"
+  description = "EDGE2 System settings"
+}
+
+resource "sdwan_transport_feature_profile" "edge2_transport_v01" {
+  name        = "EDGE2_TRANSPORT_v01"
+  description = "EDGE2 Transport and Management config"
+}
+
+resource "sdwan_service_feature_profile" "edge2_service_v01" {
+  name        = "EDGE2_SERVICES_v01"
+  description = "EDGE2 service feature profiles"
+}
+
+resource "sdwan_cli_feature_profile" "edge2_cli_v01" {
+  name        = "EDGE2_CLI_FEATURE_PROFILE_v01"
+  description = "EDGE2 CLI Feature Profile"
+}
+
+#--------------------------- Feature profiles single edge -------------------------
+resource "sdwan_system_feature_profile" "edge_single_system_v01" {
+  name        = "EDGE_SINGLE_SYSTEM_v01"
+  description = "EDGE single System settings"
+}
+
+resource "sdwan_transport_feature_profile" "edge_single_transport_v01" {
+  name        = "EDGE_SINGLE_TRANSPORT_v01"
+  description = "EDGE single Transport and Management config"
+}
+
+resource "sdwan_service_feature_profile" "edge_single_service_v01" {
+  name        = "EDGE_SINGLE_SERVICES_v01"
+  description = "EDGE single service feature profiles"
+}
+
+resource "sdwan_cli_feature_profile" "edge_single_cli_v01" {
+  name        = "EDGE_SINGLE_CLI_FEATURE_PROFILE_v01"
+  description = "EDGE single CLI Feature Profile"
 }
 
 ##################################### Features ####################################
-resource "sdwan_system_basic_feature" "system_basic_v01" {
-  name               = "SYSTEM_BASIC_v01"
-  feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
+#-------------------------------- Features dual edge1 -----------------------------
+resource "sdwan_system_basic_feature" "edge1_system_basic_v01" {
+  name               = "EDGE1_SYSTEM_BASIC_v01"
+  feature_profile_id = sdwan_system_feature_profile.edge1_system_v01.id
 }
 
-resource "sdwan_system_aaa_feature" "system_aaa_v01" {
-  name               = "SYSTEM_AAA_v01"
-  feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
+resource "sdwan_system_aaa_feature" "edge1_system_aaa_v01" {
+  name               = "EDGE1_SYSTEM_AAA_v01"
+  feature_profile_id = sdwan_system_feature_profile.edge1_system_v01.id
   server_auth_order  = ["local"]
   users = [{
     name     = var.admin_account
@@ -39,29 +83,30 @@ resource "sdwan_system_aaa_feature" "system_aaa_v01" {
   }]
 }
 
-resource "sdwan_system_omp_feature" "edge_system_omp_v01" {
-  name                        = "EDGE_SYSTEM_OMP_v01"
-  feature_profile_id          = sdwan_system_feature_profile.edge_system_v01.id
+resource "sdwan_system_global_feature" "edge1_system_global_v01" {
+  name               = "EDGE1_SYSTEM_GLOBAL_v01"
+  feature_profile_id = sdwan_system_feature_profile.edge1_system_v01.id
+}
+
+resource "sdwan_system_omp_feature" "edge1_system_omp_v01" {
+  name                        = "EDGE1_SYSTEM_OMP_v01"
+  feature_profile_id          = sdwan_system_feature_profile.edge1_system_v01.id
+  # paths_advertised_per_prefix = 6
 }
 
 # resource "sdwan_system_bfd_feature" "system_bfd_v01" {
 #   name               = "SYSTEM_BFD_v01"
-#   feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
+#   feature_profile_id = sdwan_system_feature_profile.edge1_system_v01.id
 # }
-
-resource "sdwan_system_global_feature" "system_global_v01" {
-  name               = "SYSTEM_GLOBAL_v01"
-  feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
-}
 
 # resource "sdwan_system_logging_feature" "system_logging_v01" {
 #   name               = "SYSTEM_LOGGING_v01"
-#   feature_profile_id = sdwan_system_feature_profile.edge_system_v01.id
+#   feature_profile_id = sdwan_system_feature_profile.edge1_system_v01.id
 # }
 
-resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
-  name                        = "TRANSPORT_WAN_VPN0_v01"
-  feature_profile_id          = sdwan_transport_feature_profile.edge_transport_v01.id
+resource "sdwan_transport_wan_vpn_feature" "edge1_transport_wan_vpn_v01" {
+  name                        = "EDGE1_TRANSPORT_WAN_VPN0_v01"
+  feature_profile_id          = sdwan_transport_feature_profile.edge1_transport_v01.id
   vpn                         = 0
   primary_dns_address_ipv4    = "8.8.8.8"
   secondary_dns_address_ipv4  = "1.1.1.1"
@@ -80,10 +125,26 @@ resource "sdwan_transport_wan_vpn_feature" "transport_wan_vpn_v01" {
   ]
 }
 
-resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn_if_eth1_v01" {
-  name                         = "TRANSPORT_WAN_VPN0_IF_ETH1_v01"
-  feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
-  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+resource "sdwan_service_lan_vpn_feature" "edge1_vpn504_v01" {
+  name                       = "EDGE1_VPN504_v01"
+  description                = "EDGE1 VPN504 SD-WAN Monitoring(open)"
+  feature_profile_id         = sdwan_service_feature_profile.edge1_service_v01.id
+  vpn                        = 504
+  config_description         = "EDGE1 VPN504 SD-WAN Monitoring(open)"
+}
+
+resource "sdwan_service_lan_vpn_feature" "edge1_vpn400_v01" {
+  name                       = "EDGE1_VPN400_v01"
+  description                = "EDGE1 VPN400 SD-WAN Services(open)"
+  feature_profile_id         = sdwan_service_feature_profile.edge1_service_v01.id
+  vpn                        = 400
+  config_description         = "EDGE1 VPN400 SD-WAN Services(open)"
+}
+
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge1_vpn0_if_eth1_v01" {
+  name                         = "EDGE1_VPN0_IF_ETH1_v01"
+  feature_profile_id           = sdwan_transport_feature_profile.edge1_transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.edge1_transport_wan_vpn_v01.id
   interface_name               = "GigabitEthernet1"
   shutdown                     = false
   interface_description        = "WAN"
@@ -91,7 +152,7 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ipv4_address_variable        = "{{var_vpn0_gig1_if_address}}"
   ipv4_subnet_mask_variable    = "{{var_vpn0_gig1_if_mask}}"
   tunnel_interface             = true
-  tunnel_interface_color       = "biz-internet"
+  tunnel_interface_color       = "private1"
   tunnel_interface_allow_icmp  = true
   tunnel_interface_allow_dns   = true
   tunnel_interface_allow_ntp   = true
@@ -103,10 +164,10 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "transport_wan_vpn
   ]
 }
 
-resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth3_v01" {
-  name                         = "TLOC_EXT_VPN0_IF_ETH3_v01"
-  feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
-  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge1_vpn0_if_eth3_v01" {
+  name                         = "EDGE1_TLOC_EXT_VPN0_IF_ETH3_v01"
+  feature_profile_id           = sdwan_transport_feature_profile.edge1_transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.edge1_transport_wan_vpn_v01.id
   interface_name               = "GigabitEthernet3"
   shutdown                     = false
   interface_description        = "TLOC_EXT"
@@ -117,62 +178,11 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_i
   tloc_extension               = "GigabitEthernet1"
 }
 
-# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
-#   name                         = "WAN_VPN0_IF_ETH_v02"
-#   feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
-#   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
-#   interface_name               = "GigabitEthernet2"
-#   shutdown                     = true
-#   interface_description        = "NOT-USED"
-#   ipv4_configuration_type      = "static"
-#   ipv4_address                 = "1.1.1.1"
-#   ipv4_subnet_mask             = "255.255.255.254"
-# }
-
-# resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth4_v01" {
-#   name                         = "WAN_VPN0_IF_ETH_v04"
-#   feature_profile_id           = sdwan_transport_feature_profile.edge_transport_v01.id
-#   transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.id
-#   interface_name               = "GigabitEthernet4"
-#   shutdown                     = true
-#   interface_description        = "NOT-USED"
-# }
-
-# resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_dual1_vpn400_if_eth2_v01" {
-#   name                       = "EDGE_DUAL1_ETH2_v01"
-#   description                = "NOT-USED"
-#   feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
-#   service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge_vpn400_v01.id
-#   interface_name             = "GigabitEthernet2"
-#   shutdown                   = true
-#   interface_description      = "NOT-USED"
-#   ipv4_address               = "1.1.1.1"
-#   ipv4_subnet_mask           = "255.255.255.252"
-#   ipv4_nat                   = false
-#   ipv4_nat_type              = "pool"
-# }
-
-resource "sdwan_service_lan_vpn_feature" "edge_vpn504_v01" {
-  name                       = "EDGE_VPN504_v01"
-  description                = "EDGE VPN504 SD-WAN Monitoring(open)"
-  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
-  vpn                        = 504
-  config_description         = "EDGE VPN504 SD-WAN Monitoring(open)"
-}
-
-resource "sdwan_service_lan_vpn_feature" "edge_vpn400_v01" {
-  name                       = "EDGE_VPN400_v01"
-  description                = "EDGE VPN400 SD-WAN Services(open)"
-  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
-  vpn                        = 400
-  config_description         = "EDGE VPN400 SD-WAN Services(open)"
-}
-
-resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_loop_54_v01" {
-  name                       = "EDGE_LOOP54_v01"
-  description                = "EDGE LOOPBACK54 Monitoring"
-  feature_profile_id         = sdwan_service_feature_profile.edge_service_v01.id
-  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge_vpn504_v01.id
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge1_loop_54_v01" {
+  name                       = "EDGE1_LOOP54_v01"
+  description                = "EDGE1 LOOPBACK54 Monitoring"
+  feature_profile_id         = sdwan_service_feature_profile.edge1_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge1_vpn504_v01.id
   shutdown                   = false
   interface_name             = "Loopback54"
   interface_description      = "Monitoring(open)"
@@ -182,46 +192,386 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_loop_54_v01" {
   ipv4_nat_type              = "pool"
 }
 
-resource "sdwan_cli_config_feature" "edge_cli_cfg_v01" {
-  feature_profile_id = sdwan_cli_feature_profile.edge_cli_v01.id
-  name               = "EDGE_CLI_CFG_v01"
-  description        = "EDGE CLI config"
+resource "sdwan_cli_config_feature" "edge1_cli_cfg_v01" {
+  feature_profile_id = sdwan_cli_feature_profile.edge1_cli_v01.id
+  name               = "EDGE1_CLI_CFG_v01"
+  description        = "EDGE1 CLI config"
   cli_configuration  = <<-EOT
   interface GigabitEthernet2
+  description NOT-USED
   shutdown
   !
   interface GigabitEthernet4
+  description NOT-USED
+  shutdown
+  !
+  EOT
+}
+
+#-------------------------------- Features dual edge2 -----------------------------
+resource "sdwan_system_basic_feature" "edge2_system_basic_v01" {
+  name               = "EDGE2_SYSTEM_BASIC_v01"
+  feature_profile_id = sdwan_system_feature_profile.edge2_system_v01.id
+}
+
+resource "sdwan_system_aaa_feature" "edge2_system_aaa_v01" {
+  name               = "EDGE2_SYSTEM_AAA_v01"
+  feature_profile_id = sdwan_system_feature_profile.edge2_system_v01.id
+  server_auth_order  = ["local"]
+  users = [{
+    name     = var.admin_account
+    password = var.admin_account_pass
+  }]
+}
+
+resource "sdwan_system_global_feature" "edge2_system_global_v01" {
+  name               = "EDGE2_SYSTEM_GLOBAL_v01"
+  feature_profile_id = sdwan_system_feature_profile.edge2_system_v01.id
+}
+
+resource "sdwan_system_omp_feature" "edge2_system_omp_v01" {
+  name                        = "EDGE2_SYSTEM_OMP_v01"
+  feature_profile_id          = sdwan_system_feature_profile.edge2_system_v01.id
+  # paths_advertised_per_prefix = 6
+  ecmp_limit                  = 6
+}
+
+resource "sdwan_transport_wan_vpn_feature" "edge2_transport_wan_vpn_v01" {
+  name                        = "EDGE2_TRANSPORT_WAN_VPN0_v01"
+  feature_profile_id          = sdwan_transport_feature_profile.edge2_transport_v01.id
+  vpn                         = 0
+  primary_dns_address_ipv4    = "8.8.8.8"
+  secondary_dns_address_ipv4  = "1.1.1.1"
+  ipv4_static_routes = [
+    {
+      network_address = "0.0.0.0"
+      subnet_mask     = "0.0.0.0"
+      gateway         = "nextHop"
+      next_hops = [
+        {
+          address_variable        = "{{var_edge2_tloc_ext_gtw}}"
+          administrative_distance = 1
+        }
+      ]
+    },
+    {
+      network_address = "172.16.11.0"
+      subnet_mask     = "255.255.255.0"
+      gateway         = "nextHop"
+      next_hops = [
+        {
+          address_variable        = "{{var_edge2_def_gtw}}"
+          administrative_distance = 1
+        }
+      ]
+    },
+    {
+      network_address = "172.16.66.0"
+      subnet_mask     = "255.255.255.0"
+      gateway         = "nextHop"
+      next_hops = [
+        {
+          address_variable        = "{{var_edge2_def_gtw}}"
+          administrative_distance = 1
+        }
+      ]
+    }
+  ]
+}
+
+resource "sdwan_service_lan_vpn_feature" "edge2_vpn506_v01" {
+  name                       = "EDGE2_VPN506_v01"
+  description                = "EDGE2 VPN506 SD-WAN Monitoring(secured)"
+  feature_profile_id         = sdwan_service_feature_profile.edge2_service_v01.id
+  vpn                        = 506
+  config_description         = "EDGE2 VPN506 SD-WAN Monitoring(secured)"
+}
+
+resource "sdwan_service_lan_vpn_feature" "edge2_vpn600_v01" {
+  name                       = "EDGE2_VPN600_v01"
+  description                = "EDGE2 VPN600 SD-WAN Services(secured)"
+  feature_profile_id         = sdwan_service_feature_profile.edge2_service_v01.id
+  vpn                        = 600
+  config_description         = "EDGE2 VPN600 SD-WAN Services(secured)"
+}
+
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge2_vpn0_if_eth2_v01" {
+  name                                     = "EDGE2_TRANSPORT_WAN_VPN0_IF_ETH2_v01"
+  feature_profile_id                       = sdwan_transport_feature_profile.edge2_transport_v01.id
+  transport_wan_vpn_feature_id             = sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.id
+  interface_name                           = "GigabitEthernet2"
+  shutdown                                 = false
+  interface_description                    = "WAN"
+  ipv4_configuration_type                  = "static"
+  ipv4_address_variable                    = "{{var_edge2_vpn0_gig2_if_address}}"
+  ipv4_subnet_mask_variable                = "{{var_edge2_vpn0_gig2_if_mask}}"
+  tunnel_interface                         = true
+  tunnel_interface_color                   = "private2"
+  tunnel_interface_color_restrict          = true
+  tunnel_interface_max_control_connections = 0
+  tunnel_interface_allow_icmp              = true
+  tunnel_interface_allow_dns               = true
+  tunnel_interface_allow_ntp               = true
+  tunnel_interface_encapsulations          = [
+    {
+      encapsulation = "ipsec"
+    }
+  ]
+}
+
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge2_vpn0_if_eth3_v01" {
+  name                         = "EDGE2_TLOC_EXT_VPN0_IF_ETH3_v01"
+  feature_profile_id           = sdwan_transport_feature_profile.edge2_transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.id
+  interface_name               = "GigabitEthernet3"
+  shutdown                     = false
+  interface_description        = "TLOC_EXT"
+  ipv4_configuration_type      = "static"
+  ipv4_address_variable        = "{{var_edge2_vpn0_gig3_if_address}}"
+  ipv4_subnet_mask_variable    = "{{var_edge2_vpn0_gig3_if_mask}}"
+  # tloc_extension               = "GigabitEthernet1"
+  tunnel_interface             = true
+  tunnel_interface_color       = "private1"
+  tunnel_interface_allow_icmp  = true
+  tunnel_interface_allow_dns   = true
+  tunnel_interface_allow_ntp   = true
+  tunnel_interface_encapsulations = [
+    {
+      encapsulation = "gre"
+    }
+  ]
+}
+
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge2_loop_56_v01" {
+  name                       = "EDGE2_LOOP56_v01"
+  description                = "EDGE2 LOOPBACK56 Monitoring"
+  feature_profile_id         = sdwan_service_feature_profile.edge2_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge2_vpn506_v01.id
+  shutdown                   = false
+  interface_name             = "Loopback56"
+  interface_description      = "Monitoring(secured)"
+  ipv4_address_variable      = "{{var_edge2_loop56_address}}"
+  ipv4_subnet_mask_variable  = "{{var_edge2_loop56_mask}}"
+  ipv4_nat                   = false
+  ipv4_nat_type              = "pool"
+}
+
+resource "sdwan_cli_config_feature" "edge2_cli_cfg_v01" {
+  feature_profile_id = sdwan_cli_feature_profile.edge2_cli_v01.id
+  name               = "EDGE2_CLI_CFG_v01"
+  description        = "EDGE2 CLI config"
+  cli_configuration  = <<-EOT
+  interface GigabitEthernet1
+  description NOT-USED
+  shutdown
+  !
+  interface GigabitEthernet4
+  description NOT-USED
+  shutdown
+  !
+  EOT
+}
+
+#------------------------------- Features single edge -----------------------------
+resource "sdwan_system_basic_feature" "edge_single_system_basic_v01" {
+  name               = "EDGE_SINGLE_SYSTEM_BASIC_v01"
+  feature_profile_id = sdwan_system_feature_profile.edge_single_system_v01.id
+}
+
+resource "sdwan_system_aaa_feature" "edge_single_system_aaa_v01" {
+  name               = "EDGE_SINGLE_SYSTEM_AAA_v01"
+  feature_profile_id = sdwan_system_feature_profile.edge_single_system_v01.id
+  server_auth_order  = ["local"]
+  users = [{
+    name     = var.admin_account
+    password = var.admin_account_pass
+  }]
+}
+
+resource "sdwan_system_global_feature" "edge_single_system_global_v01" {
+  name               = "EDGE_SINGLE_SYSTEM_GLOBAL_v01"
+  feature_profile_id = sdwan_system_feature_profile.edge_single_system_v01.id
+}
+
+resource "sdwan_system_omp_feature" "edge_single_system_omp_v01" {
+  name                        = "EDGE_SINGLE_SYSTEM_OMP_v01"
+  feature_profile_id          = sdwan_system_feature_profile.edge_single_system_v01.id
+  # paths_advertised_per_prefix = 6
+}
+
+resource "sdwan_transport_wan_vpn_feature" "edge_single_transport_wan_vpn_v01" {
+  name                        = "EDGE_SINGLE_TRANSPORT_WAN_VPN0_v01"
+  feature_profile_id          = sdwan_transport_feature_profile.edge_single_transport_v01.id
+  vpn                         = 0
+  primary_dns_address_ipv4    = "8.8.8.8"
+  secondary_dns_address_ipv4  = "1.1.1.1"
+  ipv4_static_routes = [
+    {
+      network_address = "0.0.0.0"
+      subnet_mask     = "0.0.0.0"
+      gateway         = "nextHop"
+      next_hops = [
+        {
+          address_variable        = "{{var_edge_single_def_gtw}}"
+          administrative_distance = 1
+        }
+      ]
+    }
+  ]
+}
+
+resource "sdwan_service_lan_vpn_feature" "edge_single_vpn504_v01" {
+  name                       = "EDGE_SINGLE_VPN504_v01"
+  description                = "EDGE SINGLE VPN504 SD-WAN Monitoring(open)"
+  feature_profile_id         = sdwan_service_feature_profile.edge_single_service_v01.id
+  vpn                        = 504
+  config_description         = "EDGE SINGLE VPN504 SD-WAN Monitoring(open)"
+}
+
+resource "sdwan_service_lan_vpn_feature" "edge_single_vpn400_v01" {
+  name                       = "EDGE_SINGLE_VPN400_v01"
+  description                = "EDGE SINGLE VPN400 SD-WAN Services(open)"
+  feature_profile_id         = sdwan_service_feature_profile.edge_single_service_v01.id
+  vpn                        = 400
+  config_description         = "EDGE SINGLE VPN400 SD-WAN Services(open)"
+}
+
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_single_vpn0_if_eth1_v01" {
+  name                         = "EDGE_SINGLE_TRANSPORT_WAN_VPN0_IF_ETH1_v01"
+  feature_profile_id           = sdwan_transport_feature_profile.edge_single_transport_v01.id
+  transport_wan_vpn_feature_id = sdwan_transport_wan_vpn_feature.edge_single_transport_wan_vpn_v01.id
+  interface_name               = "GigabitEthernet1"
+  shutdown                     = false
+  interface_description        = "WAN"
+  ipv4_configuration_type      = "static"
+  ipv4_address_variable        = "{{var_edge_single_vpn0_gig1_if_address}}"
+  ipv4_subnet_mask_variable    = "{{var_edge_single_vpn0_gig1_if_mask}}"
+  tunnel_interface             = true
+  tunnel_interface_color       = "private1"
+  tunnel_interface_allow_icmp  = true
+  tunnel_interface_allow_dns   = true
+  tunnel_interface_allow_ntp   = true
+  tunnel_interface_encapsulations = [
+    {
+      encapsulation = "gre"
+    }
+  ]
+}
+
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "edge_single_loop_54_v01" {
+  name                       = "EDGE_SINGLE_LOOP54_v01"
+  description                = "EDGE SINGLE LOOPBACK54 Monitoring"
+  feature_profile_id         = sdwan_service_feature_profile.edge_single_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.edge_single_vpn504_v01.id
+  shutdown                   = false
+  interface_name             = "Loopback54"
+  interface_description      = "Monitoring(open)"
+  ipv4_address_variable      = "{{var_edge_single_loop54_address}}"
+  ipv4_subnet_mask_variable  = "{{var_edge_single_loop54_mask}}"
+  ipv4_nat                   = false
+  ipv4_nat_type              = "pool"
+}
+
+resource "sdwan_cli_config_feature" "edge_single_cli_cfg_v01" {
+  feature_profile_id = sdwan_cli_feature_profile.edge_single_cli_v01.id
+  name               = "EDGE_SINGLE_CLI_CFG_v01"
+  description        = "EDGE SINGLE CLI config"
+  cli_configuration  = <<-EOT
+  interface GigabitEthernet2
+  description NOT-USED
+  shutdown
+  !
+  interface GigabitEthernet3
+  description NOT-USED
+  shutdown
+  !
+  interface GigabitEthernet4
+  description NOT-USED
   shutdown
   !
   EOT
 }
 
 ################################ Configuration group ##############################
+#-------------------------- Configuration group dual edge1 ------------------------
 resource "sdwan_configuration_group" "edge_config_group_v01" {
-  name        = "CG_EDGES_v01"
-  description = "Configuration group - Edges"
+  name        = "CG_EDGE1_v01"
+  description = "Configuration group - Edge1 dual"
   solution     = "sdwan"
   feature_profile_ids = [
-    sdwan_system_feature_profile.edge_system_v01.id, 
-    sdwan_transport_feature_profile.edge_transport_v01.id,
-    sdwan_service_feature_profile.edge_service_v01.id,
-    sdwan_cli_feature_profile.edge_cli_v01.id,
+    sdwan_system_feature_profile.edge1_system_v01.id, 
+    sdwan_transport_feature_profile.edge1_transport_v01.id,
+    sdwan_service_feature_profile.edge1_service_v01.id,
+    sdwan_cli_feature_profile.edge1_cli_v01.id,
   ]
   devices = local.sdwan_edges_dual1
   feature_versions = [
-    sdwan_system_basic_feature.system_basic_v01.version,
-    sdwan_system_aaa_feature.system_aaa_v01.version,
-    # sdwan_system_bfd_feature.system_bfd_v01.version,
-    # sdwan_system_logging_feature.system_logging_v01.version,
-    sdwan_system_global_feature.system_global_v01.version,
-    sdwan_system_omp_feature.edge_system_omp_v01.version,
-    sdwan_transport_wan_vpn_feature.transport_wan_vpn_v01.version,
-    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth1_v01.version,
-    sdwan_transport_wan_vpn_interface_ethernet_feature.edge_dual1_vpn0_if_eth3_v01.version,
-    sdwan_service_lan_vpn_feature.edge_vpn504_v01.version,
-    sdwan_service_lan_vpn_feature.edge_vpn400_v01.version,
-    # sdwan_service_lan_vpn_interface_ethernet_feature.edge_loop_54_v01.version,
-    sdwan_cli_config_feature.edge_cli_cfg_v01.version,
+    sdwan_system_basic_feature.edge1_system_basic_v01.version,
+    sdwan_system_aaa_feature.edge1_system_aaa_v01.version,
+    # sdwan_system_bfd_feature.edge1_system_bfd_v01.version,
+    # sdwan_system_logging_feature.edge1_system_logging_v01.version,
+    sdwan_system_global_feature.edge1_system_global_v01.version,
+    sdwan_system_omp_feature.edge1_system_omp_v01.version,
+    sdwan_transport_wan_vpn_feature.edge1_transport_wan_vpn_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.edge1_vpn0_if_eth1_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.edge1_vpn0_if_eth3_v01.version,
+    sdwan_service_lan_vpn_feature.edge1_vpn504_v01.version,
+    sdwan_service_lan_vpn_feature.edge1_vpn400_v01.version,
+    sdwan_service_lan_vpn_interface_ethernet_feature.edge1_loop_54_v01.version,
+    sdwan_cli_config_feature.edge1_cli_cfg_v01.version,
+  ]
+}
+
+#-------------------------- Configuration group dual edge2 ------------------------
+resource "sdwan_configuration_group" "edge2_config_group_v01" {
+  name        = "CG_EDGE2_v01"
+  description = "Configuration group - Edge2 dual"
+  solution     = "sdwan"
+  feature_profile_ids = [
+    sdwan_system_feature_profile.edge2_system_v01.id, 
+    sdwan_transport_feature_profile.edge2_transport_v01.id,
+    sdwan_service_feature_profile.edge2_service_v01.id,
+    sdwan_cli_feature_profile.edge2_cli_v01.id,
+  ]
+  devices = local.sdwan_edges_dual2
+  feature_versions = [
+    sdwan_system_basic_feature.edge2_system_basic_v01.version,
+    sdwan_system_aaa_feature.edge2_system_aaa_v01.version,
+    sdwan_system_global_feature.edge2_system_global_v01.version,
+    sdwan_system_omp_feature.edge2_system_omp_v01.version,
+    sdwan_transport_wan_vpn_feature.edge2_transport_wan_vpn_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.edge2_vpn0_if_eth2_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.edge2_vpn0_if_eth3_v01.version,
+    sdwan_service_lan_vpn_feature.edge2_vpn506_v01.version,
+    sdwan_service_lan_vpn_feature.edge2_vpn600_v01.version,
+    sdwan_service_lan_vpn_interface_ethernet_feature.edge2_loop_56_v01.version,
+    sdwan_cli_config_feature.edge2_cli_cfg_v01.version,
+  ]
+}
+
+#------------------------- Configuration group single edge ------------------------
+resource "sdwan_configuration_group" "edge_single_config_group_v01" {
+  name        = "CG_EDGE_SINGLE_v01"
+  description = "Configuration group - Edge single"
+  solution     = "sdwan"
+  feature_profile_ids = [
+    sdwan_system_feature_profile.edge_single_system_v01.id, 
+    sdwan_transport_feature_profile.edge_single_transport_v01.id,
+    sdwan_service_feature_profile.edge_single_service_v01.id,
+    sdwan_cli_feature_profile.edge_single_cli_v01.id,
+  ]
+  devices = local.sdwan_edges_single
+  feature_versions = [
+    sdwan_system_basic_feature.edge_single_system_basic_v01.version,
+    sdwan_system_aaa_feature.edge_single_system_aaa_v01.version,
+    sdwan_system_global_feature.edge_single_system_global_v01.version,
+    sdwan_system_omp_feature.edge_single_system_omp_v01.version,
+    sdwan_transport_wan_vpn_feature.edge_single_transport_wan_vpn_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.edge_single_vpn0_if_eth1_v01.version,
+    sdwan_service_lan_vpn_feature.edge_single_vpn504_v01.version,
+    sdwan_service_lan_vpn_feature.edge_single_vpn400_v01.version,
+    sdwan_service_lan_vpn_interface_ethernet_feature.edge_single_loop_54_v01.version,
+    sdwan_cli_config_feature.edge_single_cli_cfg_v01.version,
   ]
 }
 
@@ -231,7 +581,6 @@ resource "sdwan_configuration_group" "edge_config_group_v01" {
 ################################## SD-WAN COREs ###################################
 ###################################################################################
 
-################################# Feature profiles ################################
 ################################# Feature profiles ################################
 resource "sdwan_system_feature_profile" "core_system_v01" {
   name        = "CORE_SYSTEM_v01"
@@ -278,6 +627,7 @@ resource "sdwan_system_omp_feature" "core_system_omp_v01" {
   name                        = "CORE_SYSTEM_OMP_v01"
   feature_profile_id          = sdwan_system_feature_profile.core_system_v01.id
   advertise_ipv4_bgp          = true
+  # paths_advertised_per_prefix = 6
 }
 
 resource "sdwan_transport_wan_vpn_feature" "core_transport_wan_vpn_v01" {
@@ -297,6 +647,39 @@ resource "sdwan_transport_wan_vpn_feature" "core_transport_wan_vpn_v01" {
           administrative_distance = 1
         }
       ]
+    },
+    # {
+    #   network_address = "0.0.0.0"
+    #   subnet_mask     = "0.0.0.0"
+    #   gateway         = "nextHop"
+    #   next_hops = [
+    #     {
+    #       address_variable        = "{{var_def_sec_gtw}}"
+    #       administrative_distance = 1
+    #     }
+    #   ]
+    # },
+    {
+      network_address = "172.16.11.0"
+      subnet_mask     = "255.255.255.0"
+      gateway         = "nextHop"
+      next_hops = [
+        {
+          address_variable        = "{{var_sec_gtw}}"
+          administrative_distance = 1
+        }
+      ]
+    },
+    {
+      network_address = "172.16.66.0"
+      subnet_mask     = "255.255.255.0"
+      gateway         = "nextHop"
+      next_hops = [
+        {
+          address_variable        = "{{var_sec_gtw}}"
+          administrative_distance = 1
+        }
+      ]
     }
   ]
 }
@@ -312,7 +695,7 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "core_transport_wa
   ipv4_address_variable        = "{{var_vpn0_gig1_if_address}}"
   ipv4_subnet_mask_variable    = "{{var_vpn0_gig1_if_mask}}"
   tunnel_interface             = true
-  tunnel_interface_color       = "biz-internet"
+  tunnel_interface_color       = "private1"
   tunnel_interface_allow_icmp  = true
   tunnel_interface_allow_dns   = true
   tunnel_interface_allow_ntp   = true
@@ -320,6 +703,30 @@ resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "core_transport_wa
   tunnel_interface_encapsulations = [
     {
       encapsulation = "gre"
+    }
+  ]
+}
+
+resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "core_transport_wan_vpn_if_eth3_v01" {
+  name                                     = "CORE_TRANSPORT_WAN_VPN0_IF_ETH3_v01"
+  feature_profile_id                       = sdwan_transport_feature_profile.core_transport_v01.id
+  transport_wan_vpn_feature_id             = sdwan_transport_wan_vpn_feature.core_transport_wan_vpn_v01.id
+  interface_name                           = "GigabitEthernet3"
+  shutdown                                 = false
+  interface_description                    = "WAN"
+  ipv4_configuration_type                  = "static"
+  ipv4_address_variable                    = "{{var_vpn0_gig3_if_address}}"
+  ipv4_subnet_mask_variable                = "{{var_vpn0_gig3_if_mask}}"
+  tunnel_interface                         = true
+  tunnel_interface_color                   = "private2"
+  tunnel_interface_color_restrict          = true
+  tunnel_interface_max_control_connections = 0
+  tunnel_interface_allow_icmp              = true
+  tunnel_interface_allow_dns               = true
+  tunnel_interface_allow_ntp               = true
+  tunnel_interface_encapsulations          = [
+    {
+      encapsulation = "ipsec"
     }
   ]
 }
@@ -406,6 +813,20 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_54_v01" {
   interface_description      = "Monitoring(open)"
   ipv4_address_variable      = "{{var_core_loop54_address}}"
   ipv4_subnet_mask_variable  = "{{var_core_loop54_mask}}"
+  ipv4_nat                   = false
+  ipv4_nat_type              = "pool"
+}
+
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_56_v01" {
+  name                       = "CORE_LOOP56_v01"
+  description                = "CORE LOOPBACK56 Monitoring"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.core_vpn506_v01.id
+  shutdown                   = false
+  interface_name             = "Loopback56"
+  interface_description      = "Monitoring(secured)"
+  ipv4_address_variable      = "{{var_core_loop56_address}}"
+  ipv4_subnet_mask_variable  = "{{var_core_loop56_mask}}"
   ipv4_nat                   = false
   ipv4_nat_type              = "pool"
 }
@@ -759,14 +1180,14 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
   ]
   devices = local.sdwan_cores
   feature_versions = [
-    sdwan_system_basic_feature.system_basic_v01.version,
-    sdwan_system_aaa_feature.system_aaa_v01.version,
+    sdwan_system_basic_feature.core_system_basic_v01.version,
+    sdwan_system_aaa_feature.core_system_aaa_v01.version,
     # sdwan_system_bfd_feature.system_bfd_v01.version,
     # sdwan_system_logging_feature.system_logging_v01.version,
-    sdwan_system_global_feature.system_global_v01.version,
+    sdwan_system_global_feature.core_system_global_v01.version,
     sdwan_system_omp_feature.core_system_omp_v01.version,
     sdwan_transport_wan_vpn_feature.core_transport_wan_vpn_v01.version,
-    sdwan_transport_wan_vpn_interface_ethernet_feature.transport_wan_vpn_if_eth1_v01.version,
+    sdwan_transport_wan_vpn_interface_ethernet_feature.core_transport_wan_vpn_if_eth1_v01.version,
     sdwan_service_lan_vpn_feature.core_vpn511_v01.version,
     sdwan_service_lan_vpn_feature.core_vpn502_v01.version,
     sdwan_service_lan_vpn_feature.core_vpn200_v01.version,
@@ -785,6 +1206,8 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
     sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_506_v01.version,
     sdwan_service_lan_vpn_feature_associate_routing_bgp_feature.core_bgp_service_associate_600_v01.version,
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
+    sdwan_service_lan_vpn_interface_ethernet_feature.core_loop_54_v01.version,
+    sdwan_service_lan_vpn_interface_ethernet_feature.core_loop_56_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
 }

@@ -12,12 +12,13 @@ Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.
 Network types:
 - Internet for Github <-> self-hosted runner communication
 - Intranet(open) for management plane and non-encrypted data plane traffic
-- Intranet(secured) for encrypted data plane traffic  
+- Intranet(secure) for encrypted data plane traffic  
 
 <br/>
 
 Design highlights:
-- SD-WAN routers: S1R1, S2R2, S3R1 and S4R1 are connected only to the open, non-encrypted intranet network
+- HUB-SPOKE topology (+default route) forced by Centralized Policy
+- SD-WAN routers: S1R1, S2R1, S3R1 and S4R1 are connected only to the open, non-encrypted intranet network
 - SD-WAN routers: S1R2 and S2R2 are connected only to secured, encrypted intranet network, management is done via TLOC extension
 - SD-Routing routers: S5R1 and S6R1 are connected only to the open, non-encrypted intranet network
 - Legacy routers (no controllers, vanilla IOS-XE): S7R1 and S8R1 are connected only to the open, non-encrypted intranet network
@@ -28,7 +29,7 @@ Design highlights:
 <br/>
 
 > [!NOTE]
-> For better design understanding, please analyse below drawings, or even better - call me :relaxed:
+> For a better design understanding, please analyse below drawings, or even better - call me :relaxed:
 
 <br/>
 
@@ -37,22 +38,34 @@ Design highlights:
 
 <br/>
 
-Below drawing presents TLOC-extension mechanism as management access to routers which are not connected directly to the Intranet (open) cloud.
+Management and control plane are done only via Intranet(open) network. Config modifications are described in a **Non standard config** paragraph.
 
-![alt text](drawings/lab_tloc_extension_v10.png)  
-*Network: management plane - TLOC-extension*
+![alt text](drawings/lab_tloc_ext_max_con_v14.png)  
+*Network: Management/control plane - TLOC-extension and max-control-connections*
 
 ![alt text](drawings/lab_design_ip_v11.png)  
 *Network: ASN and IP plan*
 
+![alt text](drawings/lab_control_plane_v10.png)  
+*Network: Control plane*
+
 ![alt text](drawings/lab_design_vrf_v05.png)  
-*Network: management and data plane VRFs*
+*Network: Management and data plane VRFs*
+
+<br/>
+
+For data plane, I'm using color restriction, so it possible to build IPsec tunnel only between the same colors, in this case: private2 - private2
+
+![alt text](drawings/lab_data_plane_v11.png)  
+*Network: Data plane (Intranet)*
 
 <br/>
 
 Non standard config:
 - route leaking on DC cores for Legacy DC cores mgmt interface
-- TLOC extension for mgmt interface
+- TLOC extension and *max-control-connections 0* was used for management/control plane of S1R2 and S2R2 routers
+- *max-control-connections 0* was used to force Cores on private2 links - Intranet(secure), to use private1 links - Intranet(open) to establish control plane connectivity
+- default Controller value of OMP *send-path-limit* parameter, was extended from 4 to 6, so all of the Edges could see all of the routes from the Cores
 - TF legacy routers iosxe provider and separate provider for legacy core devices (deployed as list of devices)
 
 <br/>
@@ -60,7 +73,9 @@ Non standard config:
 > [!CAUTION]
 > - iosxe provider will hang if there are no online routers
 > - for iosxe provider, I've skipped TF config for mgmt interfaces. There is too much risk that TF will remove that config
-> - impossible to create a sub interface via sd-wan provider, resource: *sdwan_service_lan_vpn_interface_ethernet_feature*
+> - it is impossible to create a sub interface via sd-wan provider, resource: *sdwan_service_lan_vpn_interface_ethernet_feature*
+> - it is impossible to activate Centralized Policy on a Controller which is using the Configuration Group template. Error:  *Failed to Apply policy - No template found for id null*. The solution is to create a Device Template for a Controller and then activate the policy (manually)
+> - it is impossible to attach CLI based Device Template to Controller via Terraform. Manual process works fine
 > - if you want to shutdown interface based on a resource: *sdwan_transport_wan_vpn_interface_ethernet_feature* or *sdwan_service_lan_vpn_interface_ethernet_feature*, then you need to first assigned IP address and/or nat type ...  
 ```terraform
 resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
@@ -88,7 +103,6 @@ resource "sdwan_cli_config_feature" "edge_cli_cfg_v01" {
   EOT
 }
 ```
-
 
 <!--- 
 ![screenshot](drawings/lab_v01.png)
