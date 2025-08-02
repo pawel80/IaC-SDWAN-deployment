@@ -115,14 +115,14 @@ resource "sdwan_centralized_policy" "hub_spoke_policy_v1" {
     {
       id   = sdwan_hub_and_spoke_topology_policy_definition.hub_spoke_v1.id
       type = "hubAndSpoke"
-      entries = [
-        {
-          # site_list_ids = [sdwan_site_list_policy_object.hubs_v1.id, sdwan_site_list_policy_object.spokes_v1.id]
-          site_list_ids = [sdwan_site_list_policy_object.hubs_v1.id]
-          vpn_list_ids  = [sdwan_vpn_list_policy_object.vpns_v1.id]
-          direction     = "out"
-        }
-      ]
+      # entries = [
+      #   {
+      #     # site_list_ids = [sdwan_site_list_policy_object.hubs_v1.id, sdwan_site_list_policy_object.spokes_v1.id]
+      #     site_list_ids = [sdwan_site_list_policy_object.hubs_v1.id]
+      #     vpn_list_ids  = [sdwan_vpn_list_policy_object.vpns_v1.id]
+      #     direction     = "out"
+      #   }
+      # ]
     }
   ]
 }
@@ -130,6 +130,6 @@ resource "sdwan_centralized_policy" "hub_spoke_policy_v1" {
 
 
 #--------------------- Activate/De-activate Centralized Policy --------------------
-resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
-  id = sdwan_centralized_policy.hub_spoke_policy_v1.id
-}
+# resource "sdwan_activate_centralized_policy" "activate_centralized_policy_v1" {
+#   id = sdwan_centralized_policy.hub_spoke_policy_v1.id
+# }
