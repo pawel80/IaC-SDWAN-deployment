@@ -82,30 +82,30 @@ resource "sdwan_ipv4_prefix_list_policy_object" "default_route_v1" {
   ]
 }
 
-resource "sdwan_hub_and_spoke_topology_policy_definition" "hub_spoke_v1" {
-  name        = "TOPOLOGY-HUB-SPOKE_v1"
-  description = "Topology: HUB-SPOKE"
-  vpn_list_id = sdwan_vpn_list_policy_object.vpns_v1.id
-  topologies = [
-    {
-      name                = "HUB-SPOKE"
-      all_hubs_are_equal  = true
-      advertise_hub_tlocs = true
-      tloc_list_id        = sdwan_tloc_list_policy_object.hub_tlocs_v1.id
-      spokes = [
-        {
-          site_list_id = sdwan_site_list_policy_object.spokes_v1.id
-          hubs = [
-            {
-              site_list_id = sdwan_site_list_policy_object.hubs_v1.id
-              # ipv4_prefix_list_ids = [sdwan_ipv4_prefix_list_policy_object.default_route_v1.id]
-            }
-          ]
-        }
-      ]
-    }
-  ]
-}
+# resource "sdwan_hub_and_spoke_topology_policy_definition" "hub_spoke_v1" {
+#   name        = "TOPOLOGY-HUB-SPOKE_v1"
+#   description = "Topology: HUB-SPOKE"
+#   vpn_list_id = sdwan_vpn_list_policy_object.vpns_v1.id
+#   topologies = [
+#     {
+#       name                = "HUB-SPOKE"
+#       all_hubs_are_equal  = true
+#       advertise_hub_tlocs = true
+#       tloc_list_id        = sdwan_tloc_list_policy_object.hub_tlocs_v1.id
+#       spokes = [
+#         {
+#           site_list_id = sdwan_site_list_policy_object.spokes_v1.id
+#           hubs = [
+#             {
+#               site_list_id = sdwan_site_list_policy_object.hubs_v1.id
+#               # ipv4_prefix_list_ids = [sdwan_ipv4_prefix_list_policy_object.default_route_v1.id]
+#             }
+#           ]
+#         }
+#       ]
+#     }
+#   ]
+# }
 
 resource "sdwan_custom_control_topology_policy_definition" "hub_spoke_filter_traffic_v1" {
   name           = "HUB-SPOKE_FILTER-TRAFFIC_v1"
