@@ -3,16 +3,20 @@
 ###################################################################################
 
 #--------------------------------- Feature Templates ------------------------------
-
+resource "sdwan_cisco_system_feature_template" "controller_system_v1" {
+  name               = "CONTROLLER_SYSTEM_v01"
+  description        = "Controller System v1"
+  device_types       = ["vsmart"]
+}
 
 #---------------------------------- Device Template -------------------------------
-# resource "sdwan_feature_device_template" "controller_v1" {
+# resource "sdwan_feature_device_template" "controller_device_temp_v1" {
 #   name        = "DT_CONTROLLER_v01"
 #   description = "Template for Controllers v1"
 #   device_type = "vsmart"
 #   general_templates = [
 #     {
-#       id   = "2081c2f4-3f9f-4fee-8078-dcc8904e368d"
+#       id   = sdwan_cisco_system_feature_template.controller_system_v1.id
 #       type = "cisco_system"
 #     }
 #   ]
