@@ -11,7 +11,7 @@ resource "sdwan_cisco_system_feature_template" "controller_system_v1" {
 
 resource "sdwan_cisco_vpn_feature_template" "controller_transport_v1" {
   name                    = "CONTROLLER_TRANSPORT_v01"
-  description             = "ontroller Transport v1"
+  description             = "Controller Transport v1"
   device_types            = ["vsmart"]
   vpn_id                  = 0
   vpn_name                = "TRANSPORT"
@@ -25,6 +25,43 @@ resource "sdwan_cisco_vpn_feature_template" "controller_transport_v1" {
       role    = "secondary"
     }
   ]
+  ipv4_static_routes = [
+    {
+      prefix   = "0.0.0.0/0"
+      vpn_id   = 0
+      next_hops = [
+        {
+          address  = "172.16.9.254"
+        }
+      ]
+    }
+  ]
+}
+
+resource "sdwan_cisco_vpn_interface_feature_template" "controller_eth1_v1" {
+  name                  = "CONTROLLER_ETH1_v01"
+  description           = "Controller WAN eth1 interface v1"
+  device_types          = ["vsmart"]
+  interface_name        = "eth1"
+  interface_description = "WAN"
+  address               = "172.16.9.3/24"
+  tunnel_interface_encapsulations = [
+    {
+      encapsulation = "gre"
+    }
+  ]
+  tunnel_interface_allow_all                     = false
+  tunnel_interface_allow_bgp                     = false
+  tunnel_interface_allow_dhcp                    = false
+  tunnel_interface_allow_dns                     = true
+  tunnel_interface_allow_icmp                    = true
+  tunnel_interface_allow_ssh                     = false
+  tunnel_interface_allow_netconf                 = false
+  tunnel_interface_allow_ntp                     = false
+  tunnel_interface_allow_ospf                    = false
+  tunnel_interface_allow_stun                    = false
+  tunnel_interface_allow_snmp                    = false
+  tunnel_interface_allow_https                   = false
 }
 
 #---------------------------------- Device Template -------------------------------
@@ -36,6 +73,14 @@ resource "sdwan_feature_device_template" "controller_device_temp_v1" {
     {
       id   = sdwan_cisco_system_feature_template.controller_system_v1.id
       type = "cisco_system"
+    },
+    {
+      id   = sdwan_cisco_vpn_feature_template.controller_transport_v1.id
+      type = "cisco_vpn"
+    },
+    {
+      id   = sdwan_cisco_vpn_interface_feature_template.controller_eth1_v1.id
+      type = "cisco_vpn"
     }
   ]
 }
@@ -46,7 +91,10 @@ resource "sdwan_cli_device_template" "controller_cli_v1" {
   device_type       = "vsmart"
   cli_type          = "intend"
   cli_configuration  = <<-EOT
-system                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+system
+  host-name             SDWAN-CTR1                                                                                                                                                                                                           
+  system-ip             10.99.1.3                                                                                                                                                                                                                   
+  site-id               9000                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
   admin-tech-on-failure                                                                                                                                                                                                                             
   no vrrp-advt-with-phymac                                                                                                                                                                                                                          
   organization-name     "network-lab-sdwan - 401109"                                                                                                                                                                                                
