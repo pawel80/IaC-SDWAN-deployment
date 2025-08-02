@@ -10,17 +10,17 @@ resource "sdwan_cisco_system_feature_template" "controller_system_v1" {
 }
 
 #---------------------------------- Device Template -------------------------------
-# resource "sdwan_feature_device_template" "controller_device_temp_v1" {
-#   name        = "DT_CONTROLLER_v01"
-#   description = "Template for Controllers v1"
-#   device_type = "vsmart"
-#   general_templates = [
-#     {
-#       id   = sdwan_cisco_system_feature_template.controller_system_v1.id
-#       type = "cisco_system"
-#     }
-#   ]
-# }
+resource "sdwan_feature_device_template" "controller_device_temp_v1" {
+  name        = "DT_CONTROLLER_v01"
+  description = "Template for Controllers v1"
+  device_type = "vsmart"
+  general_templates = [
+    {
+      id   = sdwan_cisco_system_feature_template.controller_system_v1.id
+      type = "cisco_system"
+    }
+  ]
+}
 
 resource "sdwan_cli_device_template" "controller_cli_v1" {
   name              = "DT_CLI_CONTROLLER_v01"
