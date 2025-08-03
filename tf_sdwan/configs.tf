@@ -1167,6 +1167,16 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
     route-replicate from vrf 511 unicast connected
     exit-global-af
   !
+  !Route leaking between VRF 200 and global VRF
+  vrf definition 200
+    address-family ipv4
+    route-replicate from vrf global unicast static
+    exit-address-family
+  !
+  global-address-family ipv4
+    route-replicate from vrf 200 unicast connected
+    exit-global-af
+  !
   interface GigabitEthernet2.502
   description Legacy_cores_BGP
   encapsulation dot1Q 502
