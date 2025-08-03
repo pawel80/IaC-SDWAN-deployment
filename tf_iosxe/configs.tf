@@ -128,6 +128,56 @@ resource "iosxe_interface_tunnel" "edge_GRE3" {
   ipv4_address_mask       = each.value.edge_tunnel3_mask
 }
 
+resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
+  for_each                = {for router in local.legacy_routers : router.name => router}
+  device                  = each.value.name
+  vrf = "200"
+  routes = [
+    {
+      prefix = each.value.edge_tunnel1_dst
+      mask   = "255.255.255.255"
+      next_hops = [
+        {
+          next_hop  = "GigabitEthernet1"
+          metric    = 10
+          global    = true
+          name      = "GRE_needed"
+          permanent = true
+          tag       = 100
+        }
+      ]
+    },
+    {
+      prefix = each.value.edge_tunnel2_dst
+      mask   = "255.255.255.255"
+      next_hops = [
+        {
+          next_hop  = "GigabitEthernet1"
+          metric    = 10
+          global    = true
+          name      = "GRE_needed"
+          permanent = true
+          tag       = 100
+        }
+      ]
+    },
+    {
+      prefix = each.value.edge_tunnel3_dst
+      mask   = "255.255.255.255"
+      next_hops = [
+        {
+          next_hop  = "GigabitEthernet1"
+          metric    = 10
+          global    = true
+          name      = "GRE_needed"
+          permanent = true
+          tag       = 100
+        }
+      ]
+    }
+  ]
+}
+
 # Just to present CLI based config
 # resource "iosxe_cli" "global_loop111" {
 #   for_each                      = {for router in local.legacy_routers : router.name => router}
