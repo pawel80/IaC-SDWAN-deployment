@@ -143,6 +143,7 @@ resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
           global    = true
           # name      = "GRE_needed"
           permanent = true
+          tag       = 100
         }
       ]
     }
