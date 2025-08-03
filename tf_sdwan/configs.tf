@@ -845,6 +845,42 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_20_v01" {
   ipv4_nat_type              = "pool"
 }
 
+resource "sdwan_service_lan_vpn_interface_gre_feature" "core_vpn200_GRE1_v01" {
+  name                            = "CORE_VPN200_GRE1_v01"
+  description                     = "GRE tunnel towards legacy Edge routers"
+  feature_profile_id              = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id      = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+  interface_name                  = "gre1"
+  interface_description           = "GRE tunnel towards legacy Edge routers"
+  ipv4_address                    = "{{var_core_GRE1_tunnel_ip}}"
+  ipv4_subnet_mask                = "{{var_core_GRE1_tunnel_mask}}"
+  shutdown                        = false
+  tunnel_source_ipv4_address      = "{{var_core_GRE1_src}}"
+  tunnel_destination_ipv4_address = "{{var_core_GRE1_dst}}"
+  ip_mtu                          = 1500
+  tcp_mss                         = 1460
+  clear_dont_fragment             = false
+  application_tunnel_type         = "none"
+}
+
+resource "sdwan_service_lan_vpn_interface_gre_feature" "core_vpn200_GRE2_v01" {
+  name                            = "CORE_VPN200_GRE2_v01"
+  description                     = "GRE tunnel towards legacy Edge routers"
+  feature_profile_id              = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id      = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+  interface_name                  = "gre2"
+  interface_description           = "GRE tunnel towards legacy Edge routers"
+  ipv4_address                    = "{{var_core_GRE2_tunnel_ip}}"
+  ipv4_subnet_mask                = "{{var_core_GRE2_tunnel_mask}}"
+  shutdown                        = false
+  tunnel_source_ipv4_address      = "{{var_core_GRE2_src}}"
+  tunnel_destination_ipv4_address = "{{var_core_GRE2_dst}}"
+  ip_mtu                          = 1500
+  tcp_mss                         = 1460
+  clear_dont_fragment             = false
+  application_tunnel_type         = "none"
+}
+
 resource "sdwan_service_routing_bgp_feature" "core_bgp_502_v01" {
   name                     = "BGP_502_v01"
   description              = "BGP towards legacy core routers"

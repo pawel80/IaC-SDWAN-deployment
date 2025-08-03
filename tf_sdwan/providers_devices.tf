@@ -496,6 +496,38 @@ locals {
         value = "255.255.255.255"
       },
       {
+        name = "var_core_GRE1_tunnel_ip"
+        value = "192.168.221.1"
+      },
+      {
+        name = "var_core_GRE1_tunnel_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_core_GRE1_src"
+        value = "192.168.201.1"
+      },
+      {
+        name = "var_core_GRE1_dst"
+        value = "192.168.27.1"
+      },
+      {
+        name = "var_core_GRE2_tunnel_ip"
+        value = "192.168.221.5"
+      },
+      {
+        name = "var_core_GRE2_tunnel_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_core_GRE2_src"
+        value = "192.168.201.1"
+      },
+      {
+        name = "var_core_GRE2_dst"
+        value = "192.168.28.1"
+      },
+      {
         name = "var_bgp_asn"
         value = "65101"
       },
@@ -746,6 +778,38 @@ locals {
         value = "255.255.255.255"
       },
       {
+        name = "var_core_GRE1_tunnel_ip"
+        value = "192.168.222.1"
+      },
+      {
+        name = "var_core_GRE1_tunnel_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_core_GRE1_src"
+        value = "192.168.202.1"
+      },
+      {
+        name = "var_core_GRE1_dst"
+        value = "192.168.27.1"
+      },
+      {
+        name = "var_core_GRE2_tunnel_ip"
+        value = "192.168.222.5"
+      },
+      {
+        name = "var_core_GRE2_tunnel_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_core_GRE2_src"
+        value = "192.168.202.1"
+      },
+      {
+        name = "var_core_GRE2_dst"
+        value = "192.168.28.1"
+      },
+      {
         name = "var_bgp_asn"
         value = "65201"
       },
@@ -994,6 +1058,38 @@ locals {
       {
         name = "var_core_loop20_mask"
         value = "255.255.255.255"
+      },
+      {
+        name = "var_core_GRE1_tunnel_ip"
+        value = "192.168.223.1"
+      },
+      {
+        name = "var_core_GRE1_tunnel_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_core_GRE1_src"
+        value = "192.168.203.1"
+      },
+      {
+        name = "var_core_GRE1_dst"
+        value = "192.168.27.1"
+      },
+      {
+        name = "var_core_GRE2_tunnel_ip"
+        value = "192.168.223.5"
+      },
+      {
+        name = "var_core_GRE2_tunnel_mask"
+        value = "255.255.255.252"
+      },
+      {
+        name = "var_core_GRE2_src"
+        value = "192.168.203.1"
+      },
+      {
+        name = "var_core_GRE2_dst"
+        value = "192.168.28.1"
       },
       {
         name = "var_bgp_asn"

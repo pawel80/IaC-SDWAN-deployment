@@ -62,7 +62,7 @@ resource "iosxe_interface_loopback" "edge_loop_502" {
   for_each            = {for router in local.legacy_routers : router.name => router}
   device                         = each.value.name
   name                           = 52
-  vrf_forwarding                 = "502"
+  vrf_forwarding                 = "200"
   description                    = each.value.edge_loop_52_desc
   ipv4_address                   = each.value.edge_loop_52_ip_address
   ipv4_address_mask              = each.value.edge_loop_52_mask

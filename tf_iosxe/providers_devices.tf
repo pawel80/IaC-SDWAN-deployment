@@ -55,7 +55,7 @@ locals {
       edge_loop_52_mask         = "255.255.255.255"
       edge_loop_20_desc         = "Legacy_Services(open) GRE source"
       edge_loop_20_ip_address   = "192.168.27.1"
-      edge_loop_20_mask         = "255.255.255.252"
+      edge_loop_20_mask         = "255.255.255.255"
     },
     {
       name                      = "ROUTER8"
@@ -72,7 +72,7 @@ locals {
       edge_loop_52_mask         = "255.255.255.255"
       edge_loop_20_desc         = "Legacy_Services(open) GRE source"
       edge_loop_20_ip_address   = "192.168.28.1"
-      edge_loop_20_mask         = "255.255.255.252"
+      edge_loop_20_mask         = "255.255.255.255"
 
     }
   ]
