@@ -181,7 +181,8 @@ resource "iosxe_cli" "global_loop111" {
   for_each                      = {for router in local.legacy_routers : router.name => router}
   device                        = each.value.name
   cli                           = <<-EOT
-  ip route vrf 200 192.168.201.1 255.255.255.255 GigabitEthernet1 172.16.10.37
+  ip route vrf 200 192.168.201.1 255.255.255.255 GigabitEthernet1 172.16.10.37 global
+  ip route 192.168.28.1 255.255.255.255 Loopback20
   !ip address {{var_lp_502_if_address}} {{var_lp_502_if_mask}}
   EOT
 }
