@@ -40,7 +40,7 @@ resource "iosxe_interface_ethernet" "int_shutdown" {
 
 resource "iosxe_vrf" "edge_vrf_502" {
   provider            = iosxe.cores
-  for_each            = {for router in local.legacy_core_routers : router.name => router}
+  for_each            = {for router in local.legacy_routers : router.name => router}
   device              = each.value.name
   name                = "502"
   description         = "Legacy Edge Monitoring(open)"
@@ -51,7 +51,7 @@ resource "iosxe_vrf" "edge_vrf_502" {
 
 resource "iosxe_vrf" "edge_vrf_200" {
   provider            = iosxe.cores
-  for_each            = {for router in local.legacy_core_routers : router.name => router}
+  for_each            = {for router in local.legacy_routers : router.name => router}
   device              = each.value.name
   name                = "200"
   description         = "Legacy Edge Services(open)"
