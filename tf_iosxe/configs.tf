@@ -142,7 +142,7 @@ resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
           next_hop  = "172.16.10.37"
           metric    = 10
           global    = true
-          # name      = "GRE_needed"
+          name      = "GigabitEthernet1"
           permanent = true
           tag       = 100
         }
