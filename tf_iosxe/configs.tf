@@ -134,11 +134,12 @@ resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
   vrf = "200"
   routes = [
     {
-      prefix = each.value.edge_tunnel1_dst
+      # prefix = each.value.edge_tunnel1_dst
+      prefix = "192.168.201.1"
       mask   = "255.255.255.255"
       next_hops = [
         {
-          next_hop  = "172.16.10.38"
+          next_hop  = "172.16.10.37"
           metric    = 10
           global    = true
           # name      = "GRE_needed"
