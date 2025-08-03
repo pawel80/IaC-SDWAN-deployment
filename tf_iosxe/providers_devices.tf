@@ -48,6 +48,8 @@ locals {
       # ip_address              = "172.16.10.34"
       # mask                    = "255.255.255.252"
       shut_interfaces           = ["2", "3", "4"]
+      edge_rd_vrf_502           = "7:502"
+      edge_rd_vrf_200           = "7:200"
     },
     {
       name                      = "ROUTER8"
@@ -57,6 +59,8 @@ locals {
       # ip_address              = "172.16.10.38"
       # mask                    = "255.255.255.252"
       shut_interfaces           = ["2", "3", "4"]
+      edge_rd_vrf_502           = "8:502"
+      edge_rd_vrf_200           = "8:200"
     }
   ]
 

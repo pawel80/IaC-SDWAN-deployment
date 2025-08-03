@@ -38,15 +38,37 @@ resource "iosxe_interface_ethernet" "int_shutdown" {
   shutdown                       = true
 }
 
-# Just to present CLI based config
-resource "iosxe_cli" "global_loop123" {
-  for_each                      = {for router in local.legacy_routers : router.name => router}
-  device                        = each.value.name
-  cli                           = <<-EOT
-  interface Loopback111
-  description CONFIGURE_VIA_RESTCONF_CLI
-  EOT
+resource "iosxe_vrf" "edge_vrf_502" {
+  provider            = iosxe.cores
+  for_each            = {for router in local.legacy_core_routers : router.name => router}
+  device              = each.value.name
+  name                = "502"
+  description         = "Legacy Edge Monitoring(open)"
+  rd                  = each.value.edge_rd_vrf_502
+  address_family_ipv4 = true
+  address_family_ipv6 = false
 }
+
+resource "iosxe_vrf" "edge_vrf_200" {
+  provider            = iosxe.cores
+  for_each            = {for router in local.legacy_core_routers : router.name => router}
+  device              = each.value.name
+  name                = "200"
+  description         = "Legacy Edge Services(open)"
+  rd                  = each.value.edge_rd_vrf_200
+  address_family_ipv4 = true
+  address_family_ipv6 = false
+}
+
+# Just to present CLI based config
+# resource "iosxe_cli" "global_loop123" {
+#   for_each                      = {for router in local.legacy_routers : router.name => router}
+#   device                        = each.value.name
+#   cli                           = <<-EOT
+#   interface Loopback111
+#   description CONFIGURE_VIA_RESTCONF_CLI
+#   EOT
+# }
 
 resource "iosxe_save_config" "save_cfg" {
   for_each                       = {for router in local.legacy_routers : router.name => router}
