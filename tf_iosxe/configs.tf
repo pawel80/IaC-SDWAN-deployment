@@ -138,7 +138,7 @@ resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
       mask   = "255.255.255.255"
       next_hops = [
         {
-          next_hop  = "GigabitEthernet1"
+          next_hop  = "172.16.10.38"
           metric    = 10
           global    = true
           # name      = "GRE_needed"
