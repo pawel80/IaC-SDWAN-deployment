@@ -831,6 +831,20 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_56_v01" {
   ipv4_nat_type              = "pool"
 }
 
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_20_v01" {
+  name                       = "CORE_LOOP20_v01"
+  description                = "CORE LOOPBACK20 GRE source"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+  shutdown                   = false
+  interface_name             = "Loopback20"
+  interface_description      = "Service(open) GRE source"
+  ipv4_address_variable      = "{{var_core_loop20_address}}"
+  ipv4_subnet_mask_variable  = "{{var_core_loop20_mask}}"
+  ipv4_nat                   = false
+  ipv4_nat_type              = "pool"
+}
+
 resource "sdwan_service_routing_bgp_feature" "core_bgp_502_v01" {
   name                     = "BGP_502_v01"
   description              = "BGP towards legacy core routers"

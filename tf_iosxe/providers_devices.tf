@@ -53,8 +53,8 @@ locals {
       edge_loop_52_desc         = "Legacy_Monitoring(open)"
       edge_loop_52_ip_address   = "11.1.7.1"
       edge_loop_52_mask         = "255.255.255.255"
-      edge_loop_20_desc         = "Legacy_Services(open)"
-      edge_loop_20_ip_address   = "192.168.207.2"
+      edge_loop_20_desc         = "Legacy_Services(open) GRE source"
+      edge_loop_20_ip_address   = "192.168.27.1"
       edge_loop_20_mask         = "255.255.255.252"
     },
     {
@@ -70,8 +70,8 @@ locals {
       edge_loop_52_desc         = "Legacy_Monitoring(open)"
       edge_loop_52_ip_address   = "11.1.8.1"
       edge_loop_52_mask         = "255.255.255.255"
-      edge_loop_20_desc         = "Legacy_Services(open)"
-      edge_loop_20_ip_address   = "192.168.208.2"
+      edge_loop_20_desc         = "Legacy_Services(open) GRE source"
+      edge_loop_20_ip_address   = "192.168.28.1"
       edge_loop_20_mask         = "255.255.255.252"
 
     }
