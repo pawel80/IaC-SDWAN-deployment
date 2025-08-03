@@ -128,65 +128,63 @@ resource "iosxe_interface_tunnel" "edge_GRE3" {
   ipv4_address_mask       = each.value.edge_tunnel3_mask
 }
 
-resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
-  for_each                = {for router in local.legacy_routers : router.name => router}
-  device                  = each.value.name
-  vrf = "200"
-  routes = [
-    {
-      # prefix = each.value.edge_tunnel1_dst
-      prefix = "192.168.201.1"
-      mask   = "255.255.255.255"
-      next_hops = [
-        {
-          next_hop  = "172.16.10.37"
-          metric    = 10
-          global    = true
-          name      = "GigabitEthernet1"
-          permanent = true
-          tag       = 100
-        }
-      ]
-    }
-    # {
-    #   prefix = each.value.edge_tunnel2_dst
-    #   mask   = "255.255.255.255"
-    #   next_hops = [
-    #     {
-    #       next_hop  = "GigabitEthernet1"
-    #       metric    = 10
-    #       global    = true
-    #       name      = "GRE_needed"
-    #       permanent = true
-    #     }
-    #   ]
-    # },
-    # {
-    #   prefix = each.value.edge_tunnel3_dst
-    #   mask   = "255.255.255.255"
-    #   next_hops = [
-    #     {
-    #       next_hop  = "GigabitEthernet1"
-    #       metric    = 10
-    #       global    = true
-    #       name      = "GRE_needed"
-    #       permanent = true
-    #     }
-    #   ]
-    # }
-  ]
-}
-
-# Just to present CLI based config
-# resource "iosxe_cli" "global_loop111" {
-#   for_each                      = {for router in local.legacy_routers : router.name => router}
-#   device                        = each.value.name
-#   cli                           = <<-EOT
-#   interface Loopback111
-#   ip address {{var_lp_502_if_address}} {{var_lp_502_if_mask}}
-#   description CONFIGURE_VIA_RESTCONF_CLI
-#   EOT
+# resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
+#   for_each                = {for router in local.legacy_routers : router.name => router}
+#   device                  = each.value.name
+#   vrf = "200"
+#   routes = [
+#     {
+#       # prefix = each.value.edge_tunnel1_dst
+#       prefix = "192.168.201.1"
+#       mask   = "255.255.255.255"
+#       next_hops = [
+#         {
+#           next_hop  = "172.16.10.37"
+#           metric    = 10
+#           global    = true
+#           name      = "GigabitEthernet1"
+#           permanent = true
+#           tag       = 100
+#         }
+#       ]
+#     },
+#     {
+#       prefix = each.value.edge_tunnel2_dst
+#       mask   = "255.255.255.255"
+#       next_hops = [
+#         {
+#           next_hop  = "GigabitEthernet1"
+#           metric    = 10
+#           global    = true
+#           name      = "GRE_needed"
+#           permanent = true
+#         }
+#       ]
+#     },
+#     {
+#       prefix = each.value.edge_tunnel3_dst
+#       mask   = "255.255.255.255"
+#       next_hops = [
+#         {
+#           next_hop  = "GigabitEthernet1"
+#           metric    = 10
+#           global    = true
+#           name      = "GRE_needed"
+#           permanent = true
+#         }
+#       ]
+#     }
+#   ]
 # }
+
+resource "iosxe_cli" "global_loop111" {
+  for_each                      = {for router in local.legacy_routers : router.name => router}
+  device                        = each.value.name
+  cli                           = <<-EOT
+  ip route vrf 200 192.168.201.1 255.255.255.255 GigabitEthernet1 172.16.10.37
+  !ip address {{var_lp_502_if_address}} {{var_lp_502_if_mask}}
+  EOT
+}
 
 resource "iosxe_save_config" "save_cfg" {
   for_each                       = {for router in local.legacy_routers : router.name => router}
