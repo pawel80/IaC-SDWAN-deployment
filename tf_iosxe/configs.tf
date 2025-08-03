@@ -60,24 +60,72 @@ resource "iosxe_vrf" "edge_vrf_200" {
 
 resource "iosxe_interface_loopback" "edge_loop_502" {
   for_each            = {for router in local.legacy_routers : router.name => router}
-  device                         = each.value.name
-  name                           = 52
-  vrf_forwarding                 = "200"
-  description                    = each.value.edge_loop_52_desc
-  ipv4_address                   = each.value.edge_loop_52_ip_address
-  ipv4_address_mask              = each.value.edge_loop_52_mask
-  shutdown                       = false
+  device              = each.value.name
+  name                = 52
+  vrf_forwarding      = "200"
+  description         = each.value.edge_loop_52_desc
+  ipv4_address        = each.value.edge_loop_52_ip_address
+  ipv4_address_mask   = each.value.edge_loop_52_mask
+  shutdown            = false
 }
 
 resource "iosxe_interface_loopback" "edge_loop_200" {
   for_each            = {for router in local.legacy_routers : router.name => router}
-  device                         = each.value.name
-  name                           = 20
-  vrf_forwarding                 = "200"
-  description                    = each.value.edge_loop_20_desc
-  ipv4_address                   = each.value.edge_loop_20_ip_address
-  ipv4_address_mask              = each.value.edge_loop_20_mask
-  shutdown                       = false
+  device              = each.value.name
+  name                = 20
+  vrf_forwarding      = "200"
+  description         = each.value.edge_loop_20_desc
+  ipv4_address        = each.value.edge_loop_20_ip_address
+  ipv4_address_mask   = each.value.edge_loop_20_mask
+  shutdown            = false
+}
+
+resource "iosxe_interface_tunnel" "edge_GRE1" {
+  for_each                = {for router in local.legacy_routers : router.name => router}
+  device                  = each.value.name
+  name                    = 1
+  description             = "GRE towards CORE1"
+  shutdown                = false
+  ip_proxy_arp            = false
+  ip_redirects            = false
+  ip_unreachables         = false
+  vrf_forwarding          = "200"
+  tunnel_source           = each.value.edge_tunnel1_src
+  tunnel_destination_ipv4 = each.value.edge_tunnel1_dst
+  ipv4_address            = each.value.edge_tunnel1_ip_address
+  ipv4_address_mask       = each.value.edge_tunnel1_mask
+}
+
+resource "iosxe_interface_tunnel" "edge_GRE2" {
+  for_each                = {for router in local.legacy_routers : router.name => router}
+  device                  = each.value.name
+  name                    = 2
+  description             = "GRE towards CORE2"
+  shutdown                = false
+  ip_proxy_arp            = false
+  ip_redirects            = false
+  ip_unreachables         = false
+  vrf_forwarding          = "200"
+  tunnel_source           = each.value.edge_tunnel2_src
+  tunnel_destination_ipv4 = each.value.edge_tunnel2_dst
+  ipv4_address            = each.value.edge_tunnel2_ip_address
+  ipv4_address_mask       = each.value.edge_tunnel2_mask
+}
+
+resource "iosxe_interface_tunnel" "edge_GRE3" {
+  for_each                = {for router in local.legacy_routers : router.name => router}
+  device                  = each.value.name
+  name                    = 3
+  description             = "GRE towards CORE3"
+  shutdown                = false
+  ip_proxy_arp            = false
+  ip_redirects            = false
+  ip_unreachables         = false
+  vrf_forwarding          = "200"
+  tunnel_source           = each.value.edge_tunnel3_src
+  tunnel_destination_ipv4 = each.value.edge_tunnel3_dst
+  ipv4_address            = each.value.edge_tunnel3_ip_address
+  ipv4_address_mask       = each.value.edge_tunnel3_mask
 }
 
 # Just to present CLI based config
