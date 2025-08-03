@@ -58,12 +58,35 @@ resource "iosxe_vrf" "edge_vrf_200" {
   address_family_ipv6 = false
 }
 
+resource "iosxe_interface_loopback" "edge_loop_502" {
+  for_each            = {for router in local.legacy_routers : router.name => router}
+  device                         = each.value.name
+  name                           = 52
+  vrf_forwarding                 = "502"
+  description                    = each.value.edge_loop_52_desc
+  ipv4_address                   = each.value.edge_loop_52_ip_address
+  ipv4_address_mask              = each.value.edge_loop_52_mask
+  shutdown                       = false
+}
+
+resource "iosxe_interface_loopback" "edge_loop_200" {
+  for_each            = {for router in local.legacy_routers : router.name => router}
+  device                         = each.value.name
+  name                           = 20
+  vrf_forwarding                 = "200"
+  description                    = each.value.edge_loop_20_desc
+  ipv4_address                   = each.value.edge_loop_20_ip_address
+  ipv4_address_mask              = each.value.edge_loop_20_mask
+  shutdown                       = false
+}
+
 # Just to present CLI based config
-# resource "iosxe_cli" "global_loop123" {
+# resource "iosxe_cli" "global_loop111" {
 #   for_each                      = {for router in local.legacy_routers : router.name => router}
 #   device                        = each.value.name
 #   cli                           = <<-EOT
 #   interface Loopback111
+#   ip address {{var_lp_502_if_address}} {{var_lp_502_if_mask}}
 #   description CONFIGURE_VIA_RESTCONF_CLI
 #   EOT
 # }
