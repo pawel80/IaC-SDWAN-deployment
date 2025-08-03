@@ -141,37 +141,37 @@ resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
           next_hop  = "GigabitEthernet1"
           metric    = 10
           global    = true
-          name      = "GRE_needed"
-          permanent = true
-        }
-      ]
-    },
-    {
-      prefix = each.value.edge_tunnel2_dst
-      mask   = "255.255.255.255"
-      next_hops = [
-        {
-          next_hop  = "GigabitEthernet1"
-          metric    = 10
-          global    = true
-          name      = "GRE_needed"
-          permanent = true
-        }
-      ]
-    },
-    {
-      prefix = each.value.edge_tunnel3_dst
-      mask   = "255.255.255.255"
-      next_hops = [
-        {
-          next_hop  = "GigabitEthernet1"
-          metric    = 10
-          global    = true
-          name      = "GRE_needed"
+          # name      = "GRE_needed"
           permanent = true
         }
       ]
     }
+    # {
+    #   prefix = each.value.edge_tunnel2_dst
+    #   mask   = "255.255.255.255"
+    #   next_hops = [
+    #     {
+    #       next_hop  = "GigabitEthernet1"
+    #       metric    = 10
+    #       global    = true
+    #       name      = "GRE_needed"
+    #       permanent = true
+    #     }
+    #   ]
+    # },
+    # {
+    #   prefix = each.value.edge_tunnel3_dst
+    #   mask   = "255.255.255.255"
+    #   next_hops = [
+    #     {
+    #       next_hop  = "GigabitEthernet1"
+    #       metric    = 10
+    #       global    = true
+    #       name      = "GRE_needed"
+    #       permanent = true
+    #     }
+    #   ]
+    # }
   ]
 }
 
