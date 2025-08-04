@@ -169,7 +169,9 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   # ]
   areas = [
     {
-      area_id = "0"
+      area_id                       = "0"
+      authentication_message_digest = false
+      nssa                          = false
     }
   ]
 }
