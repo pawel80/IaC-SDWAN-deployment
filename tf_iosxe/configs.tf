@@ -181,6 +181,38 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   # ]
 }
 
+resource "iosxe_interface_ospf" "example" {
+  type                             = "Tunnel"
+  name                             = "1"
+  # cost                             = 10
+  # dead_interval                    = 30
+  # hello_interval                   = 5
+  # mtu_ignore                       = false
+  # network_type_broadcast           = false
+  # network_type_non_broadcast       = false
+  # network_type_point_to_multipoint = false
+  network_type_point_to_point      = true
+  # priority                         = 10
+  # ttl_security_hops                = 2
+  process_ids = [
+    {
+      id = 200
+      areas = [
+        {
+          area_id = "0"
+        }
+      ]
+    }
+  ]
+  # message_digest_keys = [
+  #   {
+  #     id            = 1
+  #     md5_auth_key  = "mykey"
+  #     md5_auth_type = 0
+  #   }
+  # ]
+}
+
 # resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
 #   for_each                = {for router in local.legacy_routers : router.name => router}
 #   device                  = each.value.name
