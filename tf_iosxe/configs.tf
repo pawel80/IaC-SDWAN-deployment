@@ -136,6 +136,10 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   device                               = each.value.name
   process_id                           = 200
   vrf                                  = "200"
+  router_id                            = "192.168.27.1"
+  shutdown                             = false
+  passive_interface_default            = true
+  auto_cost_reference_bandwidth        = 40000
   # bfd_all_interfaces                   = true
   # default_information_originate        = true
   # default_information_originate_always = true
@@ -157,8 +161,6 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   #   }
   # ]
   # priority  = 100
-  router_id = each.value.edge_loop_20_ip_address
-  shutdown  = false
   # summary_address = [
   #   {
   #     ip   = "3.3.3.0"
@@ -177,8 +179,6 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
       # nssa_no_redistribution                         = true
     }
   ]
-  passive_interface_default     = true
-  auto_cost_reference_bandwidth = 40000
 }
 
 # resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
