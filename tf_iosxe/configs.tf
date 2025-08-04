@@ -184,10 +184,10 @@ resource "iosxe_cli" "edge_static_routes" {
   for_each                      = {for router in local.legacy_routers : router.name => router}
   device                        = each.value.name
   cli                           = <<-EOT
-  ip route vrf 200 {{each.value.edge_tunnel1_dst}} 255.255.255.255 GigabitEthernet1 {{each.value.default_gtw}} global
-  ip route vrf 200 {{each.value.edge_tunnel2_dst}} 255.255.255.255 GigabitEthernet1 {{each.value.default_gtw}} global
-  ip route vrf 200 {{each.value.edge_tunnel3_dst}} 255.255.255.255 GigabitEthernet1 {{each.value.default_gtw}} global
-  ip route {{each.value.edge_loop_20_ip_address}} {each.value.{edge_loop_20_mask}} Loopback20
+  ip route vrf 200 ${each.value.edge_tunnel1_dst} 255.255.255.255 GigabitEthernet1 ${each.value.default_gtw} global
+  ip route vrf 200 ${each.value.edge_tunnel2_dst} 255.255.255.255 GigabitEthernet1 ${each.value.default_gtw} global
+  ip route vrf 200 ${each.value.edge_tunnel3_dst} 255.255.255.255 GigabitEthernet1 ${each.value.default_gtw} global
+  ip route ${each.value.edge_loop_20_ip_address} ${each.value.edge_loop_20_mask} Loopback20
   EOT
 }
 
