@@ -140,26 +140,20 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   shutdown                             = false
   passive_interface_default            = true
   auto_cost_reference_bandwidth        = 40000
-  # bfd_all_interfaces                   = true
-  # default_information_originate        = true
-  # default_information_originate_always = true
-  # default_metric                       = 21
-  # distance                             = 120
-  # domain_tag                           = 10
-  neighbor = [
-    {
-      ip       = "192.168.221.1"
-      priority = 10
-      cost     = 100
-    }
-  ]
-  # network = [
+  # neighbor = [
   #   {
-  #     ip       = "192.168.27.1"
-  #     wildcard = "0.0.0.0"
-  #     area     = "0"
+  #     ip       = "192.168.221.1"
+  #     priority = 10
+  #     cost     = 100
   #   }
   # ]
+  network = [
+    {
+      ip       = "192.168.27.1"
+      wildcard = "0.0.0.0"
+      area     = "0"
+    }
+  ]
   # priority  = 100
   # summary_address = [
   #   {
@@ -184,16 +178,7 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
 resource "iosxe_interface_ospf" "example" {
   type                             = "Tunnel"
   name                             = "1"
-  # cost                             = 10
-  # dead_interval                    = 30
-  # hello_interval                   = 5
-  # mtu_ignore                       = false
-  # network_type_broadcast           = false
-  # network_type_non_broadcast       = false
-  # network_type_point_to_multipoint = false
   network_type_point_to_point      = true
-  # priority                         = 10
-  # ttl_security_hops                = 2
   process_ids = [
     {
       id = 200
@@ -204,13 +189,6 @@ resource "iosxe_interface_ospf" "example" {
       ]
     }
   ]
-  # message_digest_keys = [
-  #   {
-  #     id            = 1
-  #     md5_auth_key  = "mykey"
-  #     md5_auth_type = 0
-  #   }
-  # ]
 }
 
 # resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
