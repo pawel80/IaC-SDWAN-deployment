@@ -146,13 +146,13 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   # default_metric                       = 21
   # distance                             = 120
   # domain_tag                           = 10
-  # neighbor = [
-  #   {
-  #     ip       = "192.168.221.1"
-  #     priority = 10
-  #     cost     = 100
-  #   }
-  # ]
+  neighbor = [
+    {
+      ip       = "192.168.221.1"
+      priority = 10
+      cost     = 100
+    }
+  ]
   # network = [
   #   {
   #     ip       = "192.168.27.1"
@@ -167,18 +167,18 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   #     mask = "255.255.255.0"
   #   }
   # ]
-  areas = [
-    {
-      area_id                                        = "0.0.0.0"
-      authentication_message_digest                  = false
-      nssa                                           = false
-      nssa_default_information_originate             = false
-      nssa_default_information_originate_metric      = 100
-      nssa_default_information_originate_metric_type = 1
-      nssa_no_summary                                = true
-      nssa_no_redistribution                         = true
-    }
-  ]
+  # areas = [
+  #   {
+  #     area_id                                        = "0.0.0.0"
+  #     authentication_message_digest                  = false
+  #     nssa                                           = false
+  #     nssa_default_information_originate             = false
+  #     nssa_default_information_originate_metric      = 100
+  #     nssa_default_information_originate_metric_type = 1
+  #     nssa_no_summary                                = true
+  #     nssa_no_redistribution                         = true
+  #   }
+  # ]
 }
 
 # resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
