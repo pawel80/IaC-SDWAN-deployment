@@ -135,7 +135,7 @@ resource "iosxe_ospf_vrf" "example" {
   for_each                             = {for router in local.legacy_routers : router.name => router}
   device                               = each.value.name
   process_id                           = 1
-  vrf                                  = "20"
+  vrf                                  = "200"
   # bfd_all_interfaces                   = true
   # default_information_originate        = true
   # default_information_originate_always = true
