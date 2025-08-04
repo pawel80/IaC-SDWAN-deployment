@@ -167,18 +167,18 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   #     mask = "255.255.255.0"
   #   }
   # ]
-  # areas = [
-  #   {
-  #     area_id                                        = "0"
-  #     authentication_message_digest                  = false
-  #     nssa                                           = false
-  #     nssa_default_information_originate             = false
-  #     nssa_default_information_originate_metric      = 100
-  #     nssa_default_information_originate_metric_type = 1
-  #     nssa_no_summary                                = true
-  #     nssa_no_redistribution                         = true
-  #   }
-  # ]
+  areas = [
+    {
+      area_id                                        = "0.0.0.0"
+      authentication_message_digest                  = false
+      nssa                                           = false
+      nssa_default_information_originate             = false
+      nssa_default_information_originate_metric      = 100
+      nssa_default_information_originate_metric_type = 1
+      nssa_no_summary                                = true
+      nssa_no_redistribution                         = true
+    }
+  ]
 }
 
 # resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
