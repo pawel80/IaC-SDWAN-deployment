@@ -90,6 +90,7 @@ resource "iosxe_interface_tunnel" "edge_GRE1" {
   ip_redirects            = false
   ip_unreachables         = false
   vrf_forwarding          = "200"
+  tunnel_vrf              = "200"
   tunnel_source           = each.value.edge_tunnel1_src
   tunnel_destination_ipv4 = each.value.edge_tunnel1_dst
   ipv4_address            = each.value.edge_tunnel1_ip_address
@@ -179,15 +180,14 @@ resource "iosxe_interface_tunnel" "edge_GRE3" {
 #   ]
 # }
 
-# resource "iosxe_cli" "global_loop111" {
-#   for_each                      = {for router in local.legacy_routers : router.name => router}
-#   device                        = each.value.name
-#   cli                           = <<-EOT
-#   ip route vrf 200 192.168.201.1 255.255.255.255 GigabitEthernet1 172.16.10.37 global
-#   ip route 192.168.28.1 255.255.255.255 Loopback20
-#   !ip address {{var_lp_502_if_address}} {{var_lp_502_if_mask}}
-#   EOT
-# }
+resource "iosxe_cli" "edge_static_routes" {
+  for_each                      = {for router in local.legacy_routers : router.name => router}
+  device                        = each.value.name
+  cli                           = <<-EOT
+  ip route vrf 200 192.168.201.1 255.255.255.255 GigabitEthernet1 {{default_gtw}} global
+  ip route {{edge_loop_20_ip_address}} {{edge_loop_20_mask}} Loopback20
+  EOT
+}
 
 resource "iosxe_save_config" "save_cfg" {
   for_each                       = {for router in local.legacy_routers : router.name => router}

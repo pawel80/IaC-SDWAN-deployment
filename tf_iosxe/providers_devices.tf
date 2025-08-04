@@ -47,6 +47,7 @@ locals {
       # mgmt_int                = "1"
       # ip_address              = "172.16.10.34"
       # mask                    = "255.255.255.252"
+      default_gtw               = "172.16.10.33"
       shut_interfaces           = ["2", "3", "4"]
       edge_rd_vrf_502           = "7:502"
       edge_rd_vrf_200           = "7:200"
@@ -76,6 +77,7 @@ locals {
       # mgmt_int                = "1"
       # ip_address              = "172.16.10.38"
       # mask                    = "255.255.255.252"
+      default_gtw               = "172.16.10.37"
       shut_interfaces           = ["2", "3", "4"]
       edge_rd_vrf_502           = "8:502"
       edge_rd_vrf_200           = "8:200"
