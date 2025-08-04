@@ -131,10 +131,10 @@ resource "iosxe_interface_tunnel" "edge_GRE3" {
   ipv4_address_mask       = each.value.edge_tunnel3_mask
 }
 
-resource "iosxe_ospf_vrf" "example" {
+resource "iosxe_ospf_vrf" "edge_ospf" {
   for_each                             = {for router in local.legacy_routers : router.name => router}
   device                               = each.value.name
-  process_id                           = 1
+  process_id                           = 200
   vrf                                  = "200"
   # bfd_all_interfaces                   = true
   # default_information_originate        = true
