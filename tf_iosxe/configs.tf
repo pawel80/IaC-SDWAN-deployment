@@ -140,13 +140,6 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   shutdown                             = false
   passive_interface_default            = true
   auto_cost_reference_bandwidth        = 40000
-  # neighbor = [
-  #   {
-  #     ip       = "192.168.221.1"
-  #     priority = 10
-  #     cost     = 100
-  #   }
-  # ]
   network = [
     {
       ip       = "192.168.27.1"
@@ -154,30 +147,43 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
       area     = "0"
     }
   ]
-  # priority  = 100
-  # summary_address = [
-  #   {
-  #     ip   = "3.3.3.0"
-  #     mask = "255.255.255.0"
-  #   }
-  # ]
-  # areas = [
-  #   {
-  #     area_id                                        = "0.0.0.0"
-  #     authentication_message_digest                  = false
-  #     nssa                                           = false
-  #     nssa_default_information_originate             = false
-  #     nssa_default_information_originate_metric      = 100
-  #     nssa_default_information_originate_metric_type = 1
-  #     nssa_no_summary                                = true
-  #     nssa_no_redistribution                         = true
-  #   }
-  # ]
 }
 
-resource "iosxe_interface_ospf" "example" {
+resource "iosxe_interface_ospf" "edge_ospf_tunnel1" {
   type                             = "Tunnel"
   name                             = "1"
+  network_type_point_to_point      = true
+  process_ids = [
+    {
+      id = 200
+      areas = [
+        {
+          area_id = "0"
+        }
+      ]
+    }
+  ]
+}
+
+resource "iosxe_interface_ospf" "edge_ospf_tunnel2" {
+  type                             = "Tunnel"
+  name                             = "2"
+  network_type_point_to_point      = true
+  process_ids = [
+    {
+      id = 200
+      areas = [
+        {
+          area_id = "0"
+        }
+      ]
+    }
+  ]
+}
+
+resource "iosxe_interface_ospf" "edge_ospf_tunnel3" {
+  type                             = "Tunnel"
+  name                             = "3"
   network_type_point_to_point      = true
   process_ids = [
     {
