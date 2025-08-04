@@ -167,11 +167,11 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   #     mask = "255.255.255.0"
   #   }
   # ]
-  # areas = [
-  #   {
-  #     area_id = "0"
-  #   }
-  # ]
+  areas = [
+    {
+      area_id = "0"
+    }
+  ]
 }
 
 # resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
