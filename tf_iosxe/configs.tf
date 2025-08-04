@@ -139,27 +139,27 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   router_id                            = "192.168.27.1"
   shutdown                             = false
   passive_interface_default            = true
-  auto_cost_reference_bandwidth        = 40000
+  # auto_cost_reference_bandwidth        = 40000
   # bfd_all_interfaces                   = true
   # default_information_originate        = true
   # default_information_originate_always = true
   # default_metric                       = 21
   # distance                             = 120
   # domain_tag                           = 10
-  # neighbor = [
-  #   {
-  #     ip       = "2.2.2.2"
-  #     priority = 10
-  #     cost     = 100
-  #   }
-  # ]
-  # network = [
-  #   {
-  #     ip       = "3.3.3.0"
-  #     wildcard = "0.0.0.255"
-  #     area     = "0"
-  #   }
-  # ]
+  neighbor = [
+    {
+      ip       = "192.168.221.1"
+      priority = 10
+      cost     = 100
+    }
+  ]
+  network = [
+    {
+      ip       = "192.168.27.1"
+      wildcard = "0.0.0.0"
+      area     = "0"
+    }
+  ]
   # priority  = 100
   # summary_address = [
   #   {
@@ -169,14 +169,7 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   # ]
   areas = [
     {
-      area_id                                        = "0"
-      # authentication_message_digest                  = true
-      # nssa                                           = true
-      # nssa_default_information_originate             = true
-      # nssa_default_information_originate_metric      = 100
-      # nssa_default_information_originate_metric_type = 1
-      # nssa_no_summary                                = true
-      # nssa_no_redistribution                         = true
+      area_id = "0"
     }
   ]
 }
