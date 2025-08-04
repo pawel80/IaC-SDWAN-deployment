@@ -180,16 +180,16 @@ resource "iosxe_interface_tunnel" "edge_GRE3" {
 #   ]
 # }
 
-# resource "iosxe_cli" "edge_static_routes" {
-#   for_each                      = {for router in local.legacy_routers : router.name => router}
-#   device                        = each.value.name
-#   cli                           = <<-EOT
-#   ip route vrf 200 {{edge_tunnel1_dst}} 255.255.255.255 GigabitEthernet1 {{default_gtw}} global
-#   ip route vrf 200 {{edge_tunnel2_dst}} 255.255.255.255 GigabitEthernet1 {{default_gtw}} global
-#   ip route vrf 200 {{edge_tunnel3_dst}} 255.255.255.255 GigabitEthernet1 {{default_gtw}} global
-#   ip route {{edge_loop_20_ip_address}} {{edge_loop_20_mask}} Loopback20
-#   EOT
-# }
+resource "iosxe_cli" "edge_static_routes" {
+  for_each                      = {for router in local.legacy_routers : router.name => router}
+  device                        = each.value.name
+  cli                           = <<-EOT
+  ip route vrf 200 {{edge_tunnel1_dst}} 255.255.255.255 GigabitEthernet1 {{default_gtw}} global
+  ip route vrf 200 {{edge_tunnel2_dst}} 255.255.255.255 GigabitEthernet1 {{default_gtw}} global
+  ip route vrf 200 {{edge_tunnel3_dst}} 255.255.255.255 GigabitEthernet1 {{default_gtw}} global
+  ip route {{edge_loop_20_ip_address}} {{edge_loop_20_mask}} Loopback20
+  EOT
+}
 
 resource "iosxe_save_config" "save_cfg" {
   for_each                       = {for router in local.legacy_routers : router.name => router}
