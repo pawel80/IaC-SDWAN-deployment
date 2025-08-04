@@ -131,6 +131,56 @@ resource "iosxe_interface_tunnel" "edge_GRE3" {
   ipv4_address_mask       = each.value.edge_tunnel3_mask
 }
 
+resource "iosxe_ospf_vrf" "example" {
+  for_each                             = {for router in local.legacy_routers : router.name => router}
+  device                               = each.value.name
+  process_id                           = 1
+  vrf                                  = "20"
+  # bfd_all_interfaces                   = true
+  # default_information_originate        = true
+  # default_information_originate_always = true
+  # default_metric                       = 21
+  # distance                             = 120
+  # domain_tag                           = 10
+  # neighbor = [
+  #   {
+  #     ip       = "2.2.2.2"
+  #     priority = 10
+  #     cost     = 100
+  #   }
+  # ]
+  # network = [
+  #   {
+  #     ip       = "3.3.3.0"
+  #     wildcard = "0.0.0.255"
+  #     area     = "0"
+  #   }
+  # ]
+  # priority  = 100
+  router_id = each.value.edge_loop_20_ip_address
+  shutdown  = false
+  # summary_address = [
+  #   {
+  #     ip   = "3.3.3.0"
+  #     mask = "255.255.255.0"
+  #   }
+  # ]
+  areas = [
+    {
+      area_id                                        = "0"
+      # authentication_message_digest                  = true
+      # nssa                                           = true
+      # nssa_default_information_originate             = true
+      # nssa_default_information_originate_metric      = 100
+      # nssa_default_information_originate_metric_type = 1
+      # nssa_no_summary                                = true
+      # nssa_no_redistribution                         = true
+    }
+  ]
+  passive_interface_default     = true
+  auto_cost_reference_bandwidth = 40000
+}
+
 # resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
 #   for_each                = {for router in local.legacy_routers : router.name => router}
 #   device                  = each.value.name
