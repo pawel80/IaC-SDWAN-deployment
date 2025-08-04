@@ -60,15 +60,15 @@ locals {
       edge_tunnel1_src          = "192.168.27.1"
       edge_tunnel1_dst          = "192.168.201.1"
       edge_tunnel1_ip_address   = "192.168.221.2"
-      edge_tunnel1_mask         = "255.255.255.255"
+      edge_tunnel1_mask         = "255.255.255.252"
       edge_tunnel2_src          = "192.168.27.1"
       edge_tunnel2_dst          = "192.168.202.1"
       edge_tunnel2_ip_address   = "192.168.222.2"
-      edge_tunnel2_mask         = "255.255.255.255"
+      edge_tunnel2_mask         = "255.255.255.252"
       edge_tunnel3_src          = "192.168.27.1"
       edge_tunnel3_dst          = "192.168.203.1"
       edge_tunnel3_ip_address   = "192.168.223.2"
-      edge_tunnel3_mask         = "255.255.255.255"
+      edge_tunnel3_mask         = "255.255.255.252"
     },
     {
       name                      = "ROUTER8"
@@ -90,15 +90,15 @@ locals {
       edge_tunnel1_src          = "192.168.28.1"
       edge_tunnel1_dst          = "192.168.201.1"
       edge_tunnel1_ip_address   = "192.168.221.6"
-      edge_tunnel1_mask         = "255.255.255.255"
+      edge_tunnel1_mask         = "255.255.255.252"
       edge_tunnel2_src          = "192.168.28.1"
       edge_tunnel2_dst          = "192.168.202.1"
       edge_tunnel2_ip_address   = "192.168.222.6"
-      edge_tunnel2_mask         = "255.255.255.255"
+      edge_tunnel2_mask         = "255.255.255.252"
       edge_tunnel3_src          = "192.168.28.1"
       edge_tunnel3_dst          = "192.168.203.1"
       edge_tunnel3_ip_address   = "192.168.223.6"
-      edge_tunnel3_mask         = "255.255.255.255"
+      edge_tunnel3_mask         = "255.255.255.252"
     }
   ]
 
