@@ -136,10 +136,10 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   device                               = each.value.name
   process_id                           = 200
   vrf                                  = "200"
-  # router_id                            = "192.168.27.1"
+  router_id                            = each.value.edge_loop_20_ip_address
   shutdown                             = false
   passive_interface_default            = true
-  # auto_cost_reference_bandwidth        = 40000
+  auto_cost_reference_bandwidth        = 40000
   # bfd_all_interfaces                   = true
   # default_information_originate        = true
   # default_information_originate_always = true
