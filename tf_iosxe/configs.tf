@@ -137,8 +137,8 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   process_id                           = 200
   vrf                                  = "200"
   # router_id                            = "192.168.27.1"
-  # shutdown                             = false
-  # passive_interface_default            = true
+  shutdown                             = false
+  passive_interface_default            = true
   # auto_cost_reference_bandwidth        = 40000
   # bfd_all_interfaces                   = true
   # default_information_originate        = true
