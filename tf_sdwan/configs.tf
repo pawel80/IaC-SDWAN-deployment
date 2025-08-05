@@ -1084,7 +1084,7 @@ resource "sdwan_service_routing_ospf_feature" "core_ospf_200_v01" {
   name                                      = "OSPF_200_v01"
   description                               = "OSPF for Legacy routers"
   feature_profile_id                        = sdwan_service_feature_profile.core_service_v01.id
-  router_id                                 = "{{var_core_loop20_address}}"
+  router_id_variable                        = "{{var_core_loop20_address}}"
   # reference_bandwidth                       = 101
   # rfc_1583_compatible                       = true
   # default_information_originate             = false
