@@ -1095,7 +1095,7 @@ resource "sdwan_service_routing_ospf_feature" "core_ospf_200_v01" {
       area_number = 0
       interfaces = [
         {
-          name                       = "Tunnel15000512"
+          name                       = "GigabitEthernet2.200"
           network_type               = "point-to-point"
           passive_interface          = false
           hello_interval             = 10
