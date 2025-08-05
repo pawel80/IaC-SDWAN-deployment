@@ -857,7 +857,7 @@ resource "sdwan_service_lan_vpn_interface_gre_feature" "core_vpn200_GRE1_v01" {
   shutdown                                 = false
   tunnel_source_ipv4_address_variable      = "{{var_core_GRE1_src}}"
   tunnel_destination_ipv4_address_variable = "{{var_core_GRE1_dst}}"
-  ip_mtu                                   = 1500
+  ip_mtu                                   = 1476
   tcp_mss                                  = 1460
   clear_dont_fragment                      = false
   application_tunnel_type                  = "none"
@@ -875,7 +875,7 @@ resource "sdwan_service_lan_vpn_interface_gre_feature" "core_vpn200_GRE2_v01" {
   shutdown                                 = false
   tunnel_source_ipv4_address_variable      = "{{var_core_GRE2_src}}"
   tunnel_destination_ipv4_address_variable = "{{var_core_GRE2_dst}}"
-  ip_mtu                                   = 1500
+  ip_mtu                                   = 1476
   tcp_mss                                  = 1460
   clear_dont_fragment                      = false
   application_tunnel_type                  = "none"
