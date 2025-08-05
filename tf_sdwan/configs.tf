@@ -1109,36 +1109,36 @@ resource "sdwan_service_routing_ospf_feature" "core_ospf_200_v01" {
   #     time = 5
   #   }
   # ]
-  # areas = [
-  #   {
-  #     area_number = 1
-  #     area_type   = "stub"
-  #     no_summary  = false
-  #     interfaces = [
-  #       {
-  #         name                       = "GigabitEthernet2"
-  #         hello_interval             = 10
-  #         dead_interval              = 40
-  #         lsa_retransmit_interval    = 5
-  #         cost                       = 10
-  #         designated_router_priority = 1
-  #         network_type               = "broadcast"
-  #         passive_interface          = false
-  #         authentication_type        = "message-digest"
-  #         message_digest_key_id      = 7
-  #         message_digest_key         = "sdjfhsghbjdjr"
-  #       }
-  #     ]
-  #     ranges = [
-  #       {
-  #         ip_address   = "10.1.1.0"
-  #         subnet_mask  = "255.255.255.0"
-  #         cost         = 1
-  #         no_advertise = false
-  #       }
-  #     ]
-  #   }
-  # ]
+  areas = [
+    {
+      area_number = 0
+      # area_type   = "stub"
+      # no_summary  = false
+      interfaces = [
+        {
+          name                       = "Tunnel15000512"
+          # hello_interval             = 10
+          # dead_interval              = 40
+          # lsa_retransmit_interval    = 5
+          # cost                       = 10
+          # designated_router_priority = 1
+          network_type               = "point-to-point"
+          passive_interface          = false
+          # authentication_type        = "message-digest"
+          # message_digest_key_id      = 7
+          # message_digest_key         = "sdjfhsghbjdjr"
+        }
+      ]
+      ranges = [
+        {
+          ip_address   = "10.1.1.0"
+          subnet_mask  = "255.255.255.0"
+          cost         = 1
+          no_advertise = false
+        }
+      ]
+    }
+  ]
 }
 
 resource "sdwan_service_lan_vpn_feature_associate_routing_ospf_feature" "core_ospf_service_associate_v01" {
