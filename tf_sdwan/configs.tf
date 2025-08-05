@@ -831,6 +831,56 @@ resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_56_v01" {
   ipv4_nat_type              = "pool"
 }
 
+resource "sdwan_service_lan_vpn_interface_ethernet_feature" "core_loop_20_v01" {
+  name                       = "CORE_LOOP20_v01"
+  description                = "CORE LOOPBACK20 GRE source"
+  feature_profile_id         = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+  shutdown                   = false
+  interface_name             = "Loopback20"
+  interface_description      = "Service(open) GRE source"
+  ipv4_address_variable      = "{{var_core_loop20_address}}"
+  ipv4_subnet_mask_variable  = "{{var_core_loop20_mask}}"
+  ipv4_nat                   = false
+  ipv4_nat_type              = "pool"
+}
+
+resource "sdwan_service_lan_vpn_interface_gre_feature" "core_vpn200_GRE1_v01" {
+  name                                     = "CORE_VPN200_GRE1_v01"
+  description                              = "GRE tunnel towards legacy Edge routers"
+  feature_profile_id                       = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id               = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+  interface_name                           = "gre1"
+  interface_description                    = "GRE tunnel towards legacy Edge routers"
+  ipv4_address_variable                    = "{{var_core_GRE1_tunnel_ip}}"
+  ipv4_subnet_mask_variable                = "{{var_core_GRE1_tunnel_mask}}"
+  shutdown                                 = false
+  tunnel_source_ipv4_address_variable      = "{{var_core_GRE1_src}}"
+  tunnel_destination_ipv4_address_variable = "{{var_core_GRE1_dst}}"
+  ip_mtu                                   = 1476
+  tcp_mss                                  = 1460
+  clear_dont_fragment                      = false
+  application_tunnel_type                  = "none"
+}
+
+resource "sdwan_service_lan_vpn_interface_gre_feature" "core_vpn200_GRE2_v01" {
+  name                                     = "CORE_VPN200_GRE2_v01"
+  description                              = "GRE tunnel towards legacy Edge routers"
+  feature_profile_id                       = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id               = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+  interface_name                           = "gre2"
+  interface_description                    = "GRE tunnel towards legacy Edge routers"
+  ipv4_address_variable                    = "{{var_core_GRE2_tunnel_ip}}"
+  ipv4_subnet_mask_variable                = "{{var_core_GRE2_tunnel_mask}}"
+  shutdown                                 = false
+  tunnel_source_ipv4_address_variable      = "{{var_core_GRE2_src}}"
+  tunnel_destination_ipv4_address_variable = "{{var_core_GRE2_dst}}"
+  ip_mtu                                   = 1476
+  tcp_mss                                  = 1460
+  clear_dont_fragment                      = false
+  application_tunnel_type                  = "none"
+}
+
 resource "sdwan_service_routing_bgp_feature" "core_bgp_502_v01" {
   name                     = "BGP_502_v01"
   description              = "BGP towards legacy core routers"
@@ -1030,6 +1080,45 @@ resource "sdwan_service_routing_bgp_feature" "core_bgp_600_v01" {
   ]
 }
 
+resource "sdwan_service_routing_ospf_feature" "core_ospf_200_v01" {
+  name                                      = "OSPF_200_v01"
+  description                               = "OSPF for Legacy routers"
+  feature_profile_id                        = sdwan_service_feature_profile.core_service_v01.id
+  router_id_variable                        = "{{var_core_loop20_address}}"
+  redistributes = [
+    {
+      protocol = "bgp"
+    }
+  ]
+  areas = [
+    {
+      area_number = 0
+      # interfaces = [
+      #   {
+      #     name                       = "Tunnel15000512"
+      #     network_type               = "point-to-point"
+      #     passive_interface          = false
+      #     hello_interval             = 10
+      #     dead_interval              = 40
+      #   },
+      #   {
+      #     name                       = "Tunnel15000513"
+      #     network_type               = "point-to-point"
+      #     passive_interface          = false
+      #     hello_interval             = 10
+      #     dead_interval              = 40
+      #   }
+      # ]
+    }
+  ]
+}
+
+resource "sdwan_service_lan_vpn_feature_associate_routing_ospf_feature" "core_ospf_service_associate_v01" {
+  feature_profile_id              = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id      = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+  service_routing_ospf_feature_id = sdwan_service_routing_ospf_feature.core_ospf_200_v01.id
+}
+
 resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_502_v01" {
   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn502_v01.id
@@ -1117,6 +1206,16 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
     route-replicate from vrf 511 unicast connected
     exit-global-af
   !
+  !Route leaking between VRF 200 and global VRF
+  vrf definition 200
+    address-family ipv4
+    route-replicate from vrf global unicast static
+    exit-address-family
+  !
+  global-address-family ipv4
+    route-replicate from vrf 200 unicast connected
+    exit-global-af
+  !
   interface GigabitEthernet2.502
   description Legacy_cores_BGP
   encapsulation dot1Q 502
@@ -1164,6 +1263,19 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   encapsulation dot1Q 600
   vrf forwarding 600
   ip address {{var_gig2_600_if_address}} {{var_gig2_600_if_mask}}
+  !
+  interface Tunnel15000512
+  ip ospf network point-to-point
+  ip ospf hello-interval 10
+  ip ospf dead-interval 40
+  ip ospf 200 area 0
+  !
+  interface Tunnel15000513
+  ip ospf network point-to-point
+  ip ospf hello-interval 10
+  ip ospf dead-interval 40
+  ip ospf 200 area 0
+  !
   EOT
 }
 
@@ -1208,6 +1320,10 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
     sdwan_service_lan_vpn_interface_ethernet_feature.core_loop_54_v01.version,
     sdwan_service_lan_vpn_interface_ethernet_feature.core_loop_56_v01.version,
+    sdwan_service_lan_vpn_interface_gre_feature.core_vpn200_GRE1_v01.version,
+    sdwan_service_lan_vpn_interface_gre_feature.core_vpn200_GRE2_v01.version,
+    sdwan_service_routing_ospf_feature.core_ospf_200_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_ospf_feature.core_ospf_service_associate_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
 }

@@ -38,13 +38,232 @@ resource "iosxe_interface_ethernet" "int_shutdown" {
   shutdown                       = true
 }
 
-# Just to present CLI based config
-resource "iosxe_cli" "global_loop123" {
+resource "iosxe_vrf" "edge_vrf_502" {
+  for_each            = {for router in local.legacy_routers : router.name => router}
+  device              = each.value.name
+  name                = "502"
+  description         = "Legacy Edge Monitoring(open)"
+  rd                  = each.value.edge_rd_vrf_502
+  address_family_ipv4 = true
+  address_family_ipv6 = false
+}
+
+resource "iosxe_vrf" "edge_vrf_200" {
+  for_each            = {for router in local.legacy_routers : router.name => router}
+  device              = each.value.name
+  name                = "200"
+  description         = "Legacy Edge Services(open)"
+  rd                  = each.value.edge_rd_vrf_200
+  address_family_ipv4 = true
+  address_family_ipv6 = false
+}
+
+resource "iosxe_interface_loopback" "edge_loop_502" {
+  for_each            = {for router in local.legacy_routers : router.name => router}
+  device              = each.value.name
+  name                = 52
+  vrf_forwarding      = "200"
+  description         = each.value.edge_loop_52_desc
+  ipv4_address        = each.value.edge_loop_52_ip_address
+  ipv4_address_mask   = each.value.edge_loop_52_mask
+  shutdown            = false
+}
+
+resource "iosxe_interface_loopback" "edge_loop_200" {
+  for_each            = {for router in local.legacy_routers : router.name => router}
+  device              = each.value.name
+  name                = 20
+  vrf_forwarding      = "200"
+  description         = each.value.edge_loop_20_desc
+  ipv4_address        = each.value.edge_loop_20_ip_address
+  ipv4_address_mask   = each.value.edge_loop_20_mask
+  shutdown            = false
+}
+
+resource "iosxe_interface_tunnel" "edge_GRE1" {
+  for_each                = {for router in local.legacy_routers : router.name => router}
+  device                  = each.value.name
+  name                    = 1
+  description             = "GRE towards CORE1"
+  shutdown                = false
+  ip_proxy_arp            = false
+  ip_redirects            = false
+  ip_unreachables         = false
+  vrf_forwarding          = "200"
+  tunnel_vrf              = "200"
+  tunnel_source           = each.value.edge_tunnel1_src
+  tunnel_destination_ipv4 = each.value.edge_tunnel1_dst
+  ipv4_address            = each.value.edge_tunnel1_ip_address
+  ipv4_address_mask       = each.value.edge_tunnel1_mask
+}
+
+resource "iosxe_interface_tunnel" "edge_GRE2" {
+  for_each                = {for router in local.legacy_routers : router.name => router}
+  device                  = each.value.name
+  name                    = 2
+  description             = "GRE towards CORE2"
+  shutdown                = false
+  ip_proxy_arp            = false
+  ip_redirects            = false
+  ip_unreachables         = false
+  vrf_forwarding          = "200"
+  tunnel_vrf              = "200"
+  tunnel_source           = each.value.edge_tunnel2_src
+  tunnel_destination_ipv4 = each.value.edge_tunnel2_dst
+  ipv4_address            = each.value.edge_tunnel2_ip_address
+  ipv4_address_mask       = each.value.edge_tunnel2_mask
+}
+
+resource "iosxe_interface_tunnel" "edge_GRE3" {
+  for_each                = {for router in local.legacy_routers : router.name => router}
+  device                  = each.value.name
+  name                    = 3
+  description             = "GRE towards CORE3"
+  shutdown                = false
+  ip_proxy_arp            = false
+  ip_redirects            = false
+  ip_unreachables         = false
+  vrf_forwarding          = "200"
+  tunnel_vrf              = "200"
+  tunnel_source           = each.value.edge_tunnel3_src
+  tunnel_destination_ipv4 = each.value.edge_tunnel3_dst
+  ipv4_address            = each.value.edge_tunnel3_ip_address
+  ipv4_address_mask       = each.value.edge_tunnel3_mask
+}
+
+resource "iosxe_ospf_vrf" "edge_ospf" {
+  for_each                             = {for router in local.legacy_routers : router.name => router}
+  device                               = each.value.name
+  process_id                           = 200
+  vrf                                  = "200"
+  router_id                            = each.value.edge_loop_20_ip_address
+  shutdown                             = false
+  passive_interface_default            = false
+  auto_cost_reference_bandwidth        = 40000
+  network = [
+    {
+      ip       = each.value.edge_loop_20_ip_address
+      wildcard = "0.0.0.0"
+      area     = "0"
+    }
+  ]
+}
+
+resource "iosxe_interface_ospf" "edge_ospf_tunnel1" {
+  for_each                         = {for router in local.legacy_routers : router.name => router}
+  device                           = each.value.name
+  type                             = "Tunnel"
+  name                             = "1"
+  network_type_point_to_point      = true
+  hello_interval                   = 10
+  dead_interval                    = 40
+  process_ids = [
+    {
+      id = 200
+      areas = [
+        {
+          area_id = "0"
+        }
+      ]
+    }
+  ]
+}
+
+resource "iosxe_interface_ospf" "edge_ospf_tunnel2" {
+  for_each                         = {for router in local.legacy_routers : router.name => router}
+  device                           = each.value.name
+  type                             = "Tunnel"
+  name                             = "2"
+  network_type_point_to_point      = true
+  hello_interval                   = 10
+  dead_interval                    = 40
+  process_ids = [
+    {
+      id = 200
+      areas = [
+        {
+          area_id = "0"
+        }
+      ]
+    }
+  ]
+}
+
+resource "iosxe_interface_ospf" "edge_ospf_tunnel3" {
+  for_each                         = {for router in local.legacy_routers : router.name => router}
+  device                           = each.value.name
+  type                             = "Tunnel"
+  name                             = "3"
+  network_type_point_to_point      = true
+  process_ids = [
+    {
+      id = 200
+      areas = [
+        {
+          area_id = "0"
+        }
+      ]
+    }
+  ]
+}
+
+# resource "iosxe_static_route_vrf" "edge_route_leak_for_GRE" {
+#   for_each                = {for router in local.legacy_routers : router.name => router}
+#   device                  = each.value.name
+#   vrf = "200"
+#   routes = [
+#     {
+#       # prefix = each.value.edge_tunnel1_dst
+#       prefix = "192.168.201.1"
+#       mask   = "255.255.255.255"
+#       next_hops = [
+#         {
+#           next_hop  = "172.16.10.37"
+#           metric    = 10
+#           global    = true
+#           name      = "GigabitEthernet1"
+#           permanent = true
+#           tag       = 100
+#         }
+#       ]
+#     },
+#     {
+#       prefix = each.value.edge_tunnel2_dst
+#       mask   = "255.255.255.255"
+#       next_hops = [
+#         {
+#           next_hop  = "GigabitEthernet1"
+#           metric    = 10
+#           global    = true
+#           name      = "GRE_needed"
+#           permanent = true
+#         }
+#       ]
+#     },
+#     {
+#       prefix = each.value.edge_tunnel3_dst
+#       mask   = "255.255.255.255"
+#       next_hops = [
+#         {
+#           next_hop  = "GigabitEthernet1"
+#           metric    = 10
+#           global    = true
+#           name      = "GRE_needed"
+#           permanent = true
+#         }
+#       ]
+#     }
+#   ]
+# }
+
+resource "iosxe_cli" "edge_static_routes" {
   for_each                      = {for router in local.legacy_routers : router.name => router}
   device                        = each.value.name
   cli                           = <<-EOT
-  interface Loopback111
-  description CONFIGURE_VIA_RESTCONF_CLI
+  ip route vrf 200 ${each.value.edge_tunnel1_dst} 255.255.255.255 GigabitEthernet1 ${each.value.default_gtw} global
+  ip route vrf 200 ${each.value.edge_tunnel2_dst} 255.255.255.255 GigabitEthernet1 ${each.value.default_gtw} global
+  ip route vrf 200 ${each.value.edge_tunnel3_dst} 255.255.255.255 GigabitEthernet1 ${each.value.default_gtw} global
+  ip route ${each.value.edge_loop_20_ip_address} ${each.value.edge_loop_20_mask} Loopback20
   EOT
 }
 

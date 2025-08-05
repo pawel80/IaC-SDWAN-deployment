@@ -4,14 +4,14 @@ Purpose of this LAB is to demonstrate how to use Infrastructure as Code aproach 
 - SD-routing
 - autonomous routers (IOS-XE)  
 
-For Cisco SD-Routing configuration group, minimum software version is Cisco IOS XE Release 17.13.1a - not in the LAB at the moment.  
-Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.x - not in the LAB at the moment.  
+For Cisco SD-Routing configuration group, minimum software version is Cisco IOS XE Release 17.13.1a - at the moment, not in the LAB.  
+Cisco SD-Routing DMVPN (Dynamic Multipoint VPN) is available from version 17.15.x - at the moment, not in the LAB.  
 
 <br/>
 
 Network types:
 - Internet for Github <-> self-hosted runner communication
-- Intranet(open) for management plane and non-encrypted data plane traffic
+- Intranet(open) for non-encrypted management, control and data plane traffic
 - Intranet(secure) for encrypted data plane traffic  
 
 <br/>
@@ -46,7 +46,7 @@ Management and control plane are done only via Intranet(open) network. Config mo
 ![alt text](drawings/lab_design_ip_v11.png)  
 *Network: ASN and IP plan*
 
-![alt text](drawings/lab_control_plane_v10.png)  
+![alt text](drawings/lab_control_plane_v11.png)  
 *Network: Control plane*
 
 ![alt text](drawings/lab_design_vrf_v05.png)  
@@ -76,6 +76,7 @@ Non standard config:
 > - it is impossible to create a sub interface via sd-wan provider, resource: *sdwan_service_lan_vpn_interface_ethernet_feature*
 > - it is impossible to activate Centralized Policy on a Controller which is using the Configuration Group template. Error:  *Failed to Apply policy - No template found for id null*. The solution is to create a Device Template for a Controller and then activate the policy (manually)
 > - it is impossible to attach CLI based Device Template to Controller via Terraform. Manual process works fine
+> - it is impossible to add interfaces to OSPF via *sdwan_service_routing_ospf_feature* resource. I've added them via *sdwan_cli_config_feature* 
 > - if you want to shutdown interface based on a resource: *sdwan_transport_wan_vpn_interface_ethernet_feature* or *sdwan_service_lan_vpn_interface_ethernet_feature*, then you need to first assigned IP address and/or nat type ...  
 ```terraform
 resource "sdwan_transport_wan_vpn_interface_ethernet_feature" "edge_dual1_vpn0_if_eth2_v01" {
