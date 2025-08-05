@@ -142,7 +142,7 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   auto_cost_reference_bandwidth        = 40000
   network = [
     {
-      ip       = "192.168.27.1"
+      ip       = each.value.edge_loop_20_desc
       wildcard = "0.0.0.0"
       area     = "0"
     }
@@ -150,6 +150,8 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
 }
 
 resource "iosxe_interface_ospf" "edge_ospf_tunnel1" {
+  for_each                         = {for router in local.legacy_routers : router.name => router}
+  device                           = each.value.name
   type                             = "Tunnel"
   name                             = "1"
   network_type_point_to_point      = true
@@ -166,6 +168,8 @@ resource "iosxe_interface_ospf" "edge_ospf_tunnel1" {
 }
 
 resource "iosxe_interface_ospf" "edge_ospf_tunnel2" {
+  for_each                         = {for router in local.legacy_routers : router.name => router}
+  device                           = each.value.name
   type                             = "Tunnel"
   name                             = "2"
   network_type_point_to_point      = true
@@ -182,6 +186,8 @@ resource "iosxe_interface_ospf" "edge_ospf_tunnel2" {
 }
 
 resource "iosxe_interface_ospf" "edge_ospf_tunnel3" {
+  for_each                         = {for router in local.legacy_routers : router.name => router}
+  device                           = each.value.name
   type                             = "Tunnel"
   name                             = "3"
   network_type_point_to_point      = true
