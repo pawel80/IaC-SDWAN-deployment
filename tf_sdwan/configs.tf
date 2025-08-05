@@ -1080,44 +1080,44 @@ resource "sdwan_service_routing_bgp_feature" "core_bgp_600_v01" {
   ]
 }
 
-# resource "sdwan_service_routing_ospf_feature" "core_ospf_200_v01" {
-#   name                                      = "OSPF_200_v01"
-#   description                               = "OSPF for Legacy routers"
-#   feature_profile_id                        = sdwan_service_feature_profile.core_service_v01.id
-#   router_id_variable                        = "{{var_core_loop20_address}}"
-#   redistributes = [
-#     {
-#       protocol = "bgp"
-#     }
-#   ]
-#   areas = [
-#     {
-#       area_number = 0
-#       interfaces = [
-#         {
-#           name                       = "GigabitEthernet2.200"
-#           network_type               = "point-to-point"
-#           passive_interface          = false
-#           hello_interval             = 10
-#           dead_interval              = 40
-#         },
-#         {
-#           name                       = "Tunnel15000513"
-#           network_type               = "point-to-point"
-#           passive_interface          = false
-#           hello_interval             = 10
-#           dead_interval              = 40
-#         }
-#       ]
-#     }
-#   ]
-# }
+resource "sdwan_service_routing_ospf_feature" "core_ospf_200_v01" {
+  name                                      = "OSPF_200_v01"
+  description                               = "OSPF for Legacy routers"
+  feature_profile_id                        = sdwan_service_feature_profile.core_service_v01.id
+  router_id_variable                        = "{{var_core_loop20_address}}"
+  redistributes = [
+    {
+      protocol = "bgp"
+    }
+  ]
+  areas = [
+    {
+      area_number = 0
+      interfaces = [
+        {
+          name                       = "GigabitEthernet2.200"
+          network_type               = "point-to-point"
+          passive_interface          = false
+          hello_interval             = 10
+          dead_interval              = 40
+        },
+        {
+          name                       = "Tunnel15000513"
+          network_type               = "point-to-point"
+          passive_interface          = false
+          hello_interval             = 10
+          dead_interval              = 40
+        }
+      ]
+    }
+  ]
+}
 
-# resource "sdwan_service_lan_vpn_feature_associate_routing_ospf_feature" "core_ospf_service_associate_v01" {
-#   feature_profile_id              = sdwan_service_feature_profile.core_service_v01.id
-#   service_lan_vpn_feature_id      = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
-#   service_routing_ospf_feature_id = sdwan_service_routing_ospf_feature.core_ospf_200_v01.id
-# }
+resource "sdwan_service_lan_vpn_feature_associate_routing_ospf_feature" "core_ospf_service_associate_v01" {
+  feature_profile_id              = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id      = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+  service_routing_ospf_feature_id = sdwan_service_routing_ospf_feature.core_ospf_200_v01.id
+}
 
 resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_502_v01" {
   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
@@ -1263,6 +1263,15 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   encapsulation dot1Q 600
   vrf forwarding 600
   ip address {{var_gig2_600_if_address}} {{var_gig2_600_if_mask}}
+  !
+  interface Tunnel15000512
+  ip ospf network point-to-point
+  ip ospf hello-interval 10
+  ip ospf dead-interval 40
+  ip ospf 200 area 0
+  !
+  interface Tunnel15000513
+  !
   EOT
 }
 
