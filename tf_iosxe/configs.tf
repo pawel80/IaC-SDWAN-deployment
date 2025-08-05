@@ -142,7 +142,7 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   auto_cost_reference_bandwidth        = 40000
   network = [
     {
-      ip       = each.value.edge_loop_20_desc
+      ip       = each.value.edge_loop_20_ip_address
       wildcard = "0.0.0.0"
       area     = "0"
     }
