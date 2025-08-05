@@ -1093,22 +1093,22 @@ resource "sdwan_service_routing_ospf_feature" "core_ospf_200_v01" {
   areas = [
     {
       area_number = 0
-      interfaces = [
-        {
-          name                       = "GigabitEthernet2.200"
-          network_type               = "point-to-point"
-          passive_interface          = false
-          hello_interval             = 10
-          dead_interval              = 40
-        },
-        {
-          name                       = "Tunnel15000513"
-          network_type               = "point-to-point"
-          passive_interface          = false
-          hello_interval             = 10
-          dead_interval              = 40
-        }
-      ]
+      # interfaces = [
+      #   {
+      #     name                       = "Tunnel15000512"
+      #     network_type               = "point-to-point"
+      #     passive_interface          = false
+      #     hello_interval             = 10
+      #     dead_interval              = 40
+      #   },
+      #   {
+      #     name                       = "Tunnel15000513"
+      #     network_type               = "point-to-point"
+      #     passive_interface          = false
+      #     hello_interval             = 10
+      #     dead_interval              = 40
+      #   }
+      # ]
     }
   ]
 }
@@ -1271,6 +1271,10 @@ resource "sdwan_cli_config_feature" "core_cli_cfg_v01" {
   ip ospf 200 area 0
   !
   interface Tunnel15000513
+  ip ospf network point-to-point
+  ip ospf hello-interval 10
+  ip ospf dead-interval 40
+  ip ospf 200 area 0
   !
   EOT
 }
@@ -1318,8 +1322,8 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
     sdwan_service_lan_vpn_interface_ethernet_feature.core_loop_56_v01.version,
     sdwan_service_lan_vpn_interface_gre_feature.core_vpn200_GRE1_v01.version,
     sdwan_service_lan_vpn_interface_gre_feature.core_vpn200_GRE2_v01.version,
-    # sdwan_service_routing_ospf_feature.core_ospf_200_v01.version,
-    # sdwan_service_lan_vpn_feature_associate_routing_ospf_feature.core_ospf_service_associate_v01.version,
+    sdwan_service_routing_ospf_feature.core_ospf_200_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_ospf_feature.core_ospf_service_associate_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
 }
