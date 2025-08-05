@@ -138,7 +138,7 @@ resource "iosxe_ospf_vrf" "edge_ospf" {
   vrf                                  = "200"
   router_id                            = each.value.edge_loop_20_ip_address
   shutdown                             = false
-  passive_interface_default            = true
+  passive_interface_default            = false
   auto_cost_reference_bandwidth        = 40000
   network = [
     {
