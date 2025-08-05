@@ -1098,11 +1098,15 @@ resource "sdwan_service_routing_ospf_feature" "core_ospf_200_v01" {
           name                       = "Tunnel15000512"
           network_type               = "point-to-point"
           passive_interface          = false
+          hello_interval             = 10
+          dead_interval              = 40
         },
         {
           name                       = "Tunnel15000513"
           network_type               = "point-to-point"
           passive_interface          = false
+          hello_interval             = 10
+          dead_interval              = 40
         }
       ]
       # ranges = [

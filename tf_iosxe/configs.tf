@@ -155,6 +155,8 @@ resource "iosxe_interface_ospf" "edge_ospf_tunnel1" {
   type                             = "Tunnel"
   name                             = "1"
   network_type_point_to_point      = true
+  hello_interval                   = 10
+  dead_interval                    = 40
   process_ids = [
     {
       id = 200
@@ -173,6 +175,8 @@ resource "iosxe_interface_ospf" "edge_ospf_tunnel2" {
   type                             = "Tunnel"
   name                             = "2"
   network_type_point_to_point      = true
+  hello_interval                   = 10
+  dead_interval                    = 40
   process_ids = [
     {
       id = 200
