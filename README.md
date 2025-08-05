@@ -46,7 +46,7 @@ Management and control plane are done only via Intranet(open) network. Config mo
 ![alt text](drawings/lab_design_ip_v11.png)  
 *Network: ASN and IP plan*
 
-![alt text](drawings/lab_control_plane_v10.png)  
+![alt text](drawings/lab_control_plane_v11.png)  
 *Network: Control plane*
 
 ![alt text](drawings/lab_design_vrf_v05.png)  

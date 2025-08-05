@@ -1080,6 +1080,73 @@ resource "sdwan_service_routing_bgp_feature" "core_bgp_600_v01" {
   ]
 }
 
+resource "sdwan_service_routing_ospf_feature" "core_ospf_200_v01" {
+  name                                      = "OSPF_200_v01"
+  description                               = "OSPF for Legacy routers"
+  feature_profile_id                        = sdwan_service_feature_profile.core_service_v01.id
+  router_id                                 = "{{var_core_loop20_address}}"
+  # reference_bandwidth                       = 101
+  # rfc_1583_compatible                       = true
+  # default_information_originate             = false
+  # default_information_originate_always      = false
+  # default_information_originate_metric      = 1
+  # default_information_originate_metric_type = "type1"
+  # distance_external                         = 110
+  # distance_inter_area                       = 110
+  # distance_intra_area                       = 110
+  # spf_calculation_delay                     = 200
+  # spf_initial_hold_time                     = 1000
+  # spf_maximum_hold_time                     = 10000
+  # redistributes = [
+  #   {
+  #     protocol = "static"
+  #     nat_dia  = true
+  #   }
+  # ]
+  # router_lsas = [
+  #   {
+  #     type = "on-startup"
+  #     time = 5
+  #   }
+  # ]
+  # areas = [
+  #   {
+  #     area_number = 1
+  #     area_type   = "stub"
+  #     no_summary  = false
+  #     interfaces = [
+  #       {
+  #         name                       = "GigabitEthernet2"
+  #         hello_interval             = 10
+  #         dead_interval              = 40
+  #         lsa_retransmit_interval    = 5
+  #         cost                       = 10
+  #         designated_router_priority = 1
+  #         network_type               = "broadcast"
+  #         passive_interface          = false
+  #         authentication_type        = "message-digest"
+  #         message_digest_key_id      = 7
+  #         message_digest_key         = "sdjfhsghbjdjr"
+  #       }
+  #     ]
+  #     ranges = [
+  #       {
+  #         ip_address   = "10.1.1.0"
+  #         subnet_mask  = "255.255.255.0"
+  #         cost         = 1
+  #         no_advertise = false
+  #       }
+  #     ]
+  #   }
+  # ]
+}
+
+resource "sdwan_service_lan_vpn_feature_associate_routing_ospf_feature" "core_ospf_service_associate_v01" {
+  feature_profile_id              = sdwan_service_feature_profile.core_service_v01.id
+  service_lan_vpn_feature_id      = sdwan_service_lan_vpn_feature.core_vpn200_v01.id
+  service_routing_ospf_feature_id = sdwan_service_routing_ospf_feature.core_ospf_200_v01.id
+}
+
 resource "sdwan_service_lan_vpn_feature_associate_routing_bgp_feature" "core_bgp_service_associate_502_v01" {
   feature_profile_id             = sdwan_service_feature_profile.core_service_v01.id
   service_lan_vpn_feature_id     = sdwan_service_lan_vpn_feature.core_vpn502_v01.id
@@ -1268,6 +1335,10 @@ resource "sdwan_configuration_group" "core_config_group_v01" {
     # sdwan_service_lan_vpn_interface_ethernet_feature.vpn511_gig2_511_v01.version,
     sdwan_service_lan_vpn_interface_ethernet_feature.core_loop_54_v01.version,
     sdwan_service_lan_vpn_interface_ethernet_feature.core_loop_56_v01.version,
+    sdwan_service_lan_vpn_interface_gre_feature.core_vpn200_GRE1_v01.version,
+    sdwan_service_lan_vpn_interface_gre_feature.core_vpn200_GRE2_v01.version,
+    sdwan_service_routing_ospf_feature.core_ospf_200_v01.version,
+    sdwan_service_lan_vpn_feature_associate_routing_ospf_feature.core_ospf_service_associate_v01.version,
     sdwan_cli_config_feature.core_cli_cfg_v01.version,
   ]
 }
