@@ -29,7 +29,7 @@ Design highlights:
 <br/>
 
 > [!NOTE]
-> For a better design understanding, please analyse below drawings, or even better - call me :relaxed:
+> For a better design understanding, please analyse below drawings, or contact me.
 
 <br/>
 
